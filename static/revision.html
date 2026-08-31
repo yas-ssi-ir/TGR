@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Relecture des réponses — Assistant TGR</title>
+<style>
+  :root{
+    --or:#c8a24a; --vert:#1c6b4f; --fond:#0f1419; --carte:#182029;
+    --bord:#2a3644; --txt:#e8edf2; --gris:#8fa0b3;
+    --rouge:#e05252; --orange:#d99a2b; --ok:#3fa96b;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--fond);color:var(--txt);
+       font-family:'Segoe UI',system-ui,sans-serif;font-size:14px;line-height:1.55}
+  header{position:sticky;top:0;z-index:10;background:rgba(15,20,25,.96);
+         backdrop-filter:blur(8px);border-bottom:1px solid var(--bord);padding:14px 22px}
+  .titre{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  h1{font-size:17px;margin:0;font-weight:600}
+  h1 span{color:var(--or)}
+  .compteur{margin-left:auto;color:var(--gris);font-size:13px}
+  .barre{height:6px;background:var(--bord);border-radius:99px;margin-top:10px;overflow:hidden}
+  .barre i{display:block;height:100%;background:linear-gradient(90deg,var(--vert),var(--or));
+           width:0;transition:width .4s}
+  .filtres{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+  .filtres button{background:transparent;border:1px solid var(--bord);color:var(--gris);
+        padding:5px 13px;border-radius:99px;cursor:pointer;font-size:12.5px}
+  .filtres button.on{background:var(--or);border-color:var(--or);color:#1a1207;font-weight:600}
+  main{max-width:1080px;margin:0 auto;padding:20px}
+  .avert{background:rgba(224,82,82,.1);border:1px solid rgba(224,82,82,.35);
+         border-radius:10px;padding:13px 16px;margin-bottom:18px;font-size:13px}
+  .avert b{color:var(--rouge)}
+  .fiche{background:var(--carte);border:1px solid var(--bord);border-radius:12px;
+         padding:16px 18px;margin-bottom:14px}
+  .fiche.validee{opacity:.55;border-color:rgba(63,169,107,.4)}
+  .entete{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+  .id{font-family:ui-monospace,Consolas,monospace;color:var(--or);font-weight:600}
+  .tag{font-size:11px;padding:2px 9px;border-radius:99px;border:1px solid var(--bord);color:var(--gris)}
+  .tag.eleve{background:rgba(224,82,82,.15);border-color:var(--rouge);color:#ff9d9d}
+  .tag.moyen{background:rgba(217,154,43,.13);border-color:var(--orange);color:#f2c572}
+  .tag.aucun{background:rgba(63,169,107,.13);border-color:var(--ok);color:#8fe0b0}
+  .tag.ok{background:var(--ok);border-color:var(--ok);color:#08240f;font-weight:600}
+  .probleme{font-weight:600;margin-bottom:12px}
+  .note{background:#101820;border-left:3px solid var(--or);border-radius:0 8px 8px 0;
+        padding:9px 13px;margin-bottom:12px;font-size:13px;color:#cfd9e4;white-space:pre-wrap}
+  .note b{color:var(--or);font-size:11.5px;letter-spacing:.4px;display:block;margin-bottom:3px}
+  label{display:block;font-size:11.5px;color:var(--gris);margin:10px 0 4px;
+        letter-spacing:.4px;text-transform:uppercase}
+  textarea{width:100%;background:#0d141b;color:var(--txt);border:1px solid var(--bord);
+           border-radius:8px;padding:11px 13px;font:inherit;resize:vertical;min-height:96px}
+  textarea:focus{outline:none;border-color:var(--or)}
+  textarea.ar{direction:rtl;text-align:right}
+  .actions{display:flex;gap:9px;margin-top:12px;align-items:center;flex-wrap:wrap}
+  .actions button{border:none;border-radius:8px;padding:8px 16px;cursor:pointer;
+                  font-size:13px;font-weight:600}
+  .valider{background:var(--ok);color:#08240f}
+  .enreg{background:transparent;border:1px solid var(--bord)!important;color:var(--gris)}
+  .etat{font-size:12px;color:var(--gris)}
+  .vide{text-align:center;color:var(--gris);padding:50px}
+  .retour{color:var(--gris);text-decoration:none;font-size:12.5px}
+  .retour:hover{color:var(--or)}
+</style>
+</head>
+<body>
+<header>
+  <div class="titre">
+    <h1>Relecture des réponses <span>officielles</span></h1>
+    <a class="retour" href="/">← retour à l'assistant</a>
+    <div class="compteur" id="compteur">chargement…</div>
+  </div>
+  <div class="barre"><i id="progression"></i></div>
+  <div class="filtres">
+    <button class="on" data-f="arelire">À relire</button>
+    <button data-f="eleve">Risque élevé</button>
+    <button data-f="ar">Arabe non traduit</button>
+    <button data-f="validees">Validées</button>
+    <button data-f="toutes">Toutes</button>
+  </div>
+</header>
+<main>
+  <div class="avert">
+    <b>Pourquoi cette page.</b> Ces réponses sont servies à l'usager telles quelles, sans
+    vérification au moment de la question. Celles marquées <b>risque élevé</b> proviennent
+    d'une note interne trop courte : le modèle a dû combler les blancs — c'est là qu'il
+    peut inventer une étape ou un écran qui n'existe pas. Comparez chaque réponse à sa
+    note source, corrigez, puis validez.
+  </div>
+  <div id="liste"><div class="vide">Chargement…</div></div>
+</main>
+<script>
+let FICHES = [], filtre = 'arelire';
+const RISQUE = {eleve: 'risque élevé', moyen: 'à vérifier', aucun: 'texte officiel'};
+
+function esc(s){
+  return (s || '').replace(/[&<>]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]));
+}
+
+async function charger(){
+  const d = await (await fetch('/api/revision/fiches')).json();
+  FICHES = d.fiches;
+  document.getElementById('compteur').textContent =
+    d.validees + '/' + d.total + ' validées · ' + d.risque_eleve +
+    ' à risque élevé · ' + (d.ar_douteuses || 0) + ' arabe non traduit';
+  document.getElementById('progression').style.width =
+    (d.total ? 100 * d.validees / d.total : 0) + '%';
+  rendre();
+}
+
+function visibles(){
+  if (filtre === 'validees') return FICHES.filter(f => f.validee);
+  if (filtre === 'eleve')    return FICHES.filter(f => !f.validee && f.risque === 'eleve');
+  if (filtre === 'ar')       return FICHES.filter(f => f.ar_douteuse);
+  if (filtre === 'arelire')  return FICHES.filter(f => !f.validee);
+  return FICHES;
+}
+
+function rendre(){
+  const c = document.getElementById('liste');
+  const items = visibles();
+  if (!items.length){ c.innerHTML = '<div class="vide">Rien dans cette vue. 🎉</div>'; return; }
+  c.innerHTML = '';
+  for (const f of items){
+    const el = document.createElement('div');
+    el.className = 'fiche' + (f.validee ? ' validee' : '');
+    el.innerHTML =
+      '<div class="entete">' +
+        '<span class="id">' + f.id + '</span>' +
+        '<span class="tag">' + esc(f.categorie) + '</span>' +
+        '<span class="tag ' + f.risque + '">' + RISQUE[f.risque] + '</span>' +
+        '<span class="tag">' + esc(f.origine) + '</span>' +
+        (f.validee ? '<span class="tag ok">validée ' + f.validee_le + '</span>' : '') +
+        (f.modifiee ? '<span class="tag">corrigée</span>' : '') +
+        (f.ar_douteuse ? '<span class="tag eleve">arabe non traduit</span>' : '') +
+      '</div>' +
+      '<div class="probleme">' + esc(f.probleme) + '</div>' +
+      '<div class="note"><b>NOTE SOURCE — la réponse ne doit rien affirmer de plus</b>' +
+        (esc(f.note_source) || '(vide)') + '</div>' +
+      '<label>Réponse en français</label>' +
+      '<textarea data-fr>' + esc(f.fr) + '</textarea>' +
+      '<label>Réponse en arabe</label>' +
+      '<textarea class="ar" data-ar>' + esc(f.ar) + '</textarea>' +
+      '<div class="actions">' +
+        '<button class="valider">✓ Valider</button>' +
+        '<button class="enreg">Enregistrer sans valider</button>' +
+        '<span class="etat"></span>' +
+      '</div>';
+    const fr = el.querySelector('[data-fr]');
+    const ar = el.querySelector('[data-ar]');
+    const etat = el.querySelector('.etat');
+    const envoyer = async (valider) => {
+      etat.textContent = 'enregistrement…';
+      await fetch('/api/revision/enregistrer', {
+        method: 'POST', headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({id: f.id, fr: fr.value, ar: ar.value, valider: valider})
+      });
+      etat.textContent = valider ? '✓ validée' : '✓ enregistrée';
+      if (valider) setTimeout(charger, 400);
+    };
+    el.querySelector('.valider').onclick = () => envoyer(true);
+    el.querySelector('.enreg').onclick = () => envoyer(false);
+    c.appendChild(el);
+  }
+}
+
+document.querySelectorAll('.filtres button').forEach(b => b.onclick = () => {
+  document.querySelectorAll('.filtres button').forEach(x => x.classList.remove('on'));
+  b.classList.add('on');
+  filtre = b.dataset.f;
+  rendre();
+});
+
+charger();
+</script>
+</body>
+</html>

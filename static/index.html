@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Assistant Virtuel TGR — Agentic RAG</title>
+<style>
+  :root {
+    --bg: #0b1220;
+    --panel: rgba(255,255,255,0.055);
+    --panel-border: rgba(255,255,255,0.10);
+    --accent: #c8a24a;          /* or TGR */
+    --accent2: #1c6b4f;         /* vert institutionnel */
+    --text: #e8ecf3;
+    --muted: #93a0b4;
+    --user-bubble: linear-gradient(135deg, #1c6b4f, #14503b);
+    --bot-bubble: rgba(255,255,255,0.07);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: "Segoe UI", system-ui, sans-serif;
+    background: radial-gradient(1200px 800px at 80% -10%, #1a2c4e 0%, var(--bg) 55%),
+                radial-gradient(900px 600px at -10% 110%, #14503b33 0%, transparent 60%), var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    padding: 16px;
+  }
+  .chat-container {
+    width: 100%; max-width: 860px; height: 92vh;
+    display: flex; flex-direction: column;
+    background: var(--panel);
+    border: 1px solid var(--panel-border);
+    border-radius: 20px;
+    backdrop-filter: blur(16px);
+    overflow: hidden;
+    box-shadow: 0 22px 60px rgba(0,0,0,0.5);
+  }
+  /* ── Header ── */
+  .chat-header {
+    padding: 18px 24px;
+    display: flex; align-items: center; justify-content: space-between;
+    border-bottom: 1px solid var(--panel-border);
+    background: rgba(255,255,255,0.03);
+  }
+  .header-info { display:flex; align-items:center; gap:14px; }
+  .avatar {
+    width: 46px; height: 46px; border-radius: 13px;
+    background: linear-gradient(135deg, var(--accent), #8f6f2a);
+    display:flex; align-items:center; justify-content:center;
+    font-weight: 800; color:#171204; font-size: 15px; letter-spacing: .5px;
+  }
+  .header-title h1 { font-size: 17px; font-weight: 650; }
+  .header-title p { font-size: 12px; color: var(--muted); margin-top: 3px; }
+  .status-dot {
+    display:inline-block; width:8px; height:8px; border-radius:50%;
+    background:#38d178; margin-right:5px;
+    box-shadow: 0 0 8px #38d178aa;
+  }
+  .lien-revision {
+    color: var(--muted); text-decoration: none; font-size: 12.5px;
+    border: 1px solid rgba(255,255,255,.12); padding: 5px 12px; border-radius: 99px;
+    transition: .2s;
+  }
+  .lien-revision:hover { color: var(--accent); border-color: var(--accent); }
+  .header-badge {
+    font-size: 11px; color: var(--muted);
+    border: 1px solid var(--panel-border); border-radius: 999px;
+    padding: 5px 12px;
+  }
+  /* ── Messages ── */
+  .chat-messages {
+    flex:1; overflow-y:auto; padding: 24px;
+    display:flex; flex-direction:column; gap:16px;
+  }
+  .chat-messages::-webkit-scrollbar { width: 8px; }
+  .chat-messages::-webkit-scrollbar-thumb { background: rgba(255,255,255,.12); border-radius: 8px; }
+  .msg { display:flex; flex-direction:column; max-width: 82%; animation: fadeIn .25s ease; }
+  @keyframes fadeIn { from {opacity:0; transform: translateY(6px);} to {opacity:1; transform:none;} }
+  .msg.user { align-self: flex-end; align-items: flex-end; }
+  .msg.bot  { align-self: flex-start; }
+  .bubble {
+    padding: 13px 17px; border-radius: 16px;
+    line-height: 1.55; font-size: 14.5px; white-space: pre-wrap;
+  }
+  .msg.user .bubble { background: var(--user-bubble); border-bottom-right-radius: 5px; }
+  .msg.bot  .bubble { background: var(--bot-bubble); border: 1px solid var(--panel-border); border-bottom-left-radius: 5px; }
+  .bubble[dir="rtl"] { text-align: right; }
+  /* ── Trace de l'agent ── */
+  .agent-trace {
+    display:flex; flex-direction:column; gap:5px;
+    margin-bottom: 8px; padding: 10px 14px;
+    background: rgba(200,162,74,0.06);
+    border: 1px dashed rgba(200,162,74,0.35);
+    border-radius: 12px;
+    font-size: 12px; color: var(--muted);
+  }
+  .trace-step { display:flex; align-items:center; gap:8px; animation: fadeIn .3s ease; }
+  .trace-step .dot {
+    width:6px; height:6px; border-radius:50%;
+    background: var(--accent); flex-shrink:0;
+  }
+  .trace-step.active .dot { animation: pulse 1s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:.25;} }
+  /* ── Sources ── */
+  .sources { margin-top: 9px; }
+  .sources summary {
+    cursor:pointer; font-size:12px; color: var(--accent);
+    user-select:none;
+  }
+  .source-chip {
+    display:inline-block; margin: 6px 6px 0 0;
+    padding: 4px 11px; font-size: 11.5px;
+    background: rgba(28,107,79,0.25);
+    border: 1px solid rgba(56,209,120,0.25);
+    border-radius: 999px; color: #a6e8c6;
+  }
+  .meta-line { margin-top:7px; font-size: 11px; color: var(--muted); }
+  /* ── Feedback ── */
+  .fb { margin-top:7px; display:flex; gap:6px; }
+  .fb button {
+    background:none; border:1px solid var(--panel-border); border-radius:8px;
+    padding: 3px 9px; cursor:pointer; font-size: 13px; color: var(--muted);
+    transition: all .15s;
+  }
+  .fb button:hover { background: rgba(255,255,255,.08); }
+  .fb button.sel { border-color: var(--accent); color: var(--accent); }
+  /* ── Suggestions ── */
+  .suggestions { display:flex; flex-wrap:wrap; gap:8px; padding: 0 24px 10px; }
+  .sugg {
+    font-size: 12px; padding: 7px 13px; cursor:pointer;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--panel-border); border-radius: 999px;
+    color: var(--muted); transition: all .15s;
+  }
+  .sugg:hover { border-color: var(--accent); color: var(--accent); }
+  /* ── Input ── */
+  .chat-input-area {
+    display:flex; gap:10px; padding: 16px 24px 20px;
+    border-top: 1px solid var(--panel-border);
+    background: rgba(255,255,255,0.03);
+  }
+  .chat-input {
+    flex:1; padding: 13px 17px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid var(--panel-border); border-radius: 13px;
+    color: var(--text); font-size: 14.5px; outline:none;
+    transition: border-color .15s;
+  }
+  .chat-input:focus { border-color: var(--accent); }
+  /* ── Onglets ── */
+  .tabs { display:flex; gap:6px; padding: 10px 24px 0; }
+  .tab {
+    padding: 9px 18px; font-size: 13px; cursor:pointer;
+    border: 1px solid var(--panel-border); border-bottom: none;
+    border-radius: 12px 12px 0 0; color: var(--muted);
+    background: rgba(255,255,255,0.03); user-select:none;
+  }
+  .tab.active { color: var(--accent); border-color: var(--accent); background: rgba(200,162,74,0.08); }
+  /* ── Panneau réclamation ── */
+  .rec-panel { flex:1; overflow-y:auto; padding: 24px; display:none; flex-direction:column; gap:18px; }
+  .rec-panel.visible { display:flex; }
+  .rec-card {
+    background: var(--panel); border:1px solid var(--panel-border);
+    border-radius: 16px; padding: 20px;
+  }
+  .rec-card h2 { font-size: 15px; margin-bottom: 14px; color: var(--accent); }
+  .rec-field { margin-bottom: 12px; }
+  .rec-field label { display:block; font-size: 12px; color: var(--muted); margin-bottom: 5px; }
+  .rec-field input, .rec-field select, .rec-field textarea {
+    width:100%; padding: 11px 14px; font-size: 14px; color: var(--text);
+    background: rgba(255,255,255,0.07); border:1px solid var(--panel-border);
+    border-radius: 10px; outline:none; font-family: inherit;
+  }
+  .rec-field textarea { min-height: 90px; resize: vertical; }
+  .rec-field select option { background: #16213a; }
+  .rec-btn {
+    padding: 11px 22px; border:none; border-radius: 10px; cursor:pointer;
+    background: linear-gradient(135deg, var(--accent), #a5842f);
+    color:#171204; font-weight:700; font-size: 13.5px;
+  }
+  .rec-btn:disabled { opacity:.45; cursor:not-allowed; }
+  .rec-result {
+    margin-top: 14px; padding: 14px 16px; border-radius: 12px;
+    background: rgba(28,107,79,0.15); border:1px solid rgba(56,209,120,0.3);
+    font-size: 13.5px; line-height: 1.6; white-space: pre-wrap; display:none;
+  }
+  .rec-result.visible { display:block; }
+  .rec-result .ref-badge {
+    display:inline-block; padding: 3px 12px; margin-bottom: 8px;
+    background: var(--accent); color:#171204; font-weight:700;
+    border-radius: 999px; font-size: 12.5px;
+  }
+  .send-btn {
+    padding: 13px 24px; border:none; border-radius: 13px;
+    background: linear-gradient(135deg, var(--accent), #a5842f);
+    color: #171204; font-weight: 700; font-size: 14px;
+    cursor:pointer; transition: transform .1s, opacity .15s;
+  }
+  .send-btn:hover { transform: translateY(-1px); }
+  .send-btn:disabled { opacity:.45; cursor: not-allowed; transform:none; }
+</style>
+</head>
+<body>
+
+<div class="chat-container">
+  <div class="chat-header">
+    <div class="header-info">
+      <div class="avatar">TGR</div>
+      <div class="header-title">
+        <h1>Assistant Virtuel TGR</h1>
+        <p><span class="status-dot"></span>Agentic RAG · 100 % local · FR / العربية</p>
+      </div>
+    </div>
+    <a class="lien-revision" href="/revision" title="Relecture des réponses officielles par un agent TGR">🛡️ Espace agent</a>
+    <div class="header-badge" id="statsBadge">CRAG · ChromaDB · Ollama</div>
+  </div>
+
+  <div class="tabs">
+    <div class="tab active" data-tab="chat">💬 Assistant</div>
+    <div class="tab" data-tab="rec">📝 Demande-Réclamation</div>
+  </div>
+
+  <div class="rec-panel" id="recPanel">
+    <div class="rec-card">
+      <h2>📤 Dépôt d'une réclamation</h2>
+      <div class="rec-field">
+        <label>Nature de la réclamation (optionnel — détectée automatiquement)</label>
+        <select id="recNature"><option value="">— Détection automatique —</option></select>
+      </div>
+      <div class="rec-field">
+        <label>Objet de la réclamation</label>
+        <input id="recObjet" placeholder="Ex : Problème de connexion MFA">
+      </div>
+      <div class="rec-field">
+        <label>Description détaillée</label>
+        <textarea id="recDesc" placeholder="Décrivez votre problème…"></textarea>
+      </div>
+      <button class="rec-btn" id="recSubmit">Déposer la réclamation</button>
+      <div class="rec-result" id="recResult"></div>
+    </div>
+
+    <div class="rec-card">
+      <h2>🔎 Suivi d'une réclamation</h2>
+      <div class="rec-field">
+        <label>Référence de réclamation</label>
+        <input id="suiviRef" placeholder="Ex : REC-2026-00001">
+      </div>
+      <button class="rec-btn" id="suiviBtn">Suivre</button>
+      <div class="rec-result" id="suiviResult"></div>
+    </div>
+  </div>
+
+  <div class="chat-messages" id="messagesContainer">
+    <div class="msg bot">
+      <div class="bubble">👋 Bonjour ! Je suis l'assistant du portail <b>eServices TGR</b>.
+Je peux vous aider sur : connexion &amp; mot de passe, MFA/OTP, vérification CNIE, inscriptions aux services, gestion de compte.
+
+Posez votre question en français ou en arabe.</div>
+    </div>
+  </div>
+
+  <div class="suggestions" id="suggestions">
+    <span class="sugg">Mon mot de passe est refusé</span>
+    <span class="sugg">J'ai changé de téléphone, plus de codes MFA</span>
+    <span class="sugg">Ma carte CNIE n'est pas lue par NFC</span>
+    <span class="sugg">Comment supprimer mon compte ?</span>
+    <span class="sugg">كيف أغير البريد الإلكتروني لحسابي؟</span>
+  </div>
+
+  <div class="chat-input-area">
+    <input type="text" id="userInput" class="chat-input"
+           placeholder="Posez votre question ici… / اطرح سؤالك هنا"
+           autocomplete="off">
+    <button id="sendBtn" class="send-btn">Envoyer</button>
+  </div>
+</div>
+
+<script>
+const container = document.getElementById('messagesContainer');
+const input = document.getElementById('userInput');
+const sendBtn = document.getElementById('sendBtn');
+let busy = false;
+
+const isArabic = t => /[؀-ۿ]/.test(t);
+const scroll = () => container.scrollTop = container.scrollHeight;
+
+function addUserMsg(text) {
+  const div = document.createElement('div');
+  div.className = 'msg user';
+  const b = document.createElement('div');
+  b.className = 'bubble';
+  if (isArabic(text)) b.dir = 'rtl';
+  b.textContent = text;
+  div.appendChild(b);
+  container.appendChild(div);
+  scroll();
+}
+
+function addBotShell() {
+  const div = document.createElement('div');
+  div.className = 'msg bot';
+  const trace = document.createElement('div');
+  trace.className = 'agent-trace';
+  trace.innerHTML = '<div style="font-weight:600;color:var(--accent);font-size:11px;">🤖 RAISONNEMENT DE L\'AGENT</div>';
+  const bubble = document.createElement('div');
+  bubble.className = 'bubble';
+  bubble.style.display = 'none';
+  div.appendChild(trace);
+  div.appendChild(bubble);
+  container.appendChild(div);
+  scroll();
+  return { div, trace, bubble };
+}
+
+function addTraceStep(trace, text) {
+  trace.querySelectorAll('.trace-step').forEach(s => s.classList.remove('active'));
+  const step = document.createElement('div');
+  step.className = 'trace-step active';
+  step.innerHTML = `<span class="dot"></span><span>${text}</span>`;
+  trace.appendChild(step);
+  scroll();
+}
+
+function addSources(div, sources, statut, latence, mode) {
+  if (sources && sources.length) {
+    const det = document.createElement('details');
+    det.className = 'sources';
+    det.innerHTML = `<summary>📎 ${sources.length} source(s) officielle(s)</summary>` +
+      sources.map(s => `<span class="source-chip">Fiche ${s.id} · ${s.categorie}</span>`).join('');
+    div.appendChild(det);
+  }
+  const meta = document.createElement('div');
+  meta.className = 'meta-line';
+  const rapide = (mode === 'direct' || mode === 'cache') ? ' · ⚡ réponse instantanée' : '';
+  meta.textContent = `Statut : ${statut} · ${latence}s${rapide}`;
+  div.appendChild(meta);
+}
+
+function addFeedback(div, question, reponse) {
+  const fb = document.createElement('div');
+  fb.className = 'fb';
+  const mk = (label, utile) => {
+    const btn = document.createElement('button');
+    btn.textContent = label;
+    btn.onclick = () => {
+      fb.querySelectorAll('button').forEach(b => b.classList.remove('sel'));
+      btn.classList.add('sel');
+      fetch('/api/feedback', {
+        method: 'POST', headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({question, reponse, utile})
+      });
+    };
+    return btn;
+  };
+  fb.appendChild(mk('👍', true));
+  fb.appendChild(mk('👎', false));
+  div.appendChild(fb);
+}
+
+async function sendMessage(text) {
+  const question = (text || input.value).trim();
+  if (!question || busy) return;
+  busy = true; sendBtn.disabled = true; input.value = '';
+  addUserMsg(question);
+
+  const { div, trace, bubble } = addBotShell();
+  if (isArabic(question)) bubble.dir = 'rtl';
+
+  try {
+    const resp = await fetch('/api/chat/stream', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({message: question})
+    });
+    const reader = resp.body.getReader();
+    const decoder = new TextDecoder();
+    let buffer = '';
+
+    while (true) {
+      const {done, value} = await reader.read();
+      if (done) break;
+      buffer += decoder.decode(value, {stream: true});
+      const lines = buffer.split('\n\n');
+      buffer = lines.pop();
+      for (const line of lines) {
+        if (!line.startsWith('data: ')) continue;
+        const ev = JSON.parse(line.slice(6));
+        if (ev.type === 'etape') {
+          addTraceStep(trace, ev.detail);
+        } else if (ev.type === 'token') {
+          bubble.style.display = 'block';
+          bubble.textContent += ev.token;
+          scroll();
+        } else if (ev.type === 'final') {
+          bubble.style.display = 'block';
+          bubble.textContent = ev.reponse;
+          trace.querySelectorAll('.trace-step').forEach(s => s.classList.remove('active'));
+          addSources(div, ev.sources, ev.statut, ev.latence_s, ev.mode);
+          addFeedback(div, question, ev.reponse);
+          scroll();
+        } else if (ev.type === 'error') {
+          bubble.style.display = 'block';
+          bubble.textContent = '⚠️ ' + ev.detail;
+        }
+      }
+    }
+  } catch (e) {
+    bubble.style.display = 'block';
+    bubble.textContent = '⚠️ Erreur de connexion au serveur : ' + e.message;
+  } finally {
+    busy = false; sendBtn.disabled = false; input.focus();
+  }
+}
+
+sendBtn.onclick = () => sendMessage();
+input.addEventListener('keydown', e => { if (e.key === 'Enter') sendMessage(); });
+document.querySelectorAll('.sugg').forEach(s =>
+  s.onclick = () => sendMessage(s.textContent));
+
+// badge de santé
+fetch('/health').then(r => r.json()).then(h => {
+  document.getElementById('statsBadge').textContent =
+    `${h.chromadb} chunks · ${h.ollama ? 'Ollama ✓' : 'Ollama ✗'} · ${h.modele}`;
+}).catch(()=>{});
+
+// ── Onglets ──
+const recPanel = document.getElementById('recPanel');
+const chatMsgs = document.getElementById('messagesContainer');
+const suggBar = document.getElementById('suggestions');
+const inputArea = document.querySelector('.chat-input-area');
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.onclick = () => {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    const isChat = tab.dataset.tab === 'chat';
+    recPanel.classList.toggle('visible', !isChat);
+    chatMsgs.style.display = isChat ? 'flex' : 'none';
+    suggBar.style.display = isChat ? 'flex' : 'none';
+    inputArea.style.display = isChat ? 'flex' : 'none';
+  };
+});
+
+// ── Réclamation : natures ──
+fetch('/api/reclamation/natures').then(r => r.json()).then(d => {
+  const sel = document.getElementById('recNature');
+  d.natures.forEach(n => {
+    const opt = document.createElement('option');
+    opt.value = n; opt.textContent = n;
+    sel.appendChild(opt);
+  });
+}).catch(()=>{});
+
+// ── Réclamation : dépôt ──
+document.getElementById('recSubmit').onclick = async () => {
+  const objet = document.getElementById('recObjet').value.trim();
+  const desc = document.getElementById('recDesc').value.trim();
+  const nature = document.getElementById('recNature').value;
+  const resBox = document.getElementById('recResult');
+  if (!desc) { alert('Veuillez décrire votre problème.'); return; }
+  const btn = document.getElementById('recSubmit');
+  btn.disabled = true; btn.textContent = '⏳ Traitement par l\'agent IA…';
+  resBox.classList.remove('visible');
+  try {
+    const r = await fetch('/api/reclamation', {
+      method: 'POST', headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({objet, description: desc, nature})
+    });
+    const d = await r.json();
+    let html = `<span class="ref-badge">${d.reference}</span>\n`;
+    html += `📌 Nature : ${d.nature}\n📊 Statut : ${d.statut}\n\n${d.message_usager}`;
+    if (d.reponse_proposee) {
+      html += `\n\n──────────\n🤖 RÉPONSE AUTOMATIQUE (sous réserve de validation) :\n\n${d.reponse_proposee}`;
+    }
+    resBox.textContent = '';
+    resBox.innerHTML = html.replace(/</g,'&lt;').replace(/&lt;span class="ref-badge"&gt;(.*?)&lt;\/span&gt;/, '<span class="ref-badge">$1</span>');
+    resBox.classList.add('visible');
+  } catch (e) {
+    resBox.textContent = '⚠️ Erreur : ' + e.message;
+    resBox.classList.add('visible');
+  } finally {
+    btn.disabled = false; btn.textContent = 'Déposer la réclamation';
+  }
+};
+
+// ── Réclamation : suivi ──
+document.getElementById('suiviBtn').onclick = async () => {
+  const ref = document.getElementById('suiviRef').value.trim();
+  const box = document.getElementById('suiviResult');
+  if (!ref) return;
+  const r = await fetch('/api/reclamation/suivi/' + encodeURIComponent(ref));
+  const d = await r.json();
+  if (!d.trouvee) {
+    box.textContent = '❌ ' + d.message_statut;
+  } else {
+    let txt = `Référence : ${d.reference}\nDate : ${d.date}\nNature : ${d.nature}\nStatut : ${d.statut}\n\n${d.message_statut}`;
+    if (d.reponse_proposee) txt += `\n\n──────────\n${d.reponse_proposee}`;
+    box.textContent = txt;
+  }
+  box.classList.add('visible');
+};
+</script>
+</body>
+</html>

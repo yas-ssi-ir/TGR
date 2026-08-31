@@ -1,0 +1,81 @@
+# ─────────────────────────────────────────────────────────────────────
+#  Assistant IA TGR — fichiers à ne PAS versionner
+# ─────────────────────────────────────────────────────────────────────
+
+# ── Environnement Python ──────────────────────────────────────────────
+venv/
+.venv/
+env/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+htmlcov/
+.coverage
+.coverage.*
+
+# ── Base vectorielle ──────────────────────────────────────────────────
+# Régénérée en ~2 min par « python -X utf8 src\ingestion.py ».
+# Volumineuse et binaire : la versionner polluerait chaque commit.
+data/chroma_db/
+
+# ── Cache sémantique ──────────────────────────────────────────────────
+# Contient des vecteurs (768 nombres par entrée) : gros, illisible, et
+# propre à l'état de la documentation d'une machine donnée.
+data/processed/cache_reponses.json
+
+# ── Données produites par les usagers — NE JAMAIS VERSIONNER ─────────
+# Réclamations déposées et retours 👍/👎 : données personnelles.
+data/processed/reclamations.json
+data/processed/feedbacks.json
+
+# ── Copie du portail enregistrée pour analyse ────────────────────────
+# Page eServices sauvegardée depuis le navigateur : bundles Angular minifiés,
+# widget IBM Watson, CSS et images. Code TIERS, plusieurs Mo, qui a servi une
+# fois à comprendre le portail existant. Rien n'en dépend dans le projet.
+data/dashboard_eservices/
+
+# ── Sauvegardes et fichiers de travail ────────────────────────────────
+*.ancien.json
+*.bak
+*.tmp
+scratch_*
+*.log
+
+# ── Secrets (accès PostgreSQL de la DSI, à venir) ────────────────────
+.env
+.env.*
+!.env.example
+
+# ── Système d'exploitation et éditeurs ────────────────────────────────
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+desktop.ini
+~$*.xlsx
+~$*.docx
+
+
+# ─────────────────────────────────────────────────────────────────────
+#  ⚠️  SI CE DÉPÔT DEVIENT PUBLIC
+#
+#  Les fichiers ci-dessous décrivent des dysfonctionnements internes du
+#  portail eServices (causes techniques, bugs connus). Ils ont leur place
+#  dans un dépôt interne TGR, pas sur un dépôt public.
+#
+#  Avant toute publication, retirez le « # » des quatre lignes suivantes,
+#  puis exécutez :  git rm -r --cached data/raw data/processed
+#
+# data/raw/
+# data/processed/qa_fiches.json
+# data/processed/faq_fiches.json
+# data/processed/reponses_precalculees.json
+#
+#  Attention : les retirer casse les tests d'intégrité des données
+#  (tests/test_donnees.py) et empêche de rejouer la chaîne de préparation
+#  depuis le dépôt seul.
+# ─────────────────────────────────────────────────────────────────────

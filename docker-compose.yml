@@ -1,0 +1,53 @@
+# Déploiement de l'Assistant IA TGR sur un serveur, sans rien installer
+# d'autre que Docker. Tout reste sur la machine : aucune donnée ne sort.
+#
+#   docker compose up -d --build
+#   docker compose exec ollama ollama pull qwen2.5:3b-instruct   (une fois)
+#   → http://localhost:8000
+
+services:
+
+  # ── Le modèle de langage ────────────────────────────────────────────
+  ollama:
+    image: ollama/ollama:latest
+    container_name: tgr-ollama
+    restart: unless-stopped
+    volumes:
+      # Les 2 Go du modèle survivent aux redéploiements de l'assistant
+      - ollama-modeles:/root/.ollama
+    # Port non publié : seul l'assistant lui parle, via le réseau interne.
+    # Décommenter uniquement pour déboguer depuis la machine hôte.
+    # ports:
+    #   - "11434:11434"
+    healthcheck:
+      test: ["CMD-SHELL", "ollama list || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 40s
+
+  # ── L'assistant ─────────────────────────────────────────────────────
+  assistant:
+    build: .
+    container_name: tgr-assistant
+    restart: unless-stopped
+    depends_on:
+      ollama:
+        condition: service_healthy
+    environment:
+      # « ollama » est le nom du service ci-dessus : Docker le résout tout seul
+      OLLAMA_URL: http://ollama:11434
+      LLM_MODEL: qwen2.5:3b-instruct
+    ports:
+      - "8000:8000"
+    volumes:
+      # Base vectorielle, fiches et réponses relues : doivent survivre au
+      # redémarrage. C'est le travail de relecture des agents TGR.
+      - ./data:/app/data
+      # Modèle d'embeddings mis en cache : évite 400 Mo de téléchargement
+      # à chaque démarrage
+      - modele-embeddings:/cache/huggingface
+
+volumes:
+  ollama-modeles:
+  modele-embeddings:

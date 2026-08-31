@@ -1,0 +1,36 @@
+# Configuration des outils de qualité du projet.
+# Un seul fichier plutôt que setup.cfg + pytest.ini + ruff.toml éparpillés.
+
+[tool.ruff]
+line-length = 100          # le code contient des commentaires explicatifs en français
+target-version = "py311"
+exclude = ["venv", ".venv", "data", "static"]
+
+[tool.ruff.lint]
+select = [
+    "F",    # pyflakes — vrais défauts : import inutilisé, variable non définie
+    "E",    # pycodestyle — erreurs de style
+    "W",    # pycodestyle — avertissements
+    "I",    # isort — ordre des imports
+    "UP",   # pyupgrade — tournures Python obsolètes
+    "B",    # bugbear — pièges classiques (mutable par défaut, boucle/closure…)
+    "C4",   # comprehensions inutilement lourdes
+]
+ignore = [
+    "E501",   # longueur de ligne : déjà bornée par line-length, inutile de doubler
+    "E402",   # import après du code : nécessaire, les modules font sys.path.insert
+    "B008",   # appel dans une valeur par défaut : usage normal avec FastAPI
+]
+
+[tool.ruff.lint.per-file-ignores]
+# Les modules du projet s'importent entre eux après sys.path.insert(...) :
+# l'ordre des imports y est contraint, isort ne doit pas les réarranger.
+"src/*.py" = ["I001"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]       # permet « import lexique » sans bricolage
+addopts = "-q --strict-markers"
+markers = [
+    "lourd: test nécessitant les dépendances ML (torch, chromadb) — plus lent",
+]

@@ -1,0 +1,27 @@
+# Vérifications lancées automatiquement AVANT chaque « git commit ».
+# Objectif : ne jamais envoyer sur le dépôt ce que la CI refusera ensuite.
+#
+# Installation (une fois) :
+#   venv\Scripts\python.exe -m pip install pre-commit
+#   venv\Scripts\pre-commit.exe install
+
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.6.9
+    hooks:
+      - id: ruff                 # défauts réels : import inutilisé, nom inconnu
+        args: [--fix]
+        files: ^(src|tests)/
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-json           # un JSON de fiches cassé bloque tout l'assistant
+      - id: check-yaml
+      - id: check-added-large-files
+        args: [--maxkb=2048]     # la base vectorielle n'a rien à faire dans Git
+      - id: detect-private-key
+      - id: no-commit-to-branch
+        args: [--branch, main]   # on passe par une branche, jamais direct sur main

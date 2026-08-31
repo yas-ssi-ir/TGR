@@ -1,0 +1,356 @@
+[
+  {
+    "id": "1.1.1",
+    "categorie": "Mot de passe & connexion",
+    "probleme": "Mot de passe refusé sans raison apparente",
+    "solution": "mot de passe expiré",
+    "status": "ok",
+    "variantes": [
+      "Je n'arrive pas à me connecter, mon mot de passe ne marche plus",
+      "Mon mot de passe est refusé alors qu'il est correct",
+      "makayn mochkil f password dyali walakin makhdamch",
+      "ma9dertch ndkhol l compte dyali",
+      "password dyali ma bghach ykhdem"
+    ]
+  },
+  {
+    "id": "1.1.2",
+    "categorie": "Mot de passe & connexion",
+    "probleme": "Échec de la réinitialisation du mot de passe : -Lien expiré",
+    "solution": "durée d’expiration de l’URL est d’une heure 1h",
+    "status": "ok",
+    "variantes": [
+      "Le lien de réinitialisation du mot de passe ne fonctionne pas",
+      "J'ai cliqué sur le lien reçu par email mais il est expiré",
+      "Impossible de réinitialiser mon mot de passe",
+      "lien dyal reinitialisation dyal password ma khdamch"
+    ]
+  },
+  {
+    "id": "1.2.1",
+    "categorie": "Mot de passe & connexion",
+    "probleme": "Le paradoxe du compte fantôme",
+    "solution": "A la 1ère étape : Problème technique de recherche sur keycloack\nA la 2nde Étape : L’utilisateur a l’état créé sur la base de données",
+    "status": "ok",
+    "variantes": [
+      "Le système dit que mon compte existe déjà mais je ne le trouve pas",
+      "Compte introuvable alors que je me suis déjà inscrit",
+      "Mon compte a disparu, il existe pour le site mais pas pour moi",
+      "compte dyali kayn walakin ma3ndich access"
+    ]
+  },
+  {
+    "id": "1.2.2",
+    "categorie": "Mot de passe & connexion",
+    "probleme": "PPR lié à un ancien compte supprimé",
+    "solution": "Manque d’historique des comptes déjà liés au même PPR",
+    "status": "ok",
+    "variantes": [
+      "Mon PPR est lié à un ancien compte que j'ai supprimé",
+      "Je ne peux pas créer un compte car mon PPR est déjà utilisé"
+    ]
+  },
+  {
+    "id": "1.3.1",
+    "categorie": "Mot de passe & connexion",
+    "probleme": "Blocage après trop de tentatives",
+    "solution": "(Incompréhensible)",
+    "status": "no_answer",
+    "variantes": [
+      "Mon compte est bloqué après plusieurs tentatives de connexion",
+      "Compte bloqué trop de tentatives"
+    ]
+  },
+  {
+    "id": "1.3.2",
+    "categorie": "Mot de passe & connexion",
+    "probleme": "Compte désactivé pour \"inactivité\" ou raison de sécurité",
+    "solution": "(Incompréhensible)",
+    "status": "no_answer",
+    "variantes": [
+      "Mon compte a été désactivé pour inactivité",
+      "Compte désactivé raison de sécurité"
+    ]
+  },
+  {
+    "id": "2.1.1",
+    "categorie": "MFA / OTP / Google Authenticator",
+    "probleme": "Changement ou perte du téléphone",
+    "solution": "Récupération du code à partir de compte Google ou Réinitialisation MFA après connexion initiale",
+    "status": "ok",
+    "variantes": [
+      "J'ai changé de téléphone et je n'ai plus accès à Google Authenticator",
+      "J'ai perdu mon téléphone comment me connecter avec le MFA",
+      "bdelt telephone w mabqitch n9der ndkhol b code",
+      "telephone jdid, Google Authenticator makaynch",
+      "Nouveau téléphone, comment récupérer mon authentification"
+    ]
+  },
+  {
+    "id": "2.1.2",
+    "categorie": "MFA / OTP / Google Authenticator",
+    "probleme": "Désinstallation accidentelle",
+    "solution": "Récupération du code à partir de compte Google ou Réinitialisation MFA après connexion initiale",
+    "status": "ok",
+    "variantes": [
+      "J'ai désinstallé l'application d'authentification par erreur",
+      "J'ai supprimé Google Authenticator comment récupérer mes codes"
+    ]
+  },
+  {
+    "id": "2.1.3",
+    "categorie": "MFA / OTP / Google Authenticator",
+    "probleme": "Panne du téléphone",
+    "solution": "Récupération du code à partir de compte Google ou Réinitialisation MFA après connexion initiale",
+    "status": "ok",
+    "variantes": [
+      "Mon téléphone est en panne je ne peux plus générer le code OTP",
+      "Téléphone cassé impossible d'avoir le code de connexion"
+    ]
+  },
+  {
+    "id": "2.2.1",
+    "categorie": "MFA / OTP / Google Authenticator",
+    "probleme": "Non-conservation des codes",
+    "solution": "Récupération du code à partir de compte Google ou Réinitialisation MFA après connexion initiale",
+    "status": "ok",
+    "variantes": [
+      "Je n'ai pas gardé les codes de secours au moment de l'activation",
+      "Je n'ai pas noté mes codes de récupération MFA",
+      "J'ai perdu la feuille des codes de secours"
+    ]
+  },
+  {
+    "id": "2.2.2",
+    "categorie": "MFA / OTP / Google Authenticator",
+    "probleme": "Épuisement des codes",
+    "solution": "Régénération des codes de secours après connexion via le lien (https://eservices.tgr.gov.ma/my/mfa/backup-regeneration)",
+    "status": "ok",
+    "variantes": [
+      "J'ai utilisé tous mes codes de secours, il ne m'en reste aucun",
+      "Mes codes de secours sont épuisés",
+      "Plus aucun code de secours disponible comment en obtenir de nouveaux"
+    ]
+  },
+  {
+    "id": "2.2.3",
+    "categorie": "MFA / OTP / Google Authenticator",
+    "probleme": "Régénération impossible",
+    "solution": "Impossibilité de régénérer les codes de secours sans vérification MFA",
+    "status": "ok",
+    "variantes": [
+      "Le bouton régénérer les codes de secours ne fonctionne pas",
+      "Impossible de régénérer de nouveaux codes depuis mon compte",
+      "La régénération échoue quand je demande de nouveaux codes"
+    ]
+  },
+  {
+    "id": "2.3.1",
+    "categorie": "MFA / OTP / Google Authenticator",
+    "probleme": "Code OTP invalide :",
+    "solution": "Le processus MFA repose sur une vérification basée sur le temps (Time-Based Verification). Il est donc indispensable de synchroniser l’horloge du téléphone avec celle du serveur.\nMauvais code : L’utilisateur réinitialise le MFA et scanne le nouveau QR code, mais conserve toujours l’ancien compte dans son application d’authentification.\nLors d’une nouvelle connexion, il saisit l’ancien code OTP, ce qui entraîne un échec d’authentification.",
+    "status": "ok",
+    "variantes": [
+      "Le code OTP est toujours invalide alors qu'il est bien saisi",
+      "Mon code Google Authenticator est refusé à chaque tentative",
+      "Le code à 6 chiffres est rejeté, message code invalide",
+      "code OTP ghalat f kol mrra"
+    ]
+  },
+  {
+    "id": "2.3.2",
+    "categorie": "MFA / OTP / Google Authenticator",
+    "probleme": "Le code QR n'a jamais été scanné / ne fonctionne pas",
+    "solution": "Il est impossible d’activer le MFA sans disposer d’un premier OTP valide, généré après le scan du QR code.",
+    "status": "ok",
+    "variantes": [
+      "Le QR code d'activation ne s'affiche pas ou ne fonctionne pas",
+      "Je n'arrive pas à scanner le code QR pour activer le MFA",
+      "Aucun QR code proposé lors de l'activation"
+    ]
+  },
+  {
+    "id": "3.1.1",
+    "categorie": "Vérification CNIE / NFC (Mon Identité Numérique)",
+    "probleme": "Téléphone sans NFC :",
+    "solution": "Vous pouvez utiliser le téléphone d’une de vos connaissances équipé d’un lecteur NFC et de l'application Mon Identité Numérique (juste scanner la carte sans la lier au téléphone)",
+    "status": "ok",
+    "variantes": [
+      "Mon téléphone n'a pas de NFC comment vérifier ma carte d'identité",
+      "Téléphone sans NFC pour la vérification CNIE",
+      "telephone dyali ma fihch NFC bach n verifier CNIE"
+    ]
+  },
+  {
+    "id": "3.1.2",
+    "categorie": "Vérification CNIE / NFC (Mon Identité Numérique)",
+    "probleme": "Application \"Mon e-ID\" incompatible :",
+    "solution": "Vous pouvez utiliser le téléphone d’une de vos connaissances équipé d’un lecteur NFC et de l'application Mon Identité Numérique (juste scanner la carte sans la lier au téléphone)",
+    "status": "ok",
+    "variantes": [
+      "L'application Mon e-ID n'est pas compatible avec mon téléphone",
+      "Je ne peux pas installer l'application d'identité numérique"
+    ]
+  },
+  {
+    "id": "3.1.3",
+    "categorie": "Vérification CNIE / NFC (Mon Identité Numérique)",
+    "probleme": "Problème de lecteur",
+    "solution": "Votre Smartphone doit être équipé d’un lecteur NFC et connecté à un réseau de bonne qualité.\nAssurez-vous que votre téléphone n'est pas en mode \"économie d'énergie\".\nAssurez- vous de retirer le cache antichoc du téléphone si vous en avez .\nVous devez maintenir votre carte dans la même position durant toute la lecture par votre Smartphone.\nSi cela ne marche pas sur votre téléphone, essayer l’opération depuis le téléphone d’un proche équipé de NFC et de l’application Mon Identité numérique (juste scanner la carte sans la lier au téléphone)\nSi vous n’arrivez toujours pas à lire votre carte , nous vous conseillons de vous rendre dans un centre d'enregistrement des données identitaires pour vérifier le bon fonctionnement de la carte.",
+    "status": "ok",
+    "variantes": [
+      "Mon téléphone ne lit pas la carte d'identité",
+      "La lecture NFC de ma CNIE ne marche pas",
+      "telephoni maki9rach la carte nationale"
+    ]
+  },
+  {
+    "id": "3.2.1",
+    "categorie": "Vérification CNIE / NFC (Mon Identité Numérique)",
+    "probleme": "Le bouton \"Vérification via CNIE\" est absent",
+    "solution": "La vérification via CNIE n’est disponible que pour le personne physiques , il faut donc renseigner le type d’adhérent avec les champs obligatoires , et enregistrer le profile , le bouton « Vérification via CNIE » ainsi que le guide d’utilisation vont apparaitre",
+    "status": "ok",
+    "variantes": [
+      "Je ne trouve pas le bouton vérification via CNIE",
+      "Le bouton de vérification CNIE n'apparaît pas"
+    ]
+  },
+  {
+    "id": "3.2.2",
+    "categorie": "Vérification CNIE / NFC (Mon Identité Numérique)",
+    "probleme": "Champs de saisie bloqués :",
+    "solution": "INCOHERENCE : Les champs de saisie sont bloqués pour les fonctionnaire déjà chargés dans LDAP , ils ne peuvent pas enregistrer leurs profiles dans les cas où les champs obligatoires ne sont pas renseignés dans LDAP ou non validés (ex : prénom = -) è il faut corriger les données en masse pour les fonctionnaires ayant ces champs vides",
+    "status": "ok",
+    "variantes": [
+      "Les champs de saisie sont bloqués je ne peux rien modifier",
+      "Impossible de modifier mes informations les champs sont grisés"
+    ]
+  },
+  {
+    "id": "3.3.1",
+    "categorie": "Vérification CNIE / NFC (Mon Identité Numérique)",
+    "probleme": "Détenteurs de l'ancienne carte (CIN, non CNIE)",
+    "solution": "L’application « Mon Identité Numérique » permet aussi de valider les ancienne cartes. Après redirection vers le site de la DGSN, renseigner les champs demandés , et au moment de choisir la nature de la carte , il faut choisir ancienne carte et suivre les étapes. Les anciennes cartes sont validés en utilisant la reconnaissance faciale , il faut donc autoriser l’application à accéder à votre caméra.",
+    "status": "ok",
+    "variantes": [
+      "J'ai l'ancienne carte CIN pas la nouvelle CNIE",
+      "Est-ce que l'ancienne carte d'identité fonctionne pour la vérification"
+    ]
+  },
+  {
+    "id": "3.3.2",
+    "categorie": "Vérification CNIE / NFC (Mon Identité Numérique)",
+    "probleme": "Carte neuve non lisible",
+    "solution": "Votre Smartphone doit être équipé d’un lecteur NFC et connecté à un réseau de bonne qualité.\nAssurez-vous que votre téléphone n'est pas en mode \"économie d'énergie\".\nAssurez- vous de retirer le cache antichoc du téléphone si vous en avez .\nVous devez maintenir votre carte dans la même position durant toute la lecture par votre Smartphone.\nSi cela ne marche pas sur votre téléphone, essayer l’opération depuis le téléphone d’un proche équipé de NFC et de l’application Mon Identité numérique (juste scanner la carte sans la lier au téléphone)\nSi vous n’arrivez toujours pas à lire votre carte , nous vous conseillons de vous rendre dans un centre d'enregistrement des données identitaires pour vérifier le bon fonctionnement de la carte.",
+    "status": "ok",
+    "variantes": [
+      "Ma carte CNIE neuve n'est pas lisible par le téléphone",
+      "Carte d'identité neuve non reconnue par NFC"
+    ]
+  },
+  {
+    "id": "4.1.1",
+    "categorie": "Inscription & adhésion aux services",
+    "probleme": "Après une inscription réussie",
+    "solution": "Après l’inscription, il est nécessaire de se reconnecter afin que le menu soit visible.",
+    "status": "ok",
+    "variantes": [
+      "Je me suis inscrit mais je ne vois pas le menu du service",
+      "Après inscription le service n'apparaît pas"
+    ]
+  },
+  {
+    "id": "4.1.2",
+    "categorie": "Inscription & adhésion aux services",
+    "probleme": "Après une adhésion qui semble réussie",
+    "solution": "BUG",
+    "status": "no_answer",
+    "variantes": [
+      "Mon adhésion à un service est validée mais le service n'apparaît pas",
+      "J'ai adhéré à un téléservice mais je n'y ai toujours pas accès",
+      "Adhésion confirmée, service inaccessible dans mon espace"
+    ]
+  },
+  {
+    "id": "4.2.1",
+    "categorie": "Inscription & adhésion aux services",
+    "probleme": "Le bouton \"Ajouter\" est inactif / ne répond pas",
+    "solution": "BUG",
+    "status": "no_answer",
+    "variantes": [
+      "Le bouton « Ajouter » de la page d'adhésion aux services reste inactif",
+      "Je clique sur « Ajouter un service » mais aucune fenêtre ne s'ouvre",
+      "Impossible d'ajouter un téléservice, le bouton est grisé"
+    ]
+  },
+  {
+    "id": "4.2.2",
+    "categorie": "Inscription & adhésion aux services",
+    "probleme": "Message d'erreur \"Utilisateur déjà inscrit\"",
+    "solution": "L’historique des inscriptions n’est pas exhaustif dans ce cas. Par conséquent, tous les comptes liés au même PPR ne peuvent pas être désinscrits via le système, ce qui engendre le dysfonctionnement constaté.\nIl est donc nécessaire de communiquer directement avec le service de Maîtrise d’Ouvrage afin de procéder à la désactivation des autres comptes.",
+    "status": "ok",
+    "variantes": [
+      "Message erreur utilisateur déjà inscrit",
+      "Le site dit que je suis déjà inscrit mais ce n'est pas le cas"
+    ]
+  },
+  {
+    "id": "4.2.3",
+    "categorie": "Inscription & adhésion aux services",
+    "probleme": "Rejet du dernier salaire",
+    "solution": "Calcul confidentiel d’Aujour",
+    "status": "no_answer",
+    "variantes": [
+      "Mon dernier salaire est rejeté",
+      "Rejet du salaire lors de l'inscription"
+    ]
+  },
+  {
+    "id": "4.3.1",
+    "categorie": "Inscription & adhésion aux services",
+    "probleme": "Tableaux de bord vides",
+    "solution": "BUG",
+    "status": "no_answer",
+    "variantes": [
+      "Mon tableau de bord est vide",
+      "Mon tableau de bord n'affiche aucune de mes données fiscales",
+      "Mon espace personnel eServices reste vide après connexion"
+    ]
+  },
+  {
+    "id": "4.3.2",
+    "categorie": "Inscription & adhésion aux services",
+    "probleme": "Erreur technique générique",
+    "solution": "Amélioration",
+    "status": "no_answer",
+    "variantes": [
+      "Une erreur technique s'affiche pendant mon adhésion à un service",
+      "Message d'erreur technique lors de l'inscription à un téléservice",
+      "Erreur technique au moment de valider mon adhésion"
+    ]
+  },
+  {
+    "id": "5.1",
+    "categorie": "Gestion du compte",
+    "probleme": "Demandes de Suppression de Compte",
+    "solution": "Se connecter et supprimer le compte",
+    "status": "ok",
+    "variantes": [
+      "Comment supprimer mon compte",
+      "Je veux supprimer définitivement mon compte eservices",
+      "bghit nmse7 compte dyali"
+    ]
+  },
+  {
+    "id": "5.2",
+    "categorie": "Gestion du compte",
+    "probleme": "Demandes de Modification d'Email",
+    "solution": "Se connecter et changer l’email",
+    "status": "ok",
+    "variantes": [
+      "Comment changer mon adresse email",
+      "Je veux modifier l'email de mon compte",
+      "bghit nbdel email dyali"
+    ]
+  }
+]

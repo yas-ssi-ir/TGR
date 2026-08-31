@@ -1,0 +1,21 @@
+# Ce qui ne doit pas alourdir l'image (ni s'y retrouver par accident).
+venv/
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+
+.git/
+.github/
+tests/
+eval/
+*.md
+
+# Les données sont montées en volume au lancement, pas copiées dans l'image :
+# elles évoluent (relecture des agents) sans qu'on reconstruise quoi que ce soit.
+data/
+
+.env
+*.log
+scratch_*

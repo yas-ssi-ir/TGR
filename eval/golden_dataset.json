@@ -1,0 +1,115 @@
+[
+  {
+    "id": "G1",
+    "question": "Mon mot de passe est refusé alors que je suis sûr qu'il est correct, pourquoi ?",
+    "reponse_attendue": "Le mot de passe est probablement expiré, il faut le réinitialiser.",
+    "fiche_attendue": "1.1.1",
+    "categorie": "Mot de passe & connexion",
+    "doit_repondre": true
+  },
+  {
+    "id": "G2",
+    "question": "J'ai cliqué sur le lien de réinitialisation reçu par email mais il ne marche pas.",
+    "reponse_attendue": "Le lien de réinitialisation expire après 1 heure, il faut en redemander un nouveau.",
+    "fiche_attendue": "1.1.2",
+    "categorie": "Mot de passe & connexion",
+    "doit_repondre": true
+  },
+  {
+    "id": "G3",
+    "question": "J'ai changé de téléphone et je n'ai plus accès à mes codes Google Authenticator, que faire ?",
+    "reponse_attendue": "Récupération du code à partir du compte Google ou réinitialisation MFA après connexion initiale.",
+    "fiche_attendue": "2.1.1",
+    "categorie": "MFA / OTP / Google Authenticator",
+    "doit_repondre": true
+  },
+  {
+    "id": "G4",
+    "question": "J'ai épuisé tous mes codes de secours, comment en obtenir de nouveaux ?",
+    "reponse_attendue": "Régénération des codes de secours après connexion via le lien https://eservices.tgr.gov.ma/my/mfa/backup-regeneration",
+    "fiche_attendue": "2.2.2",
+    "categorie": "MFA / OTP / Google Authenticator",
+    "doit_repondre": true
+  },
+  {
+    "id": "G5",
+    "question": "Mon code OTP est toujours invalide, il ne marche jamais.",
+    "reponse_attendue": "Synchroniser l'horloge du téléphone avec celle du serveur (vérification basée sur le temps) et vérifier qu'on utilise le bon compte dans l'application (pas l'ancien après réinitialisation).",
+    "fiche_attendue": "2.3.1",
+    "categorie": "MFA / OTP / Google Authenticator",
+    "doit_repondre": true
+  },
+  {
+    "id": "G6",
+    "question": "Mon téléphone n'a pas de NFC, comment vérifier ma carte d'identité ?",
+    "reponse_attendue": "Utiliser le téléphone d'une connaissance équipé de NFC avec l'application Mon Identité Numérique (scanner la carte sans la lier au téléphone).",
+    "fiche_attendue": "3.1.1",
+    "categorie": "Vérification CNIE / NFC (Mon Identité Numérique)",
+    "doit_repondre": true
+  },
+  {
+    "id": "G7",
+    "question": "Mon smartphone n'arrive pas à lire ma carte CNIE, que faire ?",
+    "reponse_attendue": "Vérifier NFC + réseau de bonne qualité, désactiver le mode économie d'énergie, retirer le cache antichoc, maintenir la carte dans la même position, essayer sur un autre téléphone, sinon aller dans un centre d'enregistrement des données identitaires.",
+    "fiche_attendue": "3.1.3",
+    "categorie": "Vérification CNIE / NFC (Mon Identité Numérique)",
+    "doit_repondre": true
+  },
+  {
+    "id": "G8",
+    "question": "Je me suis inscrit à un service mais le menu n'apparaît pas.",
+    "reponse_attendue": "Après l'inscription, il est nécessaire de se reconnecter pour que le menu soit visible.",
+    "fiche_attendue": "4.1.1",
+    "categorie": "Inscription & adhésion aux services",
+    "doit_repondre": true
+  },
+  {
+    "id": "G9",
+    "question": "Le site me dit « utilisateur déjà inscrit » alors que je ne me suis jamais inscrit.",
+    "reponse_attendue": "L'historique des inscriptions n'est pas exhaustif ; il faut communiquer avec le service de Maîtrise d'Ouvrage pour désactiver les autres comptes liés au même PPR.",
+    "fiche_attendue": "4.2.2",
+    "categorie": "Inscription & adhésion aux services",
+    "doit_repondre": true
+  },
+  {
+    "id": "G10",
+    "question": "كيف يمكنني حذف حسابي؟",
+    "reponse_attendue": "Se connecter et supprimer le compte (réponse attendue en arabe).",
+    "fiche_attendue": "5.1",
+    "categorie": "Gestion du compte",
+    "doit_repondre": true
+  },
+  {
+    "id": "G11",
+    "question": "Mon tableau de bord est complètement vide, aucune donnée ne s'affiche.",
+    "reponse_attendue": "Problème connu (BUG) → orienter vers le support technique, ne pas inventer de solution.",
+    "fiche_attendue": "4.3.1",
+    "categorie": "Inscription & adhésion aux services",
+    "doit_repondre": true,
+    "attendu_statut": "KNOWN_BUG"
+  },
+  {
+    "id": "G12",
+    "question": "Quelle est la capitale de la France ?",
+    "reponse_attendue": "Refus poli : question hors du périmètre TGR.",
+    "fiche_attendue": null,
+    "categorie": "HORS_PERIMETRE",
+    "doit_repondre": false
+  },
+  {
+    "id": "G13",
+    "question": "Donne-moi une recette de tajine de poulet.",
+    "reponse_attendue": "Refus poli : question hors du périmètre TGR.",
+    "fiche_attendue": null,
+    "categorie": "HORS_PERIMETRE",
+    "doit_repondre": false
+  },
+  {
+    "id": "G14",
+    "question": "Comment obtenir un crédit immobilier auprès d'une banque privée ?",
+    "reponse_attendue": "Refus ou aveu honnête : sujet non couvert par la documentation du portail eServices TGR.",
+    "fiche_attendue": null,
+    "categorie": "HORS_PERIMETRE",
+    "doit_repondre": false
+  }
+]

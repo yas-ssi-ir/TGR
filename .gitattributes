@@ -1,0 +1,15 @@
+# Fins de ligne : le dépôt stocke en LF, Windows continue de travailler en CRLF.
+#
+# Sans cette règle, un fichier écrit sous Windows arrive en CRLF dans l'image
+# Docker et dans la CI, qui tournent sous Linux — et les différences de fin de
+# ligne polluent les diffs à chaque aller-retour entre les deux systèmes.
+* text=auto eol=lf
+
+# Fichiers binaires : Git ne doit jamais y toucher (les convertir les corrompt).
+*.pdf   binary
+*.xlsx  binary
+*.docx  binary
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.ico   binary
