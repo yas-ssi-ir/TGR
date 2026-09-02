@@ -16,16 +16,28 @@ Interruptible : sauvegarde après chaque fiche.
 
 Lancement :  python -X utf8 src\retraduire_ar.py
 """
+from __future__ import annotations
+
 import json
 import os
 import re
 import sys
 import time
+from typing import TYPE_CHECKING
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from config import PRECOMPUTED_JSON
-from llm import OllamaLLM
 from nettoyer_reponses import nettoyer
+
+if TYPE_CHECKING:                    # uniquement pour les annotations de type
+    from llm import OllamaLLM
+
+# « decouper », « budget_tokens » et « proportion_arabe » sont des fonctions de
+# TEXTE PUR : elles n'appellent aucun modèle. Importer le client HTTP au
+# chargement du module les rendait pourtant intestables sans lui — l'étage
+# rapide de l'intégration continue, qui n'installe volontairement que ruff et
+# pytest, échouait sur un « ModuleNotFoundError: requests ». Le client n'est
+# donc chargé qu'au moment de s'en servir.
 
 ARABE = re.compile("[؀-ۿ]")
 URL = re.compile(r"https?://\S+")
@@ -124,6 +136,8 @@ def preserver_liens(fr: str, ar: str) -> str:
 
 
 def main():
+    from llm import OllamaLLM
+
     with open(PRECOMPUTED_JSON, encoding="utf-8") as f:
         data = json.load(f)
 

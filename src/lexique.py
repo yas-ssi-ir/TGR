@@ -10,8 +10,13 @@ pas concerner le portail : « recette de tajine », « capitale de la France ».
 À l'inverse, deux mots ou plus du domaine = question du portail.
 Entre les deux (un seul mot commun), on laisse le LLM trancher.
 """
+import os
 import re
+import sys
 import unicodedata
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from config import DIST_OFFSET_DARIJA, DIST_OFFSET_TRANSLANGUE
 
 # Mots-outils : présents partout, ils ne portent aucune information de domaine
 STOPWORDS = {
@@ -206,3 +211,18 @@ def lexique_applicable(question: str, lexique: set[str]) -> bool:
         part = sum(1 for m in lexique if ARABE.search(m)) / len(lexique)
         return part >= PART_MIN_ECRITURE
     return not ecriture_darija(question)
+
+
+def marge_ecriture(question: str, lexique: set[str]) -> float:
+    """Marge à accorder aux seuils de distance pour une question écrite dans une
+    langue absente de la documentation. Deux barrières d'ampleur différente :
+    l'arabe (voir DIST_OFFSET_TRANSLANGUE) et la darija en alphabet latin, plus
+    proche du corpus et donc moins coûteuse (voir DIST_OFFSET_DARIJA).
+
+    Sa place est ici, et non dans le moteur de décision : c'est une question
+    d'ÉCRITURE, pas de recherche. L'y laisser obligeait à charger toute la pile
+    ML (torch, chromadb, client HTTP) pour tester une règle de trois lignes.
+    """
+    if lexique_applicable(question, lexique):
+        return 0.0
+    return DIST_OFFSET_DARIJA if ecriture_darija(question) else DIST_OFFSET_TRANSLANGUE

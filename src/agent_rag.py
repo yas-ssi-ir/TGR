@@ -103,16 +103,6 @@ def fiche_consensus(passages: list[dict], marge: float = 0.0,
             "passages": sorted(chunks, key=lambda c: c["distance"])}
 
 
-def marge_ecriture(question: str, lexique: set) -> float:
-    """Marge à accorder aux seuils de distance pour une question écrite dans une
-    langue absente de la documentation. Deux barrières d'ampleur différente :
-    l'arabe (voir DIST_OFFSET_TRANSLANGUE) et la darija en alphabet latin, plus
-    proche du corpus et donc moins coûteuse (voir DIST_OFFSET_DARIJA)."""
-    if lexique_applicable(question, lexique):
-        return 0.0
-    return DIST_OFFSET_DARIJA if ecriture_darija(question) else DIST_OFFSET_TRANSLANGUE
-
-
 def dedupe_sources(passages: list[dict]) -> list[dict]:
     """Une seule entrée par fiche (les variantes pointent vers la même fiche) —
     on garde la meilleure distance."""
@@ -126,14 +116,15 @@ def dedupe_sources(passages: list[dict]) -> list[dict]:
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from config import (
     CONSENSUS_K, CONSENSUS_MIN_CHUNKS, DIST_AUTO_IN, DIST_AUTO_OUT,
-    DIST_OFFSET_DARIJA, DIST_OFFSET_TRANSLANGUE,
     DIST_CANDIDATE_MAX, DIST_DEPARTAGE, DIST_HORS_SUJET, DIST_SOLO_ACCEPT, FALLBACK_ANSWER, GEN_TOP_K,
     KNOWN_BUG_ANSWER, MAX_REWRITE_RETRIES, OUT_OF_SCOPE_ANSWER,
     PRECOMPUTED_JSON, TOP_K,
 )
+# marge_ecriture vit dans lexique (c'est une règle d'écriture, pas de
+# recherche) ; réexportée ici, où tous les appelants la cherchent déjà.
 from lexique import (
-    conflit_action, construire_lexique, contient_terme_noyau, ecriture_darija,
-    lexique_applicable, recouvrement,
+    conflit_action, construire_lexique, contient_terme_noyau, lexique_applicable,
+    marge_ecriture, recouvrement,
 )
 from llm import OllamaLLM
 from rag_classic import SYSTEM_PROMPT, build_context

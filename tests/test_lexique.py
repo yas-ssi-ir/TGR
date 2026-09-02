@@ -11,6 +11,7 @@ from lexique import (
     contient_terme_noyau,
     ecriture_darija,
     lexique_applicable,
+    marge_ecriture,
     mots_significatifs,
     normaliser,
     recouvrement,
@@ -183,7 +184,6 @@ class TestDarijaLatine:
         """Les 14 questions darija du corpus sont à ≤ 0,351, contre 0,40-0,41
         pour l'arabe : une marge identique gaspillerait de la tolérance et
         laisserait passer davantage de hors-sujet."""
-        from agent_rag import marge_ecriture
         corpus_francais = {f"mot{i}" for i in range(1600)}
         darija = marge_ecriture("bghit ndir chikaya", corpus_francais)
         arabe = marge_ecriture("كيف أحذف حسابي؟", corpus_francais)
