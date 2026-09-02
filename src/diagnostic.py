@@ -79,7 +79,7 @@ def diagnostiquer(agent: AgenticRAG, question: str, fiche_attendue: str = ""):
             marque = "VOTE" + ("  [fiche sans solution]" if p["status"] == "no_answer" else "")
         print(f"    {p['distance']:.3f}  {fiche:<14} {marque:<28} {p['text'][:44]!r}")
 
-    consensus = fiche_consensus(passages, marge)
+    consensus = fiche_consensus(passages, marge, question)
     print("\n  DÉCISION")
     if consensus is None:
         print(f"    aucune fiche recevable (il faut {CONSENSUS_MIN_CHUNKS} chunks concordants,")

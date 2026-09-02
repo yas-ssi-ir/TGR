@@ -18,9 +18,10 @@ import time
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from config import (
-    CHROMA_DB_DIR, COLLECTION_NAME, DATA_RAW_DIR, DOC_CHUNK_OVERLAP,
-    DOC_CHUNK_SIZE, E5_PASSAGE_PREFIX, EMBEDDING_MODEL, FAQ_FICHES_JSON,
-    QA_FICHES_JSON,
+    ASSISTANT_FICHES_JSON, CHROMA_DB_DIR, CHUNK_SOLUTION_MAX, COLLECTION_NAME,
+    DATA_RAW_DIR,
+    DOC_CHUNK_OVERLAP, DOC_CHUNK_SIZE, DOCS_DEJA_STRUCTURES, E5_PASSAGE_PREFIX,
+    EMBEDDING_MODEL, FAQ_FICHES_JSON, QA_FICHES_JSON,
 )
 
 from langchain_chroma import Chroma
@@ -58,22 +59,35 @@ def clean_text(text: str) -> str:
 
 
 # ── Source 1 : fiches Q/R des réclamations ──────────────────────────
+SOURCES_FICHES = (
+    (QA_FICHES_JSON, "reclamations_xlsx"),
+    (FAQ_FICHES_JSON, "faq_pdf"),
+    (ASSISTANT_FICHES_JSON, "assistant_docx"),
+)
+
+
 def build_fiche_documents() -> list[Document]:
     """1 fiche = 1 chunk + 1 chunk par variante de question usager.
-    Deux sources de fiches : les réclamations (xlsx) et la FAQ officielle (PDF).
-    Les deux passent par le même moule → même traitement, même voie rapide."""
+    Trois sources de fiches : les réclamations (xlsx), la FAQ officielle (PDF)
+    et le relevé de l'assistant en production (docx). Toutes passent par le
+    même moule → même traitement, même voie rapide."""
     fiches = []
-    for chemin in (QA_FICHES_JSON, FAQ_FICHES_JSON):
+    for chemin, origine in SOURCES_FICHES:
         if os.path.exists(chemin):
             with open(chemin, encoding="utf-8") as f:
                 lot = json.load(f)
+            # Les nœuds de menu ne portent aucune réponse : les indexer
+            # leur ferait voler les questions aux fiches qui, elles, répondent.
+            lot = [fi for fi in lot if fi.get("status") != "menu"]
+            for fi in lot:
+                fi["_origine"] = origine
             fiches += lot
             print(f"  {os.path.basename(chemin)} : {len(lot)} fiches")
 
     docs = []
     for fiche in fiches:
         meta = {
-            "source": "reclamations_xlsx",
+            "source": fiche["_origine"],
             "fiche_id": fiche["id"],
             "categorie": fiche["categorie"],
             "status": fiche["status"],
@@ -86,11 +100,15 @@ def build_fiche_documents() -> list[Document]:
             contenu += "\n(Problème connu des équipes techniques — pas de solution en ligne : orienter vers le support.)"
         docs.append(Document(page_content=E5_PASSAGE_PREFIX + clean_text(contenu), metadata=meta))
 
-        # Chunks variantes : la question usager reformulée, avec la même solution
+        # Chunks variantes : la question usager reformulée, avec un EXTRAIT de
+        # la solution. Y recopier la solution entière transformait toutes les
+        # variantes d'une fiche en quasi-clones du même texte (voir
+        # CHUNK_SOLUTION_MAX) : elles ne captaient plus la formulation propre à
+        # chacune, qui est pourtant leur unique raison d'être.
         for variante in fiche.get("variantes", []):
             v_contenu = f"[{fiche['categorie']}] Question usager : {variante}\nProblème officiel : {fiche['probleme']}"
             if fiche["status"] == "ok":
-                v_contenu += f"\nSolution : {fiche['solution']}"
+                v_contenu += f"\nSolution : {fiche['solution'][:CHUNK_SOLUTION_MAX]}"
             docs.append(Document(page_content=E5_PASSAGE_PREFIX + clean_text(v_contenu),
                                  metadata={**meta, "is_variante": True}))
 
@@ -109,6 +127,9 @@ def build_doc_documents() -> list[Document]:
 
     raw_docs = []
     for filename in sorted(os.listdir(DATA_RAW_DIR)):
+        if filename in DOCS_DEJA_STRUCTURES:
+            print(f"  (ignoré : {filename} — déjà découpé en fiches)")
+            continue
         path = os.path.join(DATA_RAW_DIR, filename)
         ext = os.path.splitext(filename)[1].lower()
         try:

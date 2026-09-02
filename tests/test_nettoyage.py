@@ -87,3 +87,74 @@ class TestRobustesse:
     def test_ne_vide_jamais_un_texte_utile(self):
         texte = "Bonjour, je comprends. Contactez votre perception de rattachement."
         assert "perception" in nettoyer(texte)
+
+
+class TestMarqueurDeListe:
+    r"""RÉGRESSION — le nettoyage remplaçait un numéro de téléphone par « 1. ».
+
+    Mesuré sur la réponse verbatim de FAQ.20 : le motif « \d+[.)]\s » prenait
+    « 0537273727. » — le centre d'appel de la DGI — pour une étape numérotée et
+    la renumérotait. L'usager se serait vu communiquer un numéro inexistant,
+    dans un texte officiel recopié mot pour mot.
+    """
+
+    def test_un_numero_de_telephone_n_est_pas_une_etape(self):
+        texte = ("Vous pouvez nous contacter, ou appeler le centre d'appel "
+                 "de la DGI : 0537273727. Nos équipes vous répondront.")
+        assert "0537273727" in nettoyer(texte)
+
+    def test_une_vraie_liste_est_toujours_renumerotee(self):
+        texte = "3. Ouvrez votre profil. 4. Cliquez sur Modifier."
+        sortie = nettoyer(texte)
+        assert sortie.startswith("1.")
+        assert "2." in sortie
+
+    def test_un_montant_n_est_pas_une_etape(self):
+        texte = "Le seuil est fixé à 200. Au-delà, la taxe est due."
+        assert "200." in nettoyer(texte)
+
+
+class TestProtectionDuVerbatim:
+    """Un texte officiel recopié tel quel ne doit jamais être « nettoyé » :
+    il ne contient aucun artefact de rédaction, donc toute modification est
+    une dégradation."""
+
+    def test_les_textes_officiels_sont_repertories_par_fiche(self):
+        from nettoyer_reponses import textes_officiels
+        officiels = textes_officiels()
+        # rien à vérifier si la chaîne de préparation n'a pas été jouée
+        if not officiels:
+            return
+        assert all(isinstance(cle, tuple) and len(cle) == 2 for cle in officiels)
+        assert all(sol.strip() for _, sol in officiels)
+
+
+class TestDecoupagePourTraduction:
+    """Un modèle 3B décroche sur un texte long et dense : il recopie le français
+    au lieu de traduire. Le découpage en blocs est le dernier recours avant
+    d'abandonner la fiche à une traduction humaine."""
+
+    def test_un_texte_court_reste_entier(self):
+        from retraduire_ar import decouper
+        assert decouper("Une seule phrase courte.") == ["Une seule phrase courte."]
+
+    def test_un_texte_long_est_coupe_en_fin_de_phrase(self):
+        from retraduire_ar import TAILLE_MORCEAU, decouper
+        texte = " ".join(f"Voici la phrase numéro {i} de ce texte administratif."
+                         for i in range(40))
+        blocs = decouper(texte)
+        assert len(blocs) > 1
+        assert all(len(b) <= TAILLE_MORCEAU + 120 for b in blocs)
+        assert all(b.endswith(".") for b in blocs)
+
+    def test_aucun_texte_n_est_perdu_au_decoupage(self):
+        from retraduire_ar import decouper
+        texte = " ".join(f"Phrase {i} du document." for i in range(30))
+        assert " ".join(decouper(texte)).split() == texte.split()
+
+    def test_le_budget_de_tokens_suit_la_longueur(self):
+        """Une traduction coupée en plein milieu reste en arabe et passe la
+        vérification : l'usager reçoit alors la moitié de sa réponse."""
+        from retraduire_ar import budget_tokens
+        assert budget_tokens("court") < budget_tokens("x" * 1600)
+        assert budget_tokens("x" * 99999) <= 1600

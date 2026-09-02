@@ -12,7 +12,12 @@ import re
 
 import pytest
 
-from config import FAQ_FICHES_JSON, PRECOMPUTED_JSON, QA_FICHES_JSON
+from config import (
+    ASSISTANT_FICHES_JSON,
+    FAQ_FICHES_JSON,
+    PRECOMPUTED_JSON,
+    QA_FICHES_JSON,
+)
 
 ARABE = re.compile("[؀-ۿ]")
 CHAMPS_FICHE = {"id", "categorie", "probleme", "solution", "status", "variantes"}
@@ -27,7 +32,10 @@ def charger(chemin):
 
 @pytest.fixture(scope="module")
 def fiches():
-    return charger(QA_FICHES_JSON) + charger(FAQ_FICHES_JSON)
+    """Les fiches réellement INDEXÉES : les nœuds de menu du relevé de
+    l'assistant sont exclus de la base vectorielle, donc aussi d'ici."""
+    toutes = charger(QA_FICHES_JSON) + charger(FAQ_FICHES_JSON) + charger(ASSISTANT_FICHES_JSON)
+    return [f for f in toutes if f.get("status") != "menu"]
 
 
 @pytest.fixture(scope="module")
@@ -95,17 +103,28 @@ class TestQualiteDesReponses:
         """RÉGRESSION — 25 champs « ar » sur 44 contenaient du FRANÇAIS : le
         modèle recopiait au lieu de traduire. Un usager arabophone recevait une
         réponse qu'il ne pouvait pas lire."""
-        fautives = []
+        a_retenter, abandonnees = [], []
         for fid, rep in reponses.items():
             lettres = [c for c in rep.get("ar", "") if c.isalpha()]
             if not lettres:
                 continue
             part_arabe = sum(1 for c in lettres if ARABE.match(c)) / len(lettres)
             if part_arabe < 0.30:
-                fautives.append(fid)
-        assert not fautives, (
-            f"{len(fautives)} traduction(s) arabe(s) non traduite(s) : {fautives[:8]} — "
-            "relancer « python -X utf8 src\\retraduire_ar.py »")
+                # « ar_defaillante » : le modèle a déjà épuisé ses tentatives,
+                # découpage en blocs compris. Relancer le script ne donnerait
+                # rien — seule une traduction humaine débloque la fiche.
+                (abandonnees if rep.get("ar_defaillante") else a_retenter).append(fid)
+
+        messages = []
+        if a_retenter:
+            messages.append(
+                f"{len(a_retenter)} à retraduire ({a_retenter[:8]}) — "
+                "lancer « python -X utf8 src\\retraduire_ar.py »")
+        if abandonnees:
+            messages.append(
+                f"{len(abandonnees)} hors de portée du modèle ({abandonnees[:8]}) — "
+                "à saisir à la main dans /revision, filtre « Arabe non traduit »")
+        assert not messages, " | ".join(messages)
 
     @pytest.mark.parametrize("interdit", [
         "voici la réponse",

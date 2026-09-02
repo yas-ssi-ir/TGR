@@ -100,7 +100,7 @@ def main():
         for q in [fiche["probleme"]] + fiche.get("variantes", []):
             total += 1
             c = fiche_consensus(retriever.search(q, k=CONSENSUS_K),
-                                marge_ecriture(q, lexique))
+                                marge_ecriture(q, lexique), q)
             if c is None:
                 continue
             if c["fiche_id"] == fiche["id"]:

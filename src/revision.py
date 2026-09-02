@@ -18,17 +18,24 @@ import sys
 from datetime import datetime
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from config import FAQ_FICHES_JSON, PRECOMPUTED_JSON, QA_FICHES_JSON
+from config import (
+    ASSISTANT_FICHES_JSON, FAQ_FICHES_JSON, PRECOMPUTED_JSON, QA_FICHES_JSON,
+)
 from retraduire_ar import proportion_arabe
 
 # En deçà, la note source ne contient pas de procédure : le modèle a forcément
 # comblé le vide. Ces fiches sont les plus exposées à l'invention.
 SEUIL_NOTE_LACONIQUE = 80
 
+# Longueur de coupe appliquée par prepare_faq.py. Une note qui l'atteint
+# EXACTEMENT a été tronquée : son texte s'arrête au milieu d'une phrase et ne
+# peut pas être considéré comme une réponse officielle complète.
+LONGUEUR_COUPE_FAQ = 1400
+
 
 def charger_fiches() -> dict:
     fiches = {}
-    for chemin in (QA_FICHES_JSON, FAQ_FICHES_JSON):
+    for chemin in (QA_FICHES_JSON, FAQ_FICHES_JSON, ASSISTANT_FICHES_JSON):
         if os.path.exists(chemin):
             with open(chemin, encoding="utf-8") as f:
                 for fi in json.load(f):
@@ -55,7 +62,12 @@ def liste() -> dict:
     for fid, rep in reponses.items():
         fiche = fiches.get(fid, {})
         note = (fiche.get("solution") or "").strip()
-        verbatim = fid.startswith("FAQ.") and len(note) >= 150
+        # Une fiche tronquée n'est PAS un texte officiel complet : la classer
+        # « risque : aucun » la ferait sauter à la relecture alors qu'elle
+        # s'arrête au milieu d'une phrase.
+        tronquee = fid.startswith("FAQ.") and len(note) >= LONGUEUR_COUPE_FAQ
+        verbatim = (fid.startswith("AST.")
+                    or (fid.startswith("FAQ.") and len(note) >= 150)) and not tronquee
         items.append({
             "id": fid,
             "categorie": fiche.get("categorie", "?"),
@@ -68,9 +80,14 @@ def liste() -> dict:
             "validee_le": rep.get("validee_le", ""),
             # verbatim = texte officiel publié, recopié tel quel : risque nul
             "risque": ("aucun" if verbatim
-                       else "eleve" if len(note) < SEUIL_NOTE_LACONIQUE
+                       else "eleve" if tronquee or len(note) < SEUIL_NOTE_LACONIQUE
                        else "moyen"),
-            "origine": "FAQ officielle (verbatim)" if verbatim else "rédigée par le modèle",
+            "origine": (
+                "assistant eServices (verbatim)" if verbatim and fid.startswith("AST.")
+                else "FAQ officielle (verbatim)" if verbatim
+                else "FAQ officielle TRONQUÉE — à reprendre" if tronquee
+                else "rédigée par le modèle"
+            ),
             # une traduction ratée laisse du français dans le champ arabe :
             # l'usager arabophone recevrait une réponse qu'il ne peut pas lire
             "ar_douteuse": proportion_arabe(rep.get("ar", "")) < 0.30,

@@ -34,7 +34,8 @@ def langue_de(text: str) -> str:
     return "ar" if ARABIC_RE.search(text or "") else "fr"
 
 
-def fiche_consensus(passages: list[dict], marge: float = 0.0) -> dict | None:
+def fiche_consensus(passages: list[dict], marge: float = 0.0,
+                    question: str = "") -> dict | None:
     """VOTE DES VOISINS — le discriminant fiable (voir config.py).
 
     Une fiche est RECEVABLE si plusieurs de ses chunks (la fiche et ses variantes
@@ -42,6 +43,10 @@ def fiche_consensus(passages: list[dict], marge: float = 0.0) -> dict | None:
     si un seul remonte mais très proche. Parmi les recevables, la plus PROCHE
     l'emporte : classer au nombre de voix favoriserait mécaniquement les fiches
     les mieux dotées en variantes.
+
+    `question` active le garde-fou anti-antonymes : une fiche qui décrit
+    exclusivement l'action inverse de celle demandée est écartée, même si
+    le vecteur la place très près (voir lexique.conflit_action).
 
     Retourne {"fiche_id", "votes", "best_distance", "passages"} ou None.
     """
@@ -67,6 +72,18 @@ def fiche_consensus(passages: list[dict], marge: float = 0.0) -> dict | None:
     if not recevables:
         return None
 
+    # Garde-fou anti-antonymes : « créer un compte » ne doit jamais tomber sur
+    # la fiche « supprimer un compte », si proche soit-elle vectoriellement.
+    # Si TOUTES les candidates décrivent l'action inverse, il n'y a pas de
+    # correspondance : on rend None plutôt que de servir le contraire.
+    if question:
+        recevables = {
+            fid: chunks for fid, chunks in recevables.items()
+            if not conflit_action(question, " ".join(c["text"] for c in chunks))
+        }
+        if not recevables:
+            return None
+
     fiche_id, chunks = min(recevables.items(),
                            key=lambda kv: min(c["distance"] for c in kv[1]))
     best = min(c["distance"] for c in chunks)
@@ -87,9 +104,13 @@ def fiche_consensus(passages: list[dict], marge: float = 0.0) -> dict | None:
 
 
 def marge_ecriture(question: str, lexique: set) -> float:
-    """Marge à accorder aux seuils de distance pour une question écrite dans
-    une langue absente de la documentation (voir DIST_OFFSET_TRANSLANGUE)."""
-    return 0.0 if lexique_applicable(question, lexique) else DIST_OFFSET_TRANSLANGUE
+    """Marge à accorder aux seuils de distance pour une question écrite dans une
+    langue absente de la documentation. Deux barrières d'ampleur différente :
+    l'arabe (voir DIST_OFFSET_TRANSLANGUE) et la darija en alphabet latin, plus
+    proche du corpus et donc moins coûteuse (voir DIST_OFFSET_DARIJA)."""
+    if lexique_applicable(question, lexique):
+        return 0.0
+    return DIST_OFFSET_DARIJA if ecriture_darija(question) else DIST_OFFSET_TRANSLANGUE
 
 
 def dedupe_sources(passages: list[dict]) -> list[dict]:
@@ -105,13 +126,14 @@ def dedupe_sources(passages: list[dict]) -> list[dict]:
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from config import (
     CONSENSUS_K, CONSENSUS_MIN_CHUNKS, DIST_AUTO_IN, DIST_AUTO_OUT,
-    DIST_OFFSET_TRANSLANGUE,
+    DIST_OFFSET_DARIJA, DIST_OFFSET_TRANSLANGUE,
     DIST_CANDIDATE_MAX, DIST_DEPARTAGE, DIST_HORS_SUJET, DIST_SOLO_ACCEPT, FALLBACK_ANSWER, GEN_TOP_K,
     KNOWN_BUG_ANSWER, MAX_REWRITE_RETRIES, OUT_OF_SCOPE_ANSWER,
     PRECOMPUTED_JSON, TOP_K,
 )
 from lexique import (
-    construire_lexique, contient_terme_noyau, lexique_applicable, recouvrement,
+    conflit_action, construire_lexique, contient_terme_noyau, ecriture_darija,
+    lexique_applicable, recouvrement,
 )
 from llm import OllamaLLM
 from rag_classic import SYSTEM_PROMPT, build_context
@@ -283,7 +305,8 @@ class AgenticRAG:
         query = question
         passages = self.retriever.search(query, k=CONSENSUS_K)
         best_dist = passages[0]["distance"] if passages else None
-        consensus = fiche_consensus(passages, marge_ecriture(question, self.lexique))
+        consensus = fiche_consensus(passages, marge_ecriture(question, self.lexique),
+                                    question)
         etapes.append({"noeud": "retrieve", "detail": f"{len(passages)} passages récupérés"})
 
         # 2. Guardrail périmètre (consensus vectoriel, LLM seulement en zone grise)

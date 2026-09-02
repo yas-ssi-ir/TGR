@@ -28,6 +28,7 @@ from llm import OllamaLLM
 from nettoyer_reponses import nettoyer
 
 ARABE = re.compile("[؀-ۿ]")
+URL = re.compile(r"https?://\S+")
 PROPORTION_MIN = 0.30      # en deçà, ce n'est pas de l'arabe
 
 TRADUCTION_SYSTEM = """أنت مترجم محترف. تترجم من الفرنسية إلى العربية الفصحى.
@@ -43,6 +44,55 @@ def proportion_arabe(texte: str) -> float:
     return sum(1 for c in lettres if ARABE.match(c)) / len(lettres)
 
 
+TAILLE_MORCEAU = 450       # caractères — reste largement à la portée d'un 3B
+
+
+def budget_tokens(texte_fr: str) -> int:
+    """Une traduction coupée en plein milieu est un échec silencieux : elle
+    reste en arabe, passe la vérification, et l'usager reçoit la moitié de la
+    réponse. Le budget suit donc la longueur du texte."""
+    return max(400, min(1600, 120 + len(texte_fr)))
+
+
+def decouper(texte_fr: str) -> list[str]:
+    """Blocs d'environ TAILLE_MORCEAU caractères, coupés en fin de phrase."""
+    phrases = re.split(r"(?<=[.!?:])\s+", texte_fr.strip())
+    blocs, courant = [], ""
+    for phrase in phrases:
+        if courant and len(courant) + len(phrase) > TAILLE_MORCEAU:
+            blocs.append(courant.strip())
+            courant = phrase
+        else:
+            courant = f"{courant} {phrase}".strip()
+    if courant.strip():
+        blocs.append(courant.strip())
+    return blocs
+
+
+def traduire_par_morceaux(llm: OllamaLLM, texte_fr: str) -> str | None:
+    """Dernier recours. Sur un texte long et dense — juridique, administratif —
+    un modèle 3B décroche et recopie le français au lieu de traduire (constaté
+    sur FAQ.35, 1 657 caractères sur les commandes publiques). Découpé en
+    paragraphes, chaque morceau redevient à sa portée.
+
+    Chaque bloc est vérifié séparément, et un seul échec annule tout : un texte
+    à moitié français serait plus déroutant pour l'usager que du français franc,
+    qui est au moins signalé comme défaillant à la relecture.
+    """
+    blocs = decouper(texte_fr)
+    if len(blocs) < 2:
+        return None                    # rien à gagner à redécouper
+    traduits = []
+    for bloc in blocs:
+        sortie = nettoyer(llm.generate(
+            TRADUCTION_SYSTEM, f"ترجم النص التالي إلى العربية الفصحى:\n\n{bloc}",
+            temperature=0.1, max_tokens=budget_tokens(bloc)))
+        if proportion_arabe(sortie) < PROPORTION_MIN:
+            return None
+        traduits.append(sortie)
+    return "\n\n".join(traduits)
+
+
 def traduire(llm: OllamaLLM, texte_fr: str) -> str | None:
     """Traduit et vérifie. Retourne None si le modèle n'a pas produit d'arabe."""
     demandes = [
@@ -51,11 +101,26 @@ def traduire(llm: OllamaLLM, texte_fr: str) -> str | None:
         f"Ta réponse doit être écrite en caractères arabes.\n\n{texte_fr}",
     ]
     for demande in demandes:
-        sortie = llm.generate(TRADUCTION_SYSTEM, demande, temperature=0.1, max_tokens=700)
+        sortie = llm.generate(TRADUCTION_SYSTEM, demande, temperature=0.1,
+                              max_tokens=budget_tokens(texte_fr))
         sortie = nettoyer(sortie)
         if proportion_arabe(sortie) >= PROPORTION_MIN:
             return sortie
-    return None
+    return traduire_par_morceaux(llm, texte_fr)
+
+
+def preserver_liens(fr: str, ar: str) -> str:
+    """Un lien officiel altéré par la traduction envoie l'usager nulle part.
+    Si une URL du texte français a disparu de la traduction arabe, on
+    réattache le bloc de liens d'origine, inchangé.
+
+    Indispensable depuis que les réponses de l'assistant en production sont
+    servies verbatim : leur contenu utile EST souvent un lien (activation du
+    compte, guide CNIE, téléchargement des quittances)."""
+    manquants = [u for u in URL.findall(fr) if u not in ar]
+    if not manquants:
+        return ar
+    return ar.rstrip() + "\n\n" + "\n".join(f"Lien : {u}" for u in manquants)
 
 
 def main():
@@ -77,7 +142,8 @@ def main():
         debut = time.time()
         traduction = traduire(llm, data[fid]["fr"])
         if traduction:
-            data[fid]["ar"] = traduction
+            data[fid]["ar"] = preserver_liens(data[fid]["fr"], traduction)
+            data[fid].pop("ar_defaillante", None)   # la fiche n'est plus en défaut
             reussies += 1
             etat = "OK"
         else:

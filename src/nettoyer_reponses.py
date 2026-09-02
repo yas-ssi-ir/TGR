@@ -23,7 +23,9 @@ import re
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from config import PRECOMPUTED_JSON
+from config import (
+    ASSISTANT_FICHES_JSON, FAQ_FICHES_JSON, PRECOMPUTED_JSON, QA_FICHES_JSON,
+)
 
 # Ligne d'annonce que le modèle place avant sa réponse
 PREAMBULE = re.compile(
@@ -72,6 +74,11 @@ PLACEHOLDER = re.compile(
     r"\[\s*(?:votre|vos|nom|pr[ée]nom|ins[ée]rer|[àa] compl[ée]ter|xxx)[^\]\n]{0,40}\]",
     re.IGNORECASE)
 
+# Marqueur d'élément de liste : « 1. », « 2) ». DEUX chiffres au maximum, et
+# précédé d'un début de texte ou d'une espace — sans quoi un numéro de
+# téléphone (« 0537273727. ») est pris pour une étape numérotée.
+MARQUEUR_LISTE = re.compile(r"(?:(?<=^)|(?<=\s))(\d{1,2})[.)]\s")
+
 
 def nettoyer(texte: str) -> str:
     """Retire préambule, salutations et signature ; conserve tout le contenu utile."""
@@ -105,7 +112,12 @@ def nettoyer(texte: str) -> str:
     t = re.sub(r"^\s*\d+[.)]\s+(?=\d+[.)]\s)", "", t)      # « 1. 2. Texte » → « 2. Texte »
 
     # 6. renuméroter : après suppression d'une étape, la liste doit repartir à 1
-    numeros = re.findall(r"(?:(?<=^)|(?<=[\s]))(\d+)[.)]\s", t)
+    #
+    # ⚠️ Le marqueur est limité à DEUX chiffres. Sans cette borne, « \d+ »
+    # avalait « 0537273727. » — le numéro du centre d'appel de la DGI — et le
+    # remplaçait par « 1. ». L'usager se serait vu communiquer un numéro de
+    # téléphone inexistant, dans un texte officiel recopié tel quel.
+    numeros = re.findall(MARQUEUR_LISTE, t)
     if numeros and numeros[0] != "1":
         compteur = [0]
 
@@ -113,7 +125,7 @@ def nettoyer(texte: str) -> str:
             compteur[0] += 1
             return f"{m.group(1)}{compteur[0]}. "
 
-        t = re.sub(r"(^|\s)\d+[.)]\s", renumeroter, t)
+        t = re.sub(r"(^|\s)\d{1,2}[.)]\s", renumeroter, t)
 
     # majuscule initiale si la coupe a laissé une minuscule
     m = re.match(r"^(\s*(?:\d+[.)]\s*)?)([a-zà-ÿ])", t)
@@ -135,13 +147,39 @@ def retire(avant: str, apres: str) -> str:
     return " … ".join(f"« {m[:70]} »" for m in morceaux)
 
 
+def textes_officiels() -> set[str]:
+    """Réponses recopiées MOT POUR MOT depuis une source officielle.
+
+    Le nettoyage retire des artefacts de RÉDACTION par le modèle (préambules,
+    salutations, « [Votre Nom] »). Un texte officiel n'en contient aucun : y
+    toucher ne peut que l'abîmer. Mesuré : le nettoyage remplaçait le numéro du
+    centre d'appel de la DGI par « 1. » dans une réponse verbatim de la FAQ.
+
+    Le test est exact plutôt que fondé sur le préfixe de l'identifiant : une
+    réponse est officielle si elle est IDENTIQUE à la solution de sa fiche.
+    """
+    officiels = set()
+    for chemin in (QA_FICHES_JSON, FAQ_FICHES_JSON, ASSISTANT_FICHES_JSON):
+        if os.path.exists(chemin):
+            with open(chemin, encoding="utf-8") as f:
+                for fiche in json.load(f):
+                    if (fiche.get("solution") or "").strip():
+                        officiels.add((fiche["id"], fiche["solution"].strip()))
+    return officiels
+
+
 def main():
     appliquer = "--appliquer" in sys.argv
     with open(PRECOMPUTED_JSON, encoding="utf-8") as f:
         data = json.load(f)
+    officiels = textes_officiels()
 
     modifiees = 0
+    intouchables = 0
     for fid, rep in data.items():
+        if (fid, (rep.get("fr") or "").strip()) in officiels:
+            intouchables += 1
+            continue
         for langue in ("fr", "ar"):
             avant = rep.get(langue, "")
             apres = nettoyer(avant)
@@ -151,12 +189,15 @@ def main():
                     print(f"--- {fid} [{langue}] : {retire(avant, apres)}")
                 rep[langue] = apres
 
+    if intouchables:
+        print(f"\n{intouchables} réponse(s) officielle(s) laissée(s) intacte(s) "
+              f"— texte recopié mot pour mot depuis sa source, rien à nettoyer.")
     if appliquer:
         with open(PRECOMPUTED_JSON, "w", encoding="utf-8") as f:
             json.dump(data, f, ensure_ascii=False, indent=2)
-        print(f"\n{modifiees} texte(s) nettoyé(s) et enregistré(s).")
+        print(f"{modifiees} texte(s) nettoyé(s) et enregistré(s).")
     else:
-        print(f"\n{modifiees} texte(s) seraient nettoyés. "
+        print(f"{modifiees} texte(s) seraient nettoyés. "
               f"Relancez avec --appliquer pour écrire.")
 
 

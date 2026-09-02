@@ -84,8 +84,6 @@ def evaluate_pipeline(pipeline, name: str, golden: list, llm) -> dict:
 
 def summarize(res: dict) -> dict:
     rows = res["rows"]
-    in_scope = [r for r in rows if not r["id"].startswith("G1") or r["id"] in
-                [f"G{i}" for i in range(1, 12)]]
     total = len(rows)
     ok = sum(1 for r in rows if r["ok"])
     halluc = sum(1 for r in rows if r["verdict"] == "HALLUCINATION")

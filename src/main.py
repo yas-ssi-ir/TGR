@@ -197,7 +197,8 @@ def chat_stream(req: ChatRequest):
             from config import CONSENSUS_K
             passages = agent.retriever.search(question, k=CONSENSUS_K)
             best_dist = passages[0]["distance"] if passages else None
-            consensus = fiche_consensus(passages, marge_ecriture(question, agent.lexique))
+            consensus = fiche_consensus(passages, marge_ecriture(question, agent.lexique),
+                                        question)
             yield sse({"type": "etape", "noeud": "retrieve",
                        "detail": f"{len(passages)} passages récupérés"})
 

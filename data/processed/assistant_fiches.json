@@ -1,0 +1,1336 @@
+[
+  {
+    "id": "AST.1",
+    "categorie": "Compte & accès eServices",
+    "probleme": "Création de compte",
+    "solution": "Je vous invite à visionner la vidéo explicative ci-dessous, qui vous guidera pas à pas dans la création de votre compte.\n🧑💻 Création de votre compte\nUne fois la vidéo visionnée, je vous invite à compléter le formulaire afin de procéder à la création de votre compte.\n\nLien : https://www.youtube.com/watch?v=BLkUPZbP1m4",
+    "status": "ok",
+    "variantes": [
+      "Comment créer un compte sur eServices ?",
+      "Je veux créer mon compte eServices TGR",
+      "Comment ouvrir un compte sur le portail de la TGR ?",
+      "Comment faire pour avoir un compte ?",
+      "bghit ndir compte jdid f eservices",
+      "kifach nsawb compte f site dyal TGR",
+      "كيف أنشئ حسابا في بوابة الخدمات الإلكترونية؟",
+      "أريد إنشاء حساب جديد"
+    ],
+    "liens": [
+      "https://www.youtube.com/watch?v=BLkUPZbP1m4"
+    ],
+    "observation": "",
+    "aussi_appele": [],
+    "espaces": [
+      "Espace Utilisateur"
+    ],
+    "rubrique": "Compte et accès",
+    "origine": "assistant eServices (relevé du 2026-09-01)"
+  },
+  {
+    "id": "AST.2",
+    "categorie": "Compte & accès eServices",
+    "probleme": "Activation du compte",
+    "solution": "Activez votre compte en utilisant ce : lien\n\nLien : https://eservices.tgr.gov.ma/my/auth/activate",
+    "status": "ok",
+    "variantes": [
+      "Comment activer mon compte ?",
+      "Mon compte n'est pas encore activé",
+      "Où se fait l'activation du compte eServices ?",
+      "bghit n'activi compte dyali",
+      "كيف أفعل حسابي؟"
+    ],
+    "liens": [
+      "https://eservices.tgr.gov.ma/my/auth/activate"
+    ],
+    "observation": "Le chatbot affiche d'abord une désambiguïsation ('Vouliez-vous dire'). Le choix 'Menu eservices' fournit ensuite le lien d'activation.",
+    "aussi_appele": [],
+    "espaces": [
+      "Espace Utilisateur",
+      "Espace Assistance"
+    ],
+    "rubrique": "Compte et accès",
+    "origine": "assistant eServices (relevé du 2026-09-01)"
+  },
+  {
+    "id": "AST.3",
+    "categorie": "Compte & accès eServices",
+    "probleme": "Connexion au compte",
+    "solution": "Si vous êtes déjà enregistré(e), suivez ces étapes pour vous connecter à la plateforme :\n1. Cliquez sur 🔒 Connexion en haut à droite de l'écran.\n2. Vous serez redirigé(e) vers la page de connexion.\n3. Renseignez votre nom d'utilisateur ainsi que votre mot de passe.\n4. Cliquez ensuite sur le bouton Connexion pour accéder à votre espace.",
+    "status": "ok",
+    "variantes": [
+      "Comment me connecter à mon compte ?",
+      "Où se trouve le bouton de connexion ?",
+      "Comment accéder à mon espace personnel ?",
+      "kifach ndkhol l compte dyali",
+      "كيف أدخل إلى حسابي؟"
+    ],
+    "liens": [],
+    "observation": "",
+    "aussi_appele": [],
+    "espaces": [
+      "Espace Utilisateur"
+    ],
+    "rubrique": "Compte et accès",
+    "origine": "assistant eServices (relevé du 2026-09-01)"
+  },
+  {
+    "id": "AST.4",
+    "categorie": "Compte & accès eServices",
+    "probleme": "Code d'activation non reçu",
+    "solution": "⏳ Dans le cas où vous n'auriez pas encore reçu le code d'activationde votre compte.\nVeuillez cliquer sur ce lien . Renseignez votre adresse email, cochez la case \"Je ne suis pas un robot\", puis cliquez sur \"Valider\" afin de recevoir votre code.\n\nLien : https://eservices.tgr.gov.ma/my/auth/sendactivationcode",
+    "status": "ok",
+    "variantes": [
+      "Je n'ai pas reçu le code d'activation",
+      "Code activation non reçu",
+      "Le mail avec le code d'activation n'arrive pas",
+      "Comment renvoyer le code d'activation ?",
+      "ma weslnich code d'activation",
+      "لم أتوصل برمز التفعيل"
+    ],
+    "liens": [
+      "https://eservices.tgr.gov.ma/my/auth/sendactivationcode"
+    ],
+    "observation": "",
+    "aussi_appele": [],
+    "espaces": [
+      "Espace Utilisateur"
+    ],
+    "rubrique": "Compte et accès",
+    "origine": "assistant eServices (relevé du 2026-09-01)"
+  },
+  {
+    "id": "AST.5",
+    "categorie": "Compte & accès eServices",
+    "probleme": "Login ou mot de passe oublié",
+    "solution": "En cas d'oubli de votre nom d'utilisateur ou de votre mot de passe, ne vous inquiétez pas !\nPour récupérer l'accès à votre compte, suivez ces étapes :\n1. Cliquez sur 🔒 Connexion en haut à droite de la page.\n2. Sur l'interface de connexion, sélectionnez 🔑 Nom d'utilisateur Mot de passe oublié\nChoisissez ensuite l'option correspondant à votre situation :\nNom d'utilisateur oublié\nMot de passe oublié\nAdresse mail oublié\n4. Remplissez les champs demandés.\nCochez la case Je ne suis pas un robot.\nCliquez enfin sur le bouton Envoyer pour valider votre demande.",
+    "status": "ok",
+    "variantes": [
+      "J'ai oublié mon mot de passe",
+      "J'ai oublié mon nom d'utilisateur",
+      "Comment réinitialiser mon mot de passe ?",
+      "Mot de passe oublié, que faire ?",
+      "nsit password dyali",
+      "نسيت كلمة المرور"
+    ],
+    "liens": [],
+    "observation": "",
+    "aussi_appele": [],
+    "espaces": [
+      "Espace Utilisateur"
+    ],
+    "rubrique": "Compte et accès",
+    "origine": "assistant eServices (relevé du 2026-09-01)"
+  },
+  {
+    "id": "AST.6",
+    "categorie": "Compte & accès eServices",
+    "probleme": "Changement de mot de passe",
+    "solution": "Pour changer votre mot de passe, cliquez sur l'icône 👤 Profil en haut à droite, puis sélectionnez « Changer le mot de passe ». Vous serez redirigé vers une page où vous pourrez saisir votre ancien mot de passe, votre nouveau mot de passe, puis le confirmer. Enfin, cliquez sur le bouton « Enregistrer ».\nVeuillez cliquer sur ce lien .\n\nLien : https://eservices.tgr.gov.ma/my/general/change-password",
+    "status": "ok",
+    "variantes": [
+      "Comment changer mon mot de passe ?",
+      "Je veux modifier mon mot de passe",
+      "Où changer le mot de passe dans mon profil ?",
+      "bghit nbdel password dyali",
+      "كيف أغير كلمة المرور؟"
+    ],
+    "liens": [
+      "https://eservices.tgr.gov.ma/my/general/change-password"
+    ],
+    "observation": "",
+    "aussi_appele": [],
+    "espaces": [
+      "Espace Utilisateur"
+    ],
+    "rubrique": "Compte et accès",
+    "origine": "assistant eServices (relevé du 2026-09-01)"
+  },
+  {
+    "id": "AST.7",
+    "categorie": "Compte & accès eServices",
+    "probleme": "Changement d'adresse e-mail",
+    "solution": "Je vous invite à regarder la vidéo explicative ci-dessous, qui vous guidera étape par étape dans le changement de votre adresse email.\n📧 Changement email\n\nLien : https://youtu.be/Lqizmeev0SU",
+    "status": "ok",
+    "variantes": [
+      "Comment changer mon adresse email ?",
+      "Je veux modifier l'email de mon compte",
+      "Changement d'adresse mail eServices",
+      "bghit nbdel email dyali",
+      "كيف أغير عنوان بريدي الإلكتروني؟"
+    ],
+    "liens": [
+      "https://youtu.be/Lqizmeev0SU"
+    ],
+    "observation": "",
+    "aussi_appele": [],
+    "espaces": [
+      "Espace Utilisateur"
+    ],
+    "rubrique": "Compte et accès",
+    "origine": "assistant eServices (relevé du 2026-09-01)"
+  },
+  {
+    "id": "AST.8",
+    "categorie": "Compte & accès eServices",
+    "probleme": "Activation de la double authentification (2FA)",
+    "solution": "Pour mieux protéger votre compte, nous vous invitons à activer l'authentification à deux facteurs (2FA) . Retrouvez toutes les informations nécessaires dans le guide d'activation et d'utilisation accessible ici.\nVeuillez cliquer sur ce lien pour accéder au guide en français.\nVous pouvez consulter le guide en arabe en suivant ce lien .\n\nLien : https://eservices.tgr.gov.ma/my/guides/mfa-guide\nLien : https://eservices.tgr.gov.ma/my/guides/mfa-guide-ar",
+    "status": "ok",
+    "variantes": [
+      "Comment activer la double authentification ?",
+      "Comment activer le 2FA / MFA sur mon compte ?",
+      "Où trouver le guide de l'authentification à deux facteurs ?",
+      "كيف أفعل المصادقة الثنائية؟"
+    ],
+    "liens": [
+      "https://eservices.tgr.gov.ma/my/guides/mfa-guide",
+      "https://eservices.tgr.gov.ma/my/guides/mfa-guide-ar"
+    ],
+    "observation": "",
+    "aussi_appele": [],
+    "espaces": [
+      "Espace Utilisateur"
+    ],
+    "rubrique": "Compte et accès",
+    "origine": "assistant eServices (relevé du 2026-09-01)"
+  },
+  {
+    "id": "AST.9",
+    "categorie": "Taxes territoriales",
+    "probleme": "Taxe sur les terrains urbains non bâtis",
+    "solution": "En ce qui concerne la taxe applicable aux terrains urbains non bâtis, je vous recommande vivement de visionner cette vidéo explicative. Elle vous guide de manière claire et structurée\n🎥 Guide de la taxe sur les terrains urbains non bâtis\n\nLien : https://youtu.be/eHSeXREK5pw",
+    "status": "ok",
+    "variantes": [
+      "Comment déclarer la taxe sur les terrains urbains non bâtis ?",
+      "Guide de la TNB",
+      "Taxe terrain non bâti, comment faire ?"
+    ],
+    "liens": [
+      "https://youtu.be/eHSeXREK5pw"
+    ],
+    "observation": "",
+    "aussi_appele": [],
+    "espaces": [
+      "Espace Contribuable"
+    ],
+    "rubrique": "Guides des taxes territoriales",
+    "origine": "assistant eServices (relevé du 2026-09-01)"
+  },
+  {
+    "id": "AST.10",
+    "categorie": "Taxes territoriales",
+    "probleme": "Taxe sur les débits de boissons",
+    "solution": "En ce qui concerne la taxe sur les débits de boissons, je vous recommande vivement de visionner cette vidéo explicative. Elle vous guide de manière claire et structurée\n🎥 Guide de la taxe sur les débits de boissons\n\nLien : https://youtu.be/7jzwXMF40QQ",
+    "status": "ok",
+    "variantes": [
+      "Comment déclarer la taxe sur les débits de boissons ?",
+      "Guide taxe débits de boissons"
+    ],
+    "liens": [
+      "https://youtu.be/7jzwXMF40QQ"
+    ],
+    "observation": "",
+    "aussi_appele": [],
+    "espaces": [
+      "Espace Contribuable"
+    ],
+    "rubrique": "Guides des taxes territoriales",
+    "origine": "assistant eServices (relevé du 2026-09-01)"
+  },
+  {
+    "id": "AST.11",
+    "categorie": "Taxes territoriales",
+    "probleme": "Taxe de séjour",
+    "solution": "En ce qui concerne la taxe de séjour,Je vous recommande de regarder cette vidéo explicative : elle offre une présentation claire et bien organisée\n🎥 Guide de la taxe de séjour\n\nLien : https://youtu.be/hY4aYPfA4ec",
+    "status": "ok",
+    "variantes": [
+      "Comment déclarer la taxe de séjour ?",
+      "Guide de la taxe de séjour"
+    ],
+    "liens": [
+      "https://youtu.be/hY4aYPfA4ec"
+    ],
+    "observation": "",
+    "aussi_appele": [],
+    "espaces": [
+      "Espace Contribuable"
+    ],
+    "rubrique": "Guides des taxes territoriales",
+    "origine": "assistant eServices (relevé du 2026-09-01)"
+  },
+  {
+    "id": "AST.12",
+    "categorie": "Taxes territoriales",
+    "probleme": "Taxe sur les eaux minérales et de table",
+    "solution": "Je vous prie de bien vouloir m'excuser\nPour le moment, le guide de la taxe sur les eaux minérales et de table n'est pas encore prêt.",
+    "status": "ok",
+    "variantes": [
+      "Comment déclarer la taxe sur les eaux minérales ?",
+      "Guide taxe eaux minérales et de table"
+    ],
+    "liens": [],
+    "observation": "Le chatbot indique que ce guide n'est pas encore prêt.",
+    "aussi_appele": [],
+    "espaces": [
+      "Espace Contribuable"
+    ],
+    "rubrique": "Guides des taxes territoriales",
+    "origine": "assistant eServices (relevé du 2026-09-01)"
+  },
+  {
+    "id": "AST.13",
+    "categorie": "Taxes territoriales",
+    "probleme": "Taxe sur les véhicules soumis au contrôle technique",
+    "solution": "En ce qui concerne la taxe sur les véhicules soumis au contrôle technique,Je vous recommande de regarder cette vidéo explicative : elle offre une présentation claire et bien organisée\n🎥 Guide de la taxe sur les véhicules soumis au contrôle technique\n\nLien : https://youtu.be/9jmwZa_w4HI",
+    "status": "ok",
+    "variantes": [
+      "Comment déclarer la taxe sur les véhicules soumis au contrôle technique ?",
+      "Guide taxe véhicules contrôle technique"
+    ],
+    "liens": [
+      "https://youtu.be/9jmwZa_w4HI"
+    ],
+    "observation": "",
+    "aussi_appele": [],
+    "espaces": [
+      "Espace Contribuable"
+    ],
+    "rubrique": "Guides des taxes territoriales",
+    "origine": "assistant eServices (relevé du 2026-09-01)"
+  },
+  {
+    "id": "AST.14",
+    "categorie": "Taxes territoriales",
+    "probleme": "Taxe sur les services portuaires",
+    "solution": "À propos de la taxe sur les services portuaires, je vous suggère de visionner cette vidéo explicative, qui offre une démonstration à la fois claire et bien articulée.\n🎥 Guide de la taxe sur les services portuaires\n\nLien : https://youtu.be/yg8ZL__EYUk",
+    "status": "ok",
+    "variantes": [
+      "Comment déclarer la taxe sur les services portuaires ?",
+      "Guide taxe services portuaires"
+    ],
+    "liens": [
+      "https://youtu.be/yg8ZL__EYUk"
+    ],
+    "observation": "",
+    "aussi_appele": [],
+    "espaces": [
+      "Espace Contribuable"
+    ],
+    "rubrique": "Guides des taxes territoriales",
+    "origine": "assistant eServices (relevé du 2026-09-01)"
+  },
+  {
+    "id": "AST.15",
+    "categorie": "Quittances & paiements",
+    "probleme": "Télécharger les quittances",
+    "solution": "Pour télécharger votre quittance, merci de cliquer sur ce lien\n\nLien : https://eservices.tgr.gov.ma/my/mesquittances",
+    "status": "ok",
+    "variantes": [
+      "Comment télécharger ma quittance ?",
+      "Où trouver mes quittances de paiement ?",
+      "Je veux récupérer une quittance",
+      "bghit nteli9 quittance dyali",
+      "كيف أحمل الوصل؟",
+      "Téléchargement des quittances depuis le paiement multicanal"
+    ],
+    "liens": [
+      "https://eservices.tgr.gov.ma/my/mesquittances"
+    ],
+    "observation": "",
+    "aussi_appele": [
+      "Téléchargement des quittances depuis le paiement multicanal"
+    ],
+    "espaces": [
+      "Espace Contribuable"
+    ],
+    "rubrique": "Quittances",
+    "origine": "assistant eServices (relevé du 2026-09-01)"
+  },
+  {
+    "id": "AST.16",
+    "categorie": "Quittances & paiements",
+    "probleme": "Consultation et paiement d'une redevance, TH ou TSC pour 2025 et les années antérieures",
+    "solution": "Le chatbot ouvre une désambiguïsation, puis propose deux cas : un bien déjà déclaré pour 2025 et les années antérieures, ou un bien non déclaré / un paiement pour 2026 et les années postérieures.",
+    "status": "menu",
+    "variantes": [],
+    "liens": [],
+    "observation": "La première sélection ne renvoie pas directement la réponse : il faut choisir 'Paiement TH TSC'.",
+    "aussi_appele": [],
+    "espaces": [
+      "Espace Contribuable"
+    ],
+    "rubrique": "Paiement multicanal",
+    "origine": "assistant eServices (relevé du 2026-09-01)"
+  },
+  {
+    "id": "AST.17",
+    "categorie": "Quittances & paiements",
+    "probleme": "Bien déjà déclaré pour 2025 et les années antérieures",
+    "solution": "Nous vous informons que si votre bien a déjà été appréhendé fiscalement (déclaré auprès de l'administration compétente), vous pouvez consulter votre situation fiscale directement sur la plateforme électronique de la Trésorerie Générale du Royaume à l'adresse suivante : Cliquez ici\nDe plus, il est possible d'obtenir la référence en envoyant votre demande via le service des réclamations et joindre un avis d'imposition ou une quittance d'une année antérieure.\nSi toutefois vous ne disposez pas de ces documents, nous vous invitons à vous présenter à la perception territorialement compétente (celle du lieu de situation du bien) afin de vérifier votre situation et obtenir les références nécessaires.\n\nLien : https://eservices.tgr.gov.ma/",
+    "status": "ok",
+    "variantes": [
+      "Comment payer ma taxe d'habitation pour 2025 ?",
+      "Comment consulter ma situation fiscale TH/TSC ?",
+      "Mon bien est déjà déclaré, où payer la TH et la TSC ?",
+      "Je n'ai pas la référence de mon avis d'imposition"
+    ],
+    "liens": [
+      "https://eservices.tgr.gov.ma/"
+    ],
+    "observation": "",
+    "aussi_appele": [],
+    "espaces": [
+      "Espace Contribuable"
+    ],
+    "rubrique": "Paiement multicanal",
+    "origine": "assistant eServices (relevé du 2026-09-01)"
+  },
+  {
+    "id": "AST.18",
+    "categorie": "Quittances & paiements",
+    "probleme": "Bien non déclaré ou paiement pour 2026 et les années postérieures",
+    "solution": "Si le bien n'a pas encore été déclaré, il vous appartient d'en effectuer la déclaration auprès des services de la Direction Générale des Impôts (DGI), conformément aux dispositions de la loi n° 14-25 relative à l'assiette, au recouvrement et au contentieux des taxes locales, notamment en matière de taxe d'habitation et de taxe des services communaux.\nPar ailleurs, si votre paiement concerne l'année 2026 ou les exercices postérieurs, il doit être réalisé auprès de la DGI, via les canaux prévus à cet effet sur son portail officiel www.tax.gov.ma\n, notamment à travers le service de paiement en ligne accessible au lien suivant :\nCliquez ici\n\nLien : http://www.tax.gov.ma/\nLien : https://tl.tax.gov.ma/tl/public/login.do?method=connectAnonymous&forward=paiementTHTSC",
+    "status": "ok",
+    "variantes": [
+      "Comment payer ma taxe d'habitation pour 2026 ?",
+      "Mon bien n'est pas déclaré, que dois-je faire ?",
+      "Où déclarer un bien auprès de la DGI ?",
+      "Consultation fiscale TH/TSC pour 2026 et les années suivantes",
+      "Comment consulter ma situation TH/TSC pour 2026 ?",
+      "Paiement TH TSC 2026"
+    ],
+    "liens": [
+      "http://www.tax.gov.ma/",
+      "https://tl.tax.gov.ma/tl/public/login.do?method=connectAnonymous&forward=paiementTHTSC"
+    ],
+    "observation": "",
+    "aussi_appele": [
+      "Consultation fiscale TH/TSC pour 2026 et les années suivantes"
+    ],
+    "espaces": [
+      "Espace Contribuable"
+    ],
+    "rubrique": "Paiement multicanal",
+    "origine": "assistant eServices (relevé du 2026-09-01)"
+  },
+  {
+    "id": "AST.19",
+    "categorie": "Quittances & paiements",
+    "probleme": "Paiement d'une contravention par radar fixe avec référence",
+    "solution": "Le paiement en ligne des ATF peut être effectué à travers le lien:\nhttps://eservices.tgr.gov.ma/my/pmc/Paiement\n-Il est à noter que la plateforme permet au contrevenant de saisir directement le montant de l'amende et qu'il peut payer le reliquat d'une amende avec la même référence;\n-Veuillez vérifier que le délai de 30 jours prévu pour le paiement des amendes auprès des services de la TGR n'est pas expiré.\nAu-delà de ce délai, le paiement ne peut être effectué au niveau du portail de la TGR car le dossier est transmis au tribunal qui dispose également d'une plateforme de paiement en ligne:https://amendes.justice.gov.ma/Amende/radar\n\nLien : https://eservices.tgr.gov.ma/my/pmc/Paiement\nLien : https://amendes.justice.gov.ma/Amende/radar",
+    "status": "ok",
+    "variantes": [
+      "Comment payer une amende de radar en ligne ?",
+      "Comment régler une contravention routière ?",
+      "Paiement amende radar fixe avec référence",
+      "bghit nkhalles amende dyal radar",
+      "كيف أؤدي غرامة الرادار؟"
+    ],
+    "liens": [
+      "https://eservices.tgr.gov.ma/my/pmc/Paiement",
+      "https://amendes.justice.gov.ma/Amende/radar"
+    ],
+    "observation": "",
+    "aussi_appele": [],
+    "espaces": [
+      "Espace Contribuable"
+    ],
+    "rubrique": "Paiement multicanal",
+    "origine": "assistant eServices (relevé du 2026-09-01)"
+  },
+  {
+    "id": "AST.20",
+    "categorie": "Quittances & paiements",
+    "probleme": "Paiement d'une contravention par radar fixe sans référence sur le PV",
+    "solution": "Lorsqu'il s'agit d'une infraction relative à un véhicule appartenant à une personne morale (société), il est nécessaire de déclarer le conducteur auprès des services du transport routier relevant du ministère de l'Équipement et du Transport.\nCette déclaration permet d'obtenir un avis d'amende nominatif contenant la référence nécessaire au paiement.\nPour plus d'informations, vous pouvez consulter\nce lien\n\nLien : https://khadamatnarsa.ma/fr/declaration",
+    "status": "ok",
+    "variantes": [
+      "Mon PV de radar n'a pas de référence, comment payer ?",
+      "Amende radar sans référence, véhicule de société",
+      "Comment déclarer le conducteur d'un véhicule de société ?"
+    ],
+    "liens": [
+      "https://khadamatnarsa.ma/fr/declaration"
+    ],
+    "observation": "",
+    "aussi_appele": [],
+    "espaces": [
+      "Espace Contribuable"
+    ],
+    "rubrique": "Paiement multicanal",
+    "origine": "assistant eServices (relevé du 2026-09-01)"
+  },
+  {
+    "id": "AST.21",
+    "categorie": "Réclamations",
+    "probleme": "Dépôt d'une réclamation",
+    "solution": "Si vous estimez avoir une raison de déposer une réclamation, vous pouvez le faire via le lien suivant : Cliquez ici\n\nLien : https://eservices.tgr.gov.ma/my/reclamation",
+    "status": "ok",
+    "variantes": [
+      "Comment déposer une réclamation ?",
+      "Où déposer une réclamation en ligne ?",
+      "Je veux faire une réclamation",
+      "bghit ndir chikaya",
+      "كيف أضع شكاية؟"
+    ],
+    "liens": [
+      "https://eservices.tgr.gov.ma/my/reclamation"
+    ],
+    "observation": "La sélection affiche d'abord une désambiguïsation. Le choix 'Menu eservices' fournit le lien de dépôt.",
+    "aussi_appele": [],
+    "espaces": [
+      "Espace Assistance"
+    ],
+    "rubrique": "Réclamations",
+    "origine": "assistant eServices (relevé du 2026-09-01)"
+  },
+  {
+    "id": "AST.22",
+    "categorie": "Réclamations",
+    "probleme": "Suivi d'une réclamation",
+    "solution": "Vous souhaitez suivre l'avancement de votre réclamation ? Cliquez simplement sur ce lien\n\nLien : https://eservices.tgr.gov.ma/my/reclamation/suivi",
+    "status": "ok",
+    "variantes": [
+      "Comment suivre ma réclamation ?",
+      "Où voir l'avancement de ma réclamation ?",
+      "Suivi réclamation en ligne",
+      "كيف أتتبع شكايتي؟"
+    ],
+    "liens": [
+      "https://eservices.tgr.gov.ma/my/reclamation/suivi"
+    ],
+    "observation": "",
+    "aussi_appele": [],
+    "espaces": [
+      "Espace Assistance"
+    ],
+    "rubrique": "Réclamations",
+    "origine": "assistant eServices (relevé du 2026-09-01)"
+  },
+  {
+    "id": "AST.23",
+    "categorie": "Compte & accès eServices",
+    "probleme": "Inscription aux eServices",
+    "solution": "Étape 1 : Accédez à la page d'inscription\nCliquez sur le bouton « Inscription » situé en haut de la page d'accueil.\nTapez « Suivant » quand c'est fait.\nÉtape 2 : Remplissez le formulaire\nIndiquez :\nVotre nom d'utilisateur\nVotre adresse e-mail\nUn mot de passe sécurisé\n💡 Choisissez un mot de passe fort (lettres, chiffres et symboles).\nTapez « Suivant » pour continuer.\nÉtape 3 : Validez les conditions\nCochez :\n« Je ne suis pas un robot »\n« J'accepte les conditions d'utilisation »\nPuis cliquez sur « Enregistrer » pour finaliser votre inscription.\nTapez « Suivant » quand c'est fait.\nÉtape 4 : Activez votre compte\nUn code d'activation vous sera envoyé par e-mail\nOuvrez votre messagerie et copiez le code reçu\nSaisissez votre e-mail et le code sur la page d'activation\nCliquez sur « Activer »\nTapez « Suivant » pour continuer.\nÉtape 5 : Connectez-vous\nVotre compte est maintenant créé !\nCliquez sur « Connexion », puis entrez votre nom d'utilisateur et votre mot de passe.\nTapez « Suivant » pour continuer.\nÉtape 6 : Complétez votre profil\nAvant de commencer, cliquez sur « Profil » et ajoutez vos informations personnelles.\nVous pouvez compléter votre profil en tant que fonctionnaire et/ou redevable.\nTapez « Suivant » une fois terminé.",
+    "status": "ok",
+    "variantes": [
+      "Comment m'inscrire aux eServices ?",
+      "Quelles sont les étapes de l'inscription en ligne ?",
+      "Je n'arrive pas à m'inscrire, quelle est la procédure complète ?",
+      "Expliquez-moi l'inscription étape par étape",
+      "kifach nsajjel f eservices TGR",
+      "ما هي خطوات التسجيل في الخدمات الإلكترونية؟"
+    ],
+    "liens": [],
+    "observation": "",
+    "aussi_appele": [],
+    "espaces": [
+      "Espace Assistance"
+    ],
+    "rubrique": "Réclamations fréquentes - Utilisateur eServices",
+    "origine": "assistant eServices (relevé du 2026-09-01)"
+  },
+  {
+    "id": "AST.24",
+    "categorie": "Compte & accès eServices",
+    "probleme": "Paramétrage du compte comme fonctionnaire et/ou contribuable",
+    "solution": "Pour finaliser votre inscription, veuillez suivre les étapes suivantes :\nCréer et accéder à votre compte :\nAprès avoir créé votre compte lors de l'étape précédente, connectez-vous à votre espace.\nAccéder à votre profil :\nCliquez sur l'icône utilisateur en haut à droite de la page.\nSélectionnez « Modifier le profil ».\nAccéder aux services d'inscription :\nFaites défiler jusqu'en bas de la page.\nCliquez sur « Services d'inscription ».\nRenseigner vos informations :\nSous le titre « Fonctionnaire ? Pour vous inscrire au service des fonctionnaires », saisissez les informations suivantes :\nLe numéro PPR (matricule)\nLa date d'entrée en service\nLe dernier salaire net transféré sur votre compte bancaire\nValidation de votre inscription :\nUne fois votre inscription validée, vous bénéficierez d'un accès sécurisé à vos informations administratives et financières, y compris les déductions, via un portail sécurisé.",
+    "status": "ok",
+    "variantes": [
+      "Comment m'inscrire au service des fonctionnaires ?",
+      "Où saisir mon PPR et mon dernier salaire ?",
+      "Comment paramétrer mon profil comme fonctionnaire ?",
+      "Comment activer les services d'inscription dans mon profil ?"
+    ],
+    "liens": [],
+    "observation": "Le chatbot demande d'abord de choisir entre plusieurs intentions ; 'Menu eservices' affiche la procédure de paramétrage.",
+    "aussi_appele": [],
+    "espaces": [
+      "Espace Assistance"
+    ],
+    "rubrique": "Réclamations fréquentes - Utilisateur eServices",
+    "origine": "assistant eServices (relevé du 2026-09-01)"
+  },
+  {
+    "id": "AST.25",
+    "categorie": "Compte & accès eServices",
+    "probleme": "Récupération du compte et/ou du mot de passe",
+    "solution": "Le chatbot demande si l'adresse e-mail d'inscription est toujours accessible ou si elle est perdue/inaccessible.",
+    "status": "menu",
+    "variantes": [],
+    "liens": [],
+    "observation": "",
+    "aussi_appele": [],
+    "espaces": [
+      "Espace Assistance"
+    ],
+    "rubrique": "Réclamations fréquentes - Utilisateur eServices",
+    "origine": "assistant eServices (relevé du 2026-09-01)"
+  },
+  {
+    "id": "AST.26",
+    "categorie": "Compte & accès eServices",
+    "probleme": "Adresse e-mail d'inscription toujours accessible",
+    "solution": "Pour réinitialiser votre mot de passe, utilisez ce lien en saisissant l'adresse e-mail utilisée lors de l'inscription.\n\nLien : https://eservices.tgr.gov.ma/my/auth/forgotten",
+    "status": "ok",
+    "variantes": [
+      "Je veux réinitialiser mon mot de passe et j'ai toujours mon email",
+      "Récupérer mon compte avec mon adresse email d'inscription"
+    ],
+    "liens": [
+      "https://eservices.tgr.gov.ma/my/auth/forgotten"
+    ],
+    "observation": "Une désambiguïsation apparaît avant le lien de réinitialisation.",
+    "aussi_appele": [],
+    "espaces": [
+      "Espace Assistance"
+    ],
+    "rubrique": "Réclamations fréquentes - Utilisateur eServices",
+    "origine": "assistant eServices (relevé du 2026-09-01)"
+  },
+  {
+    "id": "AST.27",
+    "categorie": "Compte & accès eServices",
+    "probleme": "Adresse e-mail d'inscription perdue ou inaccessible",
+    "solution": "Il n'est pas possible de réinitailiser le mot de passe directement,",
+    "status": "ok",
+    "variantes": [
+      "J'ai perdu l'accès à l'email utilisé lors de l'inscription",
+      "Mon adresse email d'inscription n'existe plus, comment récupérer mon compte ?"
+    ],
+    "liens": [],
+    "observation": "La réponse affichée est très courte et semble incomplète.",
+    "aussi_appele": [],
+    "espaces": [
+      "Espace Assistance"
+    ],
+    "rubrique": "Réclamations fréquentes - Utilisateur eServices",
+    "origine": "assistant eServices (relevé du 2026-09-01)"
+  },
+  {
+    "id": "AST.28",
+    "categorie": "Compte & accès eServices",
+    "probleme": "Authentification par CNIE",
+    "solution": "Authentification via CINE sur le portail eServices TGR\nOuvrir le navigateur et se connecter :\nOuvrez Google Chrome.\nConnectez-vous à votre compte sur le site officiel de la Trésorerie Générale du Royaume (TGR).\nAccéder à la vérification CINE :\nCliquez sur l'icône utilisateur, puis sélectionnez « Modifier le profil ».\nCliquez sur le bouton « Vérification via CINE ».\nPrendre connaissance des informations transmises :\nUne fenêtre s'affiche vous invitant à utiliser votre CINE pour vous authentifier.\nLa liste des informations (attributs) transmises à la TGR est également présentée.\nCochez « J'ai lu et j'accepte les conditions d'utilisation » puis cliquez sur « J'accepte ».\nChoisir une méthode d'authentification\nOptions disponibles :\nPar téléphone et CINE\nPar téléphone, CINE et reconnaissance faciale\nPar CINE et code PIN\nPar CINE, code PIN et reconnaissance faciale\nSi vous choisissez la première option (téléphone + CINE) :\nSaisissez votre numéro de CINE, puis cliquez sur « Soumettre ».\nUn code QR s'affiche à l'écran.\nTéléchargez et installez l'application E-ID sur votre téléphone.\nScannez le code QR avec l'application.\nSaisissez le code CAN figurant sur votre carte nationale.\nPlacez votre CINE derrière votre téléphone pour la lecture automatique.\nUne fois la lecture réussie, l'application confirme la réussite de l'authentification.\nFinaliser sur le portail TGR :\nVos informations personnelles s'affichent automatiquement dans la fenêtre initiale des attributs.\nCliquez sur « Accepter » pour finaliser l'opération.\nConsultation sécurisée :\nVous pouvez désormais consulter vos informations administratives et financières en toute sécurité.",
+    "status": "ok",
+    "variantes": [
+      "Comment vérifier mon compte avec ma CNIE ?",
+      "Comment m'authentifier avec ma carte nationale ?",
+      "Quelles sont les étapes de la vérification CNIE ?",
+      "Comment utiliser l'application E-ID pour m'authentifier ?",
+      "kifach n'verifi compte dyali b CNIE",
+      "كيف أوثق حسابي بالبطاقة الوطنية؟"
+    ],
+    "liens": [],
+    "observation": "",
+    "aussi_appele": [],
+    "espaces": [
+      "Espace Assistance"
+    ],
+    "rubrique": "Réclamations fréquentes - Utilisateur eServices",
+    "origine": "assistant eServices (relevé du 2026-09-01)"
+  },
+  {
+    "id": "AST.29",
+    "categorie": "Compte & accès eServices",
+    "probleme": "Désinscription du compte",
+    "solution": "Le chatbot demande de préciser si l'utilisateur a encore accès au compte à désinscrire.",
+    "status": "menu",
+    "variantes": [],
+    "liens": [],
+    "observation": "",
+    "aussi_appele": [],
+    "espaces": [
+      "Espace Assistance"
+    ],
+    "rubrique": "Réclamations fréquentes - Utilisateur eServices",
+    "origine": "assistant eServices (relevé du 2026-09-01)"
+  },
+  {
+    "id": "AST.30",
+    "categorie": "Compte & accès eServices",
+    "probleme": "Accès au compte à désinscrire",
+    "solution": "Vous pouvez supprimer votre compte via la plateforme eServices en vous connectant d'abord à votre espace personnel, puis en cliquant sur l'icône utilisateur, en sélectionnant Modifier le profil (Edit profil) et enfin en cliquant sur Désinscription en bas de la page.",
+    "status": "ok",
+    "variantes": [
+      "Comment supprimer mon compte eServices ?",
+      "Je veux me désinscrire du portail",
+      "Comment désinscrire mon compte ?",
+      "Comment fermer définitivement mon compte ?",
+      "bghit nmse7 compte dyali",
+      "كيف أحذف حسابي؟"
+    ],
+    "liens": [],
+    "observation": "Une désambiguïsation précède la procédure.",
+    "aussi_appele": [],
+    "espaces": [
+      "Espace Assistance"
+    ],
+    "rubrique": "Réclamations fréquentes - Utilisateur eServices",
+    "origine": "assistant eServices (relevé du 2026-09-01)"
+  },
+  {
+    "id": "AST.31",
+    "categorie": "Compte & accès eServices",
+    "probleme": "Aucun accès au compte à désinscrire",
+    "solution": "Cette option n'est pas disponible actuellement",
+    "status": "ok",
+    "variantes": [
+      "Désinscription d'un ancien compte eServices devenu inaccessible",
+      "Comment supprimer définitivement un compte que je ne peux plus ouvrir ?"
+    ],
+    "liens": [],
+    "observation": "Le chatbot indique que cette option n'est pas disponible actuellement.",
+    "aussi_appele": [],
+    "espaces": [
+      "Espace Assistance"
+    ],
+    "rubrique": "Réclamations fréquentes - Utilisateur eServices",
+    "origine": "assistant eServices (relevé du 2026-09-01)"
+  },
+  {
+    "id": "AST.32",
+    "categorie": "Compte & accès eServices",
+    "probleme": "Absence d'informations relatives aux fonctionnaires",
+    "solution": "Pour des raisons de sécurité et de confidentialité, l'affichage des données personnelles des fonctionnaires est conditionné par l'authentification préalable du compte via la CINE.\nVous devez vérifier que votre compte a bien été authentifié avec votre CINE afin de pouvoir accéder à vos informations.",
+    "status": "ok",
+    "variantes": [
+      "Mes informations de fonctionnaire ne s'affichent pas",
+      "Je ne vois pas mes données de fonctionnaire",
+      "L'espace fonctionnaire est vide"
+    ],
+    "liens": [],
+    "observation": "",
+    "aussi_appele": [],
+    "espaces": [
+      "Espace Assistance"
+    ],
+    "rubrique": "Réclamations fréquentes - Utilisateur eServices",
+    "origine": "assistant eServices (relevé du 2026-09-01)"
+  },
+  {
+    "id": "AST.33",
+    "categorie": "Compte & accès eServices",
+    "probleme": "Paiement en ligne",
+    "solution": "Choisissez l'option correspondant à votre besoin :\nConsultation et paiement d'une redevance ou TH ou TSC pour 2025 et années antérieures\nConsultation fiscale pour TH et TSC pour 2026 et années suivantes\nTéléchargement des quittances\nPaiement d'une contravention routière par radar fixe avec référence\nPaiement d'une contravention routière constatée par radar fixe sans référence indiquée sur le PV\n👇",
+    "status": "menu",
+    "variantes": [],
+    "liens": [],
+    "observation": "Ce choix ouvre exactement le même sous-menu Paiement multicanal que l'Espace Contribuable ; les réponses complètes figurent dans la section 2.",
+    "aussi_appele": [],
+    "espaces": [
+      "Espace Assistance"
+    ],
+    "rubrique": "Réclamations fréquentes - Utilisateur eServices",
+    "origine": "assistant eServices (relevé du 2026-09-01)"
+  },
+  {
+    "id": "AST.34",
+    "categorie": "Compte & accès eServices",
+    "probleme": "Blocage du portail",
+    "solution": "En supposant que l'ensemble des prérequis sont réalisés (connexion stable, navigateur Chrome), vous pouvez procéder comme suit :\nVider le cache en cliquant sur Ctrl+F5, fermer votre navigateur, puis redémarrer votre ordinateur et le lancer et puis vous connecter-vous à nouveau.\nRéessayer dans un moment (il se peut qu'il s'agisse d'une période de maintenance)",
+    "status": "ok",
+    "variantes": [
+      "Le portail est bloqué",
+      "Le site eServices ne répond plus",
+      "La page reste bloquée, que faire ?",
+      "site dyal TGR wa9ef ma khedamch"
+    ],
+    "liens": [],
+    "observation": "",
+    "aussi_appele": [],
+    "espaces": [
+      "Espace Assistance"
+    ],
+    "rubrique": "Réclamations fréquentes - Utilisateur eServices",
+    "origine": "assistant eServices (relevé du 2026-09-01)"
+  },
+  {
+    "id": "AST.35",
+    "categorie": "Compte & accès eServices",
+    "probleme": "Suivre ou répondre à une demande de complément dans une réclamation",
+    "solution": "Après avoir déposé une réclamation en ligne sur la plateforme des réclamations en ligne, vous recevrez un numéro de suivi à conserver. Pour suivre ou répondre à une demande de complément au niveau du service des réclamations en ligne, allez sur ce lien\nRenseignez le numéro et cliquez sur l'icône de recherche\nUne fois la réclamation apparue cliquez sur \"recours\"\n\nLien : https://eservices.tgr.gov.ma/my/reclamation/suivi",
+    "status": "ok",
+    "variantes": [
+      "On me demande un complément d'information sur ma réclamation",
+      "Comment répondre à une demande de complément ?",
+      "Où se trouve le bouton recours de ma réclamation ?"
+    ],
+    "liens": [
+      "https://eservices.tgr.gov.ma/my/reclamation/suivi"
+    ],
+    "observation": "",
+    "aussi_appele": [],
+    "espaces": [
+      "Espace Assistance"
+    ],
+    "rubrique": "Réclamations fréquentes - Utilisateur eServices",
+    "origine": "assistant eServices (relevé du 2026-09-01)"
+  },
+  {
+    "id": "AST.36",
+    "categorie": "Fonctionnaire",
+    "probleme": "Validation du compte par CNIE",
+    "solution": "Une fois connecté(e), il est possible que le message suivant s'affiche lors de l'accès aux services Fonctionnaire :\n« Le compte n'est pas vérifié par la CNIE. »\nPour résoudre cette situation, il vous suffit de suivre le guide détaillé disponible via ce lien . Celui-ci vous accompagne pas à pas, avec des captures d'écran explicatives.\nNous vous invitons également à vous assurer que :\nL'application Mon e-ID | الرقمية هويتي est installée sur votre smartphone ;\nL'option NFC est activée sur votre téléphone mobile.\nCes étapes vous permettront de finaliser la vérification de votre compte.\n\nLien : https://eservices.tgr.gov.ma/my/assets/authDGSN/guideAuthCNIE.pdf",
+    "status": "ok",
+    "variantes": [
+      "Le compte n'est pas vérifié par la CNIE",
+      "Message « compte non vérifié par la CNIE » sur les services fonctionnaire",
+      "Comment corriger l'erreur de vérification CNIE ?",
+      "حسابي غير موثق بالبطاقة الوطنية"
+    ],
+    "liens": [
+      "https://eservices.tgr.gov.ma/my/assets/authDGSN/guideAuthCNIE.pdf"
+    ],
+    "observation": "",
+    "aussi_appele": [],
+    "espaces": [
+      "Espace Assistance",
+      "Espace Fonctionnaire"
+    ],
+    "rubrique": "Réclamations fréquentes - Fonctionnaire",
+    "origine": "assistant eServices (relevé du 2026-09-01)"
+  },
+  {
+    "id": "AST.37",
+    "categorie": "Fonctionnaire",
+    "probleme": "Situation administrative",
+    "solution": "Pour accéder à votre situation administrative :\nConnectez-vous à votre compte.\nDans le menu situé à gauche, cliquez sur « Fonctionnaire », puis sélectionnez « Situation administrative » .",
+    "status": "ok",
+    "variantes": [
+      "Où consulter ma situation administrative ?",
+      "Comment voir ma situation administrative de fonctionnaire ?",
+      "أين أجد وضعيتي الإدارية؟"
+    ],
+    "liens": [],
+    "observation": "",
+    "aussi_appele": [],
+    "espaces": [
+      "Espace Assistance"
+    ],
+    "rubrique": "Réclamations fréquentes - Fonctionnaire",
+    "origine": "assistant eServices (relevé du 2026-09-01)"
+  },
+  {
+    "id": "AST.38",
+    "categorie": "Fonctionnaire",
+    "probleme": "Situation des ordres de recette",
+    "solution": "Pour pouvoir accéder à votre Situation Ordres Recette :\nIl suffit juste d'accéder à votre compte en utilisant votre PPR . Puis tout simplement de cliquer sur Fonctionnaire au niveau de menu à gauche. Après vous choisissez Situation Ordres Recette",
+    "status": "ok",
+    "variantes": [
+      "Où consulter ma situation des ordres de recette ?",
+      "Comment voir mes ordres de recette ?"
+    ],
+    "liens": [],
+    "observation": "",
+    "aussi_appele": [],
+    "espaces": [
+      "Espace Assistance"
+    ],
+    "rubrique": "Réclamations fréquentes - Fonctionnaire",
+    "origine": "assistant eServices (relevé du 2026-09-01)"
+  },
+  {
+    "id": "AST.39",
+    "categorie": "Fonctionnaire",
+    "probleme": "Situation des actes de gestion",
+    "solution": "Vous pouvez à tout moment consulter votre dernière situation des actes de gestion:\nVous avez juste besoin de vous connecter à votre compte\nAu niveau du menu à gauche, vous sélectionnez Fonctionnaire puis vous cliquez sur Situation Actes Gestion",
+    "status": "ok",
+    "variantes": [
+      "Où consulter ma situation des actes de gestion ?",
+      "Comment voir mes actes de gestion ?"
+    ],
+    "liens": [],
+    "observation": "",
+    "aussi_appele": [],
+    "espaces": [
+      "Espace Assistance"
+    ],
+    "rubrique": "Réclamations fréquentes - Fonctionnaire",
+    "origine": "assistant eServices (relevé du 2026-09-01)"
+  },
+  {
+    "id": "AST.40",
+    "categorie": "Fonctionnaire",
+    "probleme": "Situation des rappels",
+    "solution": "Pour consulter votre situation de rappels.\nUne fois que vous êtes connectés. En haut à gauche , sélectionnez Fonctionnaire au niveau de menu. Puis vous cliquez sur Situation Rappels",
+    "status": "ok",
+    "variantes": [
+      "Où consulter ma situation des rappels ?",
+      "Comment voir mes rappels de salaire ?"
+    ],
+    "liens": [],
+    "observation": "",
+    "aussi_appele": [],
+    "espaces": [
+      "Espace Assistance"
+    ],
+    "rubrique": "Réclamations fréquentes - Fonctionnaire",
+    "origine": "assistant eServices (relevé du 2026-09-01)"
+  },
+  {
+    "id": "AST.41",
+    "categorie": "Fonctionnaire",
+    "probleme": "Situation des prélèvements",
+    "solution": "Pour consulter et suivre l'état d'avancement de votre situation des prélèvements :\nVeuillez accéder à votre compte.\nAu niveau du menu à gauche, vous sélectionnez Fonctionnaire puis vous cliquez sur Situation Prélèvements.",
+    "status": "ok",
+    "variantes": [
+      "Où consulter ma situation des prélèvements ?",
+      "Comment suivre mes prélèvements sur salaire ?"
+    ],
+    "liens": [],
+    "observation": "",
+    "aussi_appele": [],
+    "espaces": [
+      "Espace Assistance"
+    ],
+    "rubrique": "Réclamations fréquentes - Fonctionnaire",
+    "origine": "assistant eServices (relevé du 2026-09-01)"
+  },
+  {
+    "id": "AST.42",
+    "categorie": "Fonctionnaire",
+    "probleme": "Situation de paie",
+    "solution": "Si vous avez besoin de consulter votre situation de paie.\nVous n'avez qu'a se connecter à votre compte en utilisant votre PPR.\nAu niveau du menu à gauche, vous sélectionnez Fonctionnaire puis vous cliquez sur Situation Paie",
+    "status": "ok",
+    "variantes": [
+      "Où consulter ma situation de paie ?",
+      "Comment voir ma paie sur le portail ?"
+    ],
+    "liens": [],
+    "observation": "",
+    "aussi_appele": [],
+    "espaces": [
+      "Espace Assistance"
+    ],
+    "rubrique": "Réclamations fréquentes - Fonctionnaire",
+    "origine": "assistant eServices (relevé du 2026-09-01)"
+  },
+  {
+    "id": "AST.43",
+    "categorie": "Fonctionnaire",
+    "probleme": "Attestation de salaire",
+    "solution": "Il suffit juste d'accéder à votre compte . Puis tout simplement de cliquer sur Fonctionnaire au niveau de menu à gauche. Après vous choisissez Attestation de Salaire",
+    "status": "ok",
+    "variantes": [
+      "Comment obtenir une attestation de salaire ?",
+      "Où télécharger mon attestation de salaire ?",
+      "bghit attestation de salaire",
+      "كيف أحصل على شهادة الأجر؟"
+    ],
+    "liens": [],
+    "observation": "",
+    "aussi_appele": [],
+    "espaces": [
+      "Espace Assistance"
+    ],
+    "rubrique": "Réclamations fréquentes - Fonctionnaire",
+    "origine": "assistant eServices (relevé du 2026-09-01)"
+  },
+  {
+    "id": "AST.44",
+    "categorie": "Fonctionnaire",
+    "probleme": "Attestation de cessation de paiement",
+    "solution": "Il suffit juste d'accéder à votre compte . Après au niveau du menu à gauche, vous sélectionnez Fonctionnaire puis vous cliquez sur Attestation Cessation de Paiement.",
+    "status": "ok",
+    "variantes": [
+      "Comment obtenir une attestation de cessation de paiement ?",
+      "Où télécharger l'attestation de cessation de paiement ?"
+    ],
+    "liens": [],
+    "observation": "",
+    "aussi_appele": [],
+    "espaces": [
+      "Espace Assistance"
+    ],
+    "rubrique": "Réclamations fréquentes - Fonctionnaire",
+    "origine": "assistant eServices (relevé du 2026-09-01)"
+  },
+  {
+    "id": "AST.45",
+    "categorie": "Fonctionnaire",
+    "probleme": "Situation familiale",
+    "solution": "Il suffit juste d'accéder à votre compte . Après au niveau du menu à gauche, vous sélectionnez Fonctionnaire puis vous cliquez sur Situation Familiale .",
+    "status": "ok",
+    "variantes": [
+      "Où consulter ma situation familiale ?",
+      "Comment voir ma situation familiale sur le portail ?"
+    ],
+    "liens": [],
+    "observation": "",
+    "aussi_appele": [],
+    "espaces": [
+      "Espace Assistance"
+    ],
+    "rubrique": "Réclamations fréquentes - Fonctionnaire",
+    "origine": "assistant eServices (relevé du 2026-09-01)"
+  },
+  {
+    "id": "AST.46",
+    "categorie": "Fonctionnaire",
+    "probleme": "Bulletin de paie",
+    "solution": "Il suffit juste d'accéder à votre compte . Après au niveau du menu à gauche, vous sélectionnez Fonctionnaire puis vous cliquez sur Bulletin Paie .",
+    "status": "ok",
+    "variantes": [
+      "Comment télécharger mon bulletin de paie ?",
+      "Où trouver ma fiche de paie ?",
+      "bghit bulletin de paie dyali",
+      "كيف أحمل ورقة الأجر؟"
+    ],
+    "liens": [],
+    "observation": "",
+    "aussi_appele": [],
+    "espaces": [
+      "Espace Assistance"
+    ],
+    "rubrique": "Réclamations fréquentes - Fonctionnaire",
+    "origine": "assistant eServices (relevé du 2026-09-01)"
+  },
+  {
+    "id": "AST.47",
+    "categorie": "Activité bancaire",
+    "probleme": "Ouverture d'un compte bancaire",
+    "solution": "Pour ouvrir un compte bancaire auprès de la Trésorerie Générale du Royaume (TGR), vous devez vous présenter à l'agence bancaire de la TGR de votre choix, muni des pièces requises pour l'ouverture du compte.\nLa liste détaillée des documents à fournir est disponible sur ce lien\n\nLien : https://banquenet.tgr.gov.ma/banque/ouverture.html",
+    "status": "ok",
+    "variantes": [
+      "Comment ouvrir un compte bancaire à la TGR ?",
+      "Quels documents pour ouvrir un compte bancaire TGR ?",
+      "Ouverture de compte à l'agence bancaire de la TGR"
+    ],
+    "liens": [
+      "https://banquenet.tgr.gov.ma/banque/ouverture.html"
+    ],
+    "observation": "",
+    "aussi_appele": [],
+    "espaces": [
+      "Espace Assistance"
+    ],
+    "rubrique": "Réclamations fréquentes - Client de l'activité bancaire",
+    "origine": "assistant eServices (relevé du 2026-09-01)"
+  },
+  {
+    "id": "AST.48",
+    "categorie": "Activité bancaire",
+    "probleme": "Demande de chéquier ou de carte bancaire",
+    "solution": "La demande de chéquier ou de carte bancaire doit être effectuée en personne auprès de votre agence bancaire TGR.\nToutefois, il est également possible de commander un chéquier directement en ligne via le service TGR BanqueNet.",
+    "status": "ok",
+    "variantes": [
+      "Comment demander un chéquier ?",
+      "Comment obtenir une carte bancaire TGR ?",
+      "Commander un chéquier en ligne"
+    ],
+    "liens": [],
+    "observation": "",
+    "aussi_appele": [],
+    "espaces": [
+      "Espace Assistance"
+    ],
+    "rubrique": "Réclamations fréquentes - Client de l'activité bancaire",
+    "origine": "assistant eServices (relevé du 2026-09-01)"
+  },
+  {
+    "id": "AST.49",
+    "categorie": "Activité bancaire",
+    "probleme": "Consultation du solde",
+    "solution": "Pouvez-vous dire cela autrement ? Je ne comprends pas.",
+    "status": "no_answer",
+    "variantes": [
+      "Comment consulter le solde de mon compte bancaire ?",
+      "Où voir mon solde TGR ?"
+    ],
+    "liens": [],
+    "observation": "Le chatbot ne fournit pas de réponse utile et demande de reformuler.",
+    "aussi_appele": [],
+    "espaces": [
+      "Espace Assistance"
+    ],
+    "rubrique": "Réclamations fréquentes - Client de l'activité bancaire",
+    "origine": "assistant eServices (relevé du 2026-09-01)"
+  },
+  {
+    "id": "AST.50",
+    "categorie": "Activité bancaire",
+    "probleme": "Code PIN oublié",
+    "solution": "Pour des raisons de sécurité, le code PIN ne peut pas être communiqué à distance.\nVous devez vous présenter personnellement à votre agence bancaire TGR pour faire une demande de réédition du code.",
+    "status": "ok",
+    "variantes": [
+      "J'ai oublié le code PIN de ma carte",
+      "Comment récupérer mon code PIN ?",
+      "nsit code PIN dyal carte"
+    ],
+    "liens": [],
+    "observation": "",
+    "aussi_appele": [],
+    "espaces": [
+      "Espace Assistance"
+    ],
+    "rubrique": "Réclamations fréquentes - Client de l'activité bancaire",
+    "origine": "assistant eServices (relevé du 2026-09-01)"
+  },
+  {
+    "id": "AST.51",
+    "categorie": "Activité bancaire",
+    "probleme": "Changement d'agence en conservant le même compte",
+    "solution": "Il n'est actuellement pas possible de conserver le même numéro de compte lors d'un changement d'agence.\nToutefois, vous pouvez ouvrir un nouveau compte dans la nouvelle agence souhaitée et demander la fermeture de l'ancien compte auprès de votre ancienne agence sans qu'il soit nécessaire de s'y déplacer.",
+    "status": "ok",
+    "variantes": [
+      "Puis-je garder mon numéro de compte en changeant d'agence ?",
+      "Comment transférer mon compte vers une autre agence ?"
+    ],
+    "liens": [],
+    "observation": "",
+    "aussi_appele": [],
+    "espaces": [
+      "Espace Assistance"
+    ],
+    "rubrique": "Réclamations fréquentes - Client de l'activité bancaire",
+    "origine": "assistant eServices (relevé du 2026-09-01)"
+  },
+  {
+    "id": "AST.52",
+    "categorie": "Activité bancaire",
+    "probleme": "Non-réception des relevés",
+    "solution": "En principe, les relevés bancaires sont envoyés automatiquement à tous les clients du réseau bancaire de la TGR, notamment à ceux dont les comptes présentent une activité régulière.\nSi vous ne les recevez pas :\nVérifiez que votre adresse postale, y compris le code postal, est correctement renseignée auprès de votre agence.\nVous pouvez également demander vos relevés directement à votre agence.\nLe service TGR BanqueNet vous permet aussi de consulter vos relevés et opérations à tout moment, en toute sécurité.",
+    "status": "ok",
+    "variantes": [
+      "Je ne reçois pas mes relevés bancaires",
+      "Comment obtenir mes relevés de compte ?"
+    ],
+    "liens": [],
+    "observation": "",
+    "aussi_appele": [],
+    "espaces": [
+      "Espace Assistance"
+    ],
+    "rubrique": "Réclamations fréquentes - Client de l'activité bancaire",
+    "origine": "assistant eServices (relevé du 2026-09-01)"
+  },
+  {
+    "id": "AST.53",
+    "categorie": "Activité bancaire",
+    "probleme": "Erreur sur un relevé bancaire",
+    "solution": "Vous pouvez soumettre une réclamation électronique sans avoir à vous déplacer à l'agence.\nIl suffit d'indiquer :\nLe numéro du compte,\nLe nom de l'agence concernée,\nEt de joindre toute pièce justificative de l'erreur constatée.",
+    "status": "ok",
+    "variantes": [
+      "Il y a une erreur sur mon relevé bancaire",
+      "Comment contester une opération sur mon relevé ?"
+    ],
+    "liens": [],
+    "observation": "",
+    "aussi_appele": [],
+    "espaces": [
+      "Espace Assistance"
+    ],
+    "rubrique": "Réclamations fréquentes - Client de l'activité bancaire",
+    "origine": "assistant eServices (relevé du 2026-09-01)"
+  },
+  {
+    "id": "AST.54",
+    "categorie": "Activité bancaire",
+    "probleme": "Régularisation d'un chèque sans provision",
+    "solution": "Vous devez procéder comme suit :\nRégler le montant du chèque impayé, soit directement au bénéficiaire, en récupérant le chèque refusé, ou en constituant une provision suffisante auprès de la banque tirée.\nPayer l'amende fiscale prévue par la réglementation.\nRemettre les justificatifs correspondants à votre agence bancaire pour mise à jour de votre situation.",
+    "status": "ok",
+    "variantes": [
+      "Comment régulariser un chèque sans provision ?",
+      "J'ai émis un chèque impayé, que faire ?"
+    ],
+    "liens": [],
+    "observation": "",
+    "aussi_appele": [],
+    "espaces": [
+      "Espace Assistance"
+    ],
+    "rubrique": "Réclamations fréquentes - Client de l'activité bancaire",
+    "origine": "assistant eServices (relevé du 2026-09-01)"
+  },
+  {
+    "id": "AST.55",
+    "categorie": "Activité bancaire",
+    "probleme": "Opposition sur un chèque ou une carte",
+    "solution": "Vous devez vous présenter personnellement à votre agence bancaire pour formuler une demande d'opposition, accompagnée :\nd'une déclaration de perte ou de vol, et, le cas échéant, d'un procès-verbal établi par les autorités compétentes.",
+    "status": "ok",
+    "variantes": [
+      "Comment faire opposition sur un chèque ?",
+      "Ma carte bancaire a été volée, comment faire opposition ?"
+    ],
+    "liens": [],
+    "observation": "",
+    "aussi_appele": [],
+    "espaces": [
+      "Espace Assistance"
+    ],
+    "rubrique": "Réclamations fréquentes - Client de l'activité bancaire",
+    "origine": "assistant eServices (relevé du 2026-09-01)"
+  },
+  {
+    "id": "AST.56",
+    "categorie": "Activité bancaire",
+    "probleme": "Liquidation d'une succession",
+    "solution": "Pour le règlement d'une succession, les héritiers ou leur représentant doivent se présenter en personne à l'agence bancaire détenant le compte concerné, avec deux copies de chaque document suivant :\nExtrait de l'acte de décès,\nCopie conforme de l'acte d'héritage indiquant la part de chaque héritier,\nCopie conforme des cartes d'identité des héritiers et du défunt,\nRemise des moyens de paiement (chéquier, carte bancaire) du défunt,\nProcuration légalisée si un mandataire agit au nom des héritiers,\nCertificat fiscal de décharge du défunt.\n(selon le cas d'autres documents peuvent être requis)",
+    "status": "ok",
+    "variantes": [
+      "Comment liquider une succession ?",
+      "Quels documents pour une succession à la TGR ?",
+      "Procédure de succession compte bancaire"
+    ],
+    "liens": [],
+    "observation": "",
+    "aussi_appele": [],
+    "espaces": [
+      "Espace Assistance"
+    ],
+    "rubrique": "Réclamations fréquentes - Client de l'activité bancaire",
+    "origine": "assistant eServices (relevé du 2026-09-01)"
+  },
+  {
+    "id": "AST.57",
+    "categorie": "Commande publique",
+    "probleme": "Retard de paiement - établissement ou entreprise publique",
+    "solution": "La réclamation doit être adressée en premier lieu au maître d'ouvrage.\nEn effet, la TGR intervient uniquement dans la vérification de la régularité de l'engagement de la dépense et procède au paiement sur la base :\ndes propositions d'engagement, et des ordres de paiement émis par les ordonnateurs habilités.\nPour faciliter le suivi administratif des contrats, la TGR a mis à votre disposition la plateforme de gestion intégrée des dépenses des fournisseurs, accessible via le lien : Cliquez ici\nVous pouvez également y suivre le traitement de vos factures et soumettre vos réclamations directement en ligne.\n\nLien : https://fournisseurs.gid.gov.ma/inscription/accueilplus.htm",
+    "status": "ok",
+    "variantes": [
+      "Ma facture n'est pas payée par un établissement public",
+      "Retard de paiement d'un marché public",
+      "Comment suivre le paiement de mes factures fournisseur ?"
+    ],
+    "liens": [
+      "https://fournisseurs.gid.gov.ma/inscription/accueilplus.htm"
+    ],
+    "observation": "",
+    "aussi_appele": [],
+    "espaces": [
+      "Espace Assistance"
+    ],
+    "rubrique": "Réclamations fréquentes - Titulaire d'une commande publique",
+    "origine": "assistant eServices (relevé du 2026-09-01)"
+  },
+  {
+    "id": "AST.58",
+    "categorie": "Commande publique",
+    "probleme": "Retard de paiement - État ou collectivité territoriale",
+    "solution": "Aucune réponse spécifique n'est fournie. Le chatbot renvoie par erreur vers le sous-menu des guides des taxes territoriales.",
+    "status": "no_answer",
+    "variantes": [
+      "Retard de paiement par une collectivité territoriale",
+      "L'État ne paie pas ma facture"
+    ],
+    "liens": [],
+    "observation": "Routage manifestement erroné dans l'assistant.",
+    "aussi_appele": [],
+    "espaces": [
+      "Espace Assistance"
+    ],
+    "rubrique": "Réclamations fréquentes - Titulaire d'une commande publique",
+    "origine": "assistant eServices (relevé du 2026-09-01)"
+  },
+  {
+    "id": "AST.59",
+    "categorie": "Commande publique",
+    "probleme": "Lenteur d'accès au portail des marchés publics",
+    "solution": "Nous vous invitons tout d'abord à vérifier que votre poste n'est pas ralenti par l'exécution simultanée de plusieurs applications. Assurez-vous également auprès de votre service informatique qu'aucune lenteur ne provient de vos infrastructures locales.\nSi ces vérifications ont été effectuées et que vous constatez toujours une lenteur lors de l'accès au portail des marchés publics, merci de bien vouloir créer un ticket d'assistance en l'envoyant à l'adresse suivante : Cliquez ici , afin que notre support puisse analyser la situation.\n\nLien : https://www.marchespublics.gov.ma/pmmp/",
+    "status": "ok",
+    "variantes": [
+      "Le portail des marchés publics est lent",
+      "Problème de lenteur sur marchespublics.gov.ma"
+    ],
+    "liens": [
+      "https://www.marchespublics.gov.ma/pmmp/"
+    ],
+    "observation": "",
+    "aussi_appele": [],
+    "espaces": [
+      "Espace Assistance"
+    ],
+    "rubrique": "Réclamations fréquentes - Titulaire d'une commande publique",
+    "origine": "assistant eServices (relevé du 2026-09-01)"
+  },
+  {
+    "id": "AST.60",
+    "categorie": "Commande publique",
+    "probleme": "Dépôt d'une nouvelle offre après un premier dépôt",
+    "solution": "Oui, selon l'article 35 du décret n° 2-22-431, le soumissionnaire peut retirer son pli avant la date et l'heure fixées pour l'ouverture des plis, et déposer une nouvelle offre dans les mêmes conditions que le dépôt initial.\nArticle 35: « Sous réserve des dispositions de l'article 135 du présent décret relatives au dépôt et au retrait des plis par voie électronique, tout pli déposé ou reçu peut être retiré, par le concurrent, antérieurement au jour et à l'heure fixés pour la séance d'ouverture des plis.\nLe retrait du pli fait l'objet d'une demande écrite et signée par le concurrent ou son représentant dûment habilité et adressée au maître d'ouvrage. La date et l'heure du retrait sont enregistrées par le maître d'ouvrage sur le registre spécial visé à l'article 4 du présent décret.\nLes concurrents ayant procédé au retrait de leurs plis peuvent, dans les conditions fixées à l'article 34 ci-dessus, présenter de nouveaux plis. »\nAinsi, le retrait et le dépôt d'une nouvelle offre sont possibles avant l'ouverture des plis, sous réserve du respect des formalités prévues.",
+    "status": "ok",
+    "variantes": [
+      "Puis-je retirer mon pli et déposer une nouvelle offre ?",
+      "Comment modifier mon offre après dépôt ?"
+    ],
+    "liens": [],
+    "observation": "",
+    "aussi_appele": [],
+    "espaces": [
+      "Espace Assistance"
+    ],
+    "rubrique": "Réclamations fréquentes - Titulaire d'une commande publique",
+    "origine": "assistant eServices (relevé du 2026-09-01)"
+  },
+  {
+    "id": "AST.61",
+    "categorie": "Commande publique",
+    "probleme": "Présentation de sa société aux administrations",
+    "solution": "Oui, il est tout à fait possible et même encouragé de présenter votre société et vos services aux administrations. Plusieurs dispositifs légaux prévus par le décret n° 2-22-431 facilitent cette démarche.\nVoici les principales voies à votre disposition :\nL'Appel à Manifestation d'Intérêt\nL'article 18 du décret le définit comme ayant pour objet de permettre au maître d'ouvrage d'identifier, préalablement au lancement de l'appel à la concurrence, les concurrents potentiels.\nLes administrations publient un avis d'Appel à Manifestation d'Intérêt dans la presse et sur le portail des marchés publics.\n==>Vous pouvez ainsi répondre à ces Appels à Manifestation d'Intérêt,qui correspondent à votre secteur d'activité.\nNB: L'Appel à Manifestation d'Intérêt n'est pas une promesse de marché,\nL'Offre Spontanée\nL'article 13 du décret reconnaît et encadre spécifiquement l'offre spontanée. C'est une procédure proactive où vous pouvez soumettre une idée innovante.\nConditions : Votre offre doit présenter des fonctionnalités nouvelles, des services nouveaux ou des innovations techniques répondant à un besoin potentiel que l'administration n'avait pas identifié.\n==>Si votre idée est retenue, vous bénéficiez d'une marge de préférence si vous participez à l'appel d'offres qui sera ensuite lancé.\nLe Programme Prévisionnel Triennal\nConformément à l'article 17 du décret précité, les maîtres d'ouvrage publient, au début de chaque année budgétaire, un programme détaillant les marchés qu'ils envisagent de passer sur les trois prochaines années.\n==> Consultez systématiquement ces programmes sur le portail des marchés publics ou les sites des administrations qui vous intéressent : Cela vous permet d'anticiper les besoins, de préparer votre argumentaire et de prendre contact en amont avec les services techniques concernés pour mieux cerner leurs attentes.",
+    "status": "ok",
+    "variantes": [
+      "Comment présenter ma société aux administrations ?",
+      "Qu'est-ce qu'un appel à manifestation d'intérêt ?",
+      "Comment faire une offre spontanée ?"
+    ],
+    "liens": [],
+    "observation": "",
+    "aussi_appele": [],
+    "espaces": [
+      "Espace Assistance"
+    ],
+    "rubrique": "Réclamations fréquentes - Titulaire d'une commande publique",
+    "origine": "assistant eServices (relevé du 2026-09-01)"
+  },
+  {
+    "id": "AST.62",
+    "categorie": "Commande publique",
+    "probleme": "Motifs de rejet après soumission",
+    "solution": "Vouliez-vous dire:\nMenu eservicesMenu reclamationAucune de précédent",
+    "status": "no_answer",
+    "variantes": [
+      "Pourquoi mon offre a-t-elle été rejetée ?",
+      "Comment connaître les motifs de rejet de ma soumission ?"
+    ],
+    "liens": [],
+    "observation": "Aucune réponse de fond : le chatbot propose une désambiguïsation puis renvoie vers le menu des réclamations.",
+    "aussi_appele": [],
+    "espaces": [
+      "Espace Assistance"
+    ],
+    "rubrique": "Réclamations fréquentes - Titulaire d'une commande publique",
+    "origine": "assistant eServices (relevé du 2026-09-01)"
+  },
+  {
+    "id": "AST.63",
+    "categorie": "Taxes territoriales",
+    "probleme": "Accès aux questions du contribuable",
+    "solution": "Ce profil renvoie aux trois mêmes actions que l'Espace Contribuable : guides des taxes territoriales, téléchargement des quittances et paiement multicanal. Toutes les réponses sont reprises dans la section 2.",
+    "status": "menu",
+    "variantes": [],
+    "liens": [],
+    "observation": "",
+    "aussi_appele": [],
+    "espaces": [
+      "Espace Assistance"
+    ],
+    "rubrique": "Réclamations fréquentes - Redevable / contribuable",
+    "origine": "assistant eServices (relevé du 2026-09-01)"
+  },
+  {
+    "id": "AST.64",
+    "categorie": "Fonctionnaire",
+    "probleme": "Accès aux situations des fonctionnaires",
+    "solution": "Le chatbot ouvre un sous-menu de dix actions : situation administrative, ordres de recette, actes de gestion, rappels, prélèvements, paie, attestation de salaire, attestation de cessation de paiement, situation familiale et bulletin de paie. Les réponses détaillées figurent dans la section 3.",
+    "status": "menu",
+    "variantes": [],
+    "liens": [],
+    "observation": "",
+    "aussi_appele": [],
+    "espaces": [
+      "Espace Fonctionnaire"
+    ],
+    "rubrique": "Actions proposées",
+    "origine": "assistant eServices (relevé du 2026-09-01)"
+  }
+]

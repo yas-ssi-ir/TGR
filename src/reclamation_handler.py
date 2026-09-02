@@ -126,7 +126,7 @@ class ReclamationHandler:
         if not passages:
             return [], False
 
-        consensus = fiche_consensus(passages, marge_ecriture(texte, self.lexique))
+        consensus = fiche_consensus(passages, marge_ecriture(texte, self.lexique), texte)
         if consensus:
             relevant = consensus["passages"]
         else:

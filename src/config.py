@@ -13,9 +13,37 @@ STATIC_DIR = os.path.join(BASE_DIR, "static")
 EVAL_DIR = os.path.join(BASE_DIR, "eval")
 
 XLSX_RECLAMATIONS = os.path.join(DATA_RAW_DIR, "request_response.xlsx")
+DOCX_ASSISTANT = os.path.join(DATA_RAW_DIR, "Assistant_IA_eServices_TGR_questions_reponses.docx")
 QA_FICHES_JSON = os.path.join(DATA_PROCESSED_DIR, "qa_fiches.json")
 FAQ_FICHES_JSON = os.path.join(DATA_PROCESSED_DIR, "faq_fiches.json")
+ASSISTANT_FICHES_JSON = os.path.join(DATA_PROCESSED_DIR, "assistant_fiches.json")
 FEEDBACK_JSON = os.path.join(DATA_PROCESSED_DIR, "feedbacks.json")
+
+# Documents bruts déjà découpés finement en fiches par un script dédié :
+# les ré-ingérer en chunks de 500 caractères ajouterait des centaines de
+# passages sans fiche_id, qui ne peuvent pas voter au consensus et ne font
+# que du bruit autour des vraies fiches.
+DOCS_DEJA_STRUCTURES = {os.path.basename(DOCX_ASSISTANT)}
+
+# Longueur maximale de la solution recopiée dans un chunk de VARIANTE.
+#
+# Chaque variante produit son propre chunk, censé capter UNE façon de poser la
+# question. Or la solution entière y était recopiée : sur une fiche à procédure
+# longue (AST.28, « Authentification par CNIE », 1653 caractères), les 7 chunks
+# devenaient des quasi-clones d'un même texte générique. Mesuré : l'écart de
+# distance entre les 6 variantes tombait à 0,006 — elles ne discriminaient plus
+# rien, et n'importe quelle question « comment faire… » les trouvait toutes
+# ensemble. « Donne-moi une recette de tajine » remontait ainsi 6 variantes sur
+# 6 sous le seuil, fabriquant un consensus de 7 voix sur l'authentification CNIE.
+#
+# En bornant l'extrait, les variantes redeviennent des sondes distinctes
+# (écart 0,029) et le faux consensus disparaît (0 chunk sur 6 sous le seuil).
+# La solution complète reste dans le chunk PRINCIPAL de la fiche, et surtout
+# dans la réponse pré-rédigée — c'est elle qui est servie à l'usager.
+#
+# 120 caractères ≈ une phrase : les notes courtes des réclamations (médiane
+# 106 caractères) passent inchangées, seules les longues procédures sont bornées.
+CHUNK_SOLUTION_MAX = 120
 PRECOMPUTED_JSON = os.path.join(DATA_PROCESSED_DIR, "reponses_precalculees.json")
 CACHE_JSON = os.path.join(DATA_PROCESSED_DIR, "cache_reponses.json")
 
@@ -77,6 +105,24 @@ DIST_SOLO_ACCEPT = 0.30   # un chunk unique n'est accepté que s'il est très pr
 # التحقق؟ » place 5 de ses 6 voisins sur la MÊME fiche, mais à 0.40-0.41.
 # Les seuils sont donc relevés d'autant pour ces questions.
 DIST_OFFSET_TRANSLANGUE = 0.07
+# Darija en alphabet latin (« bghit ndir chikaya ») : même barrière linguistique,
+# mais franchie de moins haut — les caractères latins et les emprunts au français
+# rapprochent déjà la question du corpus. Les 14 questions darija du corpus sont
+# toutes à ≤ 0.351, contre 0.40-0.41 pour l'arabe : une marge de 0.07 serait
+# du gaspillage de tolérance.
+#
+# Calibré sur la décision du garde-fou (question légitime acceptée / hors-sujet
+# refusé), et non sur la seule distance :
+#
+#   marge   darija légitimes    refusées à tort    hors-sujet admis
+#   0.00        12/14                  1                 0/6
+#   0.03        13/14                  0                 2/6      ← retenu
+#   0.05        13/14                  0                 2/6
+#   0.07        14/14                  0                 3/6
+#
+# 0.03 fait aussi bien que 0.05 en exposant moins, et supprime le refus à tort —
+# le pire des défauts : un usager marocain éconduit par sa propre administration.
+DIST_OFFSET_DARIJA = 0.03
 # Hors sujet certain : aucun consensus + aucun terme métier + rien de proche
 DIST_HORS_SUJET = 0.34
 # Départage : une fiche « bug connu » (sans solution) ne doit pas l'emporter
@@ -134,7 +180,8 @@ KNOWN_BUG_ANSWER = (
 
 OUT_OF_SCOPE_ANSWER = (
     "Je suis l'assistant du portail eServices de la Trésorerie Générale du Royaume (TGR). "
-    "Je ne peux répondre qu'aux questions concernant le portail et ses services "
-    "(connexion, mot de passe, MFA, vérification CNIE, inscriptions, gestion de compte...). "
+    "Je ne peux répondre qu'aux questions concernant le portail et ses services : "
+    "compte et connexion, taxes et paiements, quittances, services aux fonctionnaires, "
+    "activité bancaire, commande publique et réclamations. "
     "N'hésitez pas à me poser une question sur ces sujets !"
 )

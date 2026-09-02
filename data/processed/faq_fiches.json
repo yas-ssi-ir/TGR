@@ -1,9 +1,9 @@
 [
   {
     "id": "FAQ.1",
-    "categorie": "Portail TGR",
+    "categorie": "Téléservices & inscription",
     "probleme": "Comment pourrais-je m’inscrire en ligne?",
-    "solution": "Vous disposez d’un guide d’utilisation qui se situe au niveau de la page d'inscription. Toutefois, si vous rencontrez des difficultés, veuillez transcrire une réclamation en détail ( joindre une capture écran du message sortant) pour nous permettre de vous apporter le soutien nécessaire. Je n’arrive pas à m’inscrire: je reçois le message suivant: “le salaire mensuel ne correspond pas à celui figurant au niveau des données du CNT ” La procédure d’inscription en ligne pour les téléservices “fonctionnaire” utilise un protocole d’authentification basé sur la vérification des données que vous introdui sez, notamment par rapport à votre dernier salaire ainsi que le numéro de CIN et PPR fournis. Ce message indique que vous avez introduit un salaire net mensuel erroné et qui ne correspond pas à celui figurant au niveau des données du système de la paie du personnel. Vous pouvez télécharger l’application TGR-Mobile et procéder à l’inscription en se basant sur le dernier net mensuel viré à votre compte bancaire. Je ne dispose pas de la date exacte de naissance, je n’ai que l’année de naissance et je ne peux pas la saisir au niveau du champ ‘inscription’ Veuillez saisir votre date de naissance sous le format \"31/12/année de naissance\". Ce cas est décrit au niveau du module “inscription en ligne” par l'info bulle correspondante au champ précité. Je n’arrive pas à m’inscrire pour consulter ",
+    "solution": "Vous disposez d’un guide d’utilisation qui se situe au niveau de la page d'inscription. Toutefois, si vous rencontrez des difficultés, veuillez transcrire une réclamation en détail ( joindre une capture écran du message sortant) pour nous permettre de vous apporter le soutien nécessaire.",
     "status": "ok",
     "variantes": [
       "Comment pourrais-je m’inscrire en ligne?",
@@ -13,8 +13,52 @@
   {
     "id": "FAQ.2",
     "categorie": "Téléservices & inscription",
+    "probleme": "Je n’arrive pas à m’inscrire: je reçois le message suivant: “le salaire mensuel ne correspond pas à celui figurant au niveau des données du CNT ”",
+    "solution": "La procédure d’inscription en ligne pour les téléservices “fonctionnaire” utilise un protocole d’authentification basé sur la vérification des données que vous introdui sez, notamment par rapport à votre dernier salaire ainsi que le numéro de CIN et PPR fournis. Ce message indique que vous avez introduit un salaire net mensuel erroné et qui ne correspond pas à celui figurant au niveau des données du système de la paie du personnel. Vous pouvez télécharger l’application TGR-Mobile et procéder à l’inscription en se basant sur le dernier net mensuel viré à votre compte bancaire.",
+    "status": "ok",
+    "variantes": [
+      "Je n’arrive pas à m’inscrire: je reçois le message suivant: “le salaire mensuel ne correspond pas à celui figurant au niveau des données du CNT ”",
+      "La procédure d’inscription en ligne pour les téléservices “fonctionnaire” utilise un protocole d’authentification basé sur la vérification des données que vous introdui sez, notamment par rapport à votre dernier salaire ainsi que le numéro de CIN et PPR fournis."
+    ]
+  },
+  {
+    "id": "FAQ.3",
+    "categorie": "Téléservices & inscription",
+    "probleme": "Je ne dispose pas de la date exacte de naissance, je n’ai que l’année de naissance et je ne peux pas la saisir au niveau du champ ‘inscription’",
+    "solution": "Veuillez saisir votre date de naissance sous le format \"31/12/année de naissance\". Ce cas est décrit au niveau du module “inscription en ligne” par l'info bulle correspondante au champ précité.",
+    "status": "ok",
+    "variantes": [
+      "Je ne dispose pas de la date exacte de naissance, je n’ai que l’année de naissance et je ne peux pas la saisir au niveau du champ ‘inscription’",
+      "Veuillez saisir votre date de naissance sous le format \"31/12/année de naissance\"."
+    ]
+  },
+  {
+    "id": "FAQ.4",
+    "categorie": "Téléservices & inscription",
+    "probleme": "Je n’arrive pas à m’inscrire pour consulter ma situation fiscale car je ne dispose pas du numéro d’article et/ou du montant",
+    "solution": "La procédure d’inscription en ligne pour les téléservices “situa tion fiscale” utilise un protocole d’authentification basé sur la vérification des données que vous introduisez, notamment par rapport à votre référence de paiement figurant sur votre avis d’imposition. Si vous n’avez jamais reçu d’avis d’imposition, veuil lez prendre attache auprès des services d’assiette de la Direction Provinciale ou Préfectorale des Impôts dont vous relevez pour vous fournir les références demandées. Après l’inscription je reçois un message indiquant que l’activation n’a pas abouti Ce message indique que lors de votre inscription vous n’avez pas respecté les consignes du guide d’inscription. A ce titre vous devez réessayer l’inscription en évitant d’utiliser des caractères spéciaux (?,_,@,~,...) ou espaces dans le login ou mot de passe.",
+    "status": "ok",
+    "variantes": [
+      "Je n’arrive pas à m’inscrire pour consulter ma situation fiscale car je ne dispose pas du numéro d’article et/ou du montant",
+      "La procédure d’inscription en ligne pour les téléservices “situa tion fiscale” utilise un protocole d’authentification basé sur la vérification des données que vous introduisez, notamment par rapport à votre référence de paiement figurant sur votre avis d’imposition."
+    ]
+  },
+  {
+    "id": "FAQ.5",
+    "categorie": "Téléservices & inscription",
+    "probleme": "Je souhaite récupérer mon mot de passe de mon compte en ligne",
+    "solution": "Pour récupérer votre mot de passe, veuillez cliquer sur le lien \"Cliquez ici\" au niveau de l’onglet télé- services qui se trouve sur la page d’accueil, en haut à droite de votre écran, cliquez ensuite sur \"Vous avez oublié votre mot de passe ?\", puis procédez à remplir les champs et valider par le bouton soumettre. Un email vous sera envoyé contenant votre nouveau mot de passe qu’il est fortement recommandé de changer par la suite en cliquant sur “ éditer mon profil”. Je ne dispose pas de la \"Référence Avis\" ni du \"Montant Avis\" pour payer en ligne mes taxes.",
+    "status": "ok",
+    "variantes": [
+      "Je souhaite récupérer mon mot de passe de mon compte en ligne",
+      "Pour récupérer votre mot de passe, veuillez cliquer sur le lien \"Cliquez ici\" au niveau de l’onglet télé- services qui se trouve sur la page d’accueil, en haut à droite de votre écran, cliquez"
+    ]
+  },
+  {
+    "id": "FAQ.6",
+    "categorie": "Téléservices & inscription",
     "probleme": "Comment accéder à ce service?",
-    "solution": "Par mesure de confidentialité des informations, les références ne peuvent être communiqué es en ligne. Aussi, nous vous suggérons d'utiliser le module \"Vous n'avez pas reçu votre avis d'imposition\" qui vous demandera les informations d'un ancien avis et vous fournira les références et le s montants des taxes non encore soldées. 5 Redevable/contribuable Je souhaite consulter ma situation fiscale en ligne et/ou je n’ai pas reçu l’avis d’imposition de l’année en cours Vous pouvez consulter vos taxes via le portail de la TGR, espace : \" vous n’avez pas reçu votre avis d’imposition?\" et renseigner les champs demandés en utilisant les informations d'un avis antérieur.",
+    "solution": "Par mesure de confidentialité des informations, les références ne peuvent être communiqué es en ligne. Aussi, nous vous suggérons d'utiliser le module \"Vous n'avez pas reçu votre avis d'imposition\" qui vous demandera les informations d'un ancien avis et vous fournira les références et le s montants des taxes non encore soldées. 5 Redevable/contribuable",
     "status": "ok",
     "variantes": [
       "Comment accéder à ce service?",
@@ -22,7 +66,18 @@
     ]
   },
   {
-    "id": "FAQ.3",
+    "id": "FAQ.7",
+    "categorie": "Taxes & contribuable",
+    "probleme": "Je souhaite consulter ma situation fiscale en ligne et/ou je n’ai pas reçu l’avis d’imposition de l’année en cours",
+    "solution": "Vous pouvez consulter vos taxes via le portail de la TGR, espace : \" vous n’avez pas reçu votre avis d’imposition?\" et renseigner les champs demandés en utilisant les informations d'un avis antérieur.",
+    "status": "ok",
+    "variantes": [
+      "Je souhaite consulter ma situation fiscale en ligne et/ou je n’ai pas reçu l’avis d’imposition de l’année en cours",
+      "Vous pouvez consulter vos taxes via le portail de la TGR, espace : \" vous n’avez pas reçu votre avis d’imposition?\" et renseigner les champs demandés en utilisant les informations d'un avis antérieur."
+    ]
+  },
+  {
+    "id": "FAQ.8",
     "categorie": "Taxes & contribuable",
     "probleme": "Je souhaite m’acquitter de mes taxes, quels sont les moyens de paiement?",
     "solution": "Vous pouvez vous acquitter de vos taxes : •En ligne via le portail de la TGR espace « paiement en ligne » cliquez sur payer et suivez les instructions. N’oubliez pas de consulter les « Conditions d’utilisation » de ce service sur la page dédiée à sa présentation. •Par virement au compte bancaire ouvert au nom de la Trésorerie Centrale de Recouvrement à Bank Al Maghrib. Il est obligatoire de préciser l'article, l'année et la nature de l'impôt. Si vous payez depuis l’étranger il faut saisir le Code IBAN et SWIFT. • Auprès des guichets de la perception dont vous relevez. Il est à noter à ce titre que certaines perceptions disposent de la possibilité de paiement par carte bancaire. Demandez au niveau du guichet la disponibilité de cette option. •Via le Guichet Automatique Bancaire (GAB). •A travers les points de service de proximité ou auprès des différents sites E-Banking des différentes banques.",
@@ -33,7 +88,7 @@
     ]
   },
   {
-    "id": "FAQ.4",
+    "id": "FAQ.9",
     "categorie": "Taxes & contribuable",
     "probleme": "Je souhaite bénéficier de facilités de paiement pour payer mes redevances à l’Etat, quelle est la procédure?",
     "solution": "Si vous souhaitez bénéficier de facilités de paiement, vous devez contacter votre perception de rattachement et fournir les pièces suivantes: - Un formulaire servi et signé par l’intéressé (à demander sur place) ; - \rUne garantie (à fixer avec le percepteur).",
@@ -44,7 +99,7 @@
     ]
   },
   {
-    "id": "FAQ.5",
+    "id": "FAQ.10",
     "categorie": "Taxes & contribuable",
     "probleme": "J’ai perdu ma quittance et souhaite avoir un duplicata?",
     "solution": "Vous pouvez télécharger vos anciennes quittances via le portail de la TGR à travers ce lien: https:// /wps/portal/TelechargementQuittances en saisissant les données su ivantes: référence de l’avis (12 chiffres) et le montant de l’avis correspondant.",
@@ -55,7 +110,7 @@
     ]
   },
   {
-    "id": "FAQ.6",
+    "id": "FAQ.11",
     "categorie": "Taxes & contribuable",
     "probleme": "Comment être remboursé pour excédent de versement?",
     "solution": "Vous devez contacter votre perception de rattachement et fournir les pièces suivantes: - Une demande ; - La présentation de la CIN de l’intéressé ; - L’original de la quittance de paiement ; - une attestation de RIB pour les personnes morales ; - La lettre de dégrèvement ; - Une convocation.",
@@ -65,20 +120,31 @@
     ]
   },
   {
-    "id": "FAQ.7",
+    "id": "FAQ.12",
     "categorie": "Taxes & contribuable",
     "probleme": "Je suis un concurrent aux marchés publics et souhaite avoir une attestation de régularité fiscale?",
-    "solution": "Vous devez contacter votre perception de rattachement et fournir les pièces suivantes: - Une demande ; - L’attestation de souscription des déclarations et des paiements délivrée par les services d’assiettes ; - Une demande de renseignements servie par le receveur communal ; - L’attestation d’inscription à la taxe professionnelle (pour les nouveaux inscrits et en cas de changement de l’activité d’imposition). 6 Je souhaite payer en ligne : l’avis d'imposition émis par les impôts est en mon nom et ma situation fiscale en ligne sur le portail de la Trésorerie Générale est au nom de l’ancien propriétaire Vous devez d’abord vous acquitter de votre impôt du fait que ledit impôt concerne le bien immobilier et non le propriétaire, puis transcrire une réclamation dan s ce sens via le portail de la TGR qui sera aiguillée vers le service concerné. Je souhaite avoir une attestation de paiement des impôts et taxes grevant les immeubles Nous vous informons que la demande de cette attestation a été dématérialisée. Ainsi le s Adouls ou notaires peuvent saisir cette demande et télécharger l’attestation directement en ligne. Si vous souhaitez toutefois contacter la perception de rattachement directement pour la demander il faut fournir les pièces suivantes: - Une demande (le formulaire à télécharger est disponible sur le portail de la TGR) ; - Une copie du compromis de vente ou ampliation du not",
+    "solution": "Vous devez contacter votre perception de rattachement et fournir les pièces suivantes: - Une demande ; - L’attestation de souscription des déclarations et des paiements délivrée par les services d’assiettes ; - Une demande de renseignements servie par le receveur communal ; - L’attestation d’inscription à la taxe professionnelle (pour les nouveaux inscrits et en cas de changement de l’activité d’imposition). 6 Je souhaite payer en ligne : l’avis d'imposition émis par les impôts est en mon nom et ma situation fiscale en ligne sur le portail de la Trésorerie Générale est au nom de l’ancien propriétaire Vous devez d’abord vous acquitter de votre impôt du fait que ledit impôt concerne le bien immobilier et non le propriétaire, puis transcrire une réclamation dan s ce sens via le portail de la TGR qui sera aiguillée vers le service concerné.",
     "status": "ok",
     "variantes": [
       "Je suis un concurrent aux marchés publics et souhaite avoir une attestation de régularité fiscale?"
     ]
   },
   {
-    "id": "FAQ.8",
+    "id": "FAQ.13",
+    "categorie": "Taxes & contribuable",
+    "probleme": "Je souhaite avoir une attestation de paiement des impôts et taxes grevant les immeubles",
+    "solution": "Nous vous informons que la demande de cette attestation a été dématérialisée. Ainsi le s Adouls ou notaires peuvent saisir cette demande et télécharger l’attestation directement en ligne. Si vous souhaitez toutefois contacter la perception de rattachement directement pour la demander il faut fournir les pièces suivantes: - Une demande (le formulaire à télécharger est disponible sur le portail de la TGR) ; - Une copie du compromis de vente ou ampliation du notaire ou Adoul ; - \rUne demande de renseignements servie par les services d’assiette et le cas échéant par le trésorier provincial ou préfectoral. Je suis fonctionnaire.",
+    "status": "ok",
+    "variantes": [
+      "Je souhaite avoir une attestation de paiement des impôts et taxes grevant les immeubles",
+      "Nous vous informons que la demande de cette attestation a été dématérialisée."
+    ]
+  },
+  {
+    "id": "FAQ.14",
     "categorie": "Taxes & contribuable",
     "probleme": "Comment pourrais-je bénéficier de la restitution IR auprès de la Trésorerie Ministérielle?",
-    "solution": "La restitution à la source est valable pour les précomptes opérés pour les comptes des banques qui ont des conventions avec la Trésorerie Générale du Royaume. Les pièces à produire à la trésorerie ministérielle : - Le certificat de résidence ; - Une copie de la CIN (comportant l’adresse du bien acquis) ; - Une déclaration sur l’honneur ; - L’attestation du taux d’intérêt ; - Une demande manuscrite. J’ai changé de propriété et je reçois toujours l’avis d’imposition au nom de l’ancien propriétaire Si l'erreur constatée concerne uniquement le nom du propriétaire, vous devez d’abord vous acquitter de votre impôt du fait que l'impôt concerne le bien immobilier et non le propriétaire ; par la suite prendre attache auprès des services de la Direction des Impôts lieu d’imposition, muni de vos pièces justificatives (compromis de vente + copie de la CIN et servir un formulaire au niveau du service d’assiette et le joindre à votre dossier) pour demander le changement du nom de propriétaire et demander un document de changement de nom appelé \"mutation de cote\" et le présenter au percepteur concerné qui recevra aussi une copie par voie administrative. \rIl est à noter que la période réservée pour se présenter pour les mutations de côtes est en janvier.",
+    "solution": "La restitution à la source est valable pour les précomptes opérés pour les comptes des banques qui ont des conventions avec la Trésorerie Générale du Royaume. Les pièces à produire à la trésorerie ministérielle : - Le certificat de résidence ; - Une copie de la CIN (comportant l’adresse du bien acquis) ; - Une déclaration sur l’honneur ; - L’attestation du taux d’intérêt ; - Une demande manuscrite.",
     "status": "ok",
     "variantes": [
       "Comment pourrais-je bénéficier de la restitution IR auprès de la Trésorerie Ministérielle?",
@@ -86,7 +152,18 @@
     ]
   },
   {
-    "id": "FAQ.9",
+    "id": "FAQ.15",
+    "categorie": "Taxes & contribuable",
+    "probleme": "J’ai changé de propriété et je reçois toujours l’avis d’imposition au nom de l’ancien propriétaire",
+    "solution": "Si l'erreur constatée concerne uniquement le nom du propriétaire, vous devez d’abord vous acquitter de votre impôt du fait que l'impôt concerne le bien immobilier et non le propriétaire ; par la suite prendre attache auprès des services de la Direction des Impôts lieu d’imposition, muni de vos pièces justificatives (compromis de vente + copie de la CIN et servir un formulaire au niveau du service d’assiette et le joindre à votre dossier) pour demander le changement du nom de propriétaire et demander un document de changement de nom appelé \"mutation de cote\" et le présenter au percepteur concerné qui recevra aussi une copie par voie administrative. \rIl est à noter que la période réservée pour se présenter pour les mutations de côtes est en janvier.",
+    "status": "ok",
+    "variantes": [
+      "J’ai changé de propriété et je reçois toujours l’avis d’imposition au nom de l’ancien propriétaire",
+      "Si l'erreur constatée concerne uniquement le nom du propriétaire, vous devez d’abord vous acquitter de votre impôt du fait que l'impôt concerne le bien immobilier et non le propriétaire ; par la"
+    ]
+  },
+  {
+    "id": "FAQ.16",
     "categorie": "Taxes & contribuable",
     "probleme": "Comment pourrais-je régler mes taxes et amendes transactionnelles?",
     "solution": "Le paiement des ATF peut être effectué en espèce, par chèque ou par tout autre moyen fixé par l’administration, soit immédiatement entre les mains de l’agent verbalisateur ou dans un délai de 30 jours à compter de la date de constatation de la contravention ou de réception de la notification de l’avis de contravention en cas de constatation automatisée. Afin de faciliter la procédure de paiement, le code de la route a instauré la possibili té de payer l’amende auprès : - Du contrôle ayant constaté l’infraction ; - des guichets de la perception de la TGR après présentation du Procès-Verbal de contravention ; - ou en ligne via le portail de la TGR via le lien paiement en ligne.",
@@ -97,7 +174,7 @@
     ]
   },
   {
-    "id": "FAQ.10",
+    "id": "FAQ.17",
     "categorie": "Taxes & contribuable",
     "probleme": "Je souhaite obtenir un certificat d’imposition ou de non-imposition P1007?",
     "solution": "Vous devez contacter votre perception de rattachement et fournir les pièces suivantes: - Une demande ; - Une copie de la CIN ; - En cas d ’IMPOSITION, le contribuable doit présenter les numéros des articles qui doiven t apparaître sur le certificat. - En cas de NON IMPOSITION l’intéressé doit présenter une attestation dument établie par les services d’assiette compétents attestant qu’il n’est assujetti à aucun impôt ou taxe.",
@@ -107,7 +184,7 @@
     ]
   },
   {
-    "id": "FAQ.11",
+    "id": "FAQ.18",
     "categorie": "Taxes & contribuable",
     "probleme": "Je souhaite obtenir un extrait de rôle?",
     "solution": "Vous devez contacter votre perception de rattachement et demander l’extrait de rôle qui vous sera donné après présentation de votre CIN.",
@@ -118,10 +195,10 @@
     ]
   },
   {
-    "id": "FAQ.12",
+    "id": "FAQ.19",
     "categorie": "Taxes & contribuable",
     "probleme": "Je veux m’informer sur les modalités d’imposition de la TPI, procédure de déclaration de révision, contestation du montant ?",
-    "solution": "Les taxes sur les profits immobiliers, ne relèvent pas de s attributions de la Trésorerie Générale du Royaume, veuillez prendre contact avec les services de la DGI, habilités à vous fournir ces informations. Je voudrais me renseigner sur la procédure à suivre pour obtenir la restitution de l’IR opéré sur la part du revenu affecté au paiement du crédit contracté à l’occasion de l’acquisition de mon logement La procédure de remboursement de l’IR appliqué à la part du revenu affecté au remboursement du crédit de logement principal, ne relève pas des compétences de la Trésorerie Générale du Royaume, à cet effet, veuillez contacter les services de la Direction Régionale des impôts habilités à vous fournir plus d’informations.",
+    "solution": "Les taxes sur les profits immobiliers, ne relèvent pas de s attributions de la Trésorerie Générale du Royaume, veuillez prendre contact avec les services de la DGI, habilités à vous fournir ces informations.",
     "status": "ok",
     "variantes": [
       "Je veux m’informer sur les modalités d’imposition de la TPI, procédure de déclaration de révision, contestation du montant ?",
@@ -129,10 +206,21 @@
     ]
   },
   {
-    "id": "FAQ.13",
+    "id": "FAQ.20",
+    "categorie": "Taxes & contribuable",
+    "probleme": "Je voudrais me renseigner sur la procédure à suivre pour obtenir la restitution de l’IR opéré sur la part du revenu affecté au paiement du crédit contracté à l’occasion de l’acquisition de mon logement",
+    "solution": "La procédure de remboursement de l’IR appliqué à la part du revenu affecté au remboursement du crédit de logement principal, ne relève pas des compétences de la Trésorerie Générale du Royaume, à cet effet, veuillez contacter les services de la Direction Régionale des impôts habilités à vous fournir plus d’informations.",
+    "status": "ok",
+    "variantes": [
+      "Je voudrais me renseigner sur la procédure à suivre pour obtenir la restitution de l’IR opéré sur la part du revenu affecté au paiement du crédit contracté à l’occasion de l’acquisition de mon logement",
+      "La procédure de remboursement de l’IR appliqué à la part du revenu affecté au remboursement du crédit de logement principal, ne relève pas des compétences de la Trésorerie Générale du Royaume, à cet"
+    ]
+  },
+  {
+    "id": "FAQ.21",
     "categorie": "Taxes & contribuable",
     "probleme": "Je voudrais m’informer sur la procédure à suivre pour la déclaration de l’impôt sur le Revenu ?",
-    "solution": "La déclaration de l’impôt sur le revenu se fait au niveau des services d’assiettes de la direction régionale des impôts lieu d’imposition. Vous pouvez également formuler votre réclamation via les moyens de communication suivants: http://portail.tax.gov.ma/wps/portal/DGI/Nous-contacter , ou d’appeler le centre d’appel de la DGI : 0537273727. Vous pouvez envoyer un mail à l’adresse suivante : simpl@tax.gov.ma ou adresser votre réclamation sur le site de ladite Direction après adhésion, via ce lien: https://simpl-reclamation.tax.gov.ma/reclamation/login Je souhaite payer ma taxe qui est inférieure à 200 DH mais le site me renvoie le message “Aucune créance à payer” Conformément aux dispositions de la Loi 07 -20, la Taxe d’Habitation ou la Taxe de Services Communaux dont le montant est inférieur à 200 Dh n’est pas due. Je souhaite l’annulation des majorations de retard Les annulations des majorations de retard accordées par la loi des finances sont totales ou partielle selon les cas, et relèvent des attributions des services d’assiettes de la Direction Régionale des Impôts lieu d’imposition. J’ai vendu ma propriété, cependant je continue à recevoir toujours l’avis d’imposition Veuillez prendre attache auprès ces services de la Direction Régionale des Impôts lieu de votre résidence muni de vos justificatifs notamment le contrat de vente dûment enregistré pour une mise à jour de votr",
+    "solution": "La déclaration de l’impôt sur le revenu se fait au niveau des services d’assiettes de la direction régionale des impôts lieu d’imposition. Vous pouvez également formuler votre réclamation via les moyens de communication suivants: http://portail.tax.gov.ma/wps/portal/DGI/Nous-contacter , ou d’appeler le centre d’appel de la DGI : 0537273727. Vous pouvez envoyer un mail à l’adresse suivante : simpl@tax.gov.ma ou adresser votre réclamation sur le site de ladite Direction après adhésion, via ce lien: https://simpl-reclamation.tax.gov.ma/reclamation/login Je souhaite payer ma taxe qui est inférieure à 200 DH mais le site me renvoie le message “Aucune créance à payer” Conformément aux dispositions de la Loi 07 -20, la Taxe d’Habitation ou la Taxe de Services Communaux dont le montant est inférieur à 200 Dh n’est pas due.",
     "status": "ok",
     "variantes": [
       "Je voudrais m’informer sur la procédure à suivre pour la déclaration de l’impôt sur le Revenu ?",
@@ -140,8 +228,138 @@
     ]
   },
   {
-    "id": "FAQ.14",
+    "id": "FAQ.22",
     "categorie": "Taxes & contribuable",
+    "probleme": "Je souhaite l’annulation des majorations de retard",
+    "solution": "Les annulations des majorations de retard accordées par la loi des finances sont totales ou partielle selon les cas, et relèvent des attributions des services d’assiettes de la Direction Régionale des Impôts lieu d’imposition.",
+    "status": "ok",
+    "variantes": [
+      "Je souhaite l’annulation des majorations de retard",
+      "Les annulations des majorations de retard accordées par la loi des finances sont totales ou partielle selon les cas, et relèvent des attributions des services d’assiettes de la Direction Régionale des Impôts lieu d’imposition."
+    ]
+  },
+  {
+    "id": "FAQ.23",
+    "categorie": "Taxes & contribuable",
+    "probleme": "J’ai vendu ma propriété, cependant je continue à recevoir toujours l’avis d’imposition",
+    "solution": "Veuillez prendre attache auprès ces services de la Direction Régionale des Impôts lieu de votre résidence muni de vos justificatifs notamment le contrat de vente dûment enregistré pour une mise à jour de votre situation fiscale. Je n’ai jamais reçu d’avis d’imposition//J’ai reçu un avis d’imposition concernant la taxe d’habitation avec un montant plus élevé par rapport aux autres années, j’ai déjà payé, comment je peux récupérer la différence payée Vous pouvez prendre attache auprès des services de la Direction Régionale des Impôts lieu de votre 8 résidence pour déclarer votre bien et mettre à jour votre situation fiscale. Vous pouvez également formuler votre réclamation via les moyens de communication suivants: http://portail.tax.gov.ma/wps/portal/DGI/Nous-contacter , ou d’appeler le centre d’appel de la DGI : 0537273727.",
+    "status": "ok",
+    "variantes": [
+      "J’ai vendu ma propriété, cependant je continue à recevoir toujours l’avis d’imposition",
+      "Veuillez prendre attache auprès ces services de la Direction Régionale des Impôts lieu de votre résidence muni de vos justificatifs notamment le contrat de vente dûment enregistré pour une mise à jour de votre situation fiscale."
+    ]
+  },
+  {
+    "id": "FAQ.24",
+    "categorie": "Taxes & contribuable",
+    "probleme": "J’ai constaté une erreur au niveau de l’avis d’imposition qui mentionne que ma demeure est une résidence secondaire alors que c’est une résidence principale",
+    "solution": "Pour la déclaration de votre résidence principale, veuillez prendre attache auprès des services d’assiettes de la Direction Générale des Impôts muni de vos justificatives Je constate que mon nom est mal orthographié sur l’avis d’imposition Vous devez prendre attache auprès des services de la Direction Régionale des Impôts (DGI) lieu de votre résidence pour mettre à jour ou corriger vos données personnelles puisque l’avis d’imposition émane de la DGI.",
+    "status": "ok",
+    "variantes": [
+      "J’ai constaté une erreur au niveau de l’avis d’imposition qui mentionne que ma demeure est une résidence secondaire alors que c’est une résidence principale",
+      "Pour la déclaration de votre résidence principale, veuillez prendre attache auprès des services d’assiettes de la Direction Générale des Impôts muni de vos justificatives Je constate que mon nom est"
+    ]
+  },
+  {
+    "id": "FAQ.25",
+    "categorie": "Taxes & contribuable",
+    "probleme": "J’ai payé mes taxes en ligne et je n’ai pas reçu la quittance électronique",
+    "solution": "Vous devez vérifier en premier lieu que votre compte a bien été débité. Si c’est le cas nous vous informons que vous pouvez utiliser le portail de la TGR pour télécharger toutes vos quittances via ce lien : https:// /wps/portal/TelechargementQuittances\r en saisissant les données que vous avez utilisées pour payer : référence de l’avis : 12 chiffres et montant de l’avis correspon dant.\r\rAu cas où vous rencontrez des difficultés, veuillez nous envoyer une capture écran du message affiché en pièce jointe via le dispositif des « réclamations en ligne » afin de nous permettre de faire un diagnostic de proximité. j'ai payé en double mon impôt “par chèque” au niveau du guichet et “par virement”.",
+    "status": "ok",
+    "variantes": [
+      "J’ai payé mes taxes en ligne et je n’ai pas reçu la quittance électronique",
+      "Vous devez vérifier en premier lieu que votre compte a bien été débité."
+    ]
+  },
+  {
+    "id": "FAQ.26",
+    "categorie": "Taxes & contribuable",
+    "probleme": "Comment restituer le montant payé en double",
+    "solution": "Du moment que vous avez les preuves de vos paiements effectués, nous vous invitons à prendre l’attache du percepteur de rattachement muni du vos ju stificatifs de paiement afin de régulariser votre situation (récupération du trop versé ou l'imputer en paiement d'autres dettes à la perception). un courrier m'a été adressé pour paiement d'un montant de *** au titre de l'exercice ***, seul le n° de l'Ordre de Recette de ** sans spécifier le N° de l'article En l'absence d'un numéro d'article, nous vous invitons à prendre l’attache du percepteur du lieu de votre imposition muni du courrier que vous avez reçu en vue de s'enquérir de la nature et du bien - fondé de cette créance.",
+    "status": "ok",
+    "variantes": [
+      "Comment restituer le montant payé en double",
+      "Du moment que vous avez les preuves de vos paiements effectués, nous vous invitons à prendre l’attache du percepteur de rattachement muni du vos ju stificatifs de paiement afin de régulariser votre"
+    ]
+  },
+  {
+    "id": "FAQ.27",
+    "categorie": "Taxes & contribuable",
+    "probleme": "J’ai payé mon impôt par virement et pourtant j’ai été relancé par la perception pour le paiement de cet impôt",
+    "solution": "Vous pouvez envoyer une réclamation en ligne en joignant la pièce de paiement (ordre de virement ou déclaration de versement pour permettre aux services de la TGR de procéder aux vérifications nécessaires.\rNous tenons à vous rappeler de veiller, lors de vos prochains paiements des impôts et taxes par virement bancaire, à indiquer les références de votre avis d’impositi on (12 chiffres) précisant ainsi l'article, l'année et la nature de l'impôt, et d’insister sur votre banquier pour le faire. si vous ne précisez pas les références, le montant reste consigné en attente de la référence pour imputation définitive. 9 Client de l’activité bancaire TGR",
+    "status": "ok",
+    "variantes": [
+      "J’ai payé mon impôt par virement et pourtant j’ai été relancé par la perception pour le paiement de cet impôt",
+      "Vous pouvez envoyer une réclamation en ligne en joignant la pièce de paiement (ordre de virement ou déclaration de versement pour permettre aux services de la TGR de procéder aux vérifications"
+    ]
+  },
+  {
+    "id": "FAQ.28",
+    "categorie": "Activité bancaire",
+    "probleme": "Je souhaite ouvrir un compte bancaire à la TGR",
+    "solution": "Pour ouvrir un compte bancaire à la TGR, il faut se présenter à l’ agence bancaire, muni des pièces détaillées selon le cas (personne physique ou morale/type de compte) et fournies dans la section activité bancaire du portail de la TGR.",
+    "status": "ok",
+    "variantes": [
+      "Je souhaite ouvrir un compte bancaire à la TGR",
+      "Pour ouvrir un compte bancaire à la TGR, il faut se présenter à l’ agence bancaire, muni des pièces détaillées selon le cas (personne physique ou morale/type de compte) et fournies dans la section activité bancaire du portail de la TGR."
+    ]
+  },
+  {
+    "id": "FAQ.29",
+    "categorie": "Activité bancaire",
+    "probleme": "Je souhaite demander un chéquier/une carte GAB de la TGR",
+    "solution": "Vous devez vous présenter personnellement à l’agence bancaire pour effectuer votre demande.",
+    "status": "ok",
+    "variantes": [
+      "Je souhaite demander un chéquier/une carte GAB de la TGR",
+      "Vous devez vous présenter personnellement à l’agence bancaire pour effectuer votre demande."
+    ]
+  },
+  {
+    "id": "FAQ.30",
+    "categorie": "Activité bancaire",
+    "probleme": "Comment faire pour avoir la possibilité de consulter mon compte bancaire en ligne",
+    "solution": "Vous devez vous présenter personnellement à l’ agence bancaire pour effectuer votre demande d’inscription au service « banque en ligne ». un mot de passe vous sera communiqué via votre adresse de messagerie.",
+    "status": "ok",
+    "variantes": [
+      "Comment faire pour avoir la possibilité de consulter mon compte bancaire en ligne"
+    ]
+  },
+  {
+    "id": "FAQ.31",
+    "categorie": "Activité bancaire",
+    "probleme": "J’ai oublié le code de ma carte bancaire, comment obtenir un nouveau code",
+    "solution": "Vous devez vous présenter personnellement à l’ agence bancaire pour effectuer votre demande d’un nouveau code.",
+    "status": "ok",
+    "variantes": [
+      "J’ai oublié le code de ma carte bancaire, comment obtenir un nouveau code"
+    ]
+  },
+  {
+    "id": "FAQ.32",
+    "categorie": "Activité bancaire",
+    "probleme": "Je souhaite garder le même numéro de compte bancaire à la TGR mais changer d’agence",
+    "solution": "Actuellement, ce n’est pas possible de garder le même numéro de compte bancaire en changeant d’agence. Vous pouvez toutefois, changer la domiciliation de votre salaire d’une agence à une autre en ouvrant un nouveau compte bancaire dans l’agence choisie.",
+    "status": "ok",
+    "variantes": [
+      "Je souhaite garder le même numéro de compte bancaire à la TGR mais changer d’agence",
+      "Actuellement, ce n’est pas possible de garder le même numéro de compte bancaire en changeant d’agence."
+    ]
+  },
+  {
+    "id": "FAQ.33",
+    "categorie": "Activité bancaire",
+    "probleme": "Je ne reçois pas mes relevés bancaires",
+    "solution": "En principe, l’envoi des relevés bancaires est automatique pour tous les clients de la TGR et notamment pour les comptes mouvementés. Prière de vérifier d’avoir bien indiqué votre adresse au niveau de votre agence et notamment le code postal. \r Vous pouvez toutefois demander vos relevés bancaires au niveau de votre agence en cas de besoin. \r Par ailleurs, la TGR a mis à votre disposition un télé -service banque en ligne qui vous permet de consulter et même d'éditer votre relevé bancaire. Pour cela, il suffit de le demander au niveau de votre agence bancaire au moment de la création de votre compte bancaire ou ultérieurement.",
+    "status": "ok",
+    "variantes": [
+      "Je ne reçois pas mes relevés bancaires",
+      "En principe, l’envoi des relevés bancaires est automatique pour tous les clients de la TGR et notamment pour les comptes mouvementés."
+    ]
+  },
+  {
+    "id": "FAQ.34",
+    "categorie": "Activité bancaire",
     "probleme": "En consultant la situation de mon relevé bancaire, je constate qu’un retrait GAB d’un montant a été opéré en double, comment redresser ma situation?",
     "solution": "Vous pouvez envoyer une réclamation en ligne en joignant la partie du relevé illustrant le problème, pour un redressement de votre situation.",
     "status": "ok",
@@ -151,8 +369,8 @@
     ]
   },
   {
-    "id": "FAQ.15",
-    "categorie": "Taxes & contribuable",
+    "id": "FAQ.35",
+    "categorie": "Activité bancaire",
     "probleme": "J’ai eu un incident de paiement, comment régulariser la situation?",
     "solution": "Vous devez vous rendre à votre agence bancaire munie des pièces suivantes: - Le Chèque impayé objet de l’incident de paiement; - La Quittance de paiement de l’amende fiscale auprès du percepteur (voir paiement injonction partie redevable/contribuable).",
     "status": "ok",
@@ -162,7 +380,7 @@
     ]
   },
   {
-    "id": "FAQ.16",
+    "id": "FAQ.36",
     "categorie": "Activité bancaire",
     "probleme": "Je souhaite faire une opposition par rapport à un chèque perdu /volé comment faire?",
     "solution": "Vous devez vous rendre à votre agence munie des pièces suivantes: - Une demande d’opposition au paiement d’un chèque ou des chèques en question; - Une déclaration de vol ou de perte selon le cas.",
@@ -173,10 +391,10 @@
     ]
   },
   {
-    "id": "FAQ.17",
+    "id": "FAQ.37",
     "categorie": "Activité bancaire",
     "probleme": "Nous souhaitons liquider une succession, quelle est la procédure?",
-    "solution": "Vous devez vous rendre à l’agence concernée par le compte objet de la succession muni des pièces suivantes en double exemplaires: - L’extrait de l’acte de décès; - la copie certifiée conforme à l’original de l’acte d’hérédité précisant la part revenant à chaque héritier; - Les copies certifiées conformes aux originaux des CIN des héritiers et du défunt ou défunte; - La restitution des moyens de paiement dont disposait le défunt (chéquiers et carte GAB); - Une procuration faite au profit du mandataire, le cas échéant; - Quitus fiscal. 10 Ordonnateur/Titulaire d’une commande publique J’ai une requête concernant le portail des marchés publics: demande d’assistance, réinitialisation de mot de passe, demande d’ouverture de compte,..etc. Nous vous informons que la TGR a mis à la disposition des entreprises et acheteurs publics trois guides consultables et téléchargeables au niveau du portail des marchés publics “www.marchespublics.gov.ma” rubrique:” support et docum entation”-Guide utilisateur . Vous pouvez également consulter les “ questions/réponses” figurant dans cette rubrique à même de répondre à votre interrogation ou vous entraîner sur la plate-forme avec la consultation de test qui figure dans la rubrique \"Se préparer à répondre\". Toutefois, si vous avez toujours besoin d’assistance, la TGR met à votre disposition un service de support téléphonique est mis en place pour les e",
+    "solution": "Vous devez vous rendre à l’agence concernée par le compte objet de la succession muni des pièces suivantes en double exemplaires: - L’extrait de l’acte de décès; - la copie certifiée conforme à l’original de l’acte d’hérédité précisant la part revenant à chaque héritier; - Les copies certifiées conformes aux originaux des CIN des héritiers et du défunt ou défunte; - La restitution des moyens de paiement dont disposait le défunt (chéquiers et carte GAB); - Une procuration faite au profit du mandataire, le cas échéant; - Quitus fiscal. 10 Ordonnateur/Titulaire d’une commande publique J’ai une requête concernant le portail des marchés publics: demande d’assistance, réinitialisation de mot de passe, demande d’ouverture de compte,..etc. Nous vous informons que la TGR a mis à la disposition des entreprises et acheteurs publics trois guides consultables et téléchargeables au niveau du portail des marchés publics “www.marchespublics.gov.ma” rubrique:” support et docum entation”-Guide utilisateur . Vous pouvez également consulter les “ questions/réponses” figurant dans cette rubrique à même de répondre à votre interrogation ou vous entraîner sur la plate-forme avec la consultation de test qui figure dans la rubrique \"Se préparer à répondre\". Toutefois, si vous avez toujours besoin d’assistance, la TGR met à votre disposition un service de support téléphonique est mis en place pour les entreprises et pour les acheteurs publics à même de mieux appréhender les différentes fonctionnalités offertes par la plate -forme de dématérialisation des marchés publics. Ce service ne s’adresse qu’à des personnes familières de l’utilisation des outils bureautiques en général (Explorateur Windows, manipulation de fichiers, dossiers ZIP, etc.) et d’Internet en particulier. En aucun cas, ce service de support n’est destiné à former les entreprises ou les acheteurs publics aux fonctions bureautiques usuelles.",
     "status": "ok",
     "variantes": [
       "Nous souhaitons liquider une succession, quelle est la procédure?",
@@ -184,7 +402,29 @@
     ]
   },
   {
-    "id": "FAQ.18",
+    "id": "FAQ.38",
+    "categorie": "Commande publique",
+    "probleme": "Je suis une entreprise et j’ai un retard de paiement par rapport à une commande publique",
+    "solution": "Concernant les commandes publiques, la Trésorerie Générale du Royaume assure l’exécution de ces dépenses à travers son réseau de Trésoreries Ministérielles, Provinciales et préfectorales en effectuant un contrôle des engagement et un contrôle de validité respectivement sur les dossiers d’engagement et dossiers de mandatement émanant de l’ordonnateur/sous ordonnateur avant de procéder in fine à leurs règlement. Dans ce cad re et si l’entreprise constate un retard de paiement, elle doit s’adresser au maître d’ouvrage pour avoir les motifs du retard. En outre, la Trésorerie Générale du Royaume a mis en place un service GID -Fournisseur qui permet à tout fournisseur de suivre le s actes afférents aux contrats en cours auprès de l’administration publique. La procédure est décrite au niveau de la page web: https://fournisseurs.gid.gov.ma/inscription/accueilplus.htm 11 Enfin, et si le retard incombe au poste comptable, le titulaire de la commande publique peut formuler une réclamation en ligne au niveau du portail de la TGR en mentionnant le numéro de bordereau envoyé par l’ordonnateur/sous ordonnateur, ainsi que la date d’envoi et le poste comptable concerné.",
+    "status": "ok",
+    "variantes": [
+      "Je suis une entreprise et j’ai un retard de paiement par rapport à une commande publique",
+      "Concernant les commandes publiques, la Trésorerie Générale du Royaume assure l’exécution de ces dépenses à travers son réseau de Trésoreries Ministérielles, Provinciales et préfectorales en"
+    ]
+  },
+  {
+    "id": "FAQ.39",
+    "categorie": "Fonctionnaire",
+    "probleme": "Je souhaite changer la domiciliation de mon salaire vers un autre compte, comment faire?",
+    "solution": "Afin que la Direction des Dépenses du Personnel puisse prendre en charge le changement de votre domiciliation, vous devez déposer une demande de changement du mode de règlement, accompagnée d'un spécimen de chèque de la banque souhaitée auprès du service des ressources humaines de votre département, ce dernier la transmettra par voie hiérarchique à la Trésorerie Ministérielle. Ma demande de crédit a été refusée à cause du refus de la demande de réservation par la Direction des dépenses du personnel Les crédits contractés auprès des sociétés de financement et banques sont initiés par ces organismes de manière automatique conformément à la réglementation en vigueur et dans la limite de la quotité cessible du salaire. Mon salaire a fait l’objet d’un précompte sous le motif “Trop perçu”.",
+    "status": "ok",
+    "variantes": [
+      "Je souhaite changer la domiciliation de mon salaire vers un autre compte, comment faire?",
+      "Afin que la Direction des Dépenses du Personnel puisse prendre en charge le changement de votre domiciliation, vous devez déposer une demande de changement du mode de règlement, accompagnée d'un"
+    ]
+  },
+  {
+    "id": "FAQ.40",
     "categorie": "Fonctionnaire",
     "probleme": "Que veut dire cette mention?",
     "solution": "Le montant “Trop perçu” affiché au niveau de votre situation GRH du portail de la TGR est calculé sur une base annuelle et représente un montant que l’Etat a le droit de resti tuer en effectuant des précomptes sur votre salaire. Afin de connaître le motif exact de ce trop perçu, vous pouvez adresser une réclamation en ligne au niveau du portail de la TGR.",
@@ -195,10 +435,10 @@
     ]
   },
   {
-    "id": "FAQ.19",
+    "id": "FAQ.41",
     "categorie": "Fonctionnaire",
     "probleme": "Quelle est ma situation administrative//mon dernier net mensuel?",
-    "solution": "Conformément à la loi n°09 -08 relative à la protection des personnes physiques à l’égard des traitements des données à caractère personnel promulguée par le Dahir N° 1 -09-15 du 22 Safar 1430 (18 Février 2009), les informations relatives à votre situation administ rative ne peuvent vous être communiquées sans authentification préalable. Nous vous informons à cet effet que la TGR a mis en place un système d’ inscription en ligne aux téléservices que vous pouvez utiliser au niveau du portail et qui vous permet de consulter votre situation administrative. J’ai consulté ma situation en ligne au niveau des téléservices de la TGR et j’ai constaté des erreurs au niveau de ma situation administrative ou informations personnelles (conjoint, enfants, CIN.., ) comment faire pour corriger ces erreurs? Pour ce qui est du changement des informations relatives à la CIN, vous pou vez formuler une réclamation en ligne et joindre une copie scannée de cette dernière. Cependant, et concernant les actes de gestion, la modificati on de votre situation administrative ou informations personnelles par nos services, ne peut s'effectuer qu'après réception des pièces justificatives émanant de votre département. A cet effet vous devez envoyer par voie hiérarchique votre dossier composé des pièces justificatives relatives à votre demande de correction. \r Votre département pourrait alors vous fournir les él",
+    "solution": "Conformément à la loi n°09 -08 relative à la protection des personnes physiques à l’égard des traitements des données à caractère personnel promulguée par le Dahir N° 1 -09-15 du 22 Safar 1430 (18 Février 2009), les informations relatives à votre situation administ rative ne peuvent vous être communiquées sans authentification préalable. Nous vous informons à cet effet que la TGR a mis en place un système d’ inscription en ligne aux téléservices que vous pouvez utiliser au niveau du portail et qui vous permet de consulter votre situation administrative. J’ai consulté ma situation en ligne au niveau des téléservices de la TGR et j’ai constaté des erreurs au niveau de ma situation administrative ou informations personnelles (conjoint, enfants, CIN..",
     "status": "ok",
     "variantes": [
       "Quelle est ma situation administrative//mon dernier net mensuel?",
@@ -206,7 +446,18 @@
     ]
   },
   {
-    "id": "FAQ.20",
+    "id": "FAQ.42",
+    "categorie": "Fonctionnaire",
+    "probleme": "Comment faire pour corriger ces erreurs?",
+    "solution": "Pour ce qui est du changement des informations relatives à la CIN, vous pou vez formuler une réclamation en ligne et joindre une copie scannée de cette dernière. Cependant, et concernant les actes de gestion, la modificati on de votre situation administrative ou informations personnelles par nos services, ne peut s'effectuer qu'après réception des pièces justificatives émanant de votre département. A cet effet vous devez envoyer par voie hiérarchique votre dossier composé des pièces justificatives relatives à votre demande de correction. \r Votre département pourrait alors vous fournir les éléments relatifs à cet envoi afin de vous permettre de suivre avec les services de la Trésorerie ministérielle le traitement de votre demande à travers le portail des réclamations en ligne.",
+    "status": "ok",
+    "variantes": [
+      "Comment faire pour corriger ces erreurs?",
+      "Pour ce qui est du changement des informations relatives à la CIN, vous pou vez formuler une réclamation en ligne et joindre une copie scannée de cette dernière."
+    ]
+  },
+  {
+    "id": "FAQ.43",
     "categorie": "Fonctionnaire",
     "probleme": "J’ai constaté que le calcul des allocations familiales de mon enfant n’a pas considéré le mois de sa naissance, est ce que c’est normal ?",
     "solution": "Effectivement, le calcul des allocations familiales s’effectu e à partir du mois qui suit le mois de naissance des enfants.",
@@ -217,10 +468,10 @@
     ]
   },
   {
-    "id": "FAQ.21",
-    "categorie": "Fonctionnaire",
+    "id": "FAQ.44",
+    "categorie": "Réclamations",
     "probleme": "Quelles sont les conditions à respecter?",
-    "solution": "Avant de réclamer, assurez-vous que votre réclamation est recevable, à savoir: - La réclamation doit être claire et comporter toutes les informations requises (champs obligatoires au niveau des informations client) et présenter les preuves et pièces justificatives lorsque le réclamant en dispose (pièces à scanner et joindre le fichier à la réclamation); - La réclamation doit être objective, porter sur des éléments factuels et ne comporter aucune diffamation ou injure, à l’égard de toute personne physique ou tout service public ou privé; - La réclamation doit être individuelle (Les pétitions ne sont pas acceptées); - L’objet de la demande doit concerner la TGR en premier lieu; La réclamation doit être portée auprès de la TGR dans les délais fixés par le cadre législatif, réglementaire ou conventionnel régissant l’objet concerné; - La réclamation ne doit pas porter sur des faits objet d’un l itige en justice (Ce genre de demandes doit intervenir via un huissier de justice au niveau du bureau d’ordre, seul habilité à présenter ces demandes) ; - \rLe réclamant doit indiquer les démarches précédemment effectuées auprès de la TGR et leurs résultats, le cas échéant. Quelques nuances à souligner Pour le domaine des impôts et taxes, tout ce qui relève de l’envoi des avis des impositions ainsi que de la détermination du type de bien et du montant à payer, votre réclamation doit être adres",
+    "solution": "Avant de réclamer, assurez-vous que votre réclamation est recevable, à savoir: - La réclamation doit être claire et comporter toutes les informations requises (champs obligatoires au niveau des informations client) et présenter les preuves et pièces justificatives lorsque le réclamant en dispose (pièces à scanner et joindre le fichier à la réclamation); - La réclamation doit être objective, porter sur des éléments factuels et ne comporter aucune diffamation ou injure, à l’égard de toute personne physique ou tout service public ou privé; - La réclamation doit être individuelle (Les pétitions ne sont pas acceptées); - L’objet de la demande doit concerner la TGR en premier lieu; La réclamation doit être portée auprès de la TGR dans les délais fixés par le cadre législatif, réglementaire ou conventionnel régissant l’objet concerné; - La réclamation ne doit pas porter sur des faits objet d’un l itige en justice (Ce genre de demandes doit intervenir via un huissier de justice au niveau du bureau d’ordre, seul habilité à présenter ces demandes) ; - \rLe réclamant doit indiquer les démarches précédemment effectuées auprès de la TGR et leurs résultats, le cas échéant. Quelques nuances à souligner Pour le domaine des impôts et taxes, tout ce qui relève de l’envoi des avis des impositions ainsi que de la détermination du type de bien et du montant à payer, votre réclamation doit être adressée aux services de la Direction Générale des impôts, seuls habilités à traiter votre demande. Si vous êtes un retraité, c’est la Caisse Marocaine des Retraites qui sera votre interlocuteur pour traiter tout problème au niveau de votre pension; Pour le domaine des marchés publics, votre réclamation doit concerner en premier lieu le maître d’ouvrage et respecter les délais et conditions fixés par le décret n° 2 -12-349 relatif aux marchés publics.",
     "status": "ok",
     "variantes": [
       "Quelles sont les conditions à respecter?",

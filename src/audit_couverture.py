@@ -50,7 +50,7 @@ def main():
         for q in requetes:
             total += 1
             c = fiche_consensus(retriever.search(q, k=CONSENSUS_K),
-                                marge_ecriture(q, lexique))
+                                marge_ecriture(q, lexique), q)
             if c is None:
                 muets += 1
                 problemes.append(("MUET   ", fiche["id"], q, "-"))

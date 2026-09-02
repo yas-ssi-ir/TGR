@@ -22,10 +22,12 @@ import sys
 import time
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from config import FAQ_FICHES_JSON, PRECOMPUTED_JSON, QA_FICHES_JSON
+from config import (
+    ASSISTANT_FICHES_JSON, FAQ_FICHES_JSON, PRECOMPUTED_JSON, QA_FICHES_JSON,
+)
 from llm import OllamaLLM
 from nettoyer_reponses import nettoyer
-from retraduire_ar import traduire
+from retraduire_ar import preserver_liens, traduire
 from retriever import TGRRetriever
 
 PRECOMPUTE_SYSTEM = """Tu es l'assistant officiel du portail eServices de la Trésorerie Générale du Royaume du Maroc (TGR).
@@ -45,12 +47,25 @@ RÈGLES DE FORME :
 3. Ne dis jamais « passage », « fiche » ou « documentation fournie ».
 4. 3 à 6 phrases, ton d'un agent au guichet : simple, poli, précis."""
 
+
 def reponse_officielle(fiche: dict) -> str | None:
-    """Une réponse DÉJÀ officielle (celle de la FAQ publiée) ne doit pas être
-    reformulée par un modèle : on la sert telle quelle. Zéro risque
-    d'invention, zéro appel LLM. On ne fait rédiger que les notes internes
-    laconiques du fichier des réclamations."""
+    """Une réponse DÉJÀ officielle ne doit pas être reformulée par un modèle :
+    on la sert telle quelle. Zéro risque d'invention, zéro appel LLM.
+
+    Deux cas :
+      - AST.*  → texte réellement affiché par l'assistant en production.
+                 C'est la source la plus sûre du projet : TOUJOURS verbatim,
+                 quelle que soit sa longueur (un lien seul est une réponse).
+      - FAQ.*  → réponse de la FAQ publiée, si elle est assez substantielle.
+
+    Seules les notes internes laconiques du fichier des réclamations sont
+    confiées au LLM.
+    """
     sol = (fiche.get("solution") or "").strip()
+    if not sol:
+        return None
+    if fiche["id"].startswith("AST."):
+        return sol
     return sol if fiche["id"].startswith("FAQ.") and len(sol) >= 150 else None
 
 
@@ -73,7 +88,7 @@ def build_context_for(fiche: dict, retriever: TGRRetriever) -> str:
 
 def main():
     fiches = []
-    for chemin in (QA_FICHES_JSON, FAQ_FICHES_JSON):
+    for chemin in (QA_FICHES_JSON, FAQ_FICHES_JSON, ASSISTANT_FICHES_JSON):
         if os.path.exists(chemin):
             with open(chemin, encoding="utf-8") as f:
                 fiches += json.load(f)
@@ -90,6 +105,25 @@ def main():
         print("Ollama indisponible — lancez Ollama d'abord.")
         sys.exit(1)
 
+    # Les identifiants FAQ.* sont POSITIONNELS : ajouter une question au guide
+    # décale tous les suivants. Une réponse déjà rédigée se retrouverait alors
+    # attachée à un autre problème — sans bruit, et servie telle quelle aux
+    # usagers. On compare donc l'intitulé mémorisé à celui de la fiche : s'ils
+    # diffèrent, l'entrée est périmée et doit être refaite.
+    connus = {fi["id"] for fi in fiches}
+    perimees = [fid for fid, rep in done.items()
+                if fid in connus and rep.get("probleme")
+                and rep["probleme"] != next(f["probleme"] for f in fiches if f["id"] == fid)]
+    orphelines = [fid for fid in done if fid not in connus]
+    for fid in perimees + orphelines:
+        del done[fid]
+    if perimees:
+        print(f"{len(perimees)} réponse(s) périmée(s) (l'identifiant désigne désormais "
+              f"un autre problème) → à refaire : {', '.join(sorted(perimees))}")
+    if orphelines:
+        print(f"{len(orphelines)} réponse(s) orpheline(s) supprimée(s) : "
+              f"{', '.join(sorted(orphelines))}")
+
     a_faire = [fi for fi in fiches if fi["status"] == "ok" and fi["id"] not in done]
     print(f"\n{len(a_faire)} fiche(s) à rédiger (FR + AR). "
           f"Comptez ~1 min/fiche sur CPU — c'est un coût payé UNE seule fois.\n")
@@ -104,7 +138,8 @@ def main():
         officielle = reponse_officielle(fiche)
         if officielle:
             fr = officielle                       # texte publié : verbatim
-            origine = "verbatim FAQ"
+            origine = ("verbatim assistant" if fiche["id"].startswith("AST.")
+                       else "verbatim FAQ")
         else:
             fr = llm.generate(PRECOMPUTE_SYSTEM,
                               base_prompt + "Rédige la réponse officielle en FRANÇAIS.")
@@ -118,6 +153,8 @@ def main():
         ar = traduire(llm, fr)
         if ar is None:
             ar, origine = fr, origine + " — traduction arabe en échec"
+        else:
+            ar = preserver_liens(fr, ar)
 
         done[fiche["id"]] = {"fr": fr.strip(), "ar": ar.strip(),
                              "probleme": fiche["probleme"]}
