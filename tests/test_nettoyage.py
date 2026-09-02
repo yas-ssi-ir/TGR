@@ -158,3 +158,34 @@ class TestDecoupagePourTraduction:
         from retraduire_ar import budget_tokens
         assert budget_tokens("court") < budget_tokens("x" * 1600)
         assert budget_tokens("x" * 99999) <= 1600
+
+
+class TestPolitesseFinale:
+    """RÉGRESSION — « Je vous prie d'agréer, avec l'assurance de ma
+    considération, l'expression de mes salutations distinguées. » était servi
+    à l'usager au bout d'une réponse d'assistance. Le filtre de signature
+    s'ancrait sur un mot-clé en début de ligne (« Cordialement ») ; celle-ci
+    commence par « Je vous prie », trop banal pour servir d'ancre.
+    Constaté sur les fiches 1.1.1, 1.2.1 et FAQ.34.
+    """
+
+    def test_je_vous_prie_d_agreer_est_retire(self):
+        texte = ("Contactez le support du portail.\n\n"
+                 "Je vous prie d'agréer, avec l'assurance de ma considération, "
+                 "l'expression de mes salutations distinguées.")
+        sortie = nettoyer(texte)
+        assert "agréer" not in sortie
+        assert sortie.endswith("Contactez le support du portail.")
+
+    def test_la_formule_collee_a_une_phrase_utile_ne_l_emporte_pas(self):
+        """Le modèle colle parfois la politesse derrière une phrase utile :
+        on coupe à la PHRASE, pas à la ligne, sinon on perd du contenu."""
+        texte = ("Ils pourront vous aider. Je vous remercie de votre patience et "
+                 "vous prie d'agréer, cher utilisateur, mes salutations distinguées.")
+        sortie = nettoyer(texte)
+        assert "Ils pourront vous aider." in sortie
+        assert "agréer" not in sortie
+
+    def test_un_texte_sans_politesse_est_intact(self):
+        texte = "Votre mot de passe a expiré. Utilisez le lien « Mot de passe oublié »."
+        assert nettoyer(texte) == texte

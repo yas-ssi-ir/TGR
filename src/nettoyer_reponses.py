@@ -68,6 +68,21 @@ SIGNATURE = re.compile(
     r"مع تحيات|مع خالص التحية|تحياتي)[\s\S]*$",
     re.IGNORECASE)
 
+# Formule de politesse finale « à la française » :
+#     « Je vous prie d'agréer, …, l'expression de mes salutations distinguées. »
+#
+# SIGNATURE ci-dessus est ancrée sur un mot-clé en DÉBUT de ligne (Cordialement,
+# Veuillez agréer). Celle-ci commence par « Je vous prie » ou « Je vous
+# remercie » — des mots trop banals pour servir d'ancre. On s'ancre donc sur le
+# verbe AGRÉER, qui ne sert à rien d'autre dans une réponse d'assistance, et on
+# coupe depuis le début de SA phrase, pas de sa ligne : le modèle la colle
+# parfois derrière une phrase utile.
+#
+# Constaté en production sur les fiches 1.1.1, 1.2.1 et FAQ.34 : l'usager lisait
+# une réponse d'assistance close comme un courrier ministériel.
+POLITESSE_FINALE = re.compile(
+    r"(?:^|\n|(?<=\.\s))[^\n.]*\bagr[ée]er\b[\s\S]*$", re.IGNORECASE)
+
 # Crochet resté à remplir : le modèle imite une lettre type et laisse le
 # marqueur en place. Servi tel quel, c'est un aveu que personne n'a relu.
 PLACEHOLDER = re.compile(
@@ -104,6 +119,7 @@ def nettoyer(texte: str) -> str:
 
     # 4. signature finale, puis crochets à remplir laissés par le modèle
     t = SIGNATURE.sub("", t).strip()
+    t = POLITESSE_FINALE.sub("", t).strip()
     t = PLACEHOLDER.sub("", t)
     t = re.sub(r"[ \t]{2,}", " ", t).strip(" ,;\n")
 
