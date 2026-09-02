@@ -19,17 +19,24 @@ from collections import Counter
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from agent_rag import fiche_consensus, marge_ecriture
 from lexique import construire_lexique
-from config import CONSENSUS_K, FAQ_FICHES_JSON, PRECOMPUTED_JSON, QA_FICHES_JSON
+from config import (
+    ASSISTANT_FICHES_JSON, CONSENSUS_K, FAQ_FICHES_JSON, PRECOMPUTED_JSON,
+    QA_FICHES_JSON,
+)
 from retriever import TGRRetriever
 
 
 def charger_fiches() -> list[dict]:
     fiches = []
-    for chemin in (QA_FICHES_JSON, FAQ_FICHES_JSON):
+    # Les trois sources, sinon l'audit ne porte que sur la moitié du corpus.
+    # Les nœuds de menu du relevé de l'assistant ne sont pas indexés : les
+    # auditer reviendrait à exiger qu'on retrouve une fiche absente de la base.
+    for chemin in (QA_FICHES_JSON, FAQ_FICHES_JSON, ASSISTANT_FICHES_JSON):
         if os.path.exists(chemin):
             with open(chemin, encoding="utf-8") as f:
                 fiches += json.load(f)
-    return fiches
+    # « menu » = nœud de navigation du relevé, exclu de la base vectorielle
+    return [f for f in fiches if f.get("status") != "menu"]
 
 
 def main():

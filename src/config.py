@@ -25,25 +25,35 @@ FEEDBACK_JSON = os.path.join(DATA_PROCESSED_DIR, "feedbacks.json")
 # que du bruit autour des vraies fiches.
 DOCS_DEJA_STRUCTURES = {os.path.basename(DOCX_ASSISTANT)}
 
-# Longueur maximale de la solution recopiée dans un chunk de VARIANTE.
+# Longueur de la solution recopiée dans un chunk de VARIANTE. Zéro = aucune.
 #
-# Chaque variante produit son propre chunk, censé capter UNE façon de poser la
-# question. Or la solution entière y était recopiée : sur une fiche à procédure
-# longue (AST.28, « Authentification par CNIE », 1653 caractères), les 7 chunks
-# devenaient des quasi-clones d'un même texte générique. Mesuré : l'écart de
-# distance entre les 6 variantes tombait à 0,006 — elles ne discriminaient plus
-# rien, et n'importe quelle question « comment faire… » les trouvait toutes
-# ensemble. « Donne-moi une recette de tajine » remontait ainsi 6 variantes sur
-# 6 sous le seuil, fabriquant un consensus de 7 voix sur l'authentification CNIE.
+# Un chunk de variante n'a qu'un seul rôle : représenter UNE façon de poser la
+# question. Y recopier la solution le fait échouer de deux manières, mesurées
+# l'une après l'autre :
 #
-# En bornant l'extrait, les variantes redeviennent des sondes distinctes
-# (écart 0,029) et le faux consensus disparaît (0 chunk sur 6 sous le seuil).
-# La solution complète reste dans le chunk PRINCIPAL de la fiche, et surtout
-# dans la réponse pré-rédigée — c'est elle qui est servie à l'usager.
+#   1. Sur une fiche à procédure longue (AST.28, « Authentification par CNIE »,
+#      1 653 caractères), les 7 chunks devenaient des quasi-clones du même texte
+#      générique — écart de distance entre variantes : 0,006. Elles ne
+#      discriminaient plus rien et votaient toujours ensemble : « donne-moi une
+#      recette de tajine » remontait 6 variantes sur 6 sous le seuil.
 #
-# 120 caractères ≈ une phrase : les notes courtes des réclamations (médiane
-# 106 caractères) passent inchangées, seules les longues procédures sont bornées.
-CHUNK_SOLUTION_MAX = 120
+#   2. Sur une variante COURTE et non francophone, le français environnant
+#      l'écrase. Mesuré sur « bdelt telephone w mabqitch n9der ndkhol b code » :
+#      46 caractères de darija dans un chunk de 268, soit 17 %. Distance de la
+#      variante à SON PROPRE chunk :
+#
+#          la variante seule ......................... 0,136
+#          variante + problème, sans solution ........ 0,279   ← retenu
+#          + 60 caractères de solution ............... 0,330
+#          + 120 caractères (ancien réglage) ......... 0,348   au-delà du seuil
+#
+#      À 0,348 la question ne retrouvait plus sa propre fiche : elle partait sur
+#      la voie lente et mettait 124 secondes à répondre, depuis un morceau de PDF.
+#      À 0,279 elle passe sous DIST_SOLO_ACCEPT et revient en voie rapide.
+#
+# La solution complète reste dans le chunk PRINCIPAL de la fiche, et surtout dans
+# la réponse pré-rédigée — c'est elle qui est servie à l'usager, jamais le chunk.
+CHUNK_SOLUTION_MAX = 0
 PRECOMPUTED_JSON = os.path.join(DATA_PROCESSED_DIR, "reponses_precalculees.json")
 CACHE_JSON = os.path.join(DATA_PROCESSED_DIR, "cache_reponses.json")
 

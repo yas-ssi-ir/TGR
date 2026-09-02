@@ -100,14 +100,14 @@ def build_fiche_documents() -> list[Document]:
             contenu += "\n(Problème connu des équipes techniques — pas de solution en ligne : orienter vers le support.)"
         docs.append(Document(page_content=E5_PASSAGE_PREFIX + clean_text(contenu), metadata=meta))
 
-        # Chunks variantes : la question usager reformulée, avec un EXTRAIT de
-        # la solution. Y recopier la solution entière transformait toutes les
-        # variantes d'une fiche en quasi-clones du même texte (voir
-        # CHUNK_SOLUTION_MAX) : elles ne captaient plus la formulation propre à
-        # chacune, qui est pourtant leur unique raison d'être.
+        # Chunks variantes : la question usager reformulée, sans la solution
+        # (voir CHUNK_SOLUTION_MAX). Y recopier la solution transformait les
+        # variantes d'une fiche en quasi-clones du même texte, et noyait les
+        # variantes courtes non francophones sous le français environnant —
+        # au point qu'une question darija ne retrouvait plus sa propre fiche.
         for variante in fiche.get("variantes", []):
             v_contenu = f"[{fiche['categorie']}] Question usager : {variante}\nProblème officiel : {fiche['probleme']}"
-            if fiche["status"] == "ok":
+            if fiche["status"] == "ok" and CHUNK_SOLUTION_MAX:
                 v_contenu += f"\nSolution : {fiche['solution'][:CHUNK_SOLUTION_MAX]}"
             docs.append(Document(page_content=E5_PASSAGE_PREFIX + clean_text(v_contenu),
                                  metadata={**meta, "is_variante": True}))
@@ -168,9 +168,22 @@ def build_doc_documents() -> list[Document]:
 
 # ── Stockage ChromaDB ────────────────────────────────────────────────
 def reset_database():
-    if os.path.exists(CHROMA_DB_DIR):
+    if not os.path.exists(CHROMA_DB_DIR):
+        return
+    try:
         shutil.rmtree(CHROMA_DB_DIR)
         print(f"Ancienne base supprimée : {CHROMA_DB_DIR}")
+    except PermissionError:
+        # Sous Windows, un fichier ouvert ne peut pas être supprimé. L'assistant
+        # garde la base ChromaDB ouverte tant qu'il tourne : ré-ingérer pendant
+        # ce temps échoue. La trace brute de shutil n'aide personne — on dit
+        # quoi faire.
+        print("\nERREUR : la base vectorielle est verrouillée par un autre processus.")
+        print("\n  L'assistant est probablement encore en cours d'exécution : il garde")
+        print("  la base ouverte. Arrêtez-le (Ctrl+C dans sa fenêtre), puis relancez")
+        print("  cette commande.")
+        print(f"\n  Dossier concerné : {CHROMA_DB_DIR}")
+        sys.exit(1)
 
 
 def store_in_chromadb(docs: list[Document], embeddings) -> Chroma:
