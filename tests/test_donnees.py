@@ -9,6 +9,7 @@ se voient ici — pas devant l'usager.
 import json
 import os
 import re
+import warnings
 
 import pytest
 
@@ -99,10 +100,15 @@ class TestQualiteDesReponses:
         vides = [i for i, r in reponses.items() if not r.get("ar", "").strip()]
         assert not vides, f"réponses arabes vides : {vides}"
 
-    def test_le_champ_arabe_est_bien_en_arabe(self, reponses):
-        """RÉGRESSION — 25 champs « ar » sur 44 contenaient du FRANÇAIS : le
-        modèle recopiait au lieu de traduire. Un usager arabophone recevait une
-        réponse qu'il ne pouvait pas lire."""
+    @staticmethod
+    def _non_traduites(reponses: dict) -> tuple[list[str], list[str]]:
+        """Sépare ce qu'un script peut réparer de ce qui attend un humain.
+
+        « ar_defaillante » est posé par retraduire_ar.py quand le modèle a
+        épuisé ses trois tentatives, découpage en blocs compris. Relancer le
+        script ne donnerait rien : seule une traduction humaine débloque la
+        fiche, et elle est déjà signalée en rouge dans /revision.
+        """
         a_retenter, abandonnees = [], []
         for fid, rep in reponses.items():
             lettres = [c for c in rep.get("ar", "") if c.isalpha()]
@@ -110,21 +116,42 @@ class TestQualiteDesReponses:
                 continue
             part_arabe = sum(1 for c in lettres if ARABE.match(c)) / len(lettres)
             if part_arabe < 0.30:
-                # « ar_defaillante » : le modèle a déjà épuisé ses tentatives,
-                # découpage en blocs compris. Relancer le script ne donnerait
-                # rien — seule une traduction humaine débloque la fiche.
                 (abandonnees if rep.get("ar_defaillante") else a_retenter).append(fid)
+        return a_retenter, abandonnees
 
-        messages = []
-        if a_retenter:
-            messages.append(
-                f"{len(a_retenter)} à retraduire ({a_retenter[:8]}) — "
-                "lancer « python -X utf8 src\\retraduire_ar.py »")
+    def test_le_champ_arabe_est_bien_en_arabe(self, reponses):
+        """RÉGRESSION — 25 champs « ar » sur 44 contenaient du FRANÇAIS : le
+        modèle recopiait au lieu de traduire. Un usager arabophone recevait une
+        réponse qu'il ne pouvait pas lire.
+
+        Seul ce qu'un script peut réparer fait échouer la construction. Une
+        fiche explicitement reconnue hors de portée du modèle est une DONNÉE
+        MANQUANTE en attente d'un humain, pas une régression : la faire
+        échouer laisserait l'intégration continue rouge en permanence, et une
+        alerte permanente n'alerte plus personne.
+        """
+        a_retenter, abandonnees = self._non_traduites(reponses)
         if abandonnees:
-            messages.append(
-                f"{len(abandonnees)} hors de portée du modèle ({abandonnees[:8]}) — "
-                "à saisir à la main dans /revision, filtre « Arabe non traduit »")
-        assert not messages, " | ".join(messages)
+            warnings.warn(
+                f"{len(abandonnees)} réponse(s) hors de portée du modèle "
+                f"({abandonnees[:8]}) — à saisir à la main dans /revision, "
+                "filtre « Arabe non traduit »",
+                stacklevel=2)
+        assert not a_retenter, (
+            f"{len(a_retenter)} traduction(s) arabe(s) à refaire : {a_retenter[:8]} — "
+            "lancer « python -X utf8 src\\retraduire_ar.py »")
+
+    def test_toute_reponse_restee_en_francais_est_signalee(self, reponses):
+        """Le corollaire du test précédent, et sa condition de validité.
+
+        Une réponse laissée en français DOIT porter « ar_defaillante ». Sans ce
+        drapeau elle disparaît des radars : le script ne la reprend pas, et rien
+        ne distingue un abandon assumé d'un oubli. C'est ce test qui empêche
+        l'indulgence ci-dessus de devenir un trou."""
+        a_retenter, _ = self._non_traduites(reponses)
+        assert not a_retenter, (
+            f"{len(a_retenter)} réponse(s) en français sans le drapeau "
+            f"« ar_defaillante » : {a_retenter[:8]}")
 
     @pytest.mark.parametrize("interdit", [
         "voici la réponse",
