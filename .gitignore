@@ -52,9 +52,12 @@ scratch_*
 *.log
 
 # ── Secrets (accès PostgreSQL de la DSI, à venir) ────────────────────
+# .env.example n'est plus versionné non plus : le projet n'utilise encore
+# AUCUNE variable d'environnement obligatoire (OLLAMA_URL et LLM_MODEL ont
+# des valeurs par défaut dans config.py). Le fichier ne documentait donc
+# rien qu'on ne lise déjà dans config.py.
 .env
 .env.*
-!.env.example
 
 # ── Système d'exploitation et éditeurs ────────────────────────────────
 .vscode/
@@ -65,6 +68,39 @@ Thumbs.db
 desktop.ini
 ~$*.xlsx
 ~$*.docx
+
+# ── Notes de travail et documentation interne ────────────────────────
+# Journal de bord du stage : analyses, plans, explications, brief de
+# design, questions préparées pour les réunions TGR, guides de reprise.
+# Indispensables sur la machine, sans intérêt pour qui clone le dépôt —
+# et plusieurs décrivent des dysfonctionnements internes du portail
+# eServices, qui n'ont rien à faire sur un dépôt public.
+# README.md reste versionné : c'est la porte d'entrée du dépôt.
+/*.md
+!README.md
+eval/*.md
+
+# ── Scripts de correction ponctuels, déjà exécutés ───────────────────
+# Ils ont servi UNE fois à reprendre les réponses pré-rédigées ; leur
+# effet est acquis dans data/processed/reponses_precalculees.json. Les
+# relancer aujourd'hui ne ferait que réécrire du texte déjà corrigé à la
+# main — les garder dans le dépôt invite à cette erreur.
+eval/corriger_fiches_moyennes*.py
+
+# ── Sorties d'évaluation ──────────────────────────────────────────────
+# Régénérées par « python -X utf8 eval\evaluate.py », qui écrit aussi
+# eval/RESULTATS.md (déjà couvert par eval/*.md ci-dessus).
+eval/resultats_detail.json
+
+# ── Bibliothèques et polices embarquées ───────────────────────────────
+# Tailwind (~500 Ko) et les fichiers de police sont du code TIERS, copié
+# localement pour que l'assistant fonctionne sans réseau (voir main.py).
+# On versionne le script qui les installe, pas les octets qu'il télécharge.
+# Après un clone, les deux commandes à relancer sont :
+#     python -X utf8 eval\installer_tailwind.py
+#     python -X utf8 eval\installer_polices.py
+static/vendor/
+static/fonts/
 
 
 # ─────────────────────────────────────────────────────────────────────
