@@ -3,186 +3,654 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Relecture des réponses — Assistant TGR</title>
+<title>Relecture des réponses officielles — TGR</title>
+<link rel="stylesheet" href="/static/fonts/polices.css">
 <style>
+  /* ══════════════════════════════════════════════════════════════════
+     Même identité que les notes du projet : or et encre de la TGR,
+     Spectral pour la voix, IBM Plex pour le travail et les données.
+     Le neutre tire vers le vert, jamais vers le crème.
+     ══════════════════════════════════════════════════════════════════ */
   :root{
-    --or:#c8a24a; --vert:#1c6b4f; --fond:#0f1419; --carte:#182029;
-    --bord:#2a3644; --txt:#e8edf2; --gris:#8fa0b3;
-    --rouge:#e05252; --orange:#d99a2b; --ok:#3fa96b;
+    --ground:      #eff2ef;
+    --surface:     #ffffff;
+    --surface-alt: #e7ebe7;
+    --paper:       #f6f5ee;
+    --ink:         #16201c;
+    --ink-soft:    #4a5a52;
+    --ink-faint:   #5f6d66;
+    --rule:        #d2dad4;
+    --rule-firm:   #b9c4bd;
+    --gold:        #836515;
+    --gold-bright: #b28a26;
+    --green:       #1c6b4f;
+    --green-soft:  #e2efe8;
+    --amber:       #9a6a10;
+    --amber-soft:  #f6ecd8;
+    --red:         #a63a3a;
+    --red-soft:    #f8eaea;
+    --shadow:      0 1px 2px rgba(22,32,28,.06), 0 8px 24px -14px rgba(22,32,28,.2);
+
+    --display: "Spectral", Georgia, "Times New Roman", serif;
+    --body:    "IBM Plex Sans", -apple-system, "Segoe UI", Roboto, sans-serif;
+    --mono:    "IBM Plex Mono", ui-monospace, Consolas, monospace;
+    --arabic:  "IBM Plex Sans Arabic", "Noto Naskh Arabic", "Segoe UI", Tahoma, serif;
   }
-  *{box-sizing:border-box}
-  body{margin:0;background:var(--fond);color:var(--txt);
-       font-family:'Segoe UI',system-ui,sans-serif;font-size:14px;line-height:1.55}
-  header{position:sticky;top:0;z-index:10;background:rgba(15,20,25,.96);
-         backdrop-filter:blur(8px);border-bottom:1px solid var(--bord);padding:14px 22px}
-  .titre{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-  h1{font-size:17px;margin:0;font-weight:600}
-  h1 span{color:var(--or)}
-  .compteur{margin-left:auto;color:var(--gris);font-size:13px}
-  .barre{height:6px;background:var(--bord);border-radius:99px;margin-top:10px;overflow:hidden}
-  .barre i{display:block;height:100%;background:linear-gradient(90deg,var(--vert),var(--or));
-           width:0;transition:width .4s}
-  .filtres{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
-  .filtres button{background:transparent;border:1px solid var(--bord);color:var(--gris);
-        padding:5px 13px;border-radius:99px;cursor:pointer;font-size:12.5px}
-  .filtres button.on{background:var(--or);border-color:var(--or);color:#1a1207;font-weight:600}
-  main{max-width:1080px;margin:0 auto;padding:20px}
-  .avert{background:rgba(224,82,82,.1);border:1px solid rgba(224,82,82,.35);
-         border-radius:10px;padding:13px 16px;margin-bottom:18px;font-size:13px}
-  .avert b{color:var(--rouge)}
-  .fiche{background:var(--carte);border:1px solid var(--bord);border-radius:12px;
-         padding:16px 18px;margin-bottom:14px}
-  .fiche.validee{opacity:.55;border-color:rgba(63,169,107,.4)}
-  .entete{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
-  .id{font-family:ui-monospace,Consolas,monospace;color:var(--or);font-weight:600}
-  .tag{font-size:11px;padding:2px 9px;border-radius:99px;border:1px solid var(--bord);color:var(--gris)}
-  .tag.eleve{background:rgba(224,82,82,.15);border-color:var(--rouge);color:#ff9d9d}
-  .tag.moyen{background:rgba(217,154,43,.13);border-color:var(--orange);color:#f2c572}
-  .tag.aucun{background:rgba(63,169,107,.13);border-color:var(--ok);color:#8fe0b0}
-  .tag.ok{background:var(--ok);border-color:var(--ok);color:#08240f;font-weight:600}
-  .probleme{font-weight:600;margin-bottom:12px}
-  .note{background:#101820;border-left:3px solid var(--or);border-radius:0 8px 8px 0;
-        padding:9px 13px;margin-bottom:12px;font-size:13px;color:#cfd9e4;white-space:pre-wrap}
-  .note b{color:var(--or);font-size:11.5px;letter-spacing:.4px;display:block;margin-bottom:3px}
-  label{display:block;font-size:11.5px;color:var(--gris);margin:10px 0 4px;
-        letter-spacing:.4px;text-transform:uppercase}
-  textarea{width:100%;background:#0d141b;color:var(--txt);border:1px solid var(--bord);
-           border-radius:8px;padding:11px 13px;font:inherit;resize:vertical;min-height:96px}
-  textarea:focus{outline:none;border-color:var(--or)}
-  textarea.ar{direction:rtl;text-align:right}
-  .actions{display:flex;gap:9px;margin-top:12px;align-items:center;flex-wrap:wrap}
-  .actions button{border:none;border-radius:8px;padding:8px 16px;cursor:pointer;
-                  font-size:13px;font-weight:600}
-  .valider{background:var(--ok);color:#08240f}
-  .enreg{background:transparent;border:1px solid var(--bord)!important;color:var(--gris)}
-  .deval{background:transparent;border:1px solid var(--rouge)!important;color:#ff9d9d}
-  .etat{font-size:12px;color:var(--gris)}
-  .vide{text-align:center;color:var(--gris);padding:50px}
-  .retour{color:var(--gris);text-decoration:none;font-size:12.5px}
-  .retour:hover{color:var(--or)}
+
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ground:      #0f1419;
+      --surface:     #182029;
+      --surface-alt: #1e2731;
+      --paper:       #141c22;
+      --ink:         #e6ebe8;
+      --ink-soft:    #a9b6b0;
+      --ink-faint:   #82908a;
+      --rule:        #2a3540;
+      --rule-firm:   #3a4753;
+      --gold:        #c8a24a;
+      --gold-bright: #e0bc6a;
+      --green:       #3fa96b;
+      --green-soft:  #16281f;
+      --amber:       #d99a2b;
+      --amber-soft:  #2a2214;
+      --red:         #e36565;
+      --red-soft:    #2b1a1a;
+      --shadow:      0 1px 2px rgba(0,0,0,.4), 0 8px 24px -14px rgba(0,0,0,.6);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:      #0f1419;
+    --surface:     #182029;
+    --surface-alt: #1e2731;
+    --paper:       #141c22;
+    --ink:         #e6ebe8;
+    --ink-soft:    #a9b6b0;
+    --ink-faint:   #82908a;
+    --rule:        #2a3540;
+    --rule-firm:   #3a4753;
+    --gold:        #c8a24a;
+    --gold-bright: #e0bc6a;
+    --green:       #3fa96b;
+    --green-soft:  #16281f;
+    --amber:       #d99a2b;
+    --amber-soft:  #2a2214;
+    --red:         #e36565;
+    --red-soft:    #2b1a1a;
+    --shadow:      0 1px 2px rgba(0,0,0,.4), 0 8px 24px -14px rgba(0,0,0,.6);
+  }
+
+  *{ box-sizing:border-box; }
+  body{
+    margin:0; background:var(--ground); color:var(--ink);
+    font-family:var(--body); font-size:16px; line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  :focus-visible{ outline:2px solid var(--gold-bright); outline-offset:2px; border-radius:4px; }
+
+  h1,h2{ font-family:var(--display); margin:0; text-wrap:balance; }
+
+  .eyebrow{
+    font-family:var(--mono); font-size:.71rem; font-weight:500;
+    letter-spacing:.16em; text-transform:uppercase; color:var(--gold);
+  }
+
+  /* ── Bandeau ───────────────────────────────────────────────────── */
+  header{
+    position:sticky; top:0; z-index:20;
+    background:var(--surface); border-bottom:2px solid var(--gold);
+    padding:1rem clamp(1rem,3vw,2rem) .85rem;
+  }
+  .row{ display:flex; align-items:center; gap:.9rem; flex-wrap:wrap; }
+  h1{ font-size:clamp(1.3rem,3vw,1.7rem); font-weight:700; letter-spacing:-.015em; line-height:1.15; }
+  .back{ color:var(--ink-faint); text-decoration:none; font-size:.85rem; white-space:nowrap; }
+  .back:hover{ color:var(--gold); }
+  .push{ margin-left:auto; }
+
+  .who{
+    display:flex; align-items:center; gap:.4rem;
+    font-family:var(--body); font-size:.82rem; color:var(--ink-soft);
+    background:transparent; border:1px solid var(--rule); border-radius:99px;
+    padding:.35rem .85rem; cursor:pointer;
+  }
+  .who:hover{ border-color:var(--gold); }
+  .who b{ color:var(--ink); font-weight:600; }
+  .who.empty{ color:var(--red); border-color:var(--red); }
+
+  .theme{
+    background:transparent; border:1px solid var(--rule); border-radius:99px;
+    width:2rem; height:2rem; cursor:pointer; color:var(--ink-faint);
+    display:grid; place-items:center; padding:0; font-size:.9rem;
+  }
+  .theme:hover{ border-color:var(--gold); color:var(--gold); }
+
+  /* ── Avancement ────────────────────────────────────────────────── */
+  .gauge{
+    height:.4rem; background:var(--rule); border-radius:99px;
+    overflow:hidden; display:flex; margin-top:.75rem;
+  }
+  .gauge i{ display:block; height:100%; transition:width .35s ease; }
+  .gauge .sig{ background:var(--green); }
+  .gauge .red{ background:var(--gold-bright); }
+
+  .key{
+    display:flex; gap:1.1rem; flex-wrap:wrap; margin-top:.5rem;
+    font-size:.8rem; color:var(--ink-soft);
+  }
+  .key span{ display:flex; align-items:center; gap:.4rem; }
+  .key i{ width:.55rem; height:.55rem; border-radius:2px; display:block; }
+  .key b{
+    font-family:var(--mono); font-weight:500; color:var(--ink);
+    font-variant-numeric:tabular-nums;
+  }
+
+  .tools{ display:flex; gap:.5rem; flex-wrap:wrap; align-items:center; margin-top:.85rem; }
+  .search{
+    flex:1; min-width:11rem; max-width:20rem;
+    background:var(--surface-alt); border:1px solid var(--rule); border-radius:8px;
+    padding:.45rem .8rem; color:var(--ink); font-family:var(--body); font-size:.85rem;
+  }
+  .search::placeholder{ color:var(--ink-faint); }
+  .filters{ display:flex; gap:.4rem; flex-wrap:wrap; }
+  .filters button{
+    background:transparent; border:1px solid var(--rule); color:var(--ink-soft);
+    padding:.35rem .85rem; border-radius:99px; cursor:pointer;
+    font-family:var(--body); font-size:.82rem;
+  }
+  .filters button:hover{ border-color:var(--gold-bright); }
+  .filters button.on{
+    background:var(--gold); border-color:var(--gold); color:var(--surface); font-weight:600;
+  }
+
+  /* ── Fiches ────────────────────────────────────────────────────── */
+  main{ max-width:76rem; margin:0 auto; padding:1.5rem clamp(1rem,3vw,2rem) 4rem; }
+
+  .card{
+    background:var(--surface); border:1px solid var(--rule);
+    border-left:4px solid var(--rule-firm); border-radius:11px;
+    box-shadow:var(--shadow); padding:1.15rem 1.3rem 1.1rem;
+    margin-bottom:1rem; scroll-margin-top:12rem;
+  }
+  .card.is-read{ border-left-color:var(--gold-bright); }
+  .card.is-signed{ border-left-color:var(--green); }
+  .card.is-dirty{ border-left-color:var(--amber); }
+  .card.aimed{ box-shadow:0 0 0 2px var(--gold-bright), var(--shadow); }
+
+  .head{ display:flex; align-items:center; gap:.5rem; flex-wrap:wrap; margin-bottom:.6rem; }
+  .ref{ font-family:var(--mono); font-size:.82rem; font-weight:500; color:var(--gold); }
+
+  .tag{
+    font-family:var(--mono); font-size:.66rem; font-weight:500;
+    letter-spacing:.09em; text-transform:uppercase; white-space:nowrap;
+    padding:.16rem .55rem; border-radius:99px;
+    border:1px solid var(--rule); color:var(--ink-faint);
+  }
+  .tag.warn  { background:var(--red-soft);   border-color:var(--red);   color:var(--red); }
+  .tag.check { background:var(--amber-soft); border-color:var(--amber); color:var(--amber); }
+  .tag.official{ background:var(--green-soft); border-color:var(--green); color:var(--green); }
+  .tag.signed{ background:var(--green); border-color:var(--green); color:var(--surface); }
+  .tag.read  { background:var(--amber-soft); border-color:var(--gold-bright); color:var(--gold); }
+  .tag.dirty { background:var(--amber-soft); border-color:var(--amber); color:var(--amber); }
+
+  h2.ask{ font-size:1.15rem; font-weight:600; line-height:1.3; margin-bottom:.25rem; }
+  .why{ font-size:.86rem; color:var(--ink-soft); margin:0 0 .9rem; max-width:74ch; line-height:1.55; }
+  .why b{ color:var(--red); font-weight:600; }
+
+  /* ── Comparaison : deux colonnes jumelles ──────────────────────── */
+  .duo{ display:grid; grid-template-columns:1fr 1fr; gap:.9rem; align-items:start; }
+  .col{ display:flex; flex-direction:column; gap:.35rem; min-width:0; }
+  .col.src{ grid-row:span 2; }
+  .cap{
+    font-family:var(--mono); font-size:.68rem; font-weight:500;
+    letter-spacing:.1em; text-transform:uppercase; color:var(--ink-faint);
+  }
+  .cap.fr{ color:var(--green); }
+  .cap.ar{ color:var(--gold); }
+
+  .src-text{
+    background:var(--paper); border:1px solid var(--rule); border-radius:8px;
+    padding:.8rem .95rem; font-size:.94rem; line-height:1.65;
+    white-space:pre-wrap; color:var(--ink); overflow-wrap:anywhere;
+    height:100%; min-height:8rem; max-height:32rem; overflow:auto;
+  }
+  .src-text.none{ color:var(--ink-faint); font-style:italic; font-family:var(--display); }
+
+  textarea{
+    width:100%; background:var(--surface-alt); color:var(--ink);
+    border:1px solid var(--rule); border-radius:8px; padding:.8rem .95rem;
+    font-family:var(--body); font-size:.94rem; line-height:1.65;
+    resize:vertical; min-height:8rem;
+  }
+  textarea:focus{ outline:none; border-color:var(--gold-bright); background:var(--surface); }
+  textarea.ar{ direction:rtl; text-align:right; font-family:var(--arabic); font-size:1rem; line-height:1.9; }
+
+  /* ── Actions ───────────────────────────────────────────────────── */
+  .acts{
+    display:flex; gap:.5rem; margin-top:.9rem; align-items:center; flex-wrap:wrap;
+    padding-top:.85rem; border-top:1px solid var(--rule);
+  }
+  .acts button{
+    border:1px solid transparent; border-radius:8px; padding:.45rem .95rem;
+    cursor:pointer; font-family:var(--body); font-size:.85rem; font-weight:500;
+  }
+  .b-sign  { background:var(--green); border-color:var(--green); color:var(--surface); font-weight:600; }
+  .b-sign:hover{ filter:brightness(1.08); }
+  .b-read  { background:transparent; border-color:var(--gold-bright); color:var(--gold); }
+  .b-read:hover{ background:var(--amber-soft); }
+  .b-save  { background:transparent; border-color:var(--rule-firm); color:var(--ink-soft); }
+  .b-save:hover:not(:disabled){ border-color:var(--gold-bright); color:var(--gold); }
+  .b-undo  { background:transparent; border-color:var(--red); color:var(--red); margin-left:auto; }
+  .b-undo:hover{ background:var(--red-soft); }
+  button:disabled{ opacity:.4; cursor:not-allowed; }
+
+  .state{ font-size:.82rem; color:var(--ink-soft); }
+  .oath{ flex-basis:100%; font-size:.78rem; color:var(--ink-faint); margin-top:.5rem; line-height:1.5; }
+  .oath b{ color:var(--ink-soft); font-weight:600; }
+
+  .empty{ text-align:center; color:var(--ink-faint); padding:4rem 1rem; }
+  .empty b{ display:block; font-family:var(--display); font-size:1.35rem; color:var(--ink); margin-bottom:.35rem; }
+
+  /* ── Identité ──────────────────────────────────────────────────── */
+  .veil{
+    position:fixed; inset:0; background:rgba(10,14,12,.55); z-index:40;
+    display:none; place-items:center; padding:1.25rem;
+  }
+  .veil.open{ display:grid; }
+  .box{
+    background:var(--surface); border:1px solid var(--rule); border-radius:14px;
+    padding:1.6rem; max-width:27rem; width:100%; box-shadow:var(--shadow);
+  }
+  .box h2{ font-size:1.3rem; font-weight:600; margin-bottom:.5rem; }
+  .box p{ font-size:.87rem; color:var(--ink-soft); margin:0 0 .9rem; line-height:1.6; }
+  .box input{
+    width:100%; background:var(--surface-alt); border:1px solid var(--rule);
+    border-radius:8px; padding:.6rem .8rem; color:var(--ink);
+    font-family:var(--body); font-size:.95rem;
+  }
+  .box .row-end{ display:flex; gap:.5rem; margin-top:.9rem; justify-content:flex-end; }
+  .box button{
+    border:1px solid transparent; border-radius:8px; padding:.5rem 1.1rem;
+    cursor:pointer; font-family:var(--body); font-size:.85rem; font-weight:600;
+  }
+  .box .ok{ background:var(--gold); color:var(--surface); }
+  .box .no{ background:transparent; border-color:var(--rule-firm); color:var(--ink-soft); }
+
+  /* Cibles tactiles : 44 px minimum dès qu'un doigt est aux commandes. */
+  button, input, textarea, .who, .theme{ touch-action:manipulation; }
+  @media (pointer: coarse){
+    button, .acts button, .filters button, .box button, .search{ min-height:44px; }
+    .filters button{ padding-inline:1.1rem; }
+    .who{ min-height:44px; }
+    .theme{ width:2.75rem; height:2.75rem; }
+  }
+
+  @media (max-width:56rem){
+    .duo{ grid-template-columns:1fr; }
+    .col.src{ grid-row:auto; }
+    .src-text{ max-height:16rem; }
+  }
+  @media (prefers-reduced-motion: reduce){ *{ transition:none!important; animation:none!important; } }
 </style>
 </head>
 <body>
+
 <header>
-  <div class="titre">
-    <h1>Relecture des réponses <span>officielles</span></h1>
-    <a class="retour" href="/">← retour à l'assistant</a>
-    <div class="compteur" id="compteur">chargement…</div>
+  <div class="row">
+    <div>
+      <div class="eyebrow">Assistant eServices TGR</div>
+      <h1>Relecture des réponses officielles</h1>
+    </div>
+    <a class="back" href="/">&larr; retour à l&rsquo;assistant</a>
+    <button class="who push" id="btnWho" type="button" title="Qui relit ? Le nom accompagne chaque signature."></button>
+    <button class="theme" id="btnTheme" type="button" title="Basculer clair / sombre" aria-label="Basculer clair / sombre">◐</button>
   </div>
-  <div class="barre"><i id="progression"></i></div>
-  <div class="filtres">
-    <button class="on" data-f="arelire">À relire</button>
-    <button data-f="eleve">Risque élevé</button>
-    <button data-f="ar">Arabe non traduit</button>
-    <button data-f="validees">Validées</button>
-    <button data-f="toutes">Toutes</button>
+
+  <div class="gauge" role="img" id="gaugeAria">
+    <i class="sig" id="partSigned" style="width:0"></i>
+    <i class="red" id="partRead" style="width:0"></i>
+  </div>
+  <div class="key">
+    <span><i style="background:var(--green)"></i><b id="nSigned">0</b> validées par la TGR</span>
+    <span><i style="background:var(--gold-bright)"></i><b id="nRead">0</b> relues, en attente de signature</span>
+    <span><i style="background:var(--rule)"></i><b id="nLeft">0</b> à relire</span>
+    <span id="arAlert"></span>
+  </div>
+
+  <div class="tools">
+    <input class="search" id="search" type="search" placeholder="Rechercher une réponse…" aria-label="Rechercher">
+    <div class="filters" id="filters">
+      <button class="on" data-f="left" type="button">À relire</button>
+      <button data-f="warn" type="button">À examiner en premier</button>
+      <button data-f="ar" type="button">Arabe manquant</button>
+      <button data-f="read" type="button">Relues</button>
+      <button data-f="signed" type="button">Validées</button>
+      <button data-f="all" type="button">Toutes</button>
+    </div>
   </div>
 </header>
-<main>
-  <div class="avert">
-    <b>Pourquoi cette page.</b> Ces réponses sont servies à l'usager telles quelles, sans
-    vérification au moment de la question. Celles marquées <b>risque élevé</b> proviennent
-    d'une note interne trop courte : le modèle a dû combler les blancs — c'est là qu'il
-    peut inventer une étape ou un écran qui n'existe pas. Comparez chaque réponse à sa
-    note source, corrigez, puis validez.
+
+<main id="list"><div class="empty">Chargement…</div></main>
+
+
+<div class="veil" id="veil">
+  <div class="box">
+    <div class="eyebrow">Signature</div>
+    <h2>Qui relit ?</h2>
+    <p>Votre nom accompagne chaque validation, avec sa date. Une réponse signée
+       sans nom n&rsquo;engage personne — et c&rsquo;est précisément ce que cette page
+       existe pour établir.</p>
+    <input id="whoField" type="text" placeholder="Prénom et nom, ou service" maxlength="60">
+    <div class="row-end">
+      <button class="no" id="whoCancel" type="button">Annuler</button>
+      <button class="ok" id="whoOk" type="button">Enregistrer</button>
+    </div>
   </div>
-  <div id="liste"><div class="vide">Chargement…</div></div>
-</main>
+</div>
+
 <script>
-let FICHES = [], filtre = 'arelire';
-const RISQUE = {eleve: 'risque élevé', moyen: 'à vérifier', aucun: 'texte officiel'};
+var FICHES = [], filtre = "left", recherche = "", vise = -1;
+var CLE_QUI = "tgr-relecteur", CLE_THEME = "tgr-theme";
 
-function esc(s){
-  return (s || '').replace(/[&<>]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]));
+function ech(s){
+  return String(s == null ? "" : s).replace(/[&<>"]/g, function(c){
+    return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c];
+  });
 }
-
-async function charger(){
-  const d = await (await fetch('/api/revision/fiches')).json();
-  FICHES = d.fiches;
-  document.getElementById('compteur').textContent =
-    d.validees + '/' + d.total + ' validées · ' + d.risque_eleve +
-    ' à risque élevé · ' + (d.ar_douteuses || 0) + ' arabe non traduit';
-  document.getElementById('progression').style.width =
-    (d.total ? 100 * d.validees / d.total : 0) + '%';
-  rendre();
+function lireStock(k, defaut){
+  try { var v = localStorage.getItem(k); return v === null ? defaut : v; }
+  catch (e) { return defaut; }
 }
+function ecrireStock(k, v){ try { localStorage.setItem(k, v); } catch (e) {} }
 
-function visibles(){
-  if (filtre === 'validees') return FICHES.filter(f => f.validee);
-  if (filtre === 'eleve')    return FICHES.filter(f => !f.validee && f.risque === 'eleve');
-  if (filtre === 'ar')       return FICHES.filter(f => f.ar_douteuse);
-  if (filtre === 'arelire')  return FICHES.filter(f => !f.validee);
-  return FICHES;
-}
+/* ── Identité du relecteur ─────────────────────────────────────── */
+var relecteur = lireStock(CLE_QUI, "");
+var btnWho = document.getElementById("btnWho");
+var veil = document.getElementById("veil");
+var whoField = document.getElementById("whoField");
+var apres = null;
 
-function rendre(){
-  const c = document.getElementById('liste');
-  const items = visibles();
-  if (!items.length){ c.innerHTML = '<div class="vide">Rien dans cette vue. 🎉</div>'; return; }
-  c.innerHTML = '';
-  for (const f of items){
-    const el = document.createElement('div');
-    el.className = 'fiche' + (f.validee ? ' validee' : '');
-    el.innerHTML =
-      '<div class="entete">' +
-        '<span class="id">' + f.id + '</span>' +
-        '<span class="tag">' + esc(f.categorie) + '</span>' +
-        '<span class="tag ' + f.risque + '">' + RISQUE[f.risque] + '</span>' +
-        '<span class="tag">' + esc(f.origine) + '</span>' +
-        (f.validee ? '<span class="tag ok">validée ' + f.validee_le + '</span>' : '') +
-        (f.modifiee ? '<span class="tag">corrigée</span>' : '') +
-        (f.ar_douteuse ? '<span class="tag eleve">arabe non traduit</span>' : '') +
-      '</div>' +
-      '<div class="probleme">' + esc(f.probleme) + '</div>' +
-      '<div class="note"><b>NOTE SOURCE — la réponse ne doit rien affirmer de plus</b>' +
-        (esc(f.note_source) || '(vide)') + '</div>' +
-      '<label>Réponse en français</label>' +
-      '<textarea data-fr>' + esc(f.fr) + '</textarea>' +
-      '<label>Réponse en arabe</label>' +
-      '<textarea class="ar" data-ar>' + esc(f.ar) + '</textarea>' +
-      '<div class="actions">' +
-        '<button class="valider">✓ Valider</button>' +
-        '<button class="enreg">Enregistrer sans valider</button>' +
-        (f.validee ? '<button class="deval">Retirer la validation</button>' : '') +
-        '<span class="etat"></span>' +
-      '</div>';
-    const fr = el.querySelector('[data-fr]');
-    const ar = el.querySelector('[data-ar]');
-    const etat = el.querySelector('.etat');
-    const envoyer = async (valider, devalider) => {
-      etat.textContent = 'enregistrement…';
-      await fetch('/api/revision/enregistrer', {
-        method: 'POST', headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({id: f.id, fr: fr.value, ar: ar.value,
-                              valider: valider, devalider: !!devalider})
-      });
-      // Les cartes sont redessinées depuis FICHES à chaque changement de
-      // filtre. Sans cette mise à jour, la copie en mémoire reste sur le texte
-      // d'AVANT : le filtre suivant le réaffiche dans la zone de saisie, et le
-      // clic d'après le renvoie au serveur — la correction est perdue en
-      // silence. Constaté sur la fiche 1.1.1, revenue à sa version fautive.
-      f.fr = fr.value; f.ar = ar.value; f.modifiee = true;
-      f.validee = valider;
-      f.validee_le = valider ? '(à l’instant)' : '';
-      etat.textContent = devalider ? 'validation retirée'
-                       : valider ? '✓ validée' : '✓ enregistrée';
-      // redessiner : la pastille verte doit tomber, et le bouton de marche
-      // arriere disparaitre avec elle
-      if (valider || devalider) setTimeout(charger, 400);
-    };
-    el.querySelector('.valider').onclick = () => envoyer(true, false);
-    el.querySelector('.enreg').onclick = () => envoyer(false, false);
-    const deval = el.querySelector('.deval');
-    if (deval) deval.onclick = () => envoyer(false, true);
-    c.appendChild(el);
+function majQui(){
+  if (relecteur) {
+    btnWho.innerHTML = "Relecteur&nbsp;: <b>" + ech(relecteur) + "</b>";
+    btnWho.classList.remove("empty");
+  } else {
+    btnWho.textContent = "Indiquer qui relit";
+    btnWho.classList.add("empty");
   }
+  document.querySelectorAll(".oath b").forEach(function(n){
+    n.textContent = relecteur || "— nom non indiqué —";
+  });
+}
+function demanderQui(suite){
+  apres = suite || null;
+  whoField.value = relecteur;
+  veil.classList.add("open");
+  whoField.focus(); whoField.select();
+}
+function fermerQui(){ veil.classList.remove("open"); apres = null; }
+
+btnWho.onclick = function(){ demanderQui(null); };
+document.getElementById("whoCancel").onclick = fermerQui;
+document.getElementById("whoOk").onclick = function(){
+  relecteur = whoField.value.trim().slice(0, 60);
+  ecrireStock(CLE_QUI, relecteur);
+  majQui();
+  var suite = apres;
+  fermerQui();
+  if (suite && relecteur) { suite(); }
+};
+whoField.addEventListener("keydown", function(e){
+  if (e.key === "Enter") { document.getElementById("whoOk").click(); }
+  if (e.key === "Escape") { fermerQui(); }
+});
+veil.addEventListener("click", function(e){ if (e.target === veil) { fermerQui(); } });
+majQui();
+
+/* ── Thème ─────────────────────────────────────────────────────── */
+var themeChoisi = lireStock(CLE_THEME, "");
+if (themeChoisi) { document.documentElement.setAttribute("data-theme", themeChoisi); }
+document.getElementById("btnTheme").onclick = function(){
+  var sombre = document.documentElement.getAttribute("data-theme") === "dark"
+    || (!document.documentElement.getAttribute("data-theme")
+        && window.matchMedia("(prefers-color-scheme: dark)").matches);
+  var suivant = sombre ? "light" : "dark";
+  document.documentElement.setAttribute("data-theme", suivant);
+  ecrireStock(CLE_THEME, suivant);
+};
+
+/* ── Chargement ────────────────────────────────────────────────── */
+function charger(){
+  return fetch("/api/revision/fiches").then(function(r){ return r.json(); }).then(function(d){
+    FICHES = d.fiches;
+    var reste = d.total - d.validees - d.relues;
+    document.getElementById("nSigned").textContent = d.validees;
+    document.getElementById("nRead").textContent = d.relues;
+    document.getElementById("nLeft").textContent = reste;
+    document.getElementById("partSigned").style.width = (d.total ? 100 * d.validees / d.total : 0) + "%";
+    document.getElementById("partRead").style.width = (d.total ? 100 * d.relues / d.total : 0) + "%";
+    document.getElementById("gaugeAria").setAttribute("aria-label",
+      d.validees + " validées et " + d.relues + " relues sur " + d.total);
+    var ar = document.getElementById("arAlert");
+    ar.textContent = d.ar_douteuses ? d.ar_douteuses + " sans traduction arabe" : "";
+    ar.style.color = d.ar_douteuses ? "var(--red)" : "";
+    rendre();
+  });
 }
 
-document.querySelectorAll('.filtres button').forEach(b => b.onclick = () => {
-  document.querySelectorAll('.filtres button').forEach(x => x.classList.remove('on'));
-  b.classList.add('on');
-  filtre = b.dataset.f;
-  rendre();
+/* ── Sélection ─────────────────────────────────────────────────── */
+function visibles(){
+  var base = FICHES.filter(function(f){
+    if (filtre === "signed") return f.validee;
+    if (filtre === "read")   return f.relue && !f.validee;
+    if (filtre === "warn")   return !f.validee && f.risque === "eleve";
+    if (filtre === "ar")     return f.ar_douteuse;
+    if (filtre === "left")   return !f.validee && !f.relue;
+    return true;
+  });
+  if (!recherche) { return base; }
+  var q = recherche.toLowerCase();
+  return base.filter(function(f){
+    return (f.id + " " + f.probleme + " " + f.categorie + " " +
+            f.note_source + " " + f.fr).toLowerCase().indexOf(q) >= 0;
+  });
+}
+
+var ETIQ = {
+  eleve: ["warn",     "note interne très courte"],
+  moyen: ["check",    "rédigée à partir d’une note"],
+  aucun: ["official", "texte officiel recopié"]
+};
+var POURQUOI = {
+  eleve: "La note interne ci-contre est trop courte pour avoir dicté cette réponse : <b>tout ce qui dépasse a été comblé</b>. C’est ici qu’une étape inventée peut se glisser.",
+  moyen: "La réponse a été rédigée à partir de la note ci-contre. Vérifiez qu’elle n’affirme rien de plus.",
+  aucun: "Ce texte est recopié mot pour mot d’une source TGR publiée. Il n’y a normalement rien à corriger."
+};
+
+/* ── Rendu ─────────────────────────────────────────────────────── */
+function rendre(){
+  var hote = document.getElementById("list");
+  var items = visibles();
+  vise = -1;
+  if (!items.length) {
+    hote.innerHTML = "<div class=\"empty\"><b>Rien dans cette vue.</b>" +
+      (filtre === "left" ? "Toutes les réponses ont été relues."
+                         : "Changez de filtre pour en voir d’autres.") + "</div>";
+    return;
+  }
+  hote.innerHTML = "";
+  items.forEach(function(f){
+    var el = document.createElement("article");
+    el.className = "card" + (f.validee ? " is-signed" : f.relue ? " is-read" : "");
+    el.setAttribute("tabindex", "-1");
+
+    var risque = ETIQ[f.risque] || ETIQ.moyen;
+    var note = (f.note_source || "").trim();
+
+    el.innerHTML =
+      "<div class=\"head\">" +
+        "<span class=\"ref\">" + ech(f.id) + "</span>" +
+        "<span class=\"tag\">" + ech(f.categorie) + "</span>" +
+        "<span class=\"tag " + risque[0] + "\">" + risque[1] + "</span>" +
+        (f.modifiee ? "<span class=\"tag\">corrigée</span>" : "") +
+        (f.ar_douteuse ? "<span class=\"tag warn\">arabe manquant</span>" : "") +
+        (f.relue && !f.validee ? "<span class=\"tag read\">relue" +
+           (f.relue_par ? " · " + ech(f.relue_par) : "") + "</span>" : "") +
+        (f.validee ? "<span class=\"tag signed\">validée" +
+           (f.validee_par ? " · " + ech(f.validee_par) : "") +
+           (f.validee_le ? " · " + ech(f.validee_le) : "") + "</span>" : "") +
+      "</div>" +
+      "<h2 class=\"ask\">" + ech(f.probleme) + "</h2>" +
+      "<p class=\"why\">" + (POURQUOI[f.risque] || "") + "</p>" +
+      "<div class=\"duo\">" +
+        "<div class=\"col src\">" +
+          "<span class=\"cap\">Note interne de la TGR</span>" +
+          "<div class=\"src-text" + (note ? "" : " none") + "\">" +
+            (note ? ech(note) : "Aucune note interne pour cette fiche.") + "</div>" +
+        "</div>" +
+        "<div class=\"col\">" +
+          "<span class=\"cap fr\">Réponse servie — français</span>" +
+          "<textarea data-fr spellcheck=\"true\"></textarea>" +
+        "</div>" +
+        "<div class=\"col\">" +
+          "<span class=\"cap ar\">Réponse servie — arabe</span>" +
+          "<textarea class=\"ar\" data-ar dir=\"rtl\" lang=\"ar\"></textarea>" +
+        "</div>" +
+      "</div>" +
+      "<div class=\"acts\">" +
+        "<button class=\"b-sign\" type=\"button\">Je valide cette réponse</button>" +
+        "<button class=\"b-read\" type=\"button\">J’ai relu, rien à changer</button>" +
+        "<button class=\"b-save\" type=\"button\" disabled>Enregistrer la correction</button>" +
+        (f.validee ? "<button class=\"b-undo\" type=\"button\">Retirer la validation</button>" : "") +
+        "<span class=\"state\"></span>" +
+        "<span class=\"oath\">En validant, vous attestez que ce texte peut être servi tel quel à un usager. Signé&nbsp;: <b></b></span>" +
+      "</div>";
+
+    var fr = el.querySelector("[data-fr]");
+    var ar = el.querySelector("[data-ar]");
+    var state = el.querySelector(".state");
+    var bSave = el.querySelector(".b-save");
+    fr.value = f.fr || "";
+    ar.value = f.ar || "";
+    fr.setAttribute("aria-label", "Réponse en français — fiche " + f.id);
+    ar.setAttribute("aria-label", "Réponse en arabe — fiche " + f.id);
+    el.querySelector(".oath b").textContent = relecteur || "— nom non indiqué —";
+
+    function sale(){
+      var d = fr.value !== (f.fr || "") || ar.value !== (f.ar || "");
+      bSave.disabled = !d;
+      el.classList.toggle("is-dirty", d);
+      var marque = el.querySelector(".tag.dirty");
+      if (d && !marque) {
+        var m = document.createElement("span");
+        m.className = "tag dirty";
+        m.textContent = "non enregistré";
+        el.querySelector(".head").appendChild(m);
+      } else if (!d && marque) { marque.remove(); }
+      return d;
+    }
+    fr.addEventListener("input", sale);
+    ar.addEventListener("input", sale);
+
+    function envoyer(action){
+      if (action.valider && !relecteur) {
+        demanderQui(function(){ envoyer(action); });
+        return;
+      }
+      state.textContent = "enregistrement…";
+      state.style.color = "";
+      // un second clic pendant l'aller-retour renverrait la même fiche deux fois
+      var boutons = el.querySelectorAll(".acts button");
+      boutons.forEach(function(b){ b.disabled = true; });
+      fetch("/api/revision/enregistrer", {
+        method: "POST", headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+          id: f.id, fr: fr.value, ar: ar.value,
+          valider: !!action.valider, devalider: !!action.devalider,
+          relue: !!action.relue, relecteur: relecteur
+        })
+      }).then(function(r){
+        if (!r.ok) { throw new Error("le serveur a refusé (" + r.status + ")"); }
+        state.textContent = action.valider ? "validée"
+                          : action.devalider ? "validation retirée"
+                          : action.relue ? "marquée relue"
+                          : "correction enregistrée";
+        state.style.color = "var(--green)";
+        return charger();
+      }).catch(function(e){
+        state.textContent = "échec : " + e.message + " — votre texte est toujours là, réessayez.";
+        state.style.color = "var(--red)";
+        boutons.forEach(function(b){ b.disabled = false; });
+        sale();
+      });
+    }
+
+    el.querySelector(".b-sign").onclick = function(){ envoyer({valider: true}); };
+    el.querySelector(".b-read").onclick = function(){ envoyer({relue: true}); };
+    bSave.onclick = function(){ envoyer({}); };
+    var bUndo = el.querySelector(".b-undo");
+    if (bUndo) { bUndo.onclick = function(){ envoyer({devalider: true}); }; }
+
+    el._enregistrer = function(){ if (sale()) { envoyer({}); } };
+    el._corriger = function(){ fr.focus(); };
+    el._relue = function(){ envoyer({relue: true}); };
+
+    hote.appendChild(el);
+  });
+}
+
+/* ── Clavier : 125 fiches à la souris, c’est le vrai coût ───────── */
+function cartes(){ return Array.prototype.slice.call(document.querySelectorAll(".card")); }
+function viser(i){
+  var c = cartes();
+  if (!c.length) { return; }
+  vise = Math.max(0, Math.min(c.length - 1, i));
+  c.forEach(function(x){ x.classList.remove("aimed"); });
+  c[vise].classList.add("aimed");
+  c[vise].scrollIntoView({block: "start", behavior: "smooth"});
+}
+function dansUnChamp(e){
+  var t = e.target.tagName;
+  return t === "TEXTAREA" || t === "INPUT" || e.target.isContentEditable;
+}
+document.addEventListener("keydown", function(e){
+  if (veil.classList.contains("open")) { return; }
+  if ((e.ctrlKey || e.metaKey) && (e.key === "s" || e.key === "Enter")) {
+    var carte = e.target.closest ? e.target.closest(".card") : null;
+    if (!carte && vise >= 0) { carte = cartes()[vise]; }
+    if (carte && carte._enregistrer) { e.preventDefault(); carte._enregistrer(); }
+    return;
+  }
+  if (e.key === "Escape" && dansUnChamp(e)) { e.target.blur(); return; }
+  if (dansUnChamp(e) || e.ctrlKey || e.metaKey || e.altKey) { return; }
+  if (e.key === "j" || e.key === "ArrowDown") { e.preventDefault(); viser(vise + 1); }
+  else if (e.key === "k" || e.key === "ArrowUp") { e.preventDefault(); viser(vise - 1); }
+  else if (e.key === "e" && vise >= 0) { e.preventDefault(); cartes()[vise]._corriger(); }
+  else if (e.key === "r" && vise >= 0) { e.preventDefault(); cartes()[vise]._relue(); }
+  else if (e.key === "/") { e.preventDefault(); document.getElementById("search").focus(); }
+});
+
+/* ── Filtres et recherche ──────────────────────────────────────── */
+document.querySelectorAll("#filters button").forEach(function(b){
+  b.onclick = function(){
+    document.querySelectorAll("#filters button").forEach(function(x){ x.classList.remove("on"); });
+    b.classList.add("on");
+    filtre = b.dataset.f;
+    rendre();
+  };
+});
+var champ = document.getElementById("search");
+var minuteur = null;
+champ.addEventListener("input", function(){
+  clearTimeout(minuteur);
+  minuteur = setTimeout(function(){ recherche = champ.value.trim(); rendre(); }, 180);
+});
+champ.addEventListener("keydown", function(e){
+  if (e.key === "Escape") { champ.value = ""; recherche = ""; rendre(); champ.blur(); }
+});
+
+/* ── Ne pas perdre une correction en fermant l’onglet ───────────── */
+window.addEventListener("beforeunload", function(e){
+  if (document.querySelector(".card.is-dirty")) { e.preventDefault(); e.returnValue = ""; }
 });
 
 charger();

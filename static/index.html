@@ -1,509 +1,693 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-theme="dark">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Assistant Virtuel TGR — Agentic RAG</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Assistant eServices — Trésorerie Générale du Royaume</title>
+<link rel="stylesheet" href="/static/fonts/polices.css">
+
+<!-- Fond peint avant Tailwind : sans cela la page clignote en blanc
+     le temps que les classes soient compilées. -->
 <style>
-  :root {
-    --bg: #0b1220;
-    --panel: rgba(255,255,255,0.055);
-    --panel-border: rgba(255,255,255,0.10);
-    --accent: #c8a24a;          /* or TGR */
-    --accent2: #1c6b4f;         /* vert institutionnel */
-    --text: #e8ecf3;
-    --muted: #93a0b4;
-    --user-bubble: linear-gradient(135deg, #1c6b4f, #14503b);
-    --bot-bubble: rgba(255,255,255,0.07);
+  html{ background:#080d14; color-scheme:dark; }
+  html[data-theme="light"]{ background:#eef1ee; color-scheme:light; }
+  body{ margin:0; }
+</style>
+
+<script src="/static/vendor/tailwind.js"></script>
+<style type="text/tailwindcss">
+  @theme {
+    /* Encre TGR — quatre profondeurs, pour que les panneaux se détachent
+       vraiment du fond au lieu de flotter dans un gris uniforme. */
+    --color-ink-900: #080d14;
+    --color-ink-850: #0b1220;
+    --color-ink-800: #101a26;
+    --color-ink-700: #16232f;
+    --color-line:    #24384a;
+
+    --color-or-300: #f0d79a;
+    --color-or-400: #ddb96b;
+    --color-or-500: #c8a24a;
+    --color-or-600: #a8842f;
+
+    --color-vert-400: #4fc287;
+    --color-vert-500: #3fa96b;
+    --color-vert-600: #1c6b4f;
+
+    --color-azur-400:  #6cb2e8;
+    --color-ambre-400: #e5a93b;
+    --color-rouge-400: #ef6b6b;
+
+    --color-craie-100: #eef3f1;
+    --color-craie-300: #b8c6c0;
+    --color-craie-500: #93a49c;
+
+    --font-display: "Spectral", Georgia, serif;
+    --font-body:    "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+    --font-data:    "IBM Plex Mono", ui-monospace, Consolas, monospace;
+    --font-arabe:   "IBM Plex Sans Arabic", "Noto Naskh Arabic", Tahoma, serif;
+
+    --shadow-panneau: inset 0 1px 0 rgba(255,255,255,.045),
+                      0 18px 40px -22px rgba(0,0,0,.9),
+                      0 2px 8px -4px rgba(0,0,0,.6);
+    --shadow-lueur: 0 0 0 1px rgba(200,162,74,.28),
+                    0 22px 60px -30px rgba(200,162,74,.5);
   }
-  * { margin:0; padding:0; box-sizing:border-box; }
-  body {
-    font-family: "Segoe UI", system-ui, sans-serif;
-    background: radial-gradient(1200px 800px at 80% -10%, #1a2c4e 0%, var(--bg) 55%),
-                radial-gradient(900px 600px at -10% 110%, #14503b33 0%, transparent 60%), var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    display: flex; align-items: center; justify-content: center;
-    padding: 16px;
+
+  /* ── Thème clair : même architecture, autre lumière ─────────────── */
+  html[data-theme="light"] {
+    --color-ink-900: #eef1ee;
+    --color-ink-850: #e7ebe7;
+    --color-ink-800: #ffffff;
+    --color-ink-700: #f3f6f3;
+    --color-line:    #d2dad4;
+    --color-or-300: #6b5210;
+    --color-or-400: #7d6013;
+    --color-or-500: #836515;
+    --color-or-600: #6b5210;
+    --color-vert-400: #17614a;
+    --color-vert-500: #1c6b4f;
+    --color-vert-600: #1c6b4f;
+    --color-azur-400:  #2b6ea8;
+    --color-ambre-400: #8a5f0c;
+    --color-rouge-400: #a63a3a;
+    --color-craie-100: #16201c;
+    --color-craie-300: #41514a;
+    --color-craie-500: #5f6d66;
+    --shadow-panneau: 0 1px 2px rgba(22,32,28,.06), 0 14px 34px -22px rgba(22,32,28,.32);
+    --shadow-lueur: 0 0 0 1px rgba(131,101,21,.32), 0 18px 44px -28px rgba(131,101,21,.35);
   }
-  .chat-container {
-    width: 100%; max-width: 860px; height: 92vh;
-    display: flex; flex-direction: column;
-    background: var(--panel);
-    border: 1px solid var(--panel-border);
-    border-radius: 20px;
-    backdrop-filter: blur(16px);
-    overflow: hidden;
-    box-shadow: 0 22px 60px rgba(0,0,0,0.5);
+
+  @layer utilities {
+    /* Apparition au défilement : le bloc monte de 14 px en se révélant,
+       une seule fois. L'animation guide l'œil, elle ne l'occupe pas. */
+    .monte{ opacity:0; transform:translateY(14px);
+            transition:opacity .55s ease-out, transform .55s cubic-bezier(.22,.8,.3,1); }
+    .monte.vue{ opacity:1; transform:none; }
+
+    .grain{
+      background-image:
+        radial-gradient(58rem 30rem at 78% -14%, rgba(200,162,74,.11), transparent 62%),
+        radial-gradient(46rem 26rem at -10% 106%, rgba(63,169,107,.10), transparent 60%);
+      background-attachment:fixed;
+    }
+    .filet{ background-image:linear-gradient(90deg, transparent, var(--color-or-500), transparent); }
+    .lueur-texte{ text-shadow:0 0 30px rgba(200,162,74,.3); }
+    html[data-theme="light"] .lueur-texte{ text-shadow:none; }
   }
-  /* ── Header ── */
-  .chat-header {
-    padding: 18px 24px;
-    display: flex; align-items: center; justify-content: space-between;
-    border-bottom: 1px solid var(--panel-border);
-    background: rgba(255,255,255,0.03);
+
+  /* ── Texte servi à l'usager ──────────────────────────────────────── */
+  .rendu p{ margin:0 0 .7rem; }
+  .rendu p:last-child{ margin-bottom:0; }
+  .rendu ol{ margin:0 0 .7rem; padding-inline-start:1.4rem;
+             display:flex; flex-direction:column; gap:.4rem; }
+  .rendu ol li::marker{ color:var(--color-or-400); font-family:var(--font-data); font-size:.9em; }
+  .rendu a{ color:var(--color-or-300); font-family:var(--font-data); font-size:.9em;
+            overflow-wrap:anywhere; text-decoration:underline; text-underline-offset:3px; }
+  .rendu a:hover{ color:var(--color-or-400); }
+  .rendu[dir="rtl"]{ font-family:var(--font-arabe); line-height:2; }
+
+  @keyframes battement{ 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.28;transform:scale(.6)} }
+  .battement{ animation:battement 1.15s ease-in-out infinite; }
+  @keyframes glisse{ from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:none} }
+  .glisse{ animation:glisse .34s cubic-bezier(.22,.8,.3,1) both; }
+
+  button, a, input, select, textarea{ touch-action:manipulation; }
+  @media (pointer: coarse){ .tactile{ min-height:44px; } }
+
+  @media (prefers-reduced-motion: reduce){
+    .monte{ opacity:1 !important; transform:none !important; transition:none !important; }
+    .glisse, .battement{ animation:none !important; }
+    .grain{ background-attachment:scroll; }
   }
-  .header-info { display:flex; align-items:center; gap:14px; }
-  .avatar {
-    width: 46px; height: 46px; border-radius: 13px;
-    background: linear-gradient(135deg, var(--accent), #8f6f2a);
-    display:flex; align-items:center; justify-content:center;
-    font-weight: 800; color:#171204; font-size: 15px; letter-spacing: .5px;
-  }
-  .header-title h1 { font-size: 17px; font-weight: 650; }
-  .header-title p { font-size: 12px; color: var(--muted); margin-top: 3px; }
-  .status-dot {
-    display:inline-block; width:8px; height:8px; border-radius:50%;
-    background:#38d178; margin-right:5px;
-    box-shadow: 0 0 8px #38d178aa;
-  }
-  .lien-revision {
-    color: var(--muted); text-decoration: none; font-size: 12.5px;
-    border: 1px solid rgba(255,255,255,.12); padding: 5px 12px; border-radius: 99px;
-    transition: .2s;
-  }
-  .lien-revision:hover { color: var(--accent); border-color: var(--accent); }
-  .header-badge {
-    font-size: 11px; color: var(--muted);
-    border: 1px solid var(--panel-border); border-radius: 999px;
-    padding: 5px 12px;
-  }
-  /* ── Messages ── */
-  .chat-messages {
-    flex:1; overflow-y:auto; padding: 24px;
-    display:flex; flex-direction:column; gap:16px;
-  }
-  .chat-messages::-webkit-scrollbar { width: 8px; }
-  .chat-messages::-webkit-scrollbar-thumb { background: rgba(255,255,255,.12); border-radius: 8px; }
-  .msg { display:flex; flex-direction:column; max-width: 82%; animation: fadeIn .25s ease; }
-  @keyframes fadeIn { from {opacity:0; transform: translateY(6px);} to {opacity:1; transform:none;} }
-  .msg.user { align-self: flex-end; align-items: flex-end; }
-  .msg.bot  { align-self: flex-start; }
-  .bubble {
-    padding: 13px 17px; border-radius: 16px;
-    line-height: 1.55; font-size: 14.5px; white-space: pre-wrap;
-  }
-  .msg.user .bubble { background: var(--user-bubble); border-bottom-right-radius: 5px; }
-  .msg.bot  .bubble { background: var(--bot-bubble); border: 1px solid var(--panel-border); border-bottom-left-radius: 5px; }
-  .bubble[dir="rtl"] { text-align: right; }
-  /* ── Trace de l'agent ── */
-  .agent-trace {
-    display:flex; flex-direction:column; gap:5px;
-    margin-bottom: 8px; padding: 10px 14px;
-    background: rgba(200,162,74,0.06);
-    border: 1px dashed rgba(200,162,74,0.35);
-    border-radius: 12px;
-    font-size: 12px; color: var(--muted);
-  }
-  .trace-step { display:flex; align-items:center; gap:8px; animation: fadeIn .3s ease; }
-  .trace-step .dot {
-    width:6px; height:6px; border-radius:50%;
-    background: var(--accent); flex-shrink:0;
-  }
-  .trace-step.active .dot { animation: pulse 1s infinite; }
-  @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:.25;} }
-  /* ── Sources ── */
-  .sources { margin-top: 9px; }
-  .sources summary {
-    cursor:pointer; font-size:12px; color: var(--accent);
-    user-select:none;
-  }
-  .source-chip {
-    display:inline-block; margin: 6px 6px 0 0;
-    padding: 4px 11px; font-size: 11.5px;
-    background: rgba(28,107,79,0.25);
-    border: 1px solid rgba(56,209,120,0.25);
-    border-radius: 999px; color: #a6e8c6;
-  }
-  .meta-line { margin-top:7px; font-size: 11px; color: var(--muted); }
-  /* ── Feedback ── */
-  .fb { margin-top:7px; display:flex; gap:6px; }
-  .fb button {
-    background:none; border:1px solid var(--panel-border); border-radius:8px;
-    padding: 3px 9px; cursor:pointer; font-size: 13px; color: var(--muted);
-    transition: all .15s;
-  }
-  .fb button:hover { background: rgba(255,255,255,.08); }
-  .fb button.sel { border-color: var(--accent); color: var(--accent); }
-  /* ── Suggestions ── */
-  .suggestions { display:flex; flex-wrap:wrap; gap:8px; padding: 0 24px 10px; }
-  .sugg {
-    font-size: 12px; padding: 7px 13px; cursor:pointer;
-    background: rgba(255,255,255,0.05);
-    border: 1px solid var(--panel-border); border-radius: 999px;
-    color: var(--muted); transition: all .15s;
-  }
-  .sugg:hover { border-color: var(--accent); color: var(--accent); }
-  /* ── Input ── */
-  .chat-input-area {
-    display:flex; gap:10px; padding: 16px 24px 20px;
-    border-top: 1px solid var(--panel-border);
-    background: rgba(255,255,255,0.03);
-  }
-  .chat-input {
-    flex:1; padding: 13px 17px;
-    background: rgba(255,255,255,0.07);
-    border: 1px solid var(--panel-border); border-radius: 13px;
-    color: var(--text); font-size: 14.5px; outline:none;
-    transition: border-color .15s;
-  }
-  .chat-input:focus { border-color: var(--accent); }
-  /* ── Onglets ── */
-  .tabs { display:flex; gap:6px; padding: 10px 24px 0; }
-  .tab {
-    padding: 9px 18px; font-size: 13px; cursor:pointer;
-    border: 1px solid var(--panel-border); border-bottom: none;
-    border-radius: 12px 12px 0 0; color: var(--muted);
-    background: rgba(255,255,255,0.03); user-select:none;
-  }
-  .tab.active { color: var(--accent); border-color: var(--accent); background: rgba(200,162,74,0.08); }
-  /* ── Panneau réclamation ── */
-  .rec-panel { flex:1; overflow-y:auto; padding: 24px; display:none; flex-direction:column; gap:18px; }
-  .rec-panel.visible { display:flex; }
-  .rec-card {
-    background: var(--panel); border:1px solid var(--panel-border);
-    border-radius: 16px; padding: 20px;
-  }
-  .rec-card h2 { font-size: 15px; margin-bottom: 14px; color: var(--accent); }
-  .rec-field { margin-bottom: 12px; }
-  .rec-field label { display:block; font-size: 12px; color: var(--muted); margin-bottom: 5px; }
-  .rec-field input, .rec-field select, .rec-field textarea {
-    width:100%; padding: 11px 14px; font-size: 14px; color: var(--text);
-    background: rgba(255,255,255,0.07); border:1px solid var(--panel-border);
-    border-radius: 10px; outline:none; font-family: inherit;
-  }
-  .rec-field textarea { min-height: 90px; resize: vertical; }
-  .rec-field select option { background: #16213a; }
-  .rec-btn {
-    padding: 11px 22px; border:none; border-radius: 10px; cursor:pointer;
-    background: linear-gradient(135deg, var(--accent), #a5842f);
-    color:#171204; font-weight:700; font-size: 13.5px;
-  }
-  .rec-btn:disabled { opacity:.45; cursor:not-allowed; }
-  .rec-result {
-    margin-top: 14px; padding: 14px 16px; border-radius: 12px;
-    background: rgba(28,107,79,0.15); border:1px solid rgba(56,209,120,0.3);
-    font-size: 13.5px; line-height: 1.6; white-space: pre-wrap; display:none;
-  }
-  .rec-result.visible { display:block; }
-  .rec-result .ref-badge {
-    display:inline-block; padding: 3px 12px; margin-bottom: 8px;
-    background: var(--accent); color:#171204; font-weight:700;
-    border-radius: 999px; font-size: 12.5px;
-  }
-  .send-btn {
-    padding: 13px 24px; border:none; border-radius: 13px;
-    background: linear-gradient(135deg, var(--accent), #a5842f);
-    color: #171204; font-weight: 700; font-size: 14px;
-    cursor:pointer; transition: transform .1s, opacity .15s;
-  }
-  .send-btn:hover { transform: translateY(-1px); }
-  .send-btn:disabled { opacity:.45; cursor: not-allowed; transform:none; }
 </style>
 </head>
-<body>
 
-<div class="chat-container">
-  <div class="chat-header">
-    <div class="header-info">
-      <div class="avatar">TGR</div>
-      <div class="header-title">
-        <h1>Assistant Virtuel TGR</h1>
-        <p><span class="status-dot"></span>Agentic RAG · 100 % local · FR / العربية</p>
-      </div>
-    </div>
-    <a class="lien-revision" href="/revision" title="Relecture des réponses officielles par un agent TGR">🛡️ Espace agent</a>
-    <div class="header-badge" id="statsBadge">CRAG · ChromaDB · Ollama</div>
-  </div>
+<body class="min-h-dvh flex flex-col bg-ink-900 text-craie-100 font-body antialiased grain">
 
-  <div class="tabs">
-    <div class="tab active" data-tab="chat">💬 Assistant</div>
-    <div class="tab" data-tab="rec">📝 Demande-Réclamation</div>
-  </div>
+<!-- ══ Bandeau ═══════════════════════════════════════════════════════ -->
+<header class="flex-none sticky top-0 z-30 border-b border-line bg-ink-850/85 backdrop-blur-xl">
+  <div class="mx-auto w-full max-w-4xl px-4 pt-3 sm:px-6">
+    <div class="flex flex-wrap items-center gap-3">
+      <div class="grid size-10 shrink-0 place-items-center rounded-xl bg-linear-to-br from-or-400 to-or-600
+                  font-data text-[.68rem] font-semibold tracking-wider text-ink-900">TGR</div>
+      <div class="min-w-0">
+        <div class="font-data text-[.58rem] uppercase tracking-[.2em] text-or-500">Trésorerie Générale du Royaume</div>
+        <h1 class="font-display text-lg font-bold leading-tight sm:text-xl">Assistant eServices</h1>
+      </div>
 
-  <div class="rec-panel" id="recPanel">
-    <div class="rec-card">
-      <h2>📤 Dépôt d'une réclamation</h2>
-      <div class="rec-field">
-        <label>Nature de la réclamation (optionnel — détectée automatiquement)</label>
-        <select id="recNature"><option value="">— Détection automatique —</option></select>
-      </div>
-      <div class="rec-field">
-        <label>Objet de la réclamation</label>
-        <input id="recObjet" placeholder="Ex : Problème de connexion MFA">
-      </div>
-      <div class="rec-field">
-        <label>Description détaillée</label>
-        <textarea id="recDesc" placeholder="Décrivez votre problème…"></textarea>
-      </div>
-      <button class="rec-btn" id="recSubmit">Déposer la réclamation</button>
-      <div class="rec-result" id="recResult"></div>
+      <span id="sante" class="ml-auto inline-flex items-center gap-2 rounded-full border border-line px-3 py-1
+                   font-data text-[.6rem] uppercase tracking-[.1em] text-craie-500">
+        <span class="size-1.5 rounded-full bg-vert-400 battement"></span>en service
+      </span>
+
+      <button id="btnInspect" type="button" aria-pressed="false" title="Afficher le détail du traitement"
+        class="tactile rounded-full border border-line px-3 py-1 font-data text-[.6rem] uppercase tracking-[.1em]
+               text-craie-500 transition hover:border-or-500 hover:text-or-400
+               aria-pressed:border-or-500 aria-pressed:bg-or-500 aria-pressed:text-ink-900">Inspection</button>
+
+      <button id="btnTheme" type="button" aria-label="Basculer clair ou sombre" title="Basculer clair / sombre"
+        class="tactile grid size-8 place-items-center rounded-full border border-line text-craie-500
+               transition hover:border-or-500 hover:text-or-400">◐</button>
+
+      <a href="/revision" title="Relecture des réponses par un agent TGR"
+        class="tactile hidden items-center rounded-full border border-line px-3 py-1 font-data text-[.6rem]
+               uppercase tracking-[.1em] text-craie-500 transition hover:border-or-500 hover:text-or-400
+               sm:inline-flex">Espace agent</a>
     </div>
 
-    <div class="rec-card">
-      <h2>🔎 Suivi d'une réclamation</h2>
-      <div class="rec-field">
-        <label>Référence de réclamation</label>
-        <input id="suiviRef" placeholder="Ex : REC-2026-00001">
+    <div role="tablist" class="mt-3 flex gap-1">
+      <button id="tabChat" role="tab" aria-selected="true" type="button"
+        class="tactile rounded-t-xl border border-b-0 border-line px-4 py-2 text-sm text-craie-300 transition
+               aria-selected:border-or-500 aria-selected:bg-ink-900 aria-selected:font-semibold
+               aria-selected:text-or-400">Poser une question</button>
+      <button id="tabRec" role="tab" aria-selected="false" type="button"
+        class="tactile rounded-t-xl border border-b-0 border-line px-4 py-2 text-sm text-craie-300 transition
+               aria-selected:border-or-500 aria-selected:bg-ink-900 aria-selected:font-semibold
+               aria-selected:text-or-400">Déposer une réclamation</button>
+    </div>
+  </div>
+</header>
+
+<main id="main" class="flex-1 overflow-y-auto">
+
+  <!-- ══ Conversation ══ -->
+  <div id="panelChat" role="tabpanel" aria-labelledby="tabChat"
+       class="mx-auto flex w-full max-w-4xl flex-col gap-6 px-4 py-7 sm:px-6">
+
+    <section id="accueil" class="flex flex-col gap-4">
+      <div class="monte relative overflow-hidden rounded-2xl border border-line bg-ink-800 px-6 py-7
+                  shadow-panneau sm:px-9 sm:py-10">
+        <div class="filet absolute inset-x-0 top-0 h-px"></div>
+        <div class="font-data text-[.6rem] uppercase tracking-[.22em] text-or-500">Bonjour</div>
+        <p class="lueur-texte mt-3 max-w-xl font-display text-2xl leading-snug sm:text-[2rem]">
+          Posez votre question en français, en arabe ou en darija.
+        </p>
+        <p class="mt-4 max-w-lg leading-relaxed text-craie-300">
+          Je réponds à partir de la documentation officielle du portail eServices —
+          et je vous le dis quand je ne sais pas.
+        </p>
       </div>
-      <button class="rec-btn" id="suiviBtn">Suivre</button>
-      <div class="rec-result" id="suiviResult"></div>
+
+      <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <article class="monte rounded-xl border border-line bg-ink-800 p-4 shadow-panneau transition
+                        hover:-translate-y-0.5 hover:border-azur-400/60">
+          <div class="h-1 w-9 rounded-full bg-azur-400"></div>
+          <b class="mt-3 block text-sm font-semibold">Votre compte</b>
+          <span class="mt-1 block text-[.82rem] leading-relaxed text-craie-500">création, connexion, mot de passe, double authentification, CNIE</span>
+        </article>
+        <article class="monte rounded-xl border border-line bg-ink-800 p-4 shadow-panneau transition
+                        hover:-translate-y-0.5 hover:border-ambre-400/60">
+          <div class="h-1 w-9 rounded-full bg-ambre-400"></div>
+          <b class="mt-3 block text-sm font-semibold">Taxes et paiements</b>
+          <span class="mt-1 block text-[.82rem] leading-relaxed text-craie-500">taxes territoriales, quittances, taxe d’habitation, amendes</span>
+        </article>
+        <article class="monte rounded-xl border border-line bg-ink-800 p-4 shadow-panneau transition
+                        hover:-translate-y-0.5 hover:border-vert-400/60">
+          <div class="h-1 w-9 rounded-full bg-vert-400"></div>
+          <b class="mt-3 block text-sm font-semibold">Fonctionnaires</b>
+          <span class="mt-1 block text-[.82rem] leading-relaxed text-craie-500">situation administrative, paie, attestations, bulletin</span>
+        </article>
+        <article class="monte rounded-xl border border-line bg-ink-800 p-4 shadow-panneau transition
+                        hover:-translate-y-0.5 hover:border-or-400/60">
+          <div class="h-1 w-9 rounded-full bg-or-400"></div>
+          <b class="mt-3 block text-sm font-semibold">Activité bancaire</b>
+          <span class="mt-1 block text-[.82rem] leading-relaxed text-craie-500">compte, chéquier, relevés, oppositions</span>
+        </article>
+      </div>
+    </section>
+
+    <div id="fil" class="flex flex-col gap-6" aria-live="polite"></div>
+  </div>
+
+  <!-- ══ Réclamation ══ -->
+  <div id="panelRec" role="tabpanel" aria-labelledby="tabRec" hidden
+       class="mx-auto flex w-full max-w-3xl flex-col gap-5 px-4 py-7 sm:px-6">
+
+    <section class="monte relative overflow-hidden rounded-2xl border border-line bg-ink-800 p-6 shadow-panneau">
+      <div class="filet absolute inset-x-0 top-0 h-px"></div>
+      <div class="font-data text-[.6rem] uppercase tracking-[.22em] text-or-500">Démarche</div>
+      <h2 class="mt-2 font-display text-2xl font-semibold">Déposer une réclamation</h2>
+      <p class="mt-2 max-w-prose leading-relaxed text-craie-300">
+        Décrivez votre situation. Un numéro de dossier vous est remis immédiatement :
+        conservez-le, il permet de suivre le traitement.
+      </p>
+
+      <ol class="mt-5 grid gap-3 sm:grid-cols-3">
+        <li class="rounded-xl border border-line bg-ink-700 p-3">
+          <span class="font-data text-sm text-or-400">01</span>
+          <span class="mt-1 block text-[.85rem] text-craie-300">vous décrivez</span></li>
+        <li class="rounded-xl border border-line bg-ink-700 p-3">
+          <span class="font-data text-sm text-or-400">02</span>
+          <span class="mt-1 block text-[.85rem] text-craie-300">un numéro vous est remis</span></li>
+        <li class="rounded-xl border border-line bg-ink-700 p-3">
+          <span class="font-data text-sm text-or-400">03</span>
+          <span class="mt-1 block text-[.85rem] text-craie-300">un agent traite la demande</span></li>
+      </ol>
+
+      <div class="mt-6 flex flex-col gap-4">
+        <label class="flex flex-col gap-1.5">
+          <span class="font-data text-[.63rem] uppercase tracking-[.12em] text-craie-500">Nature — détectée si laissée vide</span>
+          <select id="recNature" class="tactile rounded-lg border border-line bg-ink-700 px-3 py-2.5
+                  text-craie-100 outline-none transition focus:border-or-500">
+            <option value="">Détection automatique</option>
+          </select>
+        </label>
+        <label class="flex flex-col gap-1.5">
+          <span class="font-data text-[.63rem] uppercase tracking-[.12em] text-craie-500">Objet</span>
+          <input id="recObjet" class="tactile rounded-lg border border-line bg-ink-700 px-3 py-2.5 text-craie-100
+                 outline-none transition placeholder:text-craie-500/70 focus:border-or-500"
+                 placeholder="Impossible de me connecter depuis mon nouveau téléphone">
+        </label>
+        <label class="flex flex-col gap-1.5">
+          <span class="font-data text-[.63rem] uppercase tracking-[.12em] text-craie-500">Description</span>
+          <textarea id="recDesc" rows="5" class="resize-y rounded-lg border border-line bg-ink-700 px-3 py-2.5
+                 leading-relaxed text-craie-100 outline-none transition
+                 placeholder:text-craie-500/70 focus:border-or-500"
+                 placeholder="Que s’est-il passé ? Depuis quand ? Qu’avez-vous déjà tenté ?"></textarea>
+        </label>
+        <p id="recErr" hidden class="text-[.85rem] text-rouge-400"></p>
+        <button id="recGo" type="button" class="tactile self-start rounded-lg bg-or-500 px-5 py-2.5 text-sm
+                font-semibold text-ink-900 transition hover:bg-or-400 disabled:opacity-40">
+          Déposer la réclamation</button>
+      </div>
+    </section>
+
+    <section id="recRecu" hidden class="glisse rounded-2xl border border-vert-500/50 bg-vert-600/15 p-6"></section>
+
+    <section class="monte rounded-2xl border border-line bg-ink-800 p-6 shadow-panneau">
+      <div class="font-data text-[.6rem] uppercase tracking-[.22em] text-or-500">Suivi</div>
+      <h2 class="mt-2 font-display text-xl font-semibold">Suivre une réclamation déposée</h2>
+      <div class="mt-5 flex flex-col gap-4">
+        <label class="flex flex-col gap-1.5">
+          <span class="font-data text-[.63rem] uppercase tracking-[.12em] text-craie-500">Numéro de dossier</span>
+          <input id="suiviRef" autocapitalize="characters"
+                 class="tactile rounded-lg border border-line bg-ink-700 px-3 py-2.5 font-data tabular-nums
+                        text-craie-100 outline-none transition placeholder:text-craie-500/70 focus:border-or-500"
+                 placeholder="REC-2026-00001">
+        </label>
+        <p id="suiviErr" hidden class="text-[.85rem] text-rouge-400"></p>
+        <button id="suiviGo" type="button" class="tactile self-start rounded-lg border border-or-500 px-5 py-2.5
+                text-sm font-semibold text-or-400 transition hover:bg-or-500/10">Consulter</button>
+      </div>
+    </section>
+
+    <section id="suiviRecu" hidden class="glisse rounded-2xl border border-line bg-ink-800 p-6 shadow-panneau"></section>
+  </div>
+</main>
+
+<!-- ══ Saisie ════════════════════════════════════════════════════════ -->
+<div id="composer" class="flex-none border-t border-line bg-ink-850/92 backdrop-blur-xl">
+  <div class="mx-auto flex w-full max-w-4xl flex-col gap-3 px-4 py-3 sm:px-6">
+    <div id="sugg" class="flex gap-2 overflow-x-auto pb-0.5">
+      <button type="button" class="tactile shrink-0 rounded-full border border-line px-3.5 py-1.5 text-[.8rem]
+              text-craie-300 transition hover:border-or-500 hover:text-or-400">Mon mot de passe est refusé</button>
+      <button type="button" class="tactile shrink-0 rounded-full border border-line px-3.5 py-1.5 text-[.8rem]
+              text-craie-300 transition hover:border-or-500 hover:text-or-400">J’ai changé de téléphone</button>
+      <button type="button" class="tactile shrink-0 rounded-full border border-line px-3.5 py-1.5 text-[.8rem]
+              text-craie-300 transition hover:border-or-500 hover:text-or-400">Comment supprimer mon compte ?</button>
+      <button type="button" lang="ar" dir="rtl" class="tactile shrink-0 rounded-full border border-line px-3.5
+              py-1.5 font-arabe text-[.85rem] text-craie-300 transition hover:border-or-500
+              hover:text-or-400">كيف أغير البريد الإلكتروني؟</button>
     </div>
-  </div>
-
-  <div class="chat-messages" id="messagesContainer">
-    <div class="msg bot">
-      <div class="bubble">👋 Bonjour ! Je suis l'assistant du portail <b>eServices TGR</b>.
-Je peux vous aider sur :
-• <b>Votre compte</b> — création, activation, connexion, mot de passe, e-mail, double authentification, vérification CNIE
-• <b>Taxes &amp; paiements</b> — taxes territoriales, quittances, taxe d'habitation, amendes de radar
-• <b>Fonctionnaires</b> — situation administrative, paie, attestations, bulletin de paie
-• <b>Activité bancaire</b> — compte, chéquier, relevés, oppositions
-• <b>Réclamations</b> — dépôt et suivi
-
-Posez votre question en français ou en arabe.</div>
+    <div class="flex items-end gap-2">
+      <textarea id="saisie" rows="1" aria-label="Votre question"
+        class="max-h-36 flex-1 resize-none rounded-xl border border-line bg-ink-700 px-4 py-3 leading-relaxed
+               text-craie-100 outline-none transition placeholder:text-craie-500/70
+               focus:border-or-500 focus:shadow-lueur"
+        placeholder="Écrivez votre question…"></textarea>
+      <button id="envoi" type="button" class="tactile rounded-xl bg-or-500 px-5 py-3 text-sm font-semibold
+              text-ink-900 transition hover:bg-or-400 disabled:opacity-40">Envoyer</button>
     </div>
-  </div>
-
-  <div class="suggestions" id="suggestions">
-    <span class="sugg">Mon mot de passe est refusé</span>
-    <span class="sugg">J'ai changé de téléphone, plus de codes MFA</span>
-    <span class="sugg">Ma carte CNIE n'est pas lue par NFC</span>
-    <span class="sugg">Comment supprimer mon compte ?</span>
-    <span class="sugg">كيف أغير البريد الإلكتروني لحسابي؟</span>
-  </div>
-
-  <div class="chat-input-area">
-    <input type="text" id="userInput" class="chat-input"
-           placeholder="Posez votre question ici… / اطرح سؤالك هنا"
-           autocomplete="off">
-    <button id="sendBtn" class="send-btn">Envoyer</button>
   </div>
 </div>
 
 <script>
-const container = document.getElementById('messagesContainer');
-const input = document.getElementById('userInput');
-const sendBtn = document.getElementById('sendBtn');
-let busy = false;
+var ARABE = /[؀-ۿ]/;
+var CLE_THEME = "tgr-theme", CLE_MODE = "tgr-inspection";
+var fil = document.getElementById("fil");
+var saisie = document.getElementById("saisie");
+var envoi = document.getElementById("envoi");
+var main = document.getElementById("main");
+var occupe = false;
 
-const isArabic = t => /[؀-ۿ]/.test(t);
-const scroll = () => container.scrollTop = container.scrollHeight;
-
-function addUserMsg(text) {
-  const div = document.createElement('div');
-  div.className = 'msg user';
-  const b = document.createElement('div');
-  b.className = 'bubble';
-  if (isArabic(text)) b.dir = 'rtl';
-  b.textContent = text;
-  div.appendChild(b);
-  container.appendChild(div);
-  scroll();
+function ech(s){
+  return String(s == null ? "" : s).replace(/[&<>"]/g, function(c){
+    return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c];
+  });
 }
+function lireStock(k, d){ try{ var v = localStorage.getItem(k); return v === null ? d : v; }catch(e){ return d; } }
+function ecrireStock(k, v){ try{ localStorage.setItem(k, v); }catch(e){} }
+function enBas(){ main.scrollTop = main.scrollHeight; }
 
-function addBotShell() {
-  const div = document.createElement('div');
-  div.className = 'msg bot';
-  const trace = document.createElement('div');
-  trace.className = 'agent-trace';
-  trace.innerHTML = '<div style="font-weight:600;color:var(--accent);font-size:11px;">🤖 RAISONNEMENT DE L\'AGENT</div>';
-  const bubble = document.createElement('div');
-  bubble.className = 'bubble';
-  bubble.style.display = 'none';
-  div.appendChild(trace);
-  div.appendChild(bubble);
-  container.appendChild(div);
-  scroll();
-  return { div, trace, bubble };
-}
-
-function addTraceStep(trace, text) {
-  trace.querySelectorAll('.trace-step').forEach(s => s.classList.remove('active'));
-  const step = document.createElement('div');
-  step.className = 'trace-step active';
-  step.innerHTML = `<span class="dot"></span><span>${text}</span>`;
-  trace.appendChild(step);
-  scroll();
-}
-
-function addSources(div, sources, statut, latence, mode) {
-  if (sources && sources.length) {
-    const det = document.createElement('details');
-    det.className = 'sources';
-    det.innerHTML = `<summary>📎 ${sources.length} source(s) officielle(s)</summary>` +
-      sources.map(s => `<span class="source-chip">Fiche ${s.id} · ${s.categorie}</span>`).join('');
-    div.appendChild(det);
-  }
-  const meta = document.createElement('div');
-  meta.className = 'meta-line';
-  const rapide = (mode === 'direct' || mode === 'cache') ? ' · ⚡ réponse instantanée' : '';
-  meta.textContent = `Statut : ${statut} · ${latence}s${rapide}`;
-  div.appendChild(meta);
-}
-
-function addFeedback(div, question, reponse) {
-  const fb = document.createElement('div');
-  fb.className = 'fb';
-  const mk = (label, utile) => {
-    const btn = document.createElement('button');
-    btn.textContent = label;
-    btn.onclick = () => {
-      fb.querySelectorAll('button').forEach(b => b.classList.remove('sel'));
-      btn.classList.add('sel');
-      fetch('/api/feedback', {
-        method: 'POST', headers: {'Content-Type':'application/json'},
-        body: JSON.stringify({question, reponse, utile})
+/* ── Apparition au défilement ──────────────────────────────────── */
+var oeil = ("IntersectionObserver" in window)
+  ? new IntersectionObserver(function(entrees){
+      entrees.forEach(function(e){
+        if (e.isIntersecting) { e.target.classList.add("vue"); oeil.unobserve(e.target); }
       });
-    };
-    return btn;
-  };
-  fb.appendChild(mk('👍', true));
-  fb.appendChild(mk('👎', false));
-  div.appendChild(fb);
+    }, {rootMargin: "0px 0px -8% 0px", threshold: .1})
+  : null;
+function observer(racine){
+  var cibles = (racine || document).querySelectorAll(".monte:not(.vue)");
+  if (!oeil) { cibles.forEach(function(n){ n.classList.add("vue"); }); return; }
+  var d = 0;
+  cibles.forEach(function(n){
+    n.style.transitionDelay = (d = Math.min(d + 70, 350)) + "ms";
+    oeil.observe(n);
+  });
 }
 
-async function sendMessage(text) {
-  const question = (text || input.value).trim();
-  if (!question || busy) return;
-  busy = true; sendBtn.disabled = true; input.value = '';
-  addUserMsg(question);
+/* ── Thème et inspection ───────────────────────────────────────── */
+document.documentElement.setAttribute("data-theme", lireStock(CLE_THEME, "dark"));
+document.getElementById("btnTheme").onclick = function(){
+  var suivant = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+  document.documentElement.setAttribute("data-theme", suivant);
+  ecrireStock(CLE_THEME, suivant);
+};
+var btnInspect = document.getElementById("btnInspect");
+function majInspection(actif){
+  btnInspect.setAttribute("aria-pressed", actif ? "true" : "false");
+  document.querySelectorAll("[data-trace]").forEach(function(n){ n.hidden = !actif; });
+  ecrireStock(CLE_MODE, actif ? "1" : "0");
+}
+majInspection(lireStock(CLE_MODE, "0") === "1");
+btnInspect.onclick = function(){ majInspection(btnInspect.getAttribute("aria-pressed") !== "true"); };
 
-  const { div, trace, bubble } = addBotShell();
-  if (isArabic(question)) bubble.dir = 'rtl';
+/* ── Rendu du texte servi ───────────────────────────────────────
+   Le texte vient du serveur : on l'échappe AVANT toute transformation.
+   Ensuite seulement on reconnaît les adresses et les étapes numérotées :
+   un lien qu'on ne peut pas cliquer oblige l'usager à le recopier. */
+function rendu(texte){
+  var html = "", liste = null;
+  function fermer(){ if (liste) { html += "<ol>" + liste.join("") + "</ol>"; liste = null; } }
+  String(texte || "").split("\n").forEach(function(l){
+    var brut = l.trim();
+    if (!brut) { fermer(); return; }
+    var num = brut.match(/^(\d{1,2})[.)]\s+(.*)$/);
+    if (num) { if (!liste) { liste = []; } liste.push("<li>" + liens(num[2]) + "</li>"); }
+    else { fermer(); html += "<p>" + liens(brut) + "</p>"; }
+  });
+  fermer();
+  return html || "<p></p>";
+}
+function liens(f){
+  return ech(f).replace(/https?:\/\/[^\s<),;]+/g, function(u){
+    return "<a href=\"" + u + "\" target=\"_blank\" rel=\"noopener noreferrer\">" + u + "</a>";
+  });
+}
 
-  try {
-    const resp = await fetch('/api/chat/stream', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({message: question})
-    });
-    const reader = resp.body.getReader();
-    const decoder = new TextDecoder();
-    let buffer = '';
+/* ── Provenance : ce que l'usager a le droit de savoir ──────────── */
+function provenance(ev){
+  if (ev.statut === "OUT_OF_SCOPE")
+    return {bord:"border-l-craie-500", puce:"border-line text-craie-500", texte:"hors du périmètre eServices"};
+  if (ev.statut === "INSUFFICIENT_KNOWLEDGE" || ev.statut === "NOT_GROUNDED")
+    return {bord:"border-l-craie-500", puce:"border-line text-craie-500", texte:"aucune source officielle trouvée"};
+  if (ev.statut === "KNOWN_BUG")
+    return {bord:"border-l-ambre-400", puce:"border-ambre-400 text-ambre-400", texte:"incident connu, sans procédure publiée"};
+  if (ev.validee)
+    return {bord:"border-l-vert-400", puce:"border-vert-500 bg-vert-500 text-ink-900",
+            texte:"validée par la TGR" + (ev.validee_par ? " · " + ev.validee_par : "")};
+  if (ev.mode === "direct" || ev.mode === "cache")
+    return {bord:"border-l-vert-500", puce:"border-vert-500 text-vert-400", texte:"réponse officielle"};
+  return {bord:"border-l-ambre-400", puce:"border-ambre-400 text-ambre-400", texte:"rédigée à l’instant"};
+}
 
-    while (true) {
-      const {done, value} = await reader.read();
-      if (done) break;
-      buffer += decoder.decode(value, {stream: true});
-      const lines = buffer.split('\n\n');
-      buffer = lines.pop();
-      for (const line of lines) {
-        if (!line.startsWith('data: ')) continue;
-        const ev = JSON.parse(line.slice(6));
-        if (ev.type === 'etape') {
-          addTraceStep(trace, ev.detail);
-        } else if (ev.type === 'token') {
-          bubble.style.display = 'block';
-          bubble.textContent += ev.token;
-          scroll();
-        } else if (ev.type === 'final') {
-          bubble.style.display = 'block';
-          bubble.textContent = ev.reponse;
-          trace.querySelectorAll('.trace-step').forEach(s => s.classList.remove('active'));
-          addSources(div, ev.sources, ev.statut, ev.latence_s, ev.mode);
-          addFeedback(div, question, ev.reponse);
-          scroll();
-        } else if (ev.type === 'error') {
-          bubble.style.display = 'block';
-          bubble.textContent = '⚠️ ' + ev.detail;
-        }
-      }
-    }
-  } catch (e) {
-    bubble.style.display = 'block';
-    bubble.textContent = '⚠️ Erreur de connexion au serveur : ' + e.message;
-  } finally {
-    busy = false; sendBtn.disabled = false; input.focus();
+/* ── Un échange ────────────────────────────────────────────────── */
+function poser(question){
+  var rtl = ARABE.test(question);
+  document.getElementById("accueil").hidden = true;
+
+  var tour = document.createElement("div");
+  tour.className = "glisse flex flex-col gap-3";
+  tour.innerHTML =
+    "<div class=\"self-end max-w-[min(34rem,88%)] rounded-2xl rounded-br-md bg-vert-600 px-4 py-2.5" +
+      " leading-relaxed text-craie-100" + (rtl ? " font-arabe" : "") + "\"" +
+      (rtl ? " dir=\"rtl\"" : "") + ">" + ech(question) + "</div>" +
+    "<div data-attente class=\"rounded-xl border border-dashed border-line bg-ink-800/70 px-4 py-3\">" +
+      "<div class=\"flex items-center gap-2.5 text-[.9rem] text-craie-300\">" +
+        "<span class=\"size-2 shrink-0 rounded-full bg-or-400 battement\"></span>" +
+        "<span data-etat>Recherche dans la documentation officielle…</span>" +
+      "</div></div>" +
+    "<div data-reponse hidden></div>";
+  fil.appendChild(tour);
+  enBas();
+  return {rtl: rtl,
+          attente: tour.querySelector("[data-attente]"),
+          etat: tour.querySelector("[data-etat]"),
+          rep: tour.querySelector("[data-reponse]")};
+}
+
+var etapes = [];
+function etape(vue, texte){
+  etapes.push(texte);
+  vue.etat.textContent = texte.replace(/^[^\wÀ-ÿ]+\s*/, "");
+  if (/rédige|génér|Rédaction/i.test(texte) && !vue.attente.querySelector("[data-lent]")) {
+    var s = document.createElement("p");
+    s.setAttribute("data-lent", "");
+    s.className = "mt-2 text-[.82rem] leading-relaxed text-craie-500";
+    s.innerHTML = "Cette question est <b class=\"text-craie-300\">inédite</b> : la réponse est en train " +
+      "d’être rédigée à partir des sources officielles. Sur cette machine, cela prend environ une minute.";
+    vue.attente.appendChild(s);
   }
+  enBas();
 }
 
-sendBtn.onclick = () => sendMessage();
-input.addEventListener('keydown', e => { if (e.key === 'Enter') sendMessage(); });
-document.querySelectorAll('.sugg').forEach(s =>
-  s.onclick = () => sendMessage(s.textContent));
+function conclure(vue, ev, question){
+  vue.attente.remove();
+  var p = provenance(ev);
+  var srcs = (ev.sources || []).map(function(s){ return s.id; }).slice(0, 4);
 
-// badge de santé
-fetch('/health').then(r => r.json()).then(h => {
-  document.getElementById('statsBadge').textContent =
-    `${h.chromadb} chunks · ${h.ollama ? 'Ollama ✓' : 'Ollama ✗'} · ${h.modele}`;
-}).catch(()=>{});
+  vue.rep.hidden = false;
+  vue.rep.className = "glisse rounded-2xl border border-l-4 border-line bg-ink-800 p-5 shadow-panneau " + p.bord;
+  if (vue.rtl) { vue.rep.dir = "rtl"; }
+  vue.rep.innerHTML =
+    "<div class=\"flex flex-wrap items-center gap-2\">" +
+      "<span class=\"rounded-full border px-2.5 py-0.5 font-data text-[.6rem] uppercase tracking-[.1em] " +
+        p.puce + "\">" + ech(p.texte) + "</span>" +
+      "<span class=\"font-data text-[.6rem] uppercase tracking-[.1em] tabular-nums text-craie-500\">" +
+        ech(ev.latence_s) + " s</span>" +
+    "</div>" +
+    "<div class=\"rendu mt-3.5 leading-[1.75]\"" + (vue.rtl ? " dir=\"rtl\"" : "") + ">" +
+      rendu(ev.reponse) + "</div>" +
+    "<div class=\"mt-4 flex flex-wrap items-center gap-3 border-t border-line pt-3\">" +
+      (srcs.length ? "<span class=\"font-data text-[.64rem] text-craie-500\">Sources : " +
+        ech(srcs.join(" · ")) + "</span>" : "") +
+      "<span data-avis class=\"ml-auto flex gap-1.5\"></span>" +
+    "</div>" +
+    "<div data-trace hidden class=\"mt-3 flex flex-col gap-1 border-t border-line pt-3\">" +
+      "<span class=\"font-data text-[.56rem] uppercase tracking-[.16em] text-or-500\">Détail du traitement</span>" +
+    "</div>";
 
-// ── Onglets ──
-const recPanel = document.getElementById('recPanel');
-const chatMsgs = document.getElementById('messagesContainer');
-const suggBar = document.getElementById('suggestions');
-const inputArea = document.querySelector('.chat-input-area');
-document.querySelectorAll('.tab').forEach(tab => {
-  tab.onclick = () => {
-    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-    tab.classList.add('active');
-    const isChat = tab.dataset.tab === 'chat';
-    recPanel.classList.toggle('visible', !isChat);
-    chatMsgs.style.display = isChat ? 'flex' : 'none';
-    suggBar.style.display = isChat ? 'flex' : 'none';
-    inputArea.style.display = isChat ? 'flex' : 'none';
-  };
+  var tr = vue.rep.querySelector("[data-trace]");
+  etapes.concat(["statut " + ev.statut + " · " + ev.latence_s + " s" +
+                 (ev.mode ? " · voie " + ev.mode : "") + (ev.fiche ? " · fiche " + ev.fiche : "")])
+    .forEach(function(x){
+      var d = document.createElement("span");
+      d.className = "relative pl-3 font-data text-[.66rem] leading-relaxed text-craie-500 " +
+        "before:absolute before:left-0 before:top-[.6em] before:size-1 before:rounded-full before:bg-line";
+      d.textContent = x;
+      tr.appendChild(d);
+    });
+  tr.hidden = btnInspect.getAttribute("aria-pressed") !== "true";
+
+  var avis = vue.rep.querySelector("[data-avis]");
+  var BASE = "tactile rounded-lg border px-2.5 py-1 text-[.78rem] transition ";
+  [["Utile", true], ["Pas utile", false]].forEach(function(paire){
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = BASE + "border-line text-craie-500 hover:border-or-500 hover:text-or-400";
+    b.textContent = paire[0];
+    b.onclick = function(){
+      avis.querySelectorAll("button").forEach(function(x){
+        x.className = BASE + "border-line text-craie-500 hover:border-or-500 hover:text-or-400";
+      });
+      b.className = BASE + "border-vert-500 text-vert-400";
+      fetch("/api/feedback", {method:"POST", headers:{"Content-Type":"application/json"},
+        body: JSON.stringify({question:question, reponse:ev.reponse, utile:paire[1]})}).catch(function(){});
+    };
+    avis.appendChild(b);
+  });
+  enBas();
+}
+
+function echouer(vue, message){
+  if (vue.attente) { vue.attente.remove(); }
+  vue.rep.hidden = false;
+  vue.rep.className = "glisse rounded-2xl border border-l-4 border-rouge-400/50 border-l-rouge-400 bg-ink-800 p-5";
+  vue.rep.innerHTML = "<div class=\"rendu leading-relaxed\"><p>" + ech(message) + "</p></div>";
+  enBas();
+}
+
+/* ── Envoi ─────────────────────────────────────────────────────── */
+function envoyer(texte){
+  var question = (texte === undefined ? saisie.value : texte).trim();
+  if (!question || occupe) { return; }
+  occupe = true; envoi.disabled = true;
+  if (texte === undefined) { saisie.value = ""; hauteur(); }
+  etapes = [];
+  var vue = poser(question);
+
+  fetch("/api/chat/stream", {method:"POST", headers:{"Content-Type":"application/json"},
+    body: JSON.stringify({message: question})})
+  .then(function(resp){
+    var lecteur = resp.body.getReader(), decodeur = new TextDecoder(), tampon = "";
+    function suite(){
+      return lecteur.read().then(function(r){
+        if (r.done) { return; }
+        tampon += decodeur.decode(r.value, {stream:true});
+        var bouts = tampon.split("\n\n");
+        tampon = bouts.pop();
+        bouts.forEach(function(m){
+          if (m.indexOf("data: ") !== 0) { return; }
+          var ev = JSON.parse(m.slice(6));
+          if (ev.type === "etape") { etape(vue, ev.detail); }
+          else if (ev.type === "final") { conclure(vue, ev, question); }
+          else if (ev.type === "error") { echouer(vue, ev.detail); }
+        });
+        return suite();
+      });
+    }
+    return suite();
+  })
+  .catch(function(e){
+    echouer(vue, "Le service ne répond pas : " + e.message +
+      ". Vérifiez que l’assistant est démarré, puis réessayez.");
+  })
+  .then(function(){ occupe = false; envoi.disabled = false; saisie.focus(); });
+}
+
+function hauteur(){
+  saisie.style.height = "auto";
+  saisie.style.height = Math.min(saisie.scrollHeight, 144) + "px";
+}
+saisie.addEventListener("input", function(){
+  hauteur();
+  var rtl = ARABE.test(saisie.value);
+  saisie.dir = rtl ? "rtl" : "ltr";
+  saisie.classList.toggle("font-arabe", rtl);
+});
+saisie.addEventListener("keydown", function(e){
+  if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); envoyer(); }
+});
+envoi.onclick = function(){ envoyer(); };
+document.querySelectorAll("#sugg button").forEach(function(b){
+  b.onclick = function(){ envoyer(b.textContent.trim()); };
 });
 
-// ── Réclamation : natures ──
-fetch('/api/reclamation/natures').then(r => r.json()).then(d => {
-  const sel = document.getElementById('recNature');
-  d.natures.forEach(n => {
-    const opt = document.createElement('option');
-    opt.value = n; opt.textContent = n;
-    sel.appendChild(opt);
+/* ── État du service ───────────────────────────────────────────── */
+fetch("/health").then(function(r){ return r.json(); }).then(function(h){
+  var el = document.getElementById("sante");
+  el.title = h.chromadb + " extraits indexés · modèle " + h.modele;
+  if (!h.ollama) {
+    el.innerHTML = "<span class=\"size-1.5 rounded-full bg-ambre-400\"></span>réponses instantanées seules";
+  }
+}).catch(function(){
+  document.getElementById("sante").innerHTML =
+    "<span class=\"size-1.5 rounded-full bg-rouge-400\"></span>hors service";
+});
+
+/* ── Onglets ───────────────────────────────────────────────────── */
+var tabChat = document.getElementById("tabChat"), tabRec = document.getElementById("tabRec");
+var panelChat = document.getElementById("panelChat"), panelRec = document.getElementById("panelRec");
+function onglet(chat){
+  tabChat.setAttribute("aria-selected", chat ? "true" : "false");
+  tabRec.setAttribute("aria-selected", chat ? "false" : "true");
+  panelChat.hidden = !chat;
+  panelRec.hidden = chat;
+  document.getElementById("composer").hidden = !chat;
+  observer(chat ? panelChat : panelRec);
+}
+tabChat.onclick = function(){ onglet(true); };
+tabRec.onclick = function(){ onglet(false); };
+
+/* ── Réclamation ───────────────────────────────────────────────── */
+fetch("/api/reclamation/natures").then(function(r){ return r.json(); }).then(function(d){
+  var sel = document.getElementById("recNature");
+  (d.natures || []).forEach(function(n){
+    var o = document.createElement("option");
+    o.value = n; o.textContent = n;
+    sel.appendChild(o);
   });
-}).catch(()=>{});
+}).catch(function(){});
 
-// ── Réclamation : dépôt ──
-document.getElementById('recSubmit').onclick = async () => {
-  const objet = document.getElementById('recObjet').value.trim();
-  const desc = document.getElementById('recDesc').value.trim();
-  const nature = document.getElementById('recNature').value;
-  const resBox = document.getElementById('recResult');
-  if (!desc) { alert('Veuillez décrire votre problème.'); return; }
-  const btn = document.getElementById('recSubmit');
-  btn.disabled = true; btn.textContent = '⏳ Traitement par l\'agent IA…';
-  resBox.classList.remove('visible');
-  try {
-    const r = await fetch('/api/reclamation', {
-      method: 'POST', headers: {'Content-Type':'application/json'},
-      body: JSON.stringify({objet, description: desc, nature})
-    });
-    const d = await r.json();
-    let html = `<span class="ref-badge">${d.reference}</span>\n`;
-    html += `📌 Nature : ${d.nature}\n📊 Statut : ${d.statut}\n\n${d.message_usager}`;
-    if (d.reponse_proposee) {
-      html += `\n\n──────────\n🤖 RÉPONSE AUTOMATIQUE (sous réserve de validation) :\n\n${d.reponse_proposee}`;
+function erreur(id, message){
+  var e = document.getElementById(id);
+  e.textContent = message;
+  e.hidden = !message;
+}
+
+document.getElementById("recGo").onclick = function(){
+  var objet = document.getElementById("recObjet").value.trim();
+  var desc = document.getElementById("recDesc").value.trim();
+  var nature = document.getElementById("recNature").value;
+  var boite = document.getElementById("recRecu");
+  if (desc.length < 15) {
+    erreur("recErr", "Décrivez votre situation en quelques phrases : sans détail, un agent ne pourra pas traiter la demande.");
+    document.getElementById("recDesc").focus();
+    return;
+  }
+  erreur("recErr", "");
+  var b = this;
+  b.disabled = true; b.textContent = "Dépôt en cours…";
+  boite.hidden = true;
+  fetch("/api/reclamation", {method:"POST", headers:{"Content-Type":"application/json"},
+    body: JSON.stringify({objet:objet, description:desc, nature:nature})})
+  .then(function(r){ return r.json(); })
+  .then(function(d){
+    boite.innerHTML =
+      "<span class=\"font-data text-[.6rem] uppercase tracking-[.14em] text-vert-400\">" +
+        "Votre numéro de dossier — conservez-le</span>" +
+      "<div class=\"mt-2 font-data text-3xl tabular-nums text-vert-400\">" + ech(d.reference) + "</div>" +
+      "<p class=\"mt-3 leading-relaxed whitespace-pre-wrap text-craie-300 [overflow-wrap:anywhere]\">" +
+        ech(d.message_usager) + "</p>" +
+      "<div class=\"mt-3 font-data text-[.64rem] uppercase tracking-[.1em] text-craie-500\">" +
+        ech(d.nature) + " · " + ech(d.statut) + "</div>" +
+      (d.reponse_proposee
+        ? "<div class=\"mt-4 rounded-xl border border-line bg-ink-800 p-4\">" +
+            "<span class=\"font-data text-[.58rem] uppercase tracking-[.14em] text-ambre-400\">" +
+            "Élément de réponse, sous réserve de validation</span>" +
+            "<p class=\"mt-2 leading-relaxed whitespace-pre-wrap [overflow-wrap:anywhere]\">" +
+            ech(d.reponse_proposee) + "</p></div>"
+        : "");
+    boite.hidden = false;
+    boite.scrollIntoView({block:"nearest", behavior:"smooth"});
+  })
+  .catch(function(e){ erreur("recErr", "Le dépôt n’a pas abouti : " + e.message + ". Votre texte est toujours là."); })
+  .then(function(){ b.disabled = false; b.textContent = "Déposer la réclamation"; });
+};
+
+document.getElementById("suiviGo").onclick = function(){
+  var ref = document.getElementById("suiviRef").value.trim();
+  var boite = document.getElementById("suiviRecu");
+  if (!ref) { erreur("suiviErr", "Indiquez le numéro qui vous a été remis, par exemple REC-2026-00001."); return; }
+  erreur("suiviErr", "");
+  boite.hidden = true;
+  fetch("/api/reclamation/suivi/" + encodeURIComponent(ref))
+  .then(function(r){ return r.json(); })
+  .then(function(d){
+    if (!d.trouvee) {
+      erreur("suiviErr", d.message_statut || "Aucun dossier ne porte ce numéro. Vérifiez la saisie.");
+      return;
     }
-    resBox.textContent = '';
-    resBox.innerHTML = html.replace(/</g,'&lt;').replace(/&lt;span class="ref-badge"&gt;(.*?)&lt;\/span&gt;/, '<span class="ref-badge">$1</span>');
-    resBox.classList.add('visible');
-  } catch (e) {
-    resBox.textContent = '⚠️ Erreur : ' + e.message;
-    resBox.classList.add('visible');
-  } finally {
-    btn.disabled = false; btn.textContent = 'Déposer la réclamation';
-  }
+    boite.innerHTML =
+      "<span class=\"font-data text-[.6rem] uppercase tracking-[.14em] text-or-500\">Dossier</span>" +
+      "<div class=\"mt-2 font-data text-2xl tabular-nums text-or-400\">" + ech(d.reference) + "</div>" +
+      "<div class=\"mt-2 font-data text-[.64rem] uppercase tracking-[.1em] text-craie-500\">" +
+        ech(d.date) + " · " + ech(d.nature) + " · " + ech(d.statut) + "</div>" +
+      "<p class=\"mt-3 leading-relaxed whitespace-pre-wrap text-craie-300 [overflow-wrap:anywhere]\">" +
+        ech(d.message_statut) + "</p>" +
+      (d.reponse_proposee
+        ? "<div class=\"mt-4 rounded-xl border border-line bg-ink-700 p-4 leading-relaxed " +
+          "whitespace-pre-wrap [overflow-wrap:anywhere]\">" + ech(d.reponse_proposee) + "</div>"
+        : "");
+    boite.hidden = false;
+  })
+  .catch(function(e){ erreur("suiviErr", "Consultation impossible : " + e.message); });
 };
 
-// ── Réclamation : suivi ──
-document.getElementById('suiviBtn').onclick = async () => {
-  const ref = document.getElementById('suiviRef').value.trim();
-  const box = document.getElementById('suiviResult');
-  if (!ref) return;
-  const r = await fetch('/api/reclamation/suivi/' + encodeURIComponent(ref));
-  const d = await r.json();
-  if (!d.trouvee) {
-    box.textContent = '❌ ' + d.message_statut;
-  } else {
-    let txt = `Référence : ${d.reference}\nDate : ${d.date}\nNature : ${d.nature}\nStatut : ${d.statut}\n\n${d.message_statut}`;
-    if (d.reponse_proposee) txt += `\n\n──────────\n${d.reponse_proposee}`;
-    box.textContent = txt;
-  }
-  box.classList.add('visible');
-};
+onglet(true);
+observer();
 </script>
 </body>
 </html>

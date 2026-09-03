@@ -28,6 +28,15 @@ STOPWORDS = {
     "une", "des", "les", "que", "qui", "quoi", "quest", "jai", "jaimerais",
     "bonjour", "merci", "svp", "sil", "plait", "aide", "aidez", "besoin",
     "probleme", "question", "demande", "please", "hello",
+    # Mots TGR authentiques mais à double sens courant — déjà écartés du signal
+    # POSITIF (TERMES_NOYAU, voir plus bas) pour la même raison ; il fallait
+    # aussi les écarter du signal NÉGATIF ci-dessous, sans quoi « une recette
+    # de tajine » contient « recette » (recette de perception), le test
+    # « aucun mot commun » ne se déclenche pas, et la question retombe sur le
+    # vote des voisins — sans aucun garde-fou de sens, lui. Mesuré en
+    # production : elle y a gagné le consensus de la fiche « mot de passe
+    # oublié », servie tel quelle en 0,1 s par la voie rapide.
+    "recette", "recettes", "gestion",
 }
 
 MOT_RE = re.compile(r"[^\W\d_]+", re.UNICODE)

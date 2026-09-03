@@ -155,15 +155,23 @@ class ReclamationHandler:
             pre = self.reponses_precalculees.get(p["fiche_id"]) if p["fiche_id"] else None
             if pre:
                 corps = pre.get(lang) or pre["fr"]
+                # On ne propose que ce que le portail sait faire : DÉPOSER et
+                # SUIVRE. L'ancienne formule invitait à « répondre à cette
+                # réclamation » — or rien ne permet de répondre : l'onglet
+                # Suivi ne fait que lire. L'usager attendait devant une porte
+                # qui n'existe pas.
                 if lang == "ar":
                     return ("تحية طيبة،\n\n" + corps + "\n\n"
-                            "إذا استمر المشكل بعد هذه الخطوات، يرجى الرد على هذه الشكاية "
-                            "وسيتكفل بها أحد أعواننا.\n\n"
+                            "يمكنكم تتبع ملفكم في أي وقت عبر تبويب «التتبع»، باستعمال "
+                            "المرجع أعلاه. وإذا استمر المشكل بعد هذه الخطوات، ضعوا شكاية "
+                            "جديدة مع ذكر هذا المرجع، وسيتكفل بها أحد أعواننا.\n\n"
                             "دعم بوابة الخدمات الإلكترونية — الخزينة العامة للمملكة")
                 return ("Bonjour,\n\n" + corps + "\n\n"
-                        "Si le problème persiste après ces étapes, répondez à cette "
-                        "réclamation en précisant votre identifiant : un agent prendra "
-                        "le relais.\n\nLe Support eServices TGR")
+                        "Vous pouvez suivre votre dossier à tout moment depuis l'onglet "
+                        "« Suivi », avec la référence ci-dessus. Si le problème persiste "
+                        "après ces étapes, déposez une nouvelle réclamation en rappelant "
+                        "cette référence : un agent prendra le relais.\n\n"
+                        "Le Support eServices TGR")
 
         # Voie lente : rédaction LLM (problème sans réponse pré-rédigée)
         ctx = "\n\n".join(f"--- Passage (fiche {p['fiche_id'] or p['fichier']}) ---\n{p['text']}"

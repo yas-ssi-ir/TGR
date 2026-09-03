@@ -81,6 +81,13 @@ def liste() -> dict:
             "validee": rep.get("validee", False),
             "modifiee": rep.get("modifiee", False),
             "validee_le": rep.get("validee_le", ""),
+            "validee_par": rep.get("validee_par", ""),
+            # « relue » : un relecteur a comparé la réponse à sa note et n'a
+            # rien trouvé à reprendre. Sans cet état, la seule façon de faire
+            # avancer le compteur était de VALIDER — donc de signer à la place
+            # de la TGR. C'est arrivé.
+            "relue": rep.get("relue", False),
+            "relue_par": rep.get("relue_par", ""),
             # verbatim = texte officiel publié, recopié tel quel : risque nul
             "risque": ("aucun" if verbatim
                        else "eleve" if tronquee or len(note) < SEUIL_NOTE_LACONIQUE
@@ -96,10 +103,15 @@ def liste() -> dict:
             "ar_douteuse": proportion_arabe(rep.get("ar", "")) < 0.30,
         })
     ordre = {"eleve": 0, "moyen": 1, "aucun": 2}
-    items.sort(key=lambda x: (x["validee"], ordre[x["risque"]], x["id"]))
+    # Les fiches encore intouchées remontent, puis les relues, puis les
+    # signées : la page s'ouvre toujours sur ce qui reste à faire.
+    items.sort(key=lambda x: (x["validee"], x["relue"], ordre[x["risque"]], x["id"]))
     return {
         "total": len(items),
         "validees": sum(1 for x in items if x["validee"]),
+        # relues MAIS pas encore signées : le travail du rédacteur, en attente
+        # de la TGR. C'est cette part qui manquait au compteur.
+        "relues": sum(1 for x in items if x["relue"] and not x["validee"]),
         "risque_eleve": sum(1 for x in items if x["risque"] == "eleve" and not x["validee"]),
         "ar_douteuses": sum(1 for x in items if x["ar_douteuse"]),
         "fiches": items,
@@ -107,30 +119,45 @@ def liste() -> dict:
 
 
 def enregistrer(fiche_id: str, fr: str, ar: str, valider: bool,
-                devalider: bool = False) -> bool:
+                devalider: bool = False, relue: bool = False,
+                relecteur: str = "") -> bool:
+    """Écrit une relecture. `relecteur` est le nom saisi dans la page : une
+    signature anonyme ne prouve rien à une administration, et c'est
+    précisément ce que cette page existe pour établir."""
     reponses = charger_reponses()
     if fiche_id not in reponses:
         return False
     rep = reponses[fiche_id]
+    qui = relecteur.strip()[:60]
+    quand = datetime.now().strftime("%Y-%m-%d %H:%M")
+
+    texte_change = False
     if fr.strip() and fr.strip() != rep.get("fr", ""):
         rep["fr"], rep["modifiee"] = fr.strip(), True
+        texte_change = True
     if ar.strip() and ar.strip() != rep.get("ar", ""):
         rep["ar"], rep["modifiee"] = ar.strip(), True
+        texte_change = True
         # « ar_defaillante » veut dire « le modèle a renoncé à traduire ». Un
         # relecteur qui écrit lui-même l'arabe lève ce constat : sans cela la
         # fiche resterait signalée comme non traduite, et la relecture
         # suivante retomberait dessus pour rien.
         if proportion_arabe(rep["ar"]) >= 0.30:
             rep.pop("ar_defaillante", None)
+    # Un texte qui change périme TOUT ce qui portait sur l'ancien : la
+    # signature de la TGR comme le constat de relecture. Les deux disent
+    # « j'ai lu CE texte-là » — ils ne suivent pas le texte suivant.
+    if texte_change:
+        rep["validee"], rep["validee_le"], rep["validee_par"] = False, "", ""
+        rep["relue"], rep["relue_par"] = False, ""
+
     if valider:
-        rep["validee"] = True
-        rep["validee_le"] = datetime.now().strftime("%Y-%m-%d %H:%M")
+        rep["validee"], rep["validee_le"], rep["validee_par"] = True, quand, qui
+        rep["relue"], rep["relue_par"] = True, rep.get("relue_par") or qui
     elif devalider:
-        rep["validee"], rep["validee_le"] = False, ""
-    elif rep.get("modifiee") and rep.get("validee"):
-        # Le vert certifie UN texte, pas une fiche : si le texte change, la
-        # signature de la TGR ne le couvre plus et la fiche repart à relire.
-        rep["validee"], rep["validee_le"] = False, ""
+        rep["validee"], rep["validee_le"], rep["validee_par"] = False, "", ""
+    elif relue:
+        rep["relue"], rep["relue_par"] = True, qui
     enregistrer_reponses(reponses)
     return True
 

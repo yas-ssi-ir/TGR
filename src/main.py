@@ -33,6 +33,7 @@ from semantic_cache import SemanticCache, empreinte_corpus
 
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import FileResponse, StreamingResponse
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
 app = FastAPI(
@@ -40,6 +41,12 @@ app = FastAPI(
     description="Assistant du portail eServices TGR (ChromaDB + multilingual-e5 + Ollama, 100% local)",
     version="1.0.0",
 )
+
+# Les polices sont servies depuis le projet, jamais depuis un CDN : l'assistant
+# doit fonctionner sans réseau, et une police chargée chez un tiers signalerait
+# chaque visite d'usager. Voir eval/installer_polices.py.
+if os.path.isdir(STATIC_DIR):
+    app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
 
 # Instanciation unique au démarrage (le chargement du modèle E5 prend ~10 s)
 print("Démarrage de l'assistant TGR...")
@@ -81,6 +88,12 @@ class RevisionEnregistrement(BaseModel):
     # la main. « valider: false » ne peut pas servir : il veut déjà dire
     # « j'enregistre sans me prononcer », ce qui ne doit RIEN retirer.
     devalider: bool = False
+    # « j'ai comparé cette réponse à sa note, il n'y a rien à reprendre » —
+    # sans cet état, le seul bouton qui faisait avancer le compteur était
+    # « Valider », et un rédacteur finissait par signer à la place de la TGR.
+    relue: bool = False
+    # Une validation anonyme ne prouve rien à une administration.
+    relecteur: str = ""
 
 
 class ReclamationValidation(BaseModel):
@@ -114,7 +127,8 @@ def revision_fiches():
 
 @app.post("/api/revision/enregistrer")
 def revision_enregistrer(req: RevisionEnregistrement):
-    if not revision.enregistrer(req.id, req.fr, req.ar, req.valider, req.devalider):
+    if not revision.enregistrer(req.id, req.fr, req.ar, req.valider,
+                                req.devalider, req.relue, req.relecteur):
         raise HTTPException(404, f"Fiche {req.id} introuvable.")
     # l'agent sert les réponses depuis la mémoire : on la rafraîchit
     agent.reponses_precalculees = revision.charger_reponses()
@@ -232,8 +246,15 @@ def chat_stream(req: ChatRequest):
                 STATS["total"] += 1
                 STATS["statuts"][direct["statut"]] += 1
                 STATS["latences"].append(latence)
+                # L'usager a le droit de savoir si un agent TGR a signé ce texte
+                # ou si personne ne l'a encore relu. C'est toute la différence
+                # entre une réponse officielle et une réponse vraisemblable.
+                memo = agent.reponses_precalculees.get(consensus["fiche_id"], {})
                 yield sse({"type": "final", "reponse": direct["reponse"], "sources": sources,
-                           "statut": direct["statut"], "mode": "direct", "latence_s": latence})
+                           "statut": direct["statut"], "mode": "direct", "latence_s": latence,
+                           "fiche": consensus["fiche_id"],
+                           "validee": bool(memo.get("validee")),
+                           "validee_par": memo.get("validee_par", "")})
                 return
 
             # Voie lente (question inédite) → le LLM devient nécessaire

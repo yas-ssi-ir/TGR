@@ -75,3 +75,49 @@ class TestArabeDefaillant:
         base["F.1"]["ar_defaillante"] = True
         revision.enregistrer("F.1", "", "Texte laisse en francais", valider=False)
         assert base["F.1"]["ar_defaillante"] is True
+
+
+class TestTroisEtats:
+    """« à relire » / « relue » / « validée ».
+
+    RÉGRESSION — sans l'état intermédiaire, un rédacteur qui jugeait une
+    réponse correcte n'avait aucun bouton pour l'enregistrer : le seul qui
+    faisait avancer le compteur était « Valider ». Il signait donc à la place
+    de la TGR. C'est arrivé sur la fiche 1.1.1.
+    """
+
+    def test_marquer_relue_ne_vaut_pas_signature(self, base):
+        revision.enregistrer("F.1", "", "", valider=False, relue=True, relecteur="Yassir")
+        assert base["F.1"]["relue"] is True
+        assert base["F.1"]["relue_par"] == "Yassir"
+        assert not base["F.1"].get("validee")
+
+    def test_la_signature_porte_un_nom_et_une_date(self, base):
+        """Une pastille verte qui ne dit pas qui l'a posée ne prouve rien."""
+        revision.enregistrer("F.1", "", "", valider=True, relecteur="Agent TGR")
+        assert base["F.1"]["validee_par"] == "Agent TGR"
+        assert base["F.1"]["validee_le"]
+
+    def test_valider_implique_relue(self, base):
+        revision.enregistrer("F.1", "", "", valider=True, relecteur="Agent TGR")
+        assert base["F.1"]["relue"] is True
+
+    def test_corriger_le_texte_perime_les_deux_constats(self, base):
+        """« Relue » et « validée » disent tous deux « j'ai lu CE texte » :
+        ils ne suivent pas le texte suivant."""
+        revision.enregistrer("F.1", "premier jet", "", valider=True, relecteur="Agent TGR")
+        revision.enregistrer("F.1", "texte remanié", "", valider=False)
+        assert base["F.1"]["validee"] is False
+        assert base["F.1"]["relue"] is False
+        assert base["F.1"]["validee_par"] == ""
+
+    def test_retirer_la_signature_laisse_la_relecture(self, base):
+        """Dévalider dit « je ne signe pas », pas « je n'ai rien lu »."""
+        revision.enregistrer("F.1", "", "", valider=True, relecteur="Agent TGR")
+        revision.enregistrer("F.1", "", "", valider=False, devalider=True)
+        assert base["F.1"]["validee"] is False
+        assert base["F.1"]["relue"] is True
+
+    def test_un_nom_trop_long_est_coupe(self, base):
+        revision.enregistrer("F.1", "", "", valider=True, relecteur="X" * 200)
+        assert len(base["F.1"]["validee_par"]) == 60
