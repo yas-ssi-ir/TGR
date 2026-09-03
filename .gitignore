@@ -37,6 +37,13 @@ data/processed/feedbacks.json
 # fois à comprendre le portail existant. Rien n'en dépend dans le projet.
 data/dashboard_eservices/
 
+# ── Rapports de mesure horodatés ──────────────────────────────────────
+# Régénérés en moins d'une minute par « python -X utf8 srcanc_essai.py ».
+# Un fichier de 100 Ko à chaque exécution n'a rien à faire dans l'historique ;
+# les chiffres qui comptent sont recopiés dans GUIDE_COMPLET.md.
+eval/banc_essai_*.md
+eval/reponses_servies_*.md
+
 # ── Sauvegardes et fichiers de travail ────────────────────────────────
 *.ancien.json
 *.bak

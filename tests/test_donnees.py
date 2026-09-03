@@ -175,3 +175,69 @@ class TestQualiteDesReponses:
         fautives = [i for i, r in reponses.items()
                     if r.get("fr", "").strip().lower().startswith(("bonjour", "cher ", "chère "))]
         assert not fautives, f"salutation en tête de : {fautives[:8]}"
+
+
+class TestFrontiereQuestionReponse:
+    """Une question non détectée n'est pas seulement perdue : son texte part
+    grossir la réponse de la fiche précédente, qui répond alors à côté.
+
+    RÉGRESSION — « J'ai une requête concernant le portail des marchés
+    publics » se terminait par « ,..etc. » ; la frontière question/réponse
+    exigeait un caractère alphanumérique avant la majuscule suivante, refusait
+    ce point, et l'analyseur s'abstenait. La question disparaissait du corpus
+    et ses 1300 caractères se retrouvaient à la fin de la procédure de
+    succession, servis à qui demandait comment liquider un héritage.
+    """
+
+    def test_la_succession_ne_parle_que_de_succession(self, fiches):
+        succession = [f for f in fiches
+                      if "succession" in f["probleme"].lower() and f["id"].startswith("FAQ.")]
+        assert succession, "la question sur la succession a disparu du corpus"
+        for f in succession:
+            assert "marchespublics" not in f["solution"].lower().replace(" ", ""), (
+                f"{f['id']} a absorbé la question suivante — relancer "
+                r"« python -X utf8 src\prepare_faq.py »")
+
+    def test_le_support_des_marches_publics_a_sa_propre_fiche(self, fiches):
+        assert [f for f in fiches
+                if "marchés publics" in f["probleme"].lower()
+                and "requête" in f["probleme"].lower()], \
+            "la question sur le portail des marchés publics n'a pas de fiche"
+
+
+@pytest.mark.lourd
+def test_le_seuil_de_troncature_suit_la_longueur_de_coupe():
+    """revision.py recopie la longueur de coupe de prepare_faq (qui tire
+    langchain, absent de l'étape rapide de la CI). Quand les deux valeurs
+    divergent, la page de relecture classe « tronquées » des réponses
+    complètes : la relecture se disperse sur de fausses alertes."""
+    from prepare_faq import LONGUEUR_REPONSE_MAX
+    from revision import LONGUEUR_COUPE_FAQ
+    assert LONGUEUR_COUPE_FAQ == LONGUEUR_REPONSE_MAX
+
+
+class TestRegistreDeLaReponse:
+    """Une réponse d'administration s'adresse à un usager, pas à un
+    développeur, et n'engage que ce que la note source prévoit.
+
+    Chaque motif ci-dessous a été relevé en production sur ce corpus :
+    « Keycloak » annoncé à l'usager, un « support Google » qui n'existe pas,
+    « votre Fiche Officielle » (vocabulaire interne du projet), la promesse
+    qu'« une équipe de la TGR vous contactera » — que rien ne prévoit.
+    """
+
+    @pytest.mark.parametrize("nom,motif", [
+        ("vocabulaire interne",
+         r"keycloak|LDAP|Fiche Officielle|Ma[iî]trise d.Ouvrage|"
+         r"Selon la documentation|votre documentation"),
+        ("support inexistant",
+         r"support (?:Google|MFA|technique|TGR|de l.application|client)|service client"),
+        ("engagement non prévu",
+         r"(?:une [ée]quipe|un agent|nous)[^.]{0,40}vous contacter"),
+        ("question posée dans une réponse figée",
+         r"Pourriez-vous|Pouvez-vous v[ée]rifier"),
+    ])
+    def test_aucune_reponse_ne_porte_ce_motif(self, reponses, nom, motif):
+        r = re.compile(motif, re.IGNORECASE)
+        fautives = sorted(i for i, rep in reponses.items() if r.search(rep.get("fr", "")))
+        assert not fautives, f"{nom} — présent dans {fautives[:8]}"

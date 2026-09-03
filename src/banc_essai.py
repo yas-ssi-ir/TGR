@@ -24,6 +24,7 @@ Lancement :
     python -X utf8 src\banc_essai.py --langue ar     # arabe seulement
     python -X utf8 src\banc_essai.py --langue dj     # darija seulement
     python -X utf8 src\banc_essai.py --rapide        # 1 variante par fiche
+    python -X utf8 src\banc_essai.py --reponses      # + le TEXTE servi, à lire
 """
 import json
 import os
@@ -34,11 +35,16 @@ from collections import Counter
 from datetime import datetime
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from agent_rag import AgenticRAG
 from config import (
     ASSISTANT_FICHES_JSON, EVAL_DIR, FAQ_FICHES_JSON, PRECOMPUTED_JSON,
     QA_FICHES_JSON,
 )
+
+# `AgenticRAG` entraîne toute la pile ML (torch, chromadb, client HTTP). Le
+# choix des cas et le jugement des verdicts, eux, sont de la logique pure : ils
+# doivent rester testables sans rien installer d'autre que pytest — c'est
+# l'étage rapide de l'intégration continue qui en dépend. L'agent n'est donc
+# chargé qu'au moment de poser réellement les questions.
 
 ARABE = re.compile("[؀-ۿ]")
 DARIJA = re.compile(
@@ -132,6 +138,8 @@ def main():
         print("Aucun cas : la chaîne de préparation a-t-elle été jouée ?")
         return
 
+    from agent_rag import AgenticRAG
+
     agent = AgenticRAG()
     lignes, verdicts, latences = [], Counter(), []
     debut = time.time()
@@ -144,7 +152,9 @@ def main():
         verdicts[verdict] += 1
         latences.append(lat)
         lignes.append({**c, "verdict": verdict, "detail": detail,
-                       "latence": lat, "statut": res["statut"]})
+                       "latence": lat, "statut": res["statut"],
+                       "servie": res["sources"][0]["id"] if res.get("sources") else None,
+                       "reponse": res["reponse"]})
 
         marque = "." if verdict == "OK" and lat <= SEUIL_LATENCE else "x"
         print(marque, end="", flush=True)
@@ -180,9 +190,55 @@ def main():
     chemin = ecrire_rapport(lignes, verdicts, latences, lentes, anomalies, duree, langue)
     print(f"\nRapport écrit : {chemin}")
 
+    if "--reponses" in sys.argv:
+        print(f"Réponses servies : {ecrire_reponses(lignes)}")
+
     parfait = not anomalies and not lentes
     print(f"\nVERDICT : {'PASSE' if parfait else 'À REGARDER'}")
     sys.exit(0 if parfait else 1)
+
+
+def ecrire_reponses(lignes: list[dict]) -> str:
+    """Écrit CE QUE L'USAGER LIT, question par question.
+
+    Le reste du script mesure le routage : la question atteint-elle le bon
+    tiroir ? Il ne dit rien de ce qui est écrit sur la fiche à l'intérieur —
+    or c'est là que se cachent les procédures inventées, et aucune machine ne
+    sait les repérer. Ce fichier existe pour être LU par un humain.
+
+    Les réponses sont groupées par fiche : les 393 questions ne servent que
+    122 textes distincts, les répéter n'apporterait rien. Sous chaque texte,
+    la liste des formulations qui y mènent — c'est ce que voit l'usager, et
+    c'est ce qu'un agent TGR doit valider.
+    """
+    os.makedirs(EVAL_DIR, exist_ok=True)
+    chemin = os.path.join(EVAL_DIR, f"reponses_servies_{datetime.now():%Y-%m-%d_%H%M}.md")
+
+    par_fiche: dict = {}
+    for ligne in lignes:
+        cle = ligne["servie"] or "AUCUNE FICHE — refus ou repli"
+        entree = par_fiche.setdefault(cle, {"reponse": ligne["reponse"], "questions": []})
+        entree["questions"].append(ligne)
+
+    with open(chemin, "w", encoding="utf-8") as f:
+        f.write(f"# Réponses réellement servies — {datetime.now():%d/%m/%Y %H:%M}\n\n")
+        f.write(f"{len(lignes)} questions posées, **{len(par_fiche)} textes distincts** "
+                f"servis en retour.\n\n")
+        f.write("> À lire avec une seule question en tête : **la réponse affirme-t-elle "
+                "quelque chose qui n'est pas dans la documentation de la TGR ?**\n>\n"
+                "> Le routage est vérifié automatiquement. Ceci ne l'est pas, et ne peut "
+                "pas l'être : une machine sait comparer des vecteurs, pas constater "
+                "qu'une procédure n'existe pas.\n\n---\n\n")
+
+        for fiche_id in sorted(par_fiche, key=lambda k: (k.startswith("AUCUNE"), k)):
+            entree = par_fiche[fiche_id]
+            f.write(f"## {fiche_id}\n\n")
+            f.write("**Questions qui mènent ici :**\n\n")
+            for q in entree["questions"]:
+                marque = "" if q["verdict"] == "OK" else f"  ⚠️ *(attendu : {q['attendu']})*"
+                f.write(f"- `{q['langue']}` {q['question']}{marque}\n")
+            f.write(f"\n**Réponse servie :**\n\n```\n{entree['reponse'].strip()}\n```\n\n---\n\n")
+    return chemin
 
 
 def ecrire_rapport(lignes, verdicts, latences, lentes, anomalies, duree, langue) -> str:

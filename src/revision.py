@@ -27,10 +27,13 @@ from retraduire_ar import proportion_arabe
 # comblé le vide. Ces fiches sont les plus exposées à l'invention.
 SEUIL_NOTE_LACONIQUE = 80
 
-# Longueur de coupe appliquée par prepare_faq.py. Une note qui l'atteint
-# EXACTEMENT a été tronquée : son texte s'arrête au milieu d'une phrase et ne
-# peut pas être considéré comme une réponse officielle complète.
-LONGUEUR_COUPE_FAQ = 1400
+# Longueur de coupe appliquée par prepare_faq.LONGUEUR_REPONSE_MAX. Une note
+# qui l'atteint a perdu du texte : la coupe tombe en fin de phrase, la réponse
+# se lit donc normalement, mais la suite du guide a été abandonnée — ce n'est
+# plus une réponse officielle complète.
+# Valeur recopiée, pas importée : prepare_faq tire langchain, que l'étape
+# rapide de la CI n'installe pas. test_donnees.py vérifie qu'elles coïncident.
+LONGUEUR_COUPE_FAQ = 2000
 
 
 def charger_fiches() -> dict:
@@ -103,7 +106,8 @@ def liste() -> dict:
     }
 
 
-def enregistrer(fiche_id: str, fr: str, ar: str, valider: bool) -> bool:
+def enregistrer(fiche_id: str, fr: str, ar: str, valider: bool,
+                devalider: bool = False) -> bool:
     reponses = charger_reponses()
     if fiche_id not in reponses:
         return False
@@ -112,9 +116,21 @@ def enregistrer(fiche_id: str, fr: str, ar: str, valider: bool) -> bool:
         rep["fr"], rep["modifiee"] = fr.strip(), True
     if ar.strip() and ar.strip() != rep.get("ar", ""):
         rep["ar"], rep["modifiee"] = ar.strip(), True
+        # « ar_defaillante » veut dire « le modèle a renoncé à traduire ». Un
+        # relecteur qui écrit lui-même l'arabe lève ce constat : sans cela la
+        # fiche resterait signalée comme non traduite, et la relecture
+        # suivante retomberait dessus pour rien.
+        if proportion_arabe(rep["ar"]) >= 0.30:
+            rep.pop("ar_defaillante", None)
     if valider:
         rep["validee"] = True
         rep["validee_le"] = datetime.now().strftime("%Y-%m-%d %H:%M")
+    elif devalider:
+        rep["validee"], rep["validee_le"] = False, ""
+    elif rep.get("modifiee") and rep.get("validee"):
+        # Le vert certifie UN texte, pas une fiche : si le texte change, la
+        # signature de la TGR ne le couvre plus et la fiche repart à relire.
+        rep["validee"], rep["validee_le"] = False, ""
     enregistrer_reponses(reponses)
     return True
 

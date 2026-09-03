@@ -120,7 +120,12 @@ OUVERTURE_ENONCE = re.compile(
 # questions par un sigle — « …une carte GAB de la TGR Vous devez vous
 # présenter… ». Exiger une minuscule avant la frontière faisait perdre ces
 # questions faute de séparateur trouvé.
-SEPARATION_ENONCE = re.compile(r"(?<=[A-Za-zÀ-ÿ0-9”’\"')\]]) (?=[A-ZÀ-Þ][a-zà-ÿ])")
+# Il peut aussi être un POINT, quand la question se termine par une
+# abréviation : « …demande d'ouverture de compte,..etc. Nous vous informons… ».
+# Sans le point, aucune frontière n'était trouvée, la question était abandonnée
+# (« on s'abstient ») et son texte partait grossir la réponse précédente — la
+# procédure de succession se terminait sur 1300 caractères de marchés publics.
+SEPARATION_ENONCE = re.compile(r"(?<=[A-Za-zÀ-ÿ0-9”’\"')\].]) (?=[A-ZÀ-Þ][a-zà-ÿ])")
 
 # Une question peut aussi démarrer JUSTE APRÈS un titre de partie, sans aucune
 # ponctuation pour l'annoncer : « Client de l'activité bancaire TGR Je souhaite

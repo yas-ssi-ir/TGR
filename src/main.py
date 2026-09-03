@@ -76,6 +76,11 @@ class RevisionEnregistrement(BaseModel):
     fr: str = ""
     ar: str = ""
     valider: bool = False
+    # Un relecteur se trompe de bouton, et la fiche passe pour certifiée par la
+    # TGR. Sans marche arrière, la seule issue était de retoucher le fichier à
+    # la main. « valider: false » ne peut pas servir : il veut déjà dire
+    # « j'enregistre sans me prononcer », ce qui ne doit RIEN retirer.
+    devalider: bool = False
 
 
 class ReclamationValidation(BaseModel):
@@ -109,7 +114,7 @@ def revision_fiches():
 
 @app.post("/api/revision/enregistrer")
 def revision_enregistrer(req: RevisionEnregistrement):
-    if not revision.enregistrer(req.id, req.fr, req.ar, req.valider):
+    if not revision.enregistrer(req.id, req.fr, req.ar, req.valider, req.devalider):
         raise HTTPException(404, f"Fiche {req.id} introuvable.")
     # l'agent sert les réponses depuis la mémoire : on la rafraîchit
     agent.reponses_precalculees = revision.charger_reponses()

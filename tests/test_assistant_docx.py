@@ -93,3 +93,109 @@ class TestIntegriteDuGuide:
         exact — autant dire jamais, un usager n'écrit pas des étiquettes."""
         muettes = [f["id"] for f in fiches if f["status"] == "ok" and not f["variantes"]]
         assert muettes == []
+
+
+@pytest.mark.lourd
+class TestQualiteDesVariantes:
+    """Une variante est une phrase qu'un usager taperait — pas une étiquette.
+
+    RÉGRESSION — « Guide de la TNB » : un sigle nu, sans aucun terme métier
+    reconnaissable. Le garde-fou n'y trouvait ni vocabulaire du portail ni
+    source proche, réveillait le modèle pour arbitrer (32 secondes) et
+    finissait par REFUSER une question pourtant légitime.
+    """
+
+    def test_aucune_variante_n_est_un_sigle_nu(self, fiches):
+        from lexique import contient_terme_noyau, ecriture_darija
+        ARABE = __import__("re").compile("[؀-ۿ]")
+        muettes = []
+        for f in fiches:
+            if f["status"] != "ok":
+                continue
+            for v in f["variantes"]:
+                # le lexique noyau est français : l'arabe et la darija ont
+                # leurs propres marges, ce contrôle ne les concerne pas
+                if ARABE.search(v) or ecriture_darija(v):
+                    continue
+                if len(v) < 30 and not contient_terme_noyau(v):
+                    muettes.append((f["id"], v))
+        assert not muettes, (
+            f"{len(muettes)} variante(s) trop courtes et sans terme métier — "
+            f"le garde-fou les refusera : {muettes[:5]}")
+
+
+class TestRenvoiOrphelin:
+    """« ce lien » est un lien hypertexte dans le .docx. Mis à plat, il ne
+    reste qu'un « Veuillez cliquer sur ce lien . » qui ne pointe vers rien,
+    juste au-dessus du « Lien : … » qui porte l'adresse. L'usager cherche un
+    lien dans cette phrase et n'en trouve aucun.
+    """
+
+    def test_le_renvoi_disparait_quand_l_adresse_est_restituee(self):
+        sortie = composer_solution(brute(
+            ["Pour changer votre mot de passe, cliquez sur l'icône Profil .",
+             "Veuillez cliquer sur ce lien ."],
+            ["https://eservices.tgr.gov.ma/my/general/change-password"]))
+        assert "sur ce lien" not in sortie
+        assert "https://eservices.tgr.gov.ma/my/general/change-password" in sortie
+        assert "Profil." in sortie              # l'espace avant le point est partie
+
+    def test_seule_la_phrase_part_jamais_la_ligne(self):
+        """RÉGRESSION — dans AST.4 le renvoi précède, sur la MÊME ligne, les
+        instructions qui font toute la réponse. Effacer la ligne entière
+        laissait l'usager avec un lien et aucune marche à suivre."""
+        sortie = composer_solution(brute(
+            ["Veuillez cliquer sur ce lien . Renseignez votre adresse email, "
+             "cochez la case « Je ne suis pas un robot »."],
+            ["https://eservices.tgr.gov.ma/my/auth/sendactivationcode"]))
+        assert "Renseignez votre adresse email" in sortie
+        assert "Je ne suis pas un robot" in sortie
+        assert "sur ce lien" not in sortie
+
+    def test_un_renvoi_qui_porte_le_verbe_est_conserve(self):
+        """« Activez votre compte en cliquant sur ce lien » : amputer la
+        phrase la laisserait sans fin."""
+        sortie = composer_solution(brute(
+            ["Activez votre compte en cliquant sur ce lien ."],
+            ["https://eservices.tgr.gov.ma/my/auth/activate"]))
+        assert "Activez votre compte en cliquant sur ce lien." in sortie
+
+    def test_sans_adresse_a_afficher_le_renvoi_reste(self):
+        """C'est alors la seule indication qu'un lien doit être suivi."""
+        assert "sur ce lien" in composer_solution(brute(["Veuillez cliquer sur ce lien ."]))
+
+
+class TestComplements:
+    """Le relevé du .docx a une date. Quand la TGR corrige son assistant, la
+    réponse est recueillie et versée dans COMPLEMENTS — même source, plus
+    récente. Deux garde-fous : un complément ne recouvre jamais une réponse
+    déjà relevée, et il ne doit pas exister de complément orphelin, qui
+    laisserait croire qu'une fiche est couverte alors qu'elle est vide.
+    """
+
+    def test_un_complement_ne_recouvre_jamais_une_reponse_relevee(self):
+        from prepare_assistant import COMPLEMENTS
+        libelle = next(iter(COMPLEMENTS))
+        officielle = brute(["Réponse déjà relevée sur le portail, qui fait foi."],
+                           ["https://eservices.tgr.gov.ma/my/x"], libelle=libelle)
+        assert classer(officielle) == "ok"
+        assert "déjà relevée" in composer_solution(officielle)
+
+    @pytest.mark.lourd
+    def test_chaque_complement_correspond_a_une_fiche_vide(self, fiches):
+        from prepare_assistant import COMPLEMENTS
+        libelles = {f["probleme"] for f in fiches}
+        orphelins = [k for k in COMPLEMENTS if k not in libelles]
+        assert not orphelins, f"complément sans fiche correspondante : {orphelins}"
+
+    @pytest.mark.lourd
+    def test_les_deux_procedures_recueillies_sont_bien_servies(self, fiches):
+        """RÉGRESSION — AST.49 (solde bancaire) et AST.62 (motifs de rejet)
+        étaient des échecs de l'assistant TGR au moment du relevé. Ils ont été
+        corrigés depuis, et leurs réponses recueillies le 2026-09-03."""
+        par_libelle = {f["probleme"]: f for f in fiches}
+        for libelle, attendu in (("Consultation du solde", "BanqueNet"),
+                                 ("Motifs de rejet après soumission", "2-22-431")):
+            f = par_libelle[libelle]
+            assert f["status"] == "ok", f"{f['id']} est retombée sans réponse"
+            assert attendu in f["solution"]

@@ -55,6 +55,7 @@
                   font-size:13px;font-weight:600}
   .valider{background:var(--ok);color:#08240f}
   .enreg{background:transparent;border:1px solid var(--bord)!important;color:var(--gris)}
+  .deval{background:transparent;border:1px solid var(--rouge)!important;color:#ff9d9d}
   .etat{font-size:12px;color:var(--gris)}
   .vide{text-align:center;color:var(--gris);padding:50px}
   .retour{color:var(--gris);text-decoration:none;font-size:12.5px}
@@ -142,22 +143,37 @@ function rendre(){
       '<div class="actions">' +
         '<button class="valider">✓ Valider</button>' +
         '<button class="enreg">Enregistrer sans valider</button>' +
+        (f.validee ? '<button class="deval">Retirer la validation</button>' : '') +
         '<span class="etat"></span>' +
       '</div>';
     const fr = el.querySelector('[data-fr]');
     const ar = el.querySelector('[data-ar]');
     const etat = el.querySelector('.etat');
-    const envoyer = async (valider) => {
+    const envoyer = async (valider, devalider) => {
       etat.textContent = 'enregistrement…';
       await fetch('/api/revision/enregistrer', {
         method: 'POST', headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({id: f.id, fr: fr.value, ar: ar.value, valider: valider})
+        body: JSON.stringify({id: f.id, fr: fr.value, ar: ar.value,
+                              valider: valider, devalider: !!devalider})
       });
-      etat.textContent = valider ? '✓ validée' : '✓ enregistrée';
-      if (valider) setTimeout(charger, 400);
+      // Les cartes sont redessinées depuis FICHES à chaque changement de
+      // filtre. Sans cette mise à jour, la copie en mémoire reste sur le texte
+      // d'AVANT : le filtre suivant le réaffiche dans la zone de saisie, et le
+      // clic d'après le renvoie au serveur — la correction est perdue en
+      // silence. Constaté sur la fiche 1.1.1, revenue à sa version fautive.
+      f.fr = fr.value; f.ar = ar.value; f.modifiee = true;
+      f.validee = valider;
+      f.validee_le = valider ? '(à l’instant)' : '';
+      etat.textContent = devalider ? 'validation retirée'
+                       : valider ? '✓ validée' : '✓ enregistrée';
+      // redessiner : la pastille verte doit tomber, et le bouton de marche
+      // arriere disparaitre avec elle
+      if (valider || devalider) setTimeout(charger, 400);
     };
-    el.querySelector('.valider').onclick = () => envoyer(true);
-    el.querySelector('.enreg').onclick = () => envoyer(false);
+    el.querySelector('.valider').onclick = () => envoyer(true, false);
+    el.querySelector('.enreg').onclick = () => envoyer(false, false);
+    const deval = el.querySelector('.deval');
+    if (deval) deval.onclick = () => envoyer(false, true);
     c.appendChild(el);
   }
 }

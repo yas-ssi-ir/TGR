@@ -394,7 +394,7 @@
     "id": "FAQ.37",
     "categorie": "Activité bancaire",
     "probleme": "Nous souhaitons liquider une succession, quelle est la procédure?",
-    "solution": "Vous devez vous rendre à l’agence concernée par le compte objet de la succession muni des pièces suivantes en double exemplaires: - L’extrait de l’acte de décès; - la copie certifiée conforme à l’original de l’acte d’hérédité précisant la part revenant à chaque héritier; - Les copies certifiées conformes aux originaux des CIN des héritiers et du défunt ou défunte; - La restitution des moyens de paiement dont disposait le défunt (chéquiers et carte GAB); - Une procuration faite au profit du mandataire, le cas échéant; - Quitus fiscal. 10 Ordonnateur/Titulaire d’une commande publique J’ai une requête concernant le portail des marchés publics: demande d’assistance, réinitialisation de mot de passe, demande d’ouverture de compte,..etc. Nous vous informons que la TGR a mis à la disposition des entreprises et acheteurs publics trois guides consultables et téléchargeables au niveau du portail des marchés publics “www.marchespublics.gov.ma” rubrique:” support et docum entation”-Guide utilisateur . Vous pouvez également consulter les “ questions/réponses” figurant dans cette rubrique à même de répondre à votre interrogation ou vous entraîner sur la plate-forme avec la consultation de test qui figure dans la rubrique \"Se préparer à répondre\". Toutefois, si vous avez toujours besoin d’assistance, la TGR met à votre disposition un service de support téléphonique est mis en place pour les entreprises et pour les acheteurs publics à même de mieux appréhender les différentes fonctionnalités offertes par la plate -forme de dématérialisation des marchés publics. Ce service ne s’adresse qu’à des personnes familières de l’utilisation des outils bureautiques en général (Explorateur Windows, manipulation de fichiers, dossiers ZIP, etc.) et d’Internet en particulier. En aucun cas, ce service de support n’est destiné à former les entreprises ou les acheteurs publics aux fonctions bureautiques usuelles.",
+    "solution": "Vous devez vous rendre à l’agence concernée par le compte objet de la succession muni des pièces suivantes en double exemplaires: - L’extrait de l’acte de décès; - la copie certifiée conforme à l’original de l’acte d’hérédité précisant la part revenant à chaque héritier; - Les copies certifiées conformes aux originaux des CIN des héritiers et du défunt ou défunte; - La restitution des moyens de paiement dont disposait le défunt (chéquiers et carte GAB); - Une procuration faite au profit du mandataire, le cas échéant; - Quitus fiscal. 10 Ordonnateur/Titulaire d’une commande publique",
     "status": "ok",
     "variantes": [
       "Nous souhaitons liquider une succession, quelle est la procédure?",
@@ -403,6 +403,17 @@
   },
   {
     "id": "FAQ.38",
+    "categorie": "Commande publique",
+    "probleme": "J’ai une requête concernant le portail des marchés publics: demande d’assistance, réinitialisation de mot de passe, demande d’ouverture de compte,..etc.",
+    "solution": "Nous vous informons que la TGR a mis à la disposition des entreprises et acheteurs publics trois guides consultables et téléchargeables au niveau du portail des marchés publics “www.marchespublics.gov.ma” rubrique:” support et docum entation”-Guide utilisateur . Vous pouvez également consulter les “ questions/réponses” figurant dans cette rubrique à même de répondre à votre interrogation ou vous entraîner sur la plate-forme avec la consultation de test qui figure dans la rubrique \"Se préparer à répondre\". Toutefois, si vous avez toujours besoin d’assistance, la TGR met à votre disposition un service de support téléphonique est mis en place pour les entreprises et pour les acheteurs publics à même de mieux appréhender les différentes fonctionnalités offertes par la plate -forme de dématérialisation des marchés publics. Ce service ne s’adresse qu’à des personnes familières de l’utilisation des outils bureautiques en général (Explorateur Windows, manipulation de fichiers, dossiers ZIP, etc.) et d’Internet en particulier. En aucun cas, ce service de support n’est destiné à former les entreprises ou les acheteurs publics aux fonctions bureautiques usuelles. Le service de support est ouvert de 9h00 à 16h30 les jours ouvrés en appelant sur le: 05 37 57 88 94. - Fax : 05 37 57 22 35 Vous pouvez aussi c ontacter l’administrateur de la plate -forme à l’adresse e -mail: marchespublics@tgr.gov.ma J’ai une requête concernant le système de gestion intégrée de la dépense GID: demande d’assistance, réinitialisation de mot de passe, demande d’ouverture de compte,..etc. Les réclamations qui concernent GID doivent être reportées par le référent GID au niveau du poste comptable de rattachement (voir annuaire des postes comptables de la TGR). Il a un rôle de filtrage desdites réclamations et d’assistance de premie r niveau.",
+    "status": "ok",
+    "variantes": [
+      "J’ai une requête concernant le portail des marchés publics: demande d’assistance, réinitialisation de mot de passe, demande d’ouverture de compte,..etc.",
+      "Nous vous informons que la TGR a mis à la disposition des entreprises et acheteurs publics trois guides consultables et téléchargeables au niveau du portail des marchés publics “www.marchespublics.gov.ma” rubrique:” support et docum entation”-Guide utilisateur ."
+    ]
+  },
+  {
+    "id": "FAQ.39",
     "categorie": "Commande publique",
     "probleme": "Je suis une entreprise et j’ai un retard de paiement par rapport à une commande publique",
     "solution": "Concernant les commandes publiques, la Trésorerie Générale du Royaume assure l’exécution de ces dépenses à travers son réseau de Trésoreries Ministérielles, Provinciales et préfectorales en effectuant un contrôle des engagement et un contrôle de validité respectivement sur les dossiers d’engagement et dossiers de mandatement émanant de l’ordonnateur/sous ordonnateur avant de procéder in fine à leurs règlement. Dans ce cad re et si l’entreprise constate un retard de paiement, elle doit s’adresser au maître d’ouvrage pour avoir les motifs du retard. En outre, la Trésorerie Générale du Royaume a mis en place un service GID -Fournisseur qui permet à tout fournisseur de suivre le s actes afférents aux contrats en cours auprès de l’administration publique. La procédure est décrite au niveau de la page web: https://fournisseurs.gid.gov.ma/inscription/accueilplus.htm 11 Enfin, et si le retard incombe au poste comptable, le titulaire de la commande publique peut formuler une réclamation en ligne au niveau du portail de la TGR en mentionnant le numéro de bordereau envoyé par l’ordonnateur/sous ordonnateur, ainsi que la date d’envoi et le poste comptable concerné.",
@@ -413,7 +424,7 @@
     ]
   },
   {
-    "id": "FAQ.39",
+    "id": "FAQ.40",
     "categorie": "Fonctionnaire",
     "probleme": "Je souhaite changer la domiciliation de mon salaire vers un autre compte, comment faire?",
     "solution": "Afin que la Direction des Dépenses du Personnel puisse prendre en charge le changement de votre domiciliation, vous devez déposer une demande de changement du mode de règlement, accompagnée d'un spécimen de chèque de la banque souhaitée auprès du service des ressources humaines de votre département, ce dernier la transmettra par voie hiérarchique à la Trésorerie Ministérielle. Ma demande de crédit a été refusée à cause du refus de la demande de réservation par la Direction des dépenses du personnel Les crédits contractés auprès des sociétés de financement et banques sont initiés par ces organismes de manière automatique conformément à la réglementation en vigueur et dans la limite de la quotité cessible du salaire. Mon salaire a fait l’objet d’un précompte sous le motif “Trop perçu”.",
@@ -424,7 +435,7 @@
     ]
   },
   {
-    "id": "FAQ.40",
+    "id": "FAQ.41",
     "categorie": "Fonctionnaire",
     "probleme": "Que veut dire cette mention?",
     "solution": "Le montant “Trop perçu” affiché au niveau de votre situation GRH du portail de la TGR est calculé sur une base annuelle et représente un montant que l’Etat a le droit de resti tuer en effectuant des précomptes sur votre salaire. Afin de connaître le motif exact de ce trop perçu, vous pouvez adresser une réclamation en ligne au niveau du portail de la TGR.",
@@ -435,7 +446,7 @@
     ]
   },
   {
-    "id": "FAQ.41",
+    "id": "FAQ.42",
     "categorie": "Fonctionnaire",
     "probleme": "Quelle est ma situation administrative//mon dernier net mensuel?",
     "solution": "Conformément à la loi n°09 -08 relative à la protection des personnes physiques à l’égard des traitements des données à caractère personnel promulguée par le Dahir N° 1 -09-15 du 22 Safar 1430 (18 Février 2009), les informations relatives à votre situation administ rative ne peuvent vous être communiquées sans authentification préalable. Nous vous informons à cet effet que la TGR a mis en place un système d’ inscription en ligne aux téléservices que vous pouvez utiliser au niveau du portail et qui vous permet de consulter votre situation administrative. J’ai consulté ma situation en ligne au niveau des téléservices de la TGR et j’ai constaté des erreurs au niveau de ma situation administrative ou informations personnelles (conjoint, enfants, CIN..",
@@ -446,7 +457,7 @@
     ]
   },
   {
-    "id": "FAQ.42",
+    "id": "FAQ.43",
     "categorie": "Fonctionnaire",
     "probleme": "Comment faire pour corriger ces erreurs?",
     "solution": "Pour ce qui est du changement des informations relatives à la CIN, vous pou vez formuler une réclamation en ligne et joindre une copie scannée de cette dernière. Cependant, et concernant les actes de gestion, la modificati on de votre situation administrative ou informations personnelles par nos services, ne peut s'effectuer qu'après réception des pièces justificatives émanant de votre département. A cet effet vous devez envoyer par voie hiérarchique votre dossier composé des pièces justificatives relatives à votre demande de correction. \r Votre département pourrait alors vous fournir les éléments relatifs à cet envoi afin de vous permettre de suivre avec les services de la Trésorerie ministérielle le traitement de votre demande à travers le portail des réclamations en ligne.",
@@ -457,7 +468,7 @@
     ]
   },
   {
-    "id": "FAQ.43",
+    "id": "FAQ.44",
     "categorie": "Fonctionnaire",
     "probleme": "J’ai constaté que le calcul des allocations familiales de mon enfant n’a pas considéré le mois de sa naissance, est ce que c’est normal ?",
     "solution": "Effectivement, le calcul des allocations familiales s’effectu e à partir du mois qui suit le mois de naissance des enfants.",
@@ -468,7 +479,7 @@
     ]
   },
   {
-    "id": "FAQ.44",
+    "id": "FAQ.45",
     "categorie": "Réclamations",
     "probleme": "Quelles sont les conditions à respecter?",
     "solution": "Avant de réclamer, assurez-vous que votre réclamation est recevable, à savoir: - La réclamation doit être claire et comporter toutes les informations requises (champs obligatoires au niveau des informations client) et présenter les preuves et pièces justificatives lorsque le réclamant en dispose (pièces à scanner et joindre le fichier à la réclamation); - La réclamation doit être objective, porter sur des éléments factuels et ne comporter aucune diffamation ou injure, à l’égard de toute personne physique ou tout service public ou privé; - La réclamation doit être individuelle (Les pétitions ne sont pas acceptées); - L’objet de la demande doit concerner la TGR en premier lieu; La réclamation doit être portée auprès de la TGR dans les délais fixés par le cadre législatif, réglementaire ou conventionnel régissant l’objet concerné; - La réclamation ne doit pas porter sur des faits objet d’un l itige en justice (Ce genre de demandes doit intervenir via un huissier de justice au niveau du bureau d’ordre, seul habilité à présenter ces demandes) ; - \rLe réclamant doit indiquer les démarches précédemment effectuées auprès de la TGR et leurs résultats, le cas échéant. Quelques nuances à souligner Pour le domaine des impôts et taxes, tout ce qui relève de l’envoi des avis des impositions ainsi que de la détermination du type de bien et du montant à payer, votre réclamation doit être adressée aux services de la Direction Générale des impôts, seuls habilités à traiter votre demande. Si vous êtes un retraité, c’est la Caisse Marocaine des Retraites qui sera votre interlocuteur pour traiter tout problème au niveau de votre pension; Pour le domaine des marchés publics, votre réclamation doit concerner en premier lieu le maître d’ouvrage et respecter les délais et conditions fixés par le décret n° 2 -12-349 relatif aux marchés publics.",

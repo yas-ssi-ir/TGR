@@ -165,10 +165,34 @@ def classer(fiche: dict) -> str:
     return "ok"
 
 
+# Dans le document, « ce lien » est un lien hypertexte. Mis à plat, il ne
+# reste qu'un « Veuillez cliquer sur ce lien . » qui ne pointe vers rien,
+# juste au-dessus du « Lien : … » qui porte réellement l'adresse : l'usager
+# cherche un lien dans cette phrase et n'en trouve aucun.
+# On ne retire que la PHRASE, jamais la ligne : dans AST.4 le renvoi précède,
+# sur la même ligne, les instructions qui font toute la réponse (« Renseignez
+# votre adresse email, cochez la case… »). Et seulement si elle commence la
+# ligne ou suit un point : « Activez votre compte en cliquant sur ce lien »
+# porte le verbe de la phrase, l'amputer laisserait une phrase sans fin.
+RENVOI_ORPHELIN = re.compile(
+    r"(?:^|(?<=[.!?]))[ \t]*(?:[Vv]euillez\s+)?[Cc]lique[rz]\s+sur\s+ce\s+lien\s*\.?",
+    re.MULTILINE)
+
+# Espace parasite devant la ponctuation, héritée de la mise en page du .docx.
+ESPACE_AVANT_PONCTUATION = re.compile(r"\s+([.,])")
+
+
 def composer_solution(fiche: dict) -> str:
     """Réponse verbatim + ses liens, dans l'ordre où le portail les affiche."""
     corps = "\n".join(fiche["lignes"]).strip()
+    corps = ESPACE_AVANT_PONCTUATION.sub(r"\1", corps)
     if fiche["liens"]:
+        # Le renvoi ne se retire que si l'adresse est bien restituée en
+        # dessous : sans lien à afficher, cette phrase reste la seule
+        # indication que l'usager doit en suivre un.
+        corps = RENVOI_ORPHELIN.sub("", corps)
+        corps = "\n".join(ligne.strip() for ligne in corps.split("\n"))
+        corps = re.sub(r"\n{3,}", "\n\n", corps).strip()
         liens = "\n".join(f"Lien : {u}" for u in fiche["liens"])
         corps = f"{corps}\n\n{liens}" if corps else liens
     return corps
@@ -326,9 +350,14 @@ VARIANTES = {
     ],
 
     # ── Taxes territoriales ───────────────────────────────────────────
+    # « Guide de la TNB » a été retiré : un sigle nu, sans aucun terme métier
+    # reconnaissable, ne ressemble à aucune question d'usager. Mesuré : le
+    # garde-fou ne trouvait ni terme du portail ni source proche, réveillait le
+    # modèle pour arbitrer — 32 secondes — et finissait par REFUSER une question
+    # du portail. Une variante doit être une phrase que quelqu'un taperait.
     "Taxe sur les terrains urbains non bâtis": [
         "Comment déclarer la taxe sur les terrains urbains non bâtis ?",
-        "Guide de la TNB",
+        "Comment payer la taxe TNB sur mon terrain ?",
         "Taxe terrain non bâti, comment faire ?",
     ],
     "Taxe sur les débits de boissons": [
@@ -537,6 +566,48 @@ def reponses_dupliquees(fiches: list[dict]) -> list[str]:
     return sorted(s[:70] for s, n in compte.items() if n > 1)
 
 
+# ── Réponses obtenues APRÈS le relevé du document ────────────────────
+# Le .docx date du 2026-09-01 et enregistre, pour certaines entrées, un échec
+# de l'assistant en production (« Pouvez-vous dire cela autrement ? »). La TGR
+# a corrigé une partie de ces cas depuis. Les textes ci-dessous ont été
+# recueillis directement auprès de leur assistant le 2026-09-03 : même source
+# et même statut que le reste du corpus AST.*, simplement plus récents.
+#
+# Ne rien mettre ici qui ne vienne pas d'une source TGR vérifiable, et noter
+# la date : c'est ce qui distingue un complément d'une invention.
+COMPLEMENTS = {
+    "Consultation du solde": (
+        "Pour consulter votre solde et suivre vos opérations, vous devez vous "
+        "présenter à votre agence afin de demander l'adhésion au service TGR "
+        "BanqueNet, qui vous permet un accès sécurisé à vos comptes 24h/24 et "
+        "7j/7, ainsi que l'utilisation gratuite de plusieurs services à distance."
+    ),
+    # Deux retouches sur le texte reçu : la coquille « date d'chèvement » est
+    # rétablie en « achèvement », et le « Oui, » d'ouverture est retiré — il
+    # répondait à une question fermée que l'usager ne pose pas ici.
+    "Motifs de rejet après soumission": (
+        "En tant que soumissionnaire non retenu, vous avez le droit d'obtenir "
+        "des précisions sur les motifs de rejet de votre offre. Cette obligation "
+        "est prévue à l'article 47 du décret n° 2-22-431.\n"
+        "\n"
+        "1. Attendre la communication officielle : le maître d'ouvrage est tenu "
+        "de vous informer des motifs de rejet par lettre recommandée avec accusé "
+        "de réception, ou par tout autre moyen donnant date certaine. Cette "
+        "notification doit intervenir dans un délai n'excédant pas le troisième "
+        "jour suivant la date d'achèvement des travaux de la commission d'appel "
+        "d'offres.\n"
+        "2. Contester si nécessaire : si les motifs ne vous paraissent pas "
+        "fondés, ou si vous estimez qu'il y a eu une erreur, vous pouvez former "
+        "un recours gracieux dans les conditions de l'article 163 du même décret.\n"
+        "3. Consulter l'extrait du procès-verbal : conformément à l'article 46, "
+        "un extrait du procès-verbal de la séance d'examen des offres est publié "
+        "sur le portail des marchés publics et affiché dans les locaux de "
+        "l'organisme dont relève le maître d'ouvrage. Cet extrait mentionne les "
+        "motifs d'élimination des concurrents évincés."
+    ),
+}
+
+
 def build_fiches() -> list[dict]:
     brutes = decouper(lire_paragraphes(DOCX_ASSISTANT))
 
@@ -545,6 +616,11 @@ def build_fiches() -> list[dict]:
         statut = classer(brute)
         solution = composer_solution(brute)
         libelle = brute["libelle"]
+
+        # Un complément ne s'applique QUE là où le document n'a rien : il ne
+        # doit jamais recouvrir une réponse déjà relevée sur le portail.
+        if statut != "ok" and libelle in COMPLEMENTS:
+            solution, statut = COMPLEMENTS[libelle], "ok"
 
         # Déduplication sur la RÉPONSE, pas sur le libellé. Le portail expose
         # la même réponse depuis plusieurs entrées de menu — sous le même

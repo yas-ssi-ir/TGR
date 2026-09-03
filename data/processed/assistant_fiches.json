@@ -77,7 +77,7 @@
     "id": "AST.4",
     "categorie": "Compte & accès eServices",
     "probleme": "Code d'activation non reçu",
-    "solution": "⏳ Dans le cas où vous n'auriez pas encore reçu le code d'activationde votre compte.\nVeuillez cliquer sur ce lien . Renseignez votre adresse email, cochez la case \"Je ne suis pas un robot\", puis cliquez sur \"Valider\" afin de recevoir votre code.\n\nLien : https://eservices.tgr.gov.ma/my/auth/sendactivationcode",
+    "solution": "⏳ Dans le cas où vous n'auriez pas encore reçu le code d'activationde votre compte.\nRenseignez votre adresse email, cochez la case \"Je ne suis pas un robot\", puis cliquez sur \"Valider\" afin de recevoir votre code.\n\nLien : https://eservices.tgr.gov.ma/my/auth/sendactivationcode",
     "status": "ok",
     "variantes": [
       "Je n'ai pas reçu le code d'activation",
@@ -125,7 +125,7 @@
     "id": "AST.6",
     "categorie": "Compte & accès eServices",
     "probleme": "Changement de mot de passe",
-    "solution": "Pour changer votre mot de passe, cliquez sur l'icône 👤 Profil en haut à droite, puis sélectionnez « Changer le mot de passe ». Vous serez redirigé vers une page où vous pourrez saisir votre ancien mot de passe, votre nouveau mot de passe, puis le confirmer. Enfin, cliquez sur le bouton « Enregistrer ».\nVeuillez cliquer sur ce lien .\n\nLien : https://eservices.tgr.gov.ma/my/general/change-password",
+    "solution": "Pour changer votre mot de passe, cliquez sur l'icône 👤 Profil en haut à droite, puis sélectionnez « Changer le mot de passe ». Vous serez redirigé vers une page où vous pourrez saisir votre ancien mot de passe, votre nouveau mot de passe, puis le confirmer. Enfin, cliquez sur le bouton « Enregistrer ».\n\nLien : https://eservices.tgr.gov.ma/my/general/change-password",
     "status": "ok",
     "variantes": [
       "Comment changer mon mot de passe ?",
@@ -173,7 +173,7 @@
     "id": "AST.8",
     "categorie": "Compte & accès eServices",
     "probleme": "Activation de la double authentification (2FA)",
-    "solution": "Pour mieux protéger votre compte, nous vous invitons à activer l'authentification à deux facteurs (2FA) . Retrouvez toutes les informations nécessaires dans le guide d'activation et d'utilisation accessible ici.\nVeuillez cliquer sur ce lien pour accéder au guide en français.\nVous pouvez consulter le guide en arabe en suivant ce lien .\n\nLien : https://eservices.tgr.gov.ma/my/guides/mfa-guide\nLien : https://eservices.tgr.gov.ma/my/guides/mfa-guide-ar",
+    "solution": "Pour mieux protéger votre compte, nous vous invitons à activer l'authentification à deux facteurs (2FA). Retrouvez toutes les informations nécessaires dans le guide d'activation et d'utilisation accessible ici.\npour accéder au guide en français.\nVous pouvez consulter le guide en arabe en suivant ce lien.\n\nLien : https://eservices.tgr.gov.ma/my/guides/mfa-guide\nLien : https://eservices.tgr.gov.ma/my/guides/mfa-guide-ar",
     "status": "ok",
     "variantes": [
       "Comment activer la double authentification ?",
@@ -201,7 +201,7 @@
     "status": "ok",
     "variantes": [
       "Comment déclarer la taxe sur les terrains urbains non bâtis ?",
-      "Guide de la TNB",
+      "Comment payer la taxe TNB sur mon terrain ?",
       "Taxe terrain non bâti, comment faire ?"
     ],
     "liens": [
@@ -388,7 +388,7 @@
     "id": "AST.18",
     "categorie": "Quittances & paiements",
     "probleme": "Bien non déclaré ou paiement pour 2026 et les années postérieures",
-    "solution": "Si le bien n'a pas encore été déclaré, il vous appartient d'en effectuer la déclaration auprès des services de la Direction Générale des Impôts (DGI), conformément aux dispositions de la loi n° 14-25 relative à l'assiette, au recouvrement et au contentieux des taxes locales, notamment en matière de taxe d'habitation et de taxe des services communaux.\nPar ailleurs, si votre paiement concerne l'année 2026 ou les exercices postérieurs, il doit être réalisé auprès de la DGI, via les canaux prévus à cet effet sur son portail officiel www.tax.gov.ma\n, notamment à travers le service de paiement en ligne accessible au lien suivant :\nCliquez ici\n\nLien : http://www.tax.gov.ma/\nLien : https://tl.tax.gov.ma/tl/public/login.do?method=connectAnonymous&forward=paiementTHTSC",
+    "solution": "Si le bien n'a pas encore été déclaré, il vous appartient d'en effectuer la déclaration auprès des services de la Direction Générale des Impôts (DGI), conformément aux dispositions de la loi n° 14-25 relative à l'assiette, au recouvrement et au contentieux des taxes locales, notamment en matière de taxe d'habitation et de taxe des services communaux.\nPar ailleurs, si votre paiement concerne l'année 2026 ou les exercices postérieurs, il doit être réalisé auprès de la DGI, via les canaux prévus à cet effet sur son portail officiel www.tax.gov.ma, notamment à travers le service de paiement en ligne accessible au lien suivant :\nCliquez ici\n\nLien : http://www.tax.gov.ma/\nLien : https://tl.tax.gov.ma/tl/public/login.do?method=connectAnonymous&forward=paiementTHTSC",
     "status": "ok",
     "variantes": [
       "Comment payer ma taxe d'habitation pour 2026 ?",
@@ -770,7 +770,7 @@
     "id": "AST.36",
     "categorie": "Fonctionnaire",
     "probleme": "Validation du compte par CNIE",
-    "solution": "Une fois connecté(e), il est possible que le message suivant s'affiche lors de l'accès aux services Fonctionnaire :\n« Le compte n'est pas vérifié par la CNIE. »\nPour résoudre cette situation, il vous suffit de suivre le guide détaillé disponible via ce lien . Celui-ci vous accompagne pas à pas, avec des captures d'écran explicatives.\nNous vous invitons également à vous assurer que :\nL'application Mon e-ID | الرقمية هويتي est installée sur votre smartphone ;\nL'option NFC est activée sur votre téléphone mobile.\nCes étapes vous permettront de finaliser la vérification de votre compte.\n\nLien : https://eservices.tgr.gov.ma/my/assets/authDGSN/guideAuthCNIE.pdf",
+    "solution": "Une fois connecté(e), il est possible que le message suivant s'affiche lors de l'accès aux services Fonctionnaire :\n« Le compte n'est pas vérifié par la CNIE. »\nPour résoudre cette situation, il vous suffit de suivre le guide détaillé disponible via ce lien. Celui-ci vous accompagne pas à pas, avec des captures d'écran explicatives.\nNous vous invitons également à vous assurer que :\nL'application Mon e-ID | الرقمية هويتي est installée sur votre smartphone ;\nL'option NFC est activée sur votre téléphone mobile.\nCes étapes vous permettront de finaliser la vérification de votre compte.\n\nLien : https://eservices.tgr.gov.ma/my/assets/authDGSN/guideAuthCNIE.pdf",
     "status": "ok",
     "variantes": [
       "Le compte n'est pas vérifié par la CNIE",
@@ -794,7 +794,7 @@
     "id": "AST.37",
     "categorie": "Fonctionnaire",
     "probleme": "Situation administrative",
-    "solution": "Pour accéder à votre situation administrative :\nConnectez-vous à votre compte.\nDans le menu situé à gauche, cliquez sur « Fonctionnaire », puis sélectionnez « Situation administrative » .",
+    "solution": "Pour accéder à votre situation administrative :\nConnectez-vous à votre compte.\nDans le menu situé à gauche, cliquez sur « Fonctionnaire », puis sélectionnez « Situation administrative ».",
     "status": "ok",
     "variantes": [
       "Où consulter ma situation administrative ?",
@@ -814,7 +814,7 @@
     "id": "AST.38",
     "categorie": "Fonctionnaire",
     "probleme": "Situation des ordres de recette",
-    "solution": "Pour pouvoir accéder à votre Situation Ordres Recette :\nIl suffit juste d'accéder à votre compte en utilisant votre PPR . Puis tout simplement de cliquer sur Fonctionnaire au niveau de menu à gauche. Après vous choisissez Situation Ordres Recette",
+    "solution": "Pour pouvoir accéder à votre Situation Ordres Recette :\nIl suffit juste d'accéder à votre compte en utilisant votre PPR. Puis tout simplement de cliquer sur Fonctionnaire au niveau de menu à gauche. Après vous choisissez Situation Ordres Recette",
     "status": "ok",
     "variantes": [
       "Où consulter ma situation des ordres de recette ?",
@@ -852,7 +852,7 @@
     "id": "AST.40",
     "categorie": "Fonctionnaire",
     "probleme": "Situation des rappels",
-    "solution": "Pour consulter votre situation de rappels.\nUne fois que vous êtes connectés. En haut à gauche , sélectionnez Fonctionnaire au niveau de menu. Puis vous cliquez sur Situation Rappels",
+    "solution": "Pour consulter votre situation de rappels.\nUne fois que vous êtes connectés. En haut à gauche, sélectionnez Fonctionnaire au niveau de menu. Puis vous cliquez sur Situation Rappels",
     "status": "ok",
     "variantes": [
       "Où consulter ma situation des rappels ?",
@@ -909,7 +909,7 @@
     "id": "AST.43",
     "categorie": "Fonctionnaire",
     "probleme": "Attestation de salaire",
-    "solution": "Il suffit juste d'accéder à votre compte . Puis tout simplement de cliquer sur Fonctionnaire au niveau de menu à gauche. Après vous choisissez Attestation de Salaire",
+    "solution": "Il suffit juste d'accéder à votre compte. Puis tout simplement de cliquer sur Fonctionnaire au niveau de menu à gauche. Après vous choisissez Attestation de Salaire",
     "status": "ok",
     "variantes": [
       "Comment obtenir une attestation de salaire ?",
@@ -930,7 +930,7 @@
     "id": "AST.44",
     "categorie": "Fonctionnaire",
     "probleme": "Attestation de cessation de paiement",
-    "solution": "Il suffit juste d'accéder à votre compte . Après au niveau du menu à gauche, vous sélectionnez Fonctionnaire puis vous cliquez sur Attestation Cessation de Paiement.",
+    "solution": "Il suffit juste d'accéder à votre compte. Après au niveau du menu à gauche, vous sélectionnez Fonctionnaire puis vous cliquez sur Attestation Cessation de Paiement.",
     "status": "ok",
     "variantes": [
       "Comment obtenir une attestation de cessation de paiement ?",
@@ -949,7 +949,7 @@
     "id": "AST.45",
     "categorie": "Fonctionnaire",
     "probleme": "Situation familiale",
-    "solution": "Il suffit juste d'accéder à votre compte . Après au niveau du menu à gauche, vous sélectionnez Fonctionnaire puis vous cliquez sur Situation Familiale .",
+    "solution": "Il suffit juste d'accéder à votre compte. Après au niveau du menu à gauche, vous sélectionnez Fonctionnaire puis vous cliquez sur Situation Familiale.",
     "status": "ok",
     "variantes": [
       "Où consulter ma situation familiale ?",
@@ -968,7 +968,7 @@
     "id": "AST.46",
     "categorie": "Fonctionnaire",
     "probleme": "Bulletin de paie",
-    "solution": "Il suffit juste d'accéder à votre compte . Après au niveau du menu à gauche, vous sélectionnez Fonctionnaire puis vous cliquez sur Bulletin Paie .",
+    "solution": "Il suffit juste d'accéder à votre compte. Après au niveau du menu à gauche, vous sélectionnez Fonctionnaire puis vous cliquez sur Bulletin Paie.",
     "status": "ok",
     "variantes": [
       "Comment télécharger mon bulletin de paie ?",
@@ -1031,8 +1031,8 @@
     "id": "AST.49",
     "categorie": "Activité bancaire",
     "probleme": "Consultation du solde",
-    "solution": "Pouvez-vous dire cela autrement ? Je ne comprends pas.",
-    "status": "no_answer",
+    "solution": "Pour consulter votre solde et suivre vos opérations, vous devez vous présenter à votre agence afin de demander l'adhésion au service TGR BanqueNet, qui vous permet un accès sécurisé à vos comptes 24h/24 et 7j/7, ainsi que l'utilisation gratuite de plusieurs services à distance.",
+    "status": "ok",
     "variantes": [
       "Comment consulter le solde de mon compte bancaire ?",
       "Où voir mon solde TGR ?"
@@ -1226,7 +1226,7 @@
     "id": "AST.59",
     "categorie": "Commande publique",
     "probleme": "Lenteur d'accès au portail des marchés publics",
-    "solution": "Nous vous invitons tout d'abord à vérifier que votre poste n'est pas ralenti par l'exécution simultanée de plusieurs applications. Assurez-vous également auprès de votre service informatique qu'aucune lenteur ne provient de vos infrastructures locales.\nSi ces vérifications ont été effectuées et que vous constatez toujours une lenteur lors de l'accès au portail des marchés publics, merci de bien vouloir créer un ticket d'assistance en l'envoyant à l'adresse suivante : Cliquez ici , afin que notre support puisse analyser la situation.\n\nLien : https://www.marchespublics.gov.ma/pmmp/",
+    "solution": "Nous vous invitons tout d'abord à vérifier que votre poste n'est pas ralenti par l'exécution simultanée de plusieurs applications. Assurez-vous également auprès de votre service informatique qu'aucune lenteur ne provient de vos infrastructures locales.\nSi ces vérifications ont été effectuées et que vous constatez toujours une lenteur lors de l'accès au portail des marchés publics, merci de bien vouloir créer un ticket d'assistance en l'envoyant à l'adresse suivante : Cliquez ici, afin que notre support puisse analyser la situation.\n\nLien : https://www.marchespublics.gov.ma/pmmp/",
     "status": "ok",
     "variantes": [
       "Le portail des marchés publics est lent",
@@ -1286,8 +1286,8 @@
     "id": "AST.62",
     "categorie": "Commande publique",
     "probleme": "Motifs de rejet après soumission",
-    "solution": "Vouliez-vous dire:\nMenu eservicesMenu reclamationAucune de précédent",
-    "status": "no_answer",
+    "solution": "En tant que soumissionnaire non retenu, vous avez le droit d'obtenir des précisions sur les motifs de rejet de votre offre. Cette obligation est prévue à l'article 47 du décret n° 2-22-431.\n\n1. Attendre la communication officielle : le maître d'ouvrage est tenu de vous informer des motifs de rejet par lettre recommandée avec accusé de réception, ou par tout autre moyen donnant date certaine. Cette notification doit intervenir dans un délai n'excédant pas le troisième jour suivant la date d'achèvement des travaux de la commission d'appel d'offres.\n2. Contester si nécessaire : si les motifs ne vous paraissent pas fondés, ou si vous estimez qu'il y a eu une erreur, vous pouvez former un recours gracieux dans les conditions de l'article 163 du même décret.\n3. Consulter l'extrait du procès-verbal : conformément à l'article 46, un extrait du procès-verbal de la séance d'examen des offres est publié sur le portail des marchés publics et affiché dans les locaux de l'organisme dont relève le maître d'ouvrage. Cet extrait mentionne les motifs d'élimination des concurrents évincés.",
+    "status": "ok",
     "variantes": [
       "Pourquoi mon offre a-t-elle été rejetée ?",
       "Comment connaître les motifs de rejet de ma soumission ?"

@@ -115,8 +115,31 @@ def main():
                 if fid in connus and rep.get("probleme")
                 and rep["probleme"] != next(f["probleme"] for f in fiches if f["id"] == fid)]
     orphelines = [fid for fid in done if fid not in connus]
-    for fid in perimees + orphelines:
+
+    # L'intitulé ne suffit pas : réparer l'analyseur du guide raccourcit des
+    # RÉPONSES sans toucher aux questions. Constaté sur FAQ.1, qui a continué
+    # de servir 1399 caractères — l'inscription, puis l'erreur de salaire CNT,
+    # puis le format de la date de naissance — alors que sa source officielle
+    # était retombée à 288. Pour les fiches servies verbatim, la source FAIT
+    # foi ; sauf si un relecteur humain est passé après, auquel cas c'est SON
+    # texte qui fait foi et qu'on ne réécrit jamais.
+    par_id = {f["id"]: f for f in fiches}
+    # une même fiche peut relever des DEUX contrôles — la question a changé de
+    # place ET son texte diffère de la source. Sans cette exclusion, elle était
+    # supprimée deux fois : KeyError, et la reprise s'arrêtait net.
+    deja_vues = set(perimees) | set(orphelines)
+    desynchronisees = [
+        fid for fid, rep in done.items()
+        if fid in connus and fid not in deja_vues
+        and not rep.get("modifiee") and not rep.get("validee")
+        and (off := reponse_officielle(par_id[fid])) is not None
+        and off != rep.get("fr", "").strip()
+    ]
+    for fid in perimees + orphelines + desynchronisees:
         del done[fid]
+    if desynchronisees:
+        print(f"{len(desynchronisees)} réponse(s) désynchronisée(s) de leur source "
+              f"officielle → à refaire : {', '.join(sorted(desynchronisees))}")
     if perimees:
         print(f"{len(perimees)} réponse(s) périmée(s) (l'identifiant désigne désormais "
               f"un autre problème) → à refaire : {', '.join(sorted(perimees))}")
