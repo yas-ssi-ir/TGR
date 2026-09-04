@@ -236,7 +236,7 @@ def chat(req: ChatRequest):
     try:
         result = pipeline.answer(question)
     except LLMIndisponible as e:
-        raise HTTPException(503, str(e))
+        raise HTTPException(503, str(e)) from e
 
     # Mémorise les réponses rédigées par le LLM (pas les pré-validées, déjà rapides)
     if (req.pipeline != "classic" and result.get("statut") == "SUCCESS"
