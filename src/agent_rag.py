@@ -25,6 +25,8 @@ import os
 import re
 import sys
 import time
+import uuid
+from datetime import datetime
 
 ARABIC_RE = re.compile("[؀-ۿ]")  # écriture arabe
 
@@ -66,7 +68,11 @@ def fiche_consensus(passages: list[dict], marge: float = 0.0,
     # variantes, au détriment d'une fiche plus proche mais moins fournie.
     recevables = {
         fid: chunks for fid, chunks in votes.items()
-        if len(chunks) >= CONSENSUS_MIN_CHUNKS
+        if (len(chunks) >= CONSENSUS_MIN_CHUNKS
+            # Question translangue (marge > 0) : la distance plus grande est déjà
+            # le signe attendu (barrière linguistique), pas un indice de faux
+            # positif — DIST_CONSENSUS_MULTI_MAX ne s'applique qu'en français.
+            and (marge > 0 or min(c["distance"] for c in chunks) <= DIST_CONSENSUS_MULTI_MAX))
         or min(c["distance"] for c in chunks) <= DIST_SOLO_ACCEPT + marge
     }
     if not recevables:
@@ -116,9 +122,10 @@ def dedupe_sources(passages: list[dict]) -> list[dict]:
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from config import (
     CONSENSUS_K, CONSENSUS_MIN_CHUNKS, DIST_AUTO_IN, DIST_AUTO_OUT,
-    DIST_CANDIDATE_MAX, DIST_DEPARTAGE, DIST_HORS_SUJET, DIST_SOLO_ACCEPT, FALLBACK_ANSWER, GEN_TOP_K,
+    DIST_CANDIDATE_MAX, DIST_CONSENSUS_MULTI_MAX, DIST_DEPARTAGE, DIST_HORS_SUJET,
+    DIST_SOLO_ACCEPT, FALLBACK_ANSWER, GEN_TOP_K,
     KNOWN_BUG_ANSWER, MAX_REWRITE_RETRIES, OUT_OF_SCOPE_ANSWER,
-    PRECOMPUTED_JSON, TOP_K,
+    PRECOMPUTED_JSON, QUESTIONS_ATTENTE_JSON, TOP_K,
 )
 # marge_ecriture vit dans lexique (c'est une règle d'écriture, pas de
 # recherche) ; réexportée ici, où tous les appelants la cherchent déjà.
@@ -126,7 +133,7 @@ from lexique import (
     conflit_action, construire_lexique, contient_terme_noyau, lexique_applicable,
     marge_ecriture, recouvrement,
 )
-from llm import OllamaLLM
+from llm import LLMIndisponible, OllamaLLM
 from rag_classic import SYSTEM_PROMPT, build_context
 from retriever import TGRRetriever
 
@@ -207,6 +214,29 @@ class AgenticRAG:
         verdict = self.llm.decide(GUARDRAIL_SYSTEM, f"Question : {question}")
         return "OUI" in verdict, "décision LLM (dernier recours)"
 
+    def _journaliser_attente(self, question: str, statut: str, fiche_id: str = None) -> None:
+        """Question dans le périmètre TGR mais pas correctement traitée : conservée
+        pour relecture humaine sur /revision plutôt que perdue silencieusement.
+        Best-effort — une erreur d'écriture ne doit jamais faire échouer la réponse
+        déjà décidée à l'usager."""
+        try:
+            attente = []
+            if os.path.exists(QUESTIONS_ATTENTE_JSON):
+                with open(QUESTIONS_ATTENTE_JSON, encoding="utf-8") as f:
+                    attente = json.load(f)
+            attente.append({
+                "id": uuid.uuid4().hex[:8],
+                "question": question,
+                "langue": langue_de(question),
+                "statut": statut,
+                "fiche_id": fiche_id,
+                "date": datetime.now().isoformat(timespec="seconds"),
+            })
+            with open(QUESTIONS_ATTENTE_JSON, "w", encoding="utf-8") as f:
+                json.dump(attente, f, ensure_ascii=False, indent=2)
+        except OSError:
+            pass
+
     def node_direct(self, question: str, consensus: dict) -> dict | None:
         """VOIE RAPIDE ⚡ — réponse en < 1 s, zéro appel LLM.
         Si le consensus désigne une fiche dont la réponse officielle a été
@@ -216,6 +246,7 @@ class AgenticRAG:
             return None
         tete = consensus["passages"][0]
         if tete.get("status") == "no_answer":
+            self._journaliser_attente(question, "known_bug", tete.get("fiche_id"))
             return {"reponse": KNOWN_BUG_ANSWER, "statut": "KNOWN_BUG", "fiche": tete}
         pre = self.reponses_precalculees.get(consensus["fiche_id"])
         if not pre:
@@ -320,6 +351,14 @@ class AgenticRAG:
                        for x in dedupe_sources(consensus["passages"])]
             return result(direct["reponse"], sources, direct["statut"])
 
+        # La voie rapide n'a pas suffi : à partir d'ici le LLM devient
+        # nécessaire. On ne le vérifie qu'ici (pas en tête de answer()) —
+        # sinon CHAQUE question, y compris celles servies par la voie rapide
+        # sans aucun appel LLM, paierait l'aller-retour réseau vers Ollama.
+        if not self.llm.is_available():
+            raise LLMIndisponible(
+                f"Ollama indisponible — lancez Ollama et « ollama pull {self.llm.model} ».")
+
         # 3. Grade (+ 4. Rewrite si nécessaire, borné) — sur le top-K seulement
         passages = passages[:TOP_K]
         relevant = self.node_grade(question, passages) if passages else []
@@ -346,6 +385,7 @@ class AgenticRAG:
             etapes.append({"noeud": "known_bug", "detail": "problème connu sans solution en ligne"})
             sources = [{"id": p["fiche_id"], "categorie": p["categorie"],
                         "distance": p["distance"]} for p in dedupe_sources(relevant)]
+            self._journaliser_attente(question, "known_bug", relevant[0].get("fiche_id"))
             return result(KNOWN_BUG_ANSWER, sources, "KNOWN_BUG")
 
         # 5. Generate
@@ -364,6 +404,7 @@ class AgenticRAG:
             etapes.append({"noeud": "verify", "detail": "réponse ancrée dans les sources ✓"})
         else:
             etapes.append({"noeud": "verify", "detail": "réponse NON ancrée → remplacée par fallback"})
+            self._journaliser_attente(question, "verification_echouee")
             return result(FALLBACK_ANSWER, [], "NOT_GROUNDED")
 
         sources = [{"id": p["fiche_id"] or p["fichier"], "categorie": p["categorie"],

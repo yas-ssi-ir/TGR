@@ -271,14 +271,17 @@ corrige mécaniquement — c'est déterministe, gratuit et reproductible.
 
 ## Lancement
 
+`/revision` exige un mot de passe (voir plus bas) — le définir avant de démarrer :
+
 ```powershell
+$env:REVISION_PASSWORD = "choisissez-un-mot-de-passe"
 python -X utf8 src\main.py
 ```
 
 | URL | Rôle |
 |---|---|
 | http://127.0.0.1:8000 | assistant (onglets *Assistant* et *Réclamation*) |
-| http://127.0.0.1:8000/revision | **espace agent** — relecture et validation |
+| http://127.0.0.1:8000/revision | **espace agent** — relecture, validation, questions en attente |
 | http://127.0.0.1:8000/health | état ChromaDB + Ollama |
 | http://127.0.0.1:8000/docs | documentation OpenAPI |
 
@@ -318,6 +321,14 @@ L'interface indique aussi à l'usager, dans la réponse elle-même, si le texte
 qu'il lit a été validé par un agent ou s'il n'a encore été relu par personne.
 C'est toute la différence entre une réponse **officielle** et une réponse
 seulement **vraisemblable**.
+
+**Questions non traitées.** Quand une question relève bien du portail mais que
+le système ne peut pas y répondre correctement (fiche connue sans solution, ou
+réponse générée qui échoue la vérification d'ancrage), elle est conservée dans
+`data/processed/questions_en_attente.json` et listée dans une section dédiée de
+`/revision` — plutôt que perdue silencieusement. L'usager en est informé dans
+la réponse elle-même : *« Votre question a été transmise à nos équipes pour
+traitement. »*
 
 ---
 
@@ -457,6 +468,7 @@ data/processed/qa_fiches.json         fiches issues de l'historique des réclama
 data/processed/faq_fiches.json        fiches issues de la FAQ officielle
 data/processed/assistant_fiches.json  fiches issues du relevé de l'assistant existant
 data/processed/reponses_precalculees.json   réponses officielles FR + AR
+data/processed/questions_en_attente.json   questions non traitées (non versionné, se remplit à l'usage)
 data/chroma_db/                       base vectorielle (non versionnée, régénérable)
 
 src/config.py               toutes les constantes et seuils, chacun commenté
@@ -488,6 +500,7 @@ src/warmup_cache.py         préchauffage du cache avant une démonstration
 static/index.html           interface assistant + réclamations
 static/revision.html        espace agent (relecture et validation)
 eval/                       golden dataset, évaluation comparative, installeurs
+eval/mesure_consensus_multichunk.py   outil de mesure pour recalibrer DIST_CONSENSUS_MULTI_MAX
 tests/                      suite de tests (logique, nettoyage, données)
 
 pyproject.toml              configuration ruff + pytest
@@ -510,6 +523,7 @@ avec la mesure qui l'a produit.
 | `CONSENSUS_K` | 25 | profondeur de recherche pour le vote des voisins |
 | `CONSENSUS_MIN_CHUNKS` | 2 | chunks concordants pour emporter la décision |
 | `DIST_CANDIDATE_MAX` | 0,37 | au-delà, un chunk ne vote plus |
+| `DIST_CONSENSUS_MULTI_MAX` | 0,31 | en français, ≥ 2 chunks ne suffisent plus au-delà — sinon le LLM n'est presque jamais sollicité sur une question inédite (exempté en arabe/darija) |
 | `DIST_SOLO_ACCEPT` | 0,30 | un chunk unique n'est accepté que très proche |
 | `DIST_DEPARTAGE` | 0,04 | départage « bug connu » vs fiche porteuse de solution |
 | `DIST_OFFSET_TRANSLANGUE` | 0,07 | marge accordée aux questions en arabe |
@@ -542,6 +556,10 @@ avec la mesure qui l'a produit.
   revalidation complète : c'est une v2, pas un correctif.
 - **Un seul utilisateur à la fois** sur les questions inédites : Ollama sérialise
   les requêtes. Sans effet sur la voie rapide, qui n'appelle pas le LLM.
+- **`DIST_CONSENSUS_MULTI_MAX` a un coût mesuré** : environ 0,8 % des questions qui
+  trouvaient leur fiche instantanément passent désormais par le LLM (jusqu'à
+  30 s). Compromis assumé pour qu'une question réellement inédite reçoive un
+  vrai jugement plutôt qu'une fausse réponse rapide — voir `config.py`.
 - **Réclamations stockées en JSON**, sans authentification : maquette
   fonctionnelle, en attente d'un accès base de données (`src/ingestion_postgres.py`).
 - **Un PDF source est scanné** : ses pages ne sont pas exploitées, faute d'OCR.

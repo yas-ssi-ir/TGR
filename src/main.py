@@ -13,6 +13,7 @@ Lancement :  venv\\Scripts\\python.exe -m uvicorn src.main:app --port 8000
 """
 import json
 import os
+import secrets
 import sys
 import time
 from collections import Counter
@@ -24,15 +25,18 @@ for flux in (sys.stdout, sys.stderr):
         flux.reconfigure(encoding="utf-8", errors="replace")
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from config import FEEDBACK_JSON, GEN_TOP_K, LLM_MODEL, STATIC_DIR
+from config import (FEEDBACK_JSON, GEN_TOP_K, LLM_MODEL, QUESTIONS_ATTENTE_JSON,
+                    REVISION_PASSWORD, REVISION_USER, STATIC_DIR)
 from agent_rag import AgenticRAG
+from llm import LLMIndisponible
 from rag_classic import ClassicRAG, SYSTEM_PROMPT, build_context
 from reclamation_handler import NATURES, ReclamationHandler
 import revision
 from semantic_cache import SemanticCache, empreinte_corpus
 
-from fastapi import FastAPI, HTTPException
+from fastapi import Depends, FastAPI, HTTPException
 from fastapi.responses import FileResponse, StreamingResponse
+from fastapi.security import HTTPBasic, HTTPBasicCredentials
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
@@ -41,6 +45,37 @@ app = FastAPI(
     description="Assistant du portail eServices TGR (ChromaDB + multilingual-e5 + Ollama, 100% local)",
     version="1.0.0",
 )
+
+
+@app.middleware("http")
+async def entetes_securite(request, call_next):
+    """Durcissement standard des réponses HTTP.
+    script-src/style-src restent en 'unsafe-inline' : index.html et
+    revision.html embarquent leur logique dans un unique <script>, et
+    Tailwind (static/vendor/tailwind.js) génère son <style> à la volée dans
+    la page — une CSP stricte casserait entièrement l'interface tant que ce
+    JS n'est pas déplacé vers des fichiers séparés. Reste utile contre le
+    chargement de script/style depuis un domaine tiers et le clickjacking.
+    Pas de Strict-Transport-Security : le déploiement actuel est en http://
+    brut (pas de certificat) — l'ajouter avant qu'il y ait un https:// valide
+    rendrait le site inaccessible aux navigateurs qui ont mémorisé l'en-tête.
+    """
+    response = await call_next(request)
+    response.headers["X-Content-Type-Options"] = "nosniff"
+    response.headers["X-Frame-Options"] = "DENY"
+    response.headers["Content-Security-Policy"] = (
+        "default-src 'self'; "
+        "script-src 'self' 'unsafe-inline'; "
+        "style-src 'self' 'unsafe-inline'; "
+        "img-src 'self' data:; "
+        "font-src 'self'; "
+        "connect-src 'self'; "
+        "object-src 'none'; "
+        "base-uri 'self'; "
+        "form-action 'self'; "
+        "frame-ancestors 'none'"
+    )
+    return response
 
 # Les polices sont servies depuis le projet, jamais depuis un CDN : l'assistant
 # doit fonctionner sans réseau, et une police chargée chez un tiers signalerait
@@ -101,6 +136,25 @@ class ReclamationValidation(BaseModel):
     reponse_finale: str = ""
 
 
+# ── Accès à /revision ────────────────────────────────────────────────
+# Personne d'autre que la TGR ne doit pouvoir lire ou modifier les
+# réponses officielles depuis ce lien.
+securite_revision = HTTPBasic()
+
+
+def exiger_acces_revision(credentials: HTTPBasicCredentials = Depends(securite_revision)):
+    if not REVISION_PASSWORD:
+        # Échec fermé : tant que personne n'a défini REVISION_PASSWORD,
+        # la page est inaccessible à tous plutôt qu'ouverte à tous.
+        raise HTTPException(503, "REVISION_PASSWORD n'est pas configuré côté serveur.")
+    bon_identifiant = secrets.compare_digest(credentials.username, REVISION_USER)
+    bon_mot_de_passe = secrets.compare_digest(credentials.password, REVISION_PASSWORD)
+    if not (bon_identifiant and bon_mot_de_passe):
+        raise HTTPException(401, "Identifiants incorrects.",
+                            headers={"WWW-Authenticate": "Basic"})
+    return credentials.username
+
+
 # ── Endpoints ────────────────────────────────────────────────────────
 
 @app.get("/")
@@ -112,7 +166,7 @@ def serve_index():
 
 
 @app.get("/revision")
-def serve_revision():
+def serve_revision(_: str = Depends(exiger_acces_revision)):
     """Page de relecture humaine des réponses pré-validées."""
     page = os.path.join(STATIC_DIR, "revision.html")
     if os.path.exists(page):
@@ -121,12 +175,23 @@ def serve_revision():
 
 
 @app.get("/api/revision/fiches")
-def revision_fiches():
+def revision_fiches(_: str = Depends(exiger_acces_revision)):
     return revision.liste()
 
 
+@app.get("/api/revision/questions-en-attente")
+def revision_questions_en_attente(_: str = Depends(exiger_acces_revision)):
+    """Questions du périmètre TGR non correctement traitées (bug connu ou
+    réponse LLM rejetée à la vérification) — voir agent_rag._journaliser_attente."""
+    if not os.path.exists(QUESTIONS_ATTENTE_JSON):
+        return {"total": 0, "questions": []}
+    with open(QUESTIONS_ATTENTE_JSON, encoding="utf-8") as f:
+        questions = json.load(f)
+    return {"total": len(questions), "questions": list(reversed(questions))}
+
+
 @app.post("/api/revision/enregistrer")
-def revision_enregistrer(req: RevisionEnregistrement):
+def revision_enregistrer(req: RevisionEnregistrement, _: str = Depends(exiger_acces_revision)):
     if not revision.enregistrer(req.id, req.fr, req.ar, req.valider,
                                 req.devalider, req.relue, req.relecteur):
         raise HTTPException(404, f"Fiche {req.id} introuvable.")
@@ -152,8 +217,6 @@ def health():
 def chat(req: ChatRequest):
     if not req.message.strip():
         raise HTTPException(400, "Le message ne peut pas être vide.")
-    if not agent.llm.is_available():
-        raise HTTPException(503, f"Ollama indisponible — lancez Ollama et « ollama pull {LLM_MODEL} »")
 
     question = req.message.strip()
 
@@ -170,7 +233,10 @@ def chat(req: ChatRequest):
             return result
 
     pipeline = classic if req.pipeline == "classic" else agent
-    result = pipeline.answer(question)
+    try:
+        result = pipeline.answer(question)
+    except LLMIndisponible as e:
+        raise HTTPException(503, str(e))
 
     # Mémorise les réponses rédigées par le LLM (pas les pré-validées, déjà rapides)
     if (req.pipeline != "classic" and result.get("statut") == "SUCCESS"
@@ -297,6 +363,7 @@ def chat_stream(req: ChatRequest):
             if all(p.get("status") == "no_answer" for p in relevant):
                 yield sse({"type": "etape", "noeud": "known_bug",
                            "detail": "Problème connu des équipes techniques"})
+                agent._journaliser_attente(question, "known_bug", relevant[0].get("fiche_id"))
                 yield sse({"type": "final", "reponse": KNOWN_BUG_ANSWER, "sources": sources,
                            "statut": "KNOWN_BUG", "latence_s": round(time.time() - start, 1)})
                 return
@@ -324,6 +391,7 @@ def chat_stream(req: ChatRequest):
                 yield sse({"type": "etape", "noeud": "verify", "detail": "Réponse ancrée dans les sources ✓"})
             else:
                 yield sse({"type": "etape", "noeud": "verify", "detail": "Réponse non ancrée → fallback"})
+                agent._journaliser_attente(question, "verification_echouee")
                 yield sse({"type": "final", "reponse": FALLBACK_ANSWER, "sources": [],
                            "statut": "NOT_GROUNDED", "latence_s": round(time.time() - start, 1)})
                 return

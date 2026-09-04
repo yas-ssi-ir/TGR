@@ -14,10 +14,18 @@ EVAL_DIR = os.path.join(BASE_DIR, "eval")
 
 XLSX_RECLAMATIONS = os.path.join(DATA_RAW_DIR, "request_response.xlsx")
 DOCX_ASSISTANT = os.path.join(DATA_RAW_DIR, "Assistant_IA_eServices_TGR_questions_reponses.docx")
+# Relevé bilingue complémentaire (68 cas, arabe rédigé nativement — pas traduit
+# par le LLM). Sert uniquement à enrichir assistant_fiches.json d'un champ
+# solution_ar ; ce n'est pas une source d'ingestion (voir eval/enrichir_ar_assistant.py).
+DOCX_ASSISTANT_BILINGUE = os.path.join(DATA_RAW_DIR, "Assistant_IA_eServices_TGR_bilingue_FR_AR.docx")
 QA_FICHES_JSON = os.path.join(DATA_PROCESSED_DIR, "qa_fiches.json")
 FAQ_FICHES_JSON = os.path.join(DATA_PROCESSED_DIR, "faq_fiches.json")
 ASSISTANT_FICHES_JSON = os.path.join(DATA_PROCESSED_DIR, "assistant_fiches.json")
 FEEDBACK_JSON = os.path.join(DATA_PROCESSED_DIR, "feedbacks.json")
+# Questions dans le périmètre TGR mais non correctement traitées (fiche
+# no_answer rencontrée, ou réponse LLM rejetée par node_verify) : conservées
+# pour relecture humaine sur /revision plutôt que perdues silencieusement.
+QUESTIONS_ATTENTE_JSON = os.path.join(DATA_PROCESSED_DIR, "questions_en_attente.json")
 
 # Documents bruts déjà découpés finement en fiches par un script dédié :
 # les ré-ingérer en chunks de 500 caractères ajouterait des centaines de
@@ -108,6 +116,35 @@ CONSENSUS_MIN_CHUNKS = 2  # nb de chunks d'une même fiche pour emporter la déc
 DIST_CANDIDATE_MAX = 0.37 # au-delà, un chunk ne vote pas (mesuré : les vrais
                           # consensus sont ≤ 0.35, le bruit commence vers 0.39)
 DIST_SOLO_ACCEPT = 0.30   # un chunk unique n'est accepté que s'il est très proche
+# Recevabilité MULTI-CHUNKS : "≥ CONSENSUS_MIN_CHUNKS chunks sous DIST_CANDIDATE_MAX"
+# n'exige aucune proximité propre — deux chunks à 0.36 comptent autant que deux
+# chunks à 0.15. Conséquence mesurée : des questions inédites/composées, jamais
+# vues, décrochent 2 votes par pure coïncidence lexicale et sont servies comme
+# si elles avaient une réponse officielle (cas "Comment obtenir un credit
+# immobilier ?", voir bench_latence.py — accroche FAQ.20 à 0.31, un texte sur la
+# restitution de l'IR, jamais listé dans ses variantes).
+#
+# Mesuré sur l'auto-test des 133 fiches (558 couples problème/variante, dont
+# arabe et darija) contre 21 questions inédites volontairement difficiles :
+#
+#   seuil   légitimes perdus      questions inédites qui échappent au fast-path
+#   0.29    4.9 % (26/527)        9/21
+#   0.30    2.8 % (15/527)        3/21
+#   0.31    0.8 %  (4/527)        3/21   ← retenu
+#   0.33    0.0 %  (0/527)        1/21
+#
+# Entre 0.29 et 0.31, les deux populations se recouvrent trop pour être
+# séparées proprement par la seule distance (des variantes légitimes mais
+# formulées loin de leur fiche s'y mêlent) : au-delà de 0.31 le gain sur les
+# questions inédites plafonne, mais le coût en couverture explose. 0.31 est le
+# point où on arrête de perdre pour un gain qui ne vient plus.
+#
+# Ne s'applique qu'en français (marge translangue == 0) : pour une question
+# arabe/darija, une distance plus grande est déjà le signe ATTENDU de la
+# barrière linguistique (voir DIST_OFFSET_TRANSLANGUE/DARIJA ci-dessous), pas
+# un indice de faux positif — lui appliquer ce seuil cassait le consensus
+# légitime sur « ما هي مشاكل رمز التحقق؟ » (0.40-0.41, voir test_consensus.py).
+DIST_CONSENSUS_MULTI_MAX = 0.31
 # Décalage TRANSLANGUE : une question posée dans une écriture absente de la
 # documentation (arabe, alors que le corpus TGR est en français) est
 # systématiquement plus « loin » — non parce qu'elle est hors sujet, mais parce
@@ -162,6 +199,13 @@ LLM_MODEL = os.getenv("LLM_MODEL", "qwen2.5:3b-instruct")   # bon FR/AR, ~2 Go, 
 LLM_TEMPERATURE = 0.2
 LLM_MAX_TOKENS = 512
 
+# ── Accès à /revision ────────────────────────────────────────────────
+# Pas de mot de passe par défaut en dur dans le code : tant que
+# REVISION_PASSWORD n'est pas défini dans l'environnement, la page refuse
+# l'accès à tout le monde (échec fermé) plutôt que d'être ouverte par défaut.
+REVISION_USER = os.getenv("REVISION_USER", "tgr")
+REVISION_PASSWORD = os.getenv("REVISION_PASSWORD", "")
+
 # ── Agent (bornes strictes pour la latence CPU) ──────────────────────
 MAX_REWRITE_RETRIES = 1       # 1 seule reformulation max
 
@@ -179,13 +223,15 @@ FALLBACK_ANSWER = (
     "Désolé, je ne trouve pas cette information dans la documentation officielle "
     "du portail eServices TGR. Pour votre sécurité, nous vous invitons à contacter "
     "le support du portail ou votre perception, ou à consulter directement "
-    "https://eservices.tgr.gov.ma."
+    "https://eservices.tgr.gov.ma. Votre question a été transmise à nos équipes "
+    "pour traitement."
 )
 
 KNOWN_BUG_ANSWER = (
     "Ce problème est connu de nos équipes techniques et fait l'objet d'une correction. "
     "En attendant, nous vous invitons à contacter le support du portail eServices TGR "
-    "afin qu'un agent puisse débloquer votre situation."
+    "afin qu'un agent puisse débloquer votre situation. Votre question a été transmise "
+    "à nos équipes pour traitement."
 )
 
 OUT_OF_SCOPE_ANSWER = (

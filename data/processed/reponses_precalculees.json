@@ -5,13 +5,18 @@
     "probleme": "Mot de passe refusé sans raison apparente",
     "validee": false,
     "validee_le": "",
-    "modifiee": true
+    "modifiee": true,
+    "validee_par": "",
+    "relue": true,
+    "relue_par": "yassir"
   },
   "1.1.2": {
     "fr": "Le lien de réinitialisation du mot de passe n'est valable qu'une heure. Passé ce délai il expire, et le rouvrir ne fonctionne plus.\n\nIl suffit d'en demander un nouveau, puis de l'ouvrir sans attendre :\n\nhttps://eservices.tgr.gov.ma/my/auth/forgotten\n\nSaisissez l'adresse e-mail utilisée lors de l'inscription, puis ouvrez le lien reçu dans l'heure qui suit.\n\nSi vous n'avez plus accès à cette adresse e-mail, la réinitialisation n'est pas possible directement : déposez une réclamation sur le portail.",
     "ar": "رابط إعادة تعيين كلمة المرور صالح لمدة ساعة واحدة فقط. بعد انقضاء هذه المدة ينتهي مفعوله ولا يمكن استعماله من جديد.\n\nيكفي طلب رابط جديد، ثم فتحه دون تأخير:\n\nhttps://eservices.tgr.gov.ma/my/auth/forgotten\n\nأدخل البريد الإلكتروني المستعمل عند التسجيل، ثم افتح الرابط الذي ستتوصل به داخل الساعة الموالية.\n\nإذا لم يعد بإمكانك الولوج إلى هذا البريد الإلكتروني، فإعادة التعيين غير ممكنة مباشرة: ضع شكاية على البوابة.",
     "probleme": "Échec de la réinitialisation du mot de passe : -Lien expiré",
-    "modifiee": true
+    "modifiee": true,
+    "relue": true,
+    "relue_par": "yassir"
   },
   "1.2.1": {
     "fr": "Votre compte existe bien : il est enregistré comme créé dans nos bases. C'est sa recherche au moment de la connexion qui échoue, à cause d'un incident technique du service d'authentification.\n\nCe n'est donc pas une erreur de votre part, et vous n'avez rien à recréer : un second compte ne ferait qu'ajouter un doublon.\n\nL'incident doit être levé par un agent. Déposez une réclamation sur le portail en précisant l'adresse e-mail utilisée lors de l'inscription.",
@@ -25,7 +30,9 @@
     "fr": "Votre numéro PPR reste rattaché à un compte supprimé. Le portail ne conserve pas l'historique des comptes déjà liés à un même PPR : il ne peut donc pas défaire ce rattachement de lui-même.\n\nL'opération doit être faite par un agent. Déposez une réclamation sur le portail en précisant votre numéro PPR.",
     "ar": "لا يزال رقم PPR الخاص بك مرتبطا بحساب تم حذفه. فالبوابة لا تحتفظ بسجل الحسابات المرتبطة سابقا بنفس رقم PPR، ولذلك لا يمكنها فك هذا الارتباط من تلقاء نفسها.\n\nهذه العملية يقوم بها أحد الأعوان. ضع شكاية على البوابة مع ذكر رقم PPR الخاص بك.",
     "probleme": "PPR lié à un ancien compte supprimé",
-    "modifiee": true
+    "modifiee": true,
+    "relue": true,
+    "relue_par": "yassir"
   },
   "2.1.1": {
     "fr": "Si vos codes étaient sauvegardés dans votre compte Google, installez l'application d'authentification sur votre nouveau téléphone et connectez-vous avec ce même compte Google : vos codes y sont restaurés.\n\nSinon, la double authentification doit être réinitialisée. Cette réinitialisation se fait après une première connexion.\n\nSi vous ne parvenez plus à vous connecter du tout, déposez une réclamation sur le portail : un agent réinitialisera votre double authentification.",
@@ -195,102 +202,102 @@
   },
   "AST.1": {
     "fr": "Je vous invite à visionner la vidéo explicative ci-dessous, qui vous guidera pas à pas dans la création de votre compte.\n🧑💻 Création de votre compte\nUne fois la vidéo visionnée, je vous invite à compléter le formulaire afin de procéder à la création de votre compte.\n\nLien : https://www.youtube.com/watch?v=BLkUPZbP1m4",
-    "ar": "Je vous invite à مشاهدة الفيديو التوضيحي التالي، الذي سيساعدكم في إنشاء حسابهم خطوة بخطوة.\n🧑💻 إنشاء حسابكم\nبعد مشاهدة الفيديو، أدعوكم إلى إكمال formulario للحصول على إنشاء حسابكم.\n\nLien : https://www.youtube.com/watch?v=BLkUPZbP1m4",
+    "ar": "أدعوك إلى مشاهدة الفيديو التوضيحي أدناه، الذي سيرشدك خطوة بخطوة لإنشاء حسابك.\nإنشاء حسابك\nبعد مشاهدة الفيديو، يُرجى ملء الاستمارة لإتمام إنشاء حسابك.\n\nLien / الرابط : https://www.youtube.com/watch?v=BLkUPZbP1m4",
     "probleme": "Création de compte"
   },
   "AST.2": {
     "fr": "Activez votre compte en utilisant ce : lien\n\nLien : https://eservices.tgr.gov.ma/my/auth/activate",
-    "ar": "قم بتفعيل حسابك باستخدام هذا : الرابط\n\nالرابط : https://eservices.tgr.gov.ma/my/auth/activate",
+    "ar": "فعّل حسابك باستعمال هذا الرابط.\n\nLien / الرابط : https://eservices.tgr.gov.ma/my/auth/activate",
     "probleme": "Activation du compte"
   },
   "AST.3": {
     "fr": "Si vous êtes déjà enregistré(e), suivez ces étapes pour vous connecter à la plateforme :\n1. Cliquez sur 🔒 Connexion en haut à droite de l'écran.\n2. Vous serez redirigé(e) vers la page de connexion.\n3. Renseignez votre nom d'utilisateur ainsi que votre mot de passe.\n4. Cliquez ensuite sur le bouton Connexion pour accéder à votre espace.",
-    "ar": "1. انقر على 🔒 التسجيل في الأعلى右边的屏幕。\n2. ستجد نفسك تُنقل إلى صفحه تسجيل الدخول.\n3. قم بملاء اسم المستخدم ورقم المرور الخاص بك.\n4. انقر بعد ذلك على زر التسجيل للوصول إلى مساحةك.",
+    "ar": "إذا كنت مسجلاً من قبل، فاتبع الخطوات التالية لتسجيل الدخول إلى المنصة:\nانقر على «تسجيل الدخول» في أعلى الشاشة جهة اليمين.\nستتم إحالتك إلى صفحة تسجيل الدخول.\nأدخل اسم المستخدم وكلمة المرور.\nثم انقر على زر «تسجيل الدخول» للولوج إلى فضائك.\nلا تتردد في التواصل معي إذا كان لديك أي سؤال أو كنت ترغب في الحصول على معلومات إضافية. أنا رهن إشارتك.",
     "probleme": "Connexion au compte"
   },
   "AST.5": {
     "fr": "En cas d'oubli de votre nom d'utilisateur ou de votre mot de passe, ne vous inquiétez pas !\nPour récupérer l'accès à votre compte, suivez ces étapes :\n1. Cliquez sur 🔒 Connexion en haut à droite de la page.\n2. Sur l'interface de connexion, sélectionnez 🔑 Nom d'utilisateur Mot de passe oublié\nChoisissez ensuite l'option correspondant à votre situation :\nNom d'utilisateur oublié\nMot de passe oublié\nAdresse mail oublié\n4. Remplissez les champs demandés.\nCochez la case Je ne suis pas un robot.\nCliquez enfin sur le bouton Envoyer pour valider votre demande.",
-    "ar": "في حالة نسيان اسم المستخدم أو كلمة المرور، لا تقلق !\nلاستعادة الوصول إلى حسابك، اتبع هذه الخطوات :\n1. انقر على 🔒 تسجيل الدخول في أعلى اليسار من صفحتك.\n2. على لوحة تسجيل الدخول، اختر 🔑 نسيت كلمة المرور عنوان المستخدم\nاختر بعد ذلك الخيار المناسب لحالةك :\nعنوان المستخدم نسيت\nكلمة المرور نسيت\nعنوان البريد الإلكتروني نسيت\n4. أدخل الأقسام المطلوبة.\nانقر فوق خياراتي أنا لست روبوت.\nانقر في النهاية على زر إرسال للتحقق من طلبك.",
+    "ar": "إذا نسيت اسم المستخدم أو كلمة المرور، فلا داعي للقلق. لاسترجاع الولوج إلى حسابك، اتبع الخطوات التالية:\nانقر على «تسجيل الدخول» في أعلى الصفحة جهة اليمين.\nفي واجهة تسجيل الدخول، اختر «نسيت اسم المستخدم أو كلمة المرور».\nاختر الخيار الموافق لحالتك:\nنسيت اسم المستخدم\nنسيت كلمة المرور\nنسيت عنوان البريد الإلكتروني\nاملأ الخانات المطلوبة.\nضع علامة في خانة «أنا لست روبوتاً».\nانقر في النهاية على زر «إرسال» لتأكيد طلبك.",
     "probleme": "Login ou mot de passe oublié"
   },
   "AST.7": {
     "fr": "Je vous invite à regarder la vidéo explicative ci-dessous, qui vous guidera étape par étape dans le changement de votre adresse email.\n📧 Changement email\n\nLien : https://youtu.be/Lqizmeev0SU",
-    "ar": "تلقيت دعوتك لمشاهدة الفيديو التوضيحية أدناه، التي ستساعدك في تغيير عنوان بريدك الإلكتروني خطوة بخطوة.\n📧 تغيير بريد إلكتروني\n\nالرابط: https://youtu.be/Lqizmeev0SU",
+    "ar": "أدعوك إلى مشاهدة الفيديو التوضيحي أدناه، الذي سيرشدك خطوة بخطوة لتغيير عنوان بريدك الإلكتروني.\nتغيير البريد الإلكتروني\n\nLien / الرابط : https://youtu.be/Lqizmeev0SU",
     "probleme": "Changement d'adresse e-mail"
   },
   "AST.9": {
     "fr": "En ce qui concerne la taxe applicable aux terrains urbains non bâtis, je vous recommande vivement de visionner cette vidéo explicative. Elle vous guide de manière claire et structurée\n🎥 Guide de la taxe sur les terrains urbains non bâtis\n\nLien : https://youtu.be/eHSeXREK5pw",
-    "ar": "في ما يتعلق بضريبة الأراضي الواقعة في城区未开发，أنا أوصي بشدة بمشاهدة هذا الفيديو التوضيحي.他会您清晰且有结构地引导\n🎥 دليل ضريبة الأراضي الواقعة في城区未开发\n\nالرابط : https://youtu.be/eHSeXREK5pw",
+    "ar": "فيما يخص الرسم على الأراضي الحضرية غير المبنية، أوصي بشدة بمشاهدة هذا الفيديو التوضيحي، إذ يقدم شرحاً واضحاً ومنظماً.\nدليل الرسم على الأراضي الحضرية غير المبنية\n\nLien / الرابط : https://youtu.be/eHSeXREK5pw",
     "probleme": "Taxe sur les terrains urbains non bâtis"
   },
   "AST.10": {
     "fr": "En ce qui concerne la taxe sur les débits de boissons, je vous recommande vivement de visionner cette vidéo explicative. Elle vous guide de manière claire et structurée\n🎥 Guide de la taxe sur les débits de boissons\n\nLien : https://youtu.be/7jzwXMF40QQ",
-    "ar": "في ما يتعلق بضريبة المطاعم، أوصي بشدة بمشاهدة هذا الفيديو التوضيحي.他会您清晰而有结构地引导\n🎥 دليل ضريبة المطاعم\n\nالرابط : https://youtu.be/7jzwXMF40QQ",
+    "ar": "فيما يخص الرسم على محال بيع المشروبات، أوصي بشدة بمشاهدة هذا الفيديو التوضيحي، إذ يقدم شرحاً واضحاً ومنظماً.\nدليل الرسم على محال بيع المشروبات\nإذا كان لديك أي سؤال أو كنت بحاجة إلى توضيحات، فأنا رهن إشارتك.\n\nLien / الرابط : https://youtu.be/7jzwXMF40QQ",
     "probleme": "Taxe sur les débits de boissons"
   },
   "AST.11": {
     "fr": "En ce qui concerne la taxe de séjour,Je vous recommande de regarder cette vidéo explicative : elle offre une présentation claire et bien organisée\n🎥 Guide de la taxe de séjour\n\nLien : https://youtu.be/hY4aYPfA4ec",
-    "ar": "في ما يتعلق بضريبة الإيواء، أ recommend لك مشاهدة هذا الفيديو التوضيحي: فهو يوفر توضيحاً واضحاً وتنظيم جيد\n🎥 دليل ضريبة الإيواء\n\nالرابط: https://youtu.be/hY4aYPfA4ec",
+    "ar": "فيما يخص رسم الإقامة، أوصي بمشاهدة هذا الفيديو التوضيحي، إذ يقدم عرضاً واضحاً ومنظماً.\nدليل رسم الإقامة\nأنا رهن إشارتك لأي معلومات إضافية أو سؤال محتمل.\n\nLien / الرابط : https://youtu.be/hY4aYPfA4ec",
     "probleme": "Taxe de séjour"
   },
   "AST.12": {
     "fr": "Je vous prie de bien vouloir m'excuser\nPour le moment, le guide de la taxe sur les eaux minérales et de table n'est pas encore prêt.",
-    "ar": "أرجو منكم تفضلوا معي\nلقد تم تجهيز دليل ضريبة المياه الغازية والطعام还不足夠.",
+    "ar": "أرجو المعذرة.\nدليل الرسم على المياه المعدنية ومياه المائدة غير جاهز في الوقت الحالي.",
     "probleme": "Taxe sur les eaux minérales et de table"
   },
   "AST.13": {
     "fr": "En ce qui concerne la taxe sur les véhicules soumis au contrôle technique,Je vous recommande de regarder cette vidéo explicative : elle offre une présentation claire et bien organisée\n🎥 Guide de la taxe sur les véhicules soumis au contrôle technique\n\nLien : https://youtu.be/9jmwZa_w4HI",
-    "ar": "في ما يتعلق بضريبة السيارات المدرجة تحت المعاينة التقنية، أ recommend لك مشاهدة هذا الفيديو التوضيحي: فهو يوفر توضيحاً واضحاً وتنظيم جيد\n🎥 دليل ضريبة السيارات المدرجة تحت المعاينة التقنية\n\nالرابط: https://youtu.be/9jmwZa_w4HI",
+    "ar": "فيما يخص الرسم على المركبات الخاضعة للمراقبة التقنية، أوصي بمشاهدة هذا الفيديو التوضيحي، إذ يقدم عرضاً واضحاً ومنظماً.\nدليل الرسم على المركبات الخاضعة للمراقبة التقنية\n\nLien / الرابط : https://youtu.be/9jmwZa_w4HI",
     "probleme": "Taxe sur les véhicules soumis au contrôle technique"
   },
   "AST.14": {
     "fr": "À propos de la taxe sur les services portuaires, je vous suggère de visionner cette vidéo explicative, qui offre une démonstration à la fois claire et bien articulée.\n🎥 Guide de la taxe sur les services portuaires\n\nLien : https://youtu.be/yg8ZL__EYUk",
-    "ar": "عن موضوع ضريبة الخدمات الملاحية، أقترح عليك مشاهدة هذا الفيديو التوضيحي، الذي يقدم توضيحاً متسلقاً وكامل.\n🎥 دليل ضريبة الخدمات الملاحية\n\nالرابط: https://youtu.be/yg8ZL__EYUk",
+    "ar": "فيما يخص الرسم على الخدمات المقدمة بالموانئ، أقترح مشاهدة هذا الفيديو التوضيحي الذي يقدم شرحاً واضحاً ومحكماً.\nدليل الرسم على الخدمات المقدمة بالموانئ\nأظل رهن إشارتك إذا كنت بحاجة إلى توضيحات أو ترغب في مناقشة الموضوع أكثر.\n\nLien / الرابط : https://youtu.be/yg8ZL__EYUk",
     "probleme": "Taxe sur les services portuaires"
   },
   "AST.15": {
     "fr": "Pour télécharger votre quittance, merci de cliquer sur ce lien\n\nLien : https://eservices.tgr.gov.ma/my/mesquittances",
-    "ar": "للتنزيل مباشرة لسندك، يرجى النقر على هذا الرابط\n\nالرابط: https://eservices.tgr.gov.ma/my/mesquittances",
+    "ar": "لتنزيل وصلك، يُرجى النقر على هذا الرابط.\n\nLien / الرابط : https://eservices.tgr.gov.ma/my/mesquittances",
     "probleme": "Télécharger les quittances"
   },
   "AST.17": {
     "fr": "Nous vous informons que si votre bien a déjà été appréhendé fiscalement (déclaré auprès de l'administration compétente), vous pouvez consulter votre situation fiscale directement sur la plateforme électronique de la Trésorerie Générale du Royaume à l'adresse suivante : Cliquez ici\nDe plus, il est possible d'obtenir la référence en envoyant votre demande via le service des réclamations et joindre un avis d'imposition ou une quittance d'une année antérieure.\nSi toutefois vous ne disposez pas de ces documents, nous vous invitons à vous présenter à la perception territorialement compétente (celle du lieu de situation du bien) afin de vérifier votre situation et obtenir les références nécessaires.\n\nLien : https://eservices.tgr.gov.ma/",
-    "ar": "ننوه إليكم أن إذا كان ممتلكاتكم قد تم اعتقالها مالياً (تقديمها إلى机关 competent)، يمكنكم متابعة وضع مالكيتكم مباشرة على منصة تجارية الملكية الإلكترونية من خلال الرابط التالي: انقر هنا\nكما يمكن الحصول على الرقم من خلال تقديم طلب إلى خدمة الاستفسارات وإرفاق محضر ضريبي أو إيصال سنة سابقة.\nوإذا لم تتوفر لديك هذه الوثائق، ننصحكم بالحضور إلى الإدارة المحلية المسؤولة (التي تقع في مكان ممتلكاتكم) للتحقق من وضعكم وتحصيل الرقم المطلوب.\n\nLien : https://eservices.tgr.gov.ma/",
+    "ar": "نخبركم بأنه إذا سبق إخضاع عقاركم للضريبة (أي تم التصريح به لدى الإدارة المختصة)، فيمكنكم الاطلاع على وضعيتكم الجبائية مباشرة عبر المنصة الإلكترونية للخزينة العامة للمملكة على الرابط المبين. كما يمكن الحصول على المرجع بإرسال طلبكم عبر خدمة الشكايات وإرفاقه بإشعار ضريبي أو وصل يخص سنة سابقة. وإذا لم تكن هذه الوثائق متوفرة لديكم، ندعوكم إلى التوجه إلى القباضة المختصة ترابياً (قباضة مكان وجود العقار) للتحقق من وضعيتكم والحصول على المراجع اللازمة.\n\nLien / الرابط : https://eservices.tgr.gov.ma/",
     "probleme": "Bien déjà déclaré pour 2025 et les années antérieures"
   },
   "AST.19": {
     "fr": "Le paiement en ligne des ATF peut être effectué à travers le lien:\nhttps://eservices.tgr.gov.ma/my/pmc/Paiement\n-Il est à noter que la plateforme permet au contrevenant de saisir directement le montant de l'amende et qu'il peut payer le reliquat d'une amende avec la même référence;\n-Veuillez vérifier que le délai de 30 jours prévu pour le paiement des amendes auprès des services de la TGR n'est pas expiré.\nAu-delà de ce délai, le paiement ne peut être effectué au niveau du portail de la TGR car le dossier est transmis au tribunal qui dispose également d'une plateforme de paiement en ligne:https://amendes.justice.gov.ma/Amende/radar\n\nLien : https://eservices.tgr.gov.ma/my/pmc/Paiement\nLien : https://amendes.justice.gov.ma/Amende/radar",
-    "ar": "الدفع الإلكتروني للATF يمكن أن يتم من خلال الرابط:\nhttps://eservices.tgr.gov.ma/my/pmc/Paiement\n-يُذكر أنه يتيح النظام للمخالف للتسجيل مباشرة للقيمة المقدرة للغرامة ودفع الفارق من الغرامة بنفس الرقم;\n-يرجى التحقق من أن المهلة المحددة قانونًا بـ 30 يومًا لدفع الغرامات لدى مصلحة التحصيل الحكومية (TGR) لم ت到期 بعد.\nبeyond هذا المهلة، لا يمكن دفع الغرامات من خلال بوابة TGR لأن الملف يتم توجيهه إلى المحكمة التي تمتلك أيضًا نظامًا للدفع الإلكتروني: https://amendes.justice.gov.ma/Amende/radar\n\nالرابط: https://eservices.tgr.gov.ma/my/pmc/Paiement\nالرابط: https://amendes.justice.gov.ma/Amende/radar",
+    "ar": "يمكن أداء مخالفات ATF عبر الإنترنت من خلال الرابط المبين. وتجدر الإشارة إلى أن المنصة تتيح للمخالف إدخال مبلغ الغرامة مباشرة، كما يمكنه أداء المبلغ المتبقي من الغرامة باستعمال المرجع نفسه. يُرجى التحقق من أن أجل الثلاثين يوماً المحدد لأداء الغرامات لدى مصالح الخزينة العامة للمملكة لم ينقضِ. بعد انقضاء هذا الأجل، لا يمكن الأداء عبر بوابة الخزينة لأن الملف يُحال إلى المحكمة، التي تتوفر بدورها على منصة للأداء عبر الإنترنت على الرابط المبين.\n\nLien / الرابط : https://eservices.tgr.gov.ma/my/pmc/Paiement\nLien / الرابط : https://amendes.justice.gov.ma/Amende/radar",
     "probleme": "Paiement d'une contravention par radar fixe avec référence"
   },
   "AST.20": {
     "fr": "Lorsqu'il s'agit d'une infraction relative à un véhicule appartenant à une personne morale (société), il est nécessaire de déclarer le conducteur auprès des services du transport routier relevant du ministère de l'Équipement et du Transport.\nCette déclaration permet d'obtenir un avis d'amende nominatif contenant la référence nécessaire au paiement.\nPour plus d'informations, vous pouvez consulter\nce lien\n\nLien : https://khadamatnarsa.ma/fr/declaration",
-    "ar": "عندما يتعلق الأمر بمخالفة تتعلق بسيارة تابعة لشخص اعتباري (شركة)، يكون من الضروري إبلاغ السائق لدى الخدمات المرورية المختصة بوزارة النقل والمواصلات.\nهذه الإبلاغ تسمح بتحصيل شهادة غرام مخصص تشمل المعرفة اللازمة للدفع.\nللحصول على معلومات إضافية، يمكنك الرجوع إلى\nهذا الرابط\n\nالرابط : https://khadamatnarsa.ma/fr/declaration",
+    "ar": "إذا تعلقت المخالفة بمركبة مملوكة لشخص اعتباري (شركة)، فيجب التصريح بالسائق لدى مصالح النقل الطرقي التابعة لوزارة التجهيز والنقل. يتيح هذا التصريح الحصول على إشعار غرامة اسمي يتضمن المرجع اللازم للأداء. ولمزيد من المعلومات، يمكنكم الاطلاع على الرابط المبين.\n\nLien / الرابط : https://khadamatnarsa.ma/fr/declaration",
     "probleme": "Paiement d'une contravention par radar fixe sans référence sur le PV"
   },
   "AST.21": {
     "fr": "Si vous estimez avoir une raison de déposer une réclamation, vous pouvez le faire via le lien suivant : Cliquez ici\n\nLien : https://eservices.tgr.gov.ma/my/reclamation",
-    "ar": "إذا تعلق الأمر ب depositing一份 réclamation، يمكنك القيام بذلك من خلال الرابط التالي: انقر هنا\n\nالرابط: https://eservices.tgr.gov.ma/my/reclamation",
+    "ar": "إذا كنت ترى أن لديك سبباً لتقديم شكاية، فيمكنك القيام بذلك عبر الرابط المبين.\n\nLien / الرابط : https://eservices.tgr.gov.ma/my/reclamation",
     "probleme": "Dépôt d'une réclamation"
   },
   "AST.22": {
     "fr": "Vous souhaitez suivre l'avancement de votre réclamation ? Cliquez simplement sur ce lien\n\nLien : https://eservices.tgr.gov.ma/my/reclamation/suivi",
-    "ar": "تريد متابعة تقدم طلبك؟ انقر فقط على هذا الرابط\n\nالرابط : https://eservices.tgr.gov.ma/my/reclamation/suivi",
+    "ar": "هل ترغب في تتبع تقدم معالجة شكايتك؟ ما عليك سوى النقر على هذا الرابط.\n\nLien / الرابط : https://eservices.tgr.gov.ma/my/reclamation/suivi",
     "probleme": "Suivi d'une réclamation"
   },
   "AST.23": {
     "fr": "Étape 1 : Accédez à la page d'inscription\nCliquez sur le bouton « Inscription » situé en haut de la page d'accueil.\nTapez « Suivant » quand c'est fait.\nÉtape 2 : Remplissez le formulaire\nIndiquez :\nVotre nom d'utilisateur\nVotre adresse e-mail\nUn mot de passe sécurisé\n💡 Choisissez un mot de passe fort (lettres, chiffres et symboles).\nTapez « Suivant » pour continuer.\nÉtape 3 : Validez les conditions\nCochez :\n« Je ne suis pas un robot »\n« J'accepte les conditions d'utilisation »\nPuis cliquez sur « Enregistrer » pour finaliser votre inscription.\nTapez « Suivant » quand c'est fait.\nÉtape 4 : Activez votre compte\nUn code d'activation vous sera envoyé par e-mail\nOuvrez votre messagerie et copiez le code reçu\nSaisissez votre e-mail et le code sur la page d'activation\nCliquez sur « Activer »\nTapez « Suivant » pour continuer.\nÉtape 5 : Connectez-vous\nVotre compte est maintenant créé !\nCliquez sur « Connexion », puis entrez votre nom d'utilisateur et votre mot de passe.\nTapez « Suivant » pour continuer.\nÉtape 6 : Complétez votre profil\nAvant de commencer, cliquez sur « Profil » et ajoutez vos informations personnelles.\nVous pouvez compléter votre profil en tant que fonctionnaire et/ou redevable.\nTapez « Suivant » une fois terminé.",
-    "ar": "Étape 1 : accédez à la page d'inscription\n cliquez sur le bouton « inscription » situé en haut de la page d'accueil.\n tapez « suivant » quand c'est fait.\n étape 2 : remplissez le formulaire\n indiquez :\n votre nom d'utilisateur\n votre adresse e-mail\n un mot de passe sécurisé\n 💡 اختر كلمة مرور قوية (حروف، أرقام، ورموز).\n tapez « suivant » لل.continue.\n étape 3 : تأكد من شروط الاستخدام\n قم ب tick :\n « أنا لست روبوت »\n « أني أ agree بالشروط والأحكام »\n ثم انقر على « تسجيل » لل finalize تسجيلك.\n tapez « suivant » عندما يكون ذلك مفعلًا.\n étape 4 : تفعيل حسابك\n سترسل لك بريد إلكتروني برمز التفعيل\n فتحوا بريدكم الإلكتروني ونسخ الرمز الذي تم إرساله\n أدخل بريدك الإلكتروني والرمز على صفحة التفعيل\n انقر على « تفعيل »\n tapez « suivant » لل.continue.\n étape 5 : تسجيل الدخول\n حسابك الآن تم إنشاؤه !\n انقر على « تسجيل الدخول »، ثم أدخل اسم المستخدم وكلمة المرور.\n tapez « suivant » لل.continue.\n étape 6 : تكميل ملفك الشخصي\n قبل البدء، انقر على « ملف » وقم بضمن معلوماتك الشخصية.\n يمكنك تكميل ملفك الشخصي كموظف و/أو مسؤول.\n tapez « suivant » عندما يكون ذلك مكتملا.",
+    "ar": "المرحلة 1: الولوج إلى صفحة التسجيل\nانقر على زر «التسجيل» الموجود أعلى الصفحة الرئيسية.\nاكتب «Suivant» عند الانتهاء.\nالمرحلة 2: ملء الاستمارة\nأدخل ما يلي:\nاسم المستخدم\nعنوان البريد الإلكتروني\nكلمة مرور آمنة\nاختر كلمة مرور قوية تتضمن حروفاً وأرقاماً ورموزاً.\nاكتب «Suivant» للمتابعة.\nالمرحلة 3: قبول الشروط\nضع علامة في الخانتين التاليتين:\n«أنا لست روبوتاً»\n«أوافق على شروط الاستعمال»\nثم انقر على «حفظ» لإتمام تسجيلك.\nاكتب «Suivant» عند الانتهاء.\nالمرحلة 4: تفعيل الحساب\nسيُرسل إليك رمز تفعيل عبر البريد الإلكتروني.\nافتح بريدك وانسخ الرمز المتوصل به.\nأدخل بريدك الإلكتروني والرمز في صفحة التفعيل.\nانقر على «تفعيل».\nاكتب «Suivant» للمتابعة.\nالمرحلة 5: تسجيل الدخول\nتم الآن إنشاء حسابك.\nانقر على «تسجيل الدخول»، ثم أدخل اسم المستخدم وكلمة المرور.\nاكتب «Suivant» للمتابعة.\nالمرحلة 6: استكمال الملف الشخصي\nقبل البدء، انقر على «الملف الشخصي» وأضف معلوماتك الشخصية.\nيمكنك استكمال ملفك بصفتك موظفاً و/أو ملزماً.\nاكتب «Suivant» عند الانتهاء.",
     "probleme": "Inscription aux eServices"
   },
   "AST.24": {
     "fr": "Pour finaliser votre inscription, veuillez suivre les étapes suivantes :\nCréer et accéder à votre compte :\nAprès avoir créé votre compte lors de l'étape précédente, connectez-vous à votre espace.\nAccéder à votre profil :\nCliquez sur l'icône utilisateur en haut à droite de la page.\nSélectionnez « Modifier le profil ».\nAccéder aux services d'inscription :\nFaites défiler jusqu'en bas de la page.\nCliquez sur « Services d'inscription ».\nRenseigner vos informations :\nSous le titre « Fonctionnaire ? Pour vous inscrire au service des fonctionnaires », saisissez les informations suivantes :\nLe numéro PPR (matricule)\nLa date d'entrée en service\nLe dernier salaire net transféré sur votre compte bancaire\nValidation de votre inscription :\nUne fois votre inscription validée, vous bénéficierez d'un accès sécurisé à vos informations administratives et financières, y compris les déductions, via un portail sécurisé.",
-    "ar": "لإكمال إيداعك، يرجى اتباع الخطوات التالية:\n création وتوصل إلى حسابك:\n بعد إنشاء حسابك في الخطوة السابقة، ا_connectитесь إلى مساحةك.\n الوصول إلى معلوماتك الشخصية:\n انقر فوق صورة المستخدم في أعلى اليسار من الصفحة.\n اختيار « تحرير المعلومات الشخصية ».\n الوصول إلى خدمات التسجيل:\n ا scroll إلى أسفل الصفحة.\n انقر على « خدمات التسجيل ».\n تقديم معلوماتك الشخصية:\n تحت عنوان « موظف؟ للتسجيل في خدمات الموظفين »، أدخل المعلومات التالية:\n رقم PPR (الرقم المركزي)\n تاريخ بدء الخدمة\n آخر دفع شهري نافي على حسابك المصرفي\n التحقق من إيداعك:\n بمجرد تأكيد إيداعك، ستحصل على الوصول المحمي إلى معلوماتك الإدارية والمالية، بما في ذلك الدفعات، من خلال بوابة موثوقة.",
+    "ar": "لإتمام تسجيلك، يُرجى اتباع الخطوات التالية:\nإنشاء الحساب والولوج إليه:\nبعد إنشاء حسابك في المرحلة السابقة، سجّل الدخول إلى فضائك.\nالولوج إلى ملفك الشخصي:\nانقر على أيقونة المستخدم في أعلى الصفحة جهة اليمين.\nاختر «تعديل الملف الشخصي».\nالولوج إلى خدمات التسجيل:\nمرّر الصفحة إلى أسفلها.\nانقر على «خدمات التسجيل».\nإدخال المعلومات:\nتحت العنوان «موظف؟ للتسجيل في خدمة الموظفين»، أدخل المعلومات التالية:\nرقم التأجير PPR\nتاريخ الالتحاق بالعمل\nآخر أجرة صافية محولة إلى حسابك البنكي\nتأكيد التسجيل:\nبعد المصادقة على تسجيلك، ستستفيد من ولوج آمن إلى معلوماتك الإدارية والمالية، بما في ذلك الاقتطاعات، عبر بوابة مؤمّنة.",
     "probleme": "Paramétrage du compte comme fonctionnaire et/ou contribuable"
   },
   "AST.26": {
     "fr": "Pour réinitialiser votre mot de passe, utilisez ce lien en saisissant l'adresse e-mail utilisée lors de l'inscription.\n\nLien : https://eservices.tgr.gov.ma/my/auth/forgotten",
-    "ar": "لإعادة تعيين مفتاحك السري，请使用注册时使用的电子邮件地址输入此链接。\n\nالرابط : https://eservices.tgr.gov.ma/my/auth/forgotten",
+    "ar": "لإعادة تعيين كلمة المرور، استعمل هذا الرابط وأدخل عنوان البريد الإلكتروني الذي استعملته عند التسجيل.\n\nLien / الرابط : https://eservices.tgr.gov.ma/my/auth/forgotten",
     "probleme": "Adresse e-mail d'inscription toujours accessible"
   },
   "AST.27": {
@@ -300,108 +307,108 @@
   },
   "AST.28": {
     "fr": "Authentification via CINE sur le portail eServices TGR\nOuvrir le navigateur et se connecter :\nOuvrez Google Chrome.\nConnectez-vous à votre compte sur le site officiel de la Trésorerie Générale du Royaume (TGR).\nAccéder à la vérification CINE :\nCliquez sur l'icône utilisateur, puis sélectionnez « Modifier le profil ».\nCliquez sur le bouton « Vérification via CINE ».\nPrendre connaissance des informations transmises :\nUne fenêtre s'affiche vous invitant à utiliser votre CINE pour vous authentifier.\nLa liste des informations (attributs) transmises à la TGR est également présentée.\nCochez « J'ai lu et j'accepte les conditions d'utilisation » puis cliquez sur « J'accepte ».\nChoisir une méthode d'authentification\nOptions disponibles :\nPar téléphone et CINE\nPar téléphone, CINE et reconnaissance faciale\nPar CINE et code PIN\nPar CINE, code PIN et reconnaissance faciale\nSi vous choisissez la première option (téléphone + CINE) :\nSaisissez votre numéro de CINE, puis cliquez sur « Soumettre ».\nUn code QR s'affiche à l'écran.\nTéléchargez et installez l'application E-ID sur votre téléphone.\nScannez le code QR avec l'application.\nSaisissez le code CAN figurant sur votre carte nationale.\nPlacez votre CINE derrière votre téléphone pour la lecture automatique.\nUne fois la lecture réussie, l'application confirme la réussite de l'authentification.\nFinaliser sur le portail TGR :\nVos informations personnelles s'affichent automatiquement dans la fenêtre initiale des attributs.\nCliquez sur « Accepter » pour finaliser l'opération.\nConsultation sécurisée :\nVous pouvez désormais consulter vos informations administratives et financières en toute sécurité.",
-    "ar": "Authentification via CNIE على لوحة الخدمات الإلكترونية TGR\n\nفتح المتصفح وتسجيل الدخول:\nأدخل إلى متصفحك وفتح تطبيق Google Chrome.\nتسجيل الدخول إلى حسابك على الموقع الرسمي للرئاسة العامة للتحصيل (TGR).\n accès إلى التحقق CNIE :\nانقر على رمز المستخدم، ثم انقر على \"تعديل الملف الشخصي\".\nانقر على زر \"تحقق من CNIE\".\nقراءة المعلومات المقدمة:\nتظهر لك نافذة تطلب استخدام CNIE لكتمل.\nتظهر قائمة المعلومات (الخصائص) المقدمة إلى الرئاسة العامة للتحصيل (TGR).\n ticks \"أنا قرأت وسافقت شروط الاستخدام\" ثم انقر على \"أوافق\".\n اختيار طريقة التحقق\nالخيارات المتاحة:\nعبر الهاتف وCNIE\nعبر الهاتف، CNIE و التعرف على الوجه\nعبر CNIE ورمز PIN\nعبر CNIE، رمز PIN و التعرف على الوجه\nإذا كنت تختار الخيار الأول (هاتف + CNIE):\nأدخل رقم CNIE، ثم انقر على \"إرسال\".\nتظهر لك نافذة QR على الشاشة.\nقم بتنزيل وتثبيت تطبيق E-ID على هاتفك.\nقم بقراءة QR باستخدام تطبيق E-ID.\nأدخل رقم CAN على البطاقة الوطنية.\nضع CNIE خلف هاتفك للقراءة الآلية.\nبعد النجاح في القراءة، تؤكد تطبيق E-ID النجاح في التحقق.\n finalize على لوحة الخدمات الإلكترونية TGR:\nتظهر لك المعلومات الشخصية بشكل تلقائي في النافذة الأولى للخصائص.\nانقر على \"قبول\" لل finalize العملية.\nالاستشارة الآمنة:\nيمكنك الآن الاستشارة الآمنة للبيانات الحكومية والمالية الخاصة بك.",
+    "ar": "المصادقة بواسطة البطاقة الوطنية للتعريف الإلكترونية (CINE) في بوابة الخدمات الإلكترونية للخزينة العامة للمملكة\nفتح المتصفح وتسجيل الدخول:\nافتح متصفح Google Chrome.\nسجّل الدخول إلى حسابك في الموقع الرسمي للخزينة العامة للمملكة (TGR).\nالولوج إلى التحقق بواسطة CINE:\nانقر على أيقونة المستخدم، ثم اختر «تعديل الملف الشخصي».\nانقر على زر «التحقق بواسطة CINE».\nالاطلاع على المعلومات المرسلة:\nتظهر نافذة تدعوك إلى استعمال بطاقتك الوطنية للتعريف الإلكترونية للمصادقة.\nتُعرض أيضاً لائحة المعلومات (السمات) التي ستُرسل إلى الخزينة العامة للمملكة.\nضع علامة أمام «قرأت شروط الاستعمال وأوافق عليها»، ثم انقر على «أوافق».\nاختيار طريقة المصادقة:\nالخيارات المتاحة:\nبواسطة الهاتف وCINE\nبواسطة الهاتف وCINE والتعرف على الوجه\nبواسطة CINE والرمز السري PIN\nبواسطة CINE والرمز السري PIN والتعرف على الوجه\nإذا اخترت الخيار الأول (الهاتف + CINE):\nأدخل رقم CINE، ثم انقر على «إرسال».\nيظهر رمز QR على الشاشة.\nنزّل تطبيق E-ID وثبّته على هاتفك.\nامسح رمز QR بواسطة التطبيق.\nأدخل رمز CAN الموجود على بطاقتك الوطنية.\nضع بطاقتك CINE خلف الهاتف لقراءتها تلقائياً.\nبعد نجاح القراءة، يؤكد التطبيق نجاح المصادقة.\nإتمام العملية في بوابة الخزينة:\nتظهر معلوماتك الشخصية تلقائياً في نافذة السمات الأولى.\nانقر على «قبول» لإتمام العملية.\nالاطلاع الآمن:\nيمكنك الآن الاطلاع على معلوماتك الإدارية والمالية بأمان.",
     "probleme": "Authentification par CNIE"
   },
   "AST.30": {
     "fr": "Vous pouvez supprimer votre compte via la plateforme eServices en vous connectant d'abord à votre espace personnel, puis en cliquant sur l'icône utilisateur, en sélectionnant Modifier le profil (Edit profil) et enfin en cliquant sur Désinscription en bas de la page.",
-    "ar": "يمكنك حذف حسابك عبر منصة eServices بتسجيل الدخول أولا إلى فضائك الشخصي، ثم الضغط على أيقونة المستخدم، واختيار «Modifier le profil»، وأخيرا الضغط على «Désinscription» أسفل الصفحة.",
+    "ar": "يمكنك حذف حسابك عبر منصة الخدمات الإلكترونية بتسجيل الدخول أولاً إلى فضائك الشخصي، ثم النقر على أيقونة المستخدم، واختيار «تعديل الملف الشخصي» (Edit profil)، وأخيراً النقر على «إلغاء التسجيل» في أسفل الصفحة.",
     "probleme": "Accès au compte à désinscrire",
     "modifiee": true
   },
   "AST.31": {
     "fr": "Cette option n'est pas disponible actuellement",
-    "ar": "هذه الإختيار غير متاح حاليا",
+    "ar": "هذا الخيار غير متاح حالياً.",
     "probleme": "Aucun accès au compte à désinscrire"
   },
   "AST.32": {
     "fr": "Pour des raisons de sécurité et de confidentialité, l'affichage des données personnelles des fonctionnaires est conditionné par l'authentification préalable du compte via la CINE.\nVous devez vérifier que votre compte a bien été authentifié avec votre CINE afin de pouvoir accéder à vos informations.",
-    "ar": "لأسباب الأمنية والخصوصية، يجب أن يتم عرض بيانات المستخدمين لل funcionários بواسطة التحقق المسبق للحساب من خلال CNIE.\nيجب أن تتأكد من أن حسابك تم التحقق منه بالفعل من خلال CNIE حتى تستطيع accès إلى معلوماتك.",
+    "ar": "لأسباب تتعلق بالأمن والسرية، لا تُعرض البيانات الشخصية للموظفين إلا بعد المصادقة المسبقة على الحساب بواسطة البطاقة الوطنية للتعريف الإلكترونية (CINE). يجب التأكد من أن حسابك قد تمت المصادقة عليه فعلاً بواسطة بطاقتك الوطنية حتى تتمكن من الولوج إلى معلوماتك.",
     "probleme": "Absence d'informations relatives aux fonctionnaires"
   },
   "AST.34": {
     "fr": "En supposant que l'ensemble des prérequis sont réalisés (connexion stable, navigateur Chrome), vous pouvez procéder comme suit :\nVider le cache en cliquant sur Ctrl+F5, fermer votre navigateur, puis redémarrer votre ordinateur et le lancer et puis vous connecter-vous à nouveau.\nRéessayer dans un moment (il se peut qu'il s'agisse d'une période de maintenance)",
-    "ar": "في حالة تحقق جميع المتطلبات préalables (الاتصال المستقر، متصفح Chrome)، يمكنك اتباع الخطوات التالية:\nمسح مخلفات المتصفح عن طريق النقر على Ctrl+F5، قم بغلق متصفحك، ثم إعادة تشغيل جهازك وإعادة تشغيل المتصفح، ثم قم بتسجيل الدخول مجدداً.\nإعادة المحاولة في وقت لاحق (يمكن أن يكون ذلك فترة صيانة).",
+    "ar": "على افتراض استيفاء جميع المتطلبات المسبقة (اتصال مستقر واستعمال متصفح Chrome)، يمكنك القيام بما يلي:\nامسح ذاكرة التخزين المؤقت بالضغط على Ctrl+F5، ثم أغلق المتصفح وأعد تشغيل الحاسوب، وافتح المتصفح من جديد وسجّل الدخول مرة أخرى.\nأعد المحاولة بعد قليل، فقد تكون المنصة في فترة صيانة.",
     "probleme": "Blocage du portail"
   },
   "AST.35": {
     "fr": "Après avoir déposé une réclamation en ligne sur la plateforme des réclamations en ligne, vous recevrez un numéro de suivi à conserver. Pour suivre ou répondre à une demande de complément au niveau du service des réclamations en ligne, allez sur ce lien\nRenseignez le numéro et cliquez sur l'icône de recherche\nUne fois la réclamation apparue cliquez sur \"recours\"\n\nLien : https://eservices.tgr.gov.ma/my/reclamation/suivi",
-    "ar": "بعد تقديم شكاية عبر الموقع الإلكتروني للشكاوى، ستحصل على رقم متابعة يجب أن تبقيه. للتحقق أو الرد على طلب إضافة للуخدمات الإلكترونية للشكاوى، اذهب إلى هذا الرابط\n\nأدخل الرقم وانقر على شعار البحث\nبعد ظهور الشكاية انقر على \"الاستئناف\"\n\nالرابط : https://eservices.tgr.gov.ma/my/reclamation/suivi",
+    "ar": "بعد تقديم شكاية عبر منصة الشكايات الإلكترونية، ستتوصل برقم تتبع يجب الاحتفاظ به. لتتبع طلب استكمال أو الرد عليه ضمن خدمة الشكايات الإلكترونية، انتقل إلى الرابط المبين، وأدخل الرقم ثم انقر على أيقونة البحث. بعد ظهور الشكاية، انقر على «recours».\n\nLien / الرابط : https://eservices.tgr.gov.ma/my/reclamation/suivi",
     "probleme": "Suivre ou répondre à une demande de complément dans une réclamation"
   },
   "AST.39": {
     "fr": "Vous pouvez à tout moment consulter votre dernière situation des actes de gestion:\nVous avez juste besoin de vous connecter à votre compte\nAu niveau du menu à gauche, vous sélectionnez Fonctionnaire puis vous cliquez sur Situation Actes Gestion",
-    "ar": "يمكنك随时查看您的最新管理事务情况：\n你只需登录到你的账户\n在左侧菜单中，选择 'وظاب' 然后点击 'وضع الحالة'",
+    "ar": "يمكنك في أي وقت الاطلاع على آخر وضعية لقرارات التدبير. يكفي تسجيل الدخول إلى حسابك، ثم اختيار «الموظف» من القائمة الموجودة على اليسار والنقر على «وضعية قرارات التدبير».",
     "probleme": "Situation des actes de gestion"
   },
   "AST.41": {
     "fr": "Pour consulter et suivre l'état d'avancement de votre situation des prélèvements :\nVeuillez accéder à votre compte.\nAu niveau du menu à gauche, vous sélectionnez Fonctionnaire puis vous cliquez sur Situation Prélèvements.",
-    "ar": "لعرض و tracking حالة تقدم وضع التحصيل الخاص بك:\nيرجى الدخول إلى حسابك.\nفي الجزء السفلي من القائمة الجانبية، تختار الوظيفة ثم تضغط على وضع التحصيل.",
+    "ar": "للاطلاع على وضعية الاقتطاعات وتتبع تقدمها، ادخل إلى حسابك، ثم اختر «الموظف» من القائمة الموجودة على اليسار وانقر على «وضعية الاقتطاعات».",
     "probleme": "Situation des prélèvements"
   },
   "AST.42": {
     "fr": "Si vous avez besoin de consulter votre situation de paie.\nVous n'avez qu'a se connecter à votre compte en utilisant votre PPR.\nAu niveau du menu à gauche, vous sélectionnez Fonctionnaire puis vous cliquez sur Situation Paie",
-    "ar": "إذا كنت بحاجة إلى مراجعة وضع راتبك الخاص بك.\nفإنك只需要 تسجل الدخول إلى حسابك باستخدام رقمك PPR.\nفي الجزء السفلي من القائمة الجانبية، تختار الموظف ثم تضغط على وظيفة薪情",
+    "ar": "إذا كنت ترغب في الاطلاع على وضعية أجرتك، فسجّل الدخول إلى حسابك باستعمال رقم التأجير PPR، ثم اختر «الموظف» من القائمة الموجودة على اليسار وانقر على «وضعية الأجرة».",
     "probleme": "Situation de paie"
   },
   "AST.47": {
     "fr": "Pour ouvrir un compte bancaire auprès de la Trésorerie Générale du Royaume (TGR), vous devez vous présenter à l'agence bancaire de la TGR de votre choix, muni des pièces requises pour l'ouverture du compte.\nLa liste détaillée des documents à fournir est disponible sur ce lien\n\nLien : https://banquenet.tgr.gov.ma/banque/ouverture.html",
-    "ar": "لفتح حساب بنكي لدى مصلحة الضرائب الملكية (TGR)، يجب أن تقدم إلى فرع بنكي من فروع TGR المفضل لديك، مزودًا بالمستندات المطلوبة لفتح الحساب.\nتتوفر قائمة تفصيلية للمستندات التي يجب تقديمها على هذا الرابط\n\nالرابط: https://banquenet.tgr.gov.ma/banque/ouverture.html",
+    "ar": "لفتح حساب بنكي لدى الخزينة العامة للمملكة (TGR)، يجب التوجه إلى الوكالة البنكية التابعة للخزينة التي تختارها، مصحوباً بالوثائق المطلوبة لفتح الحساب. وتتوفر اللائحة المفصلة للوثائق الواجب الإدلاء بها في الرابط المبين.\n\nLien / الرابط : https://banquenet.tgr.gov.ma/banque/ouverture.html",
     "probleme": "Ouverture d'un compte bancaire"
   },
   "AST.48": {
     "fr": "La demande de chéquier ou de carte bancaire doit être effectuée en personne auprès de votre agence bancaire TGR.\nToutefois, il est également possible de commander un chéquier directement en ligne via le service TGR BanqueNet.",
-    "ar": "طلب البطاقة الائتمانية أو الرشفة يجب أن يتم في شخصية لدى فرعك البنكي TGR.\nومع ذلك، فإنه من الممكن أيضًا طلب بطاقة رشاقة مباشرة عبر الإنترنت من خلال خدمة TGR BanqueNet.",
+    "ar": "يجب تقديم طلب دفتر شيكات أو بطاقة بنكية شخصياً لدى وكالتك البنكية التابعة للخزينة العامة للمملكة. ومع ذلك، يمكن أيضاً طلب دفتر شيكات مباشرة عبر الإنترنت من خلال خدمة TGR BanqueNet.",
     "probleme": "Demande de chéquier ou de carte bancaire"
   },
   "AST.50": {
     "fr": "Pour des raisons de sécurité, le code PIN ne peut pas être communiqué à distance.\nVous devez vous présenter personnellement à votre agence bancaire TGR pour faire une demande de réédition du code.",
-    "ar": "لأسباب أمنية، لا يمكن نقل كود الم钥匙 إلى الأطراف الثالثة.\nيجب أن ت persönlich توجه إلى فرع بنك TGR لطلب إعادة إصدار كود الم钥匙.",
+    "ar": "لأسباب أمنية، لا يمكن إرسال الرمز السري PIN عن بُعد. يجب عليك الحضور شخصياً إلى وكالتك البنكية التابعة للخزينة العامة للمملكة لتقديم طلب إعادة إصدار الرمز.",
     "probleme": "Code PIN oublié"
   },
   "AST.51": {
     "fr": "Il n'est actuellement pas possible de conserver le même numéro de compte lors d'un changement d'agence.\nToutefois, vous pouvez ouvrir un nouveau compte dans la nouvelle agence souhaitée et demander la fermeture de l'ancien compte auprès de votre ancienne agence sans qu'il soit nécessaire de s'y déplacer.",
-    "ar": "لا يمكن الحفاظ حاليا على نفس رقم الحساب عند تغيير الوكالة.\nومع ذلك، يمكنك ou ou ou ouverture لحساب جديد في الوكالة الجديدة التي ترغب في الذهاب إليها، وطلب إغلاق الحساب القديم لدى وكالةك القديمة دون الحاجة إلى الذهاب إليها.",
+    "ar": "لا يمكن حالياً الاحتفاظ برقم الحساب نفسه عند تغيير الوكالة. غير أنه يمكنك فتح حساب جديد في الوكالة الجديدة التي تختارها، وطلب إغلاق الحساب القديم لدى وكالتك السابقة دون الحاجة إلى التنقل إليها.",
     "probleme": "Changement d'agence en conservant le même compte"
   },
   "AST.52": {
     "fr": "En principe, les relevés bancaires sont envoyés automatiquement à tous les clients du réseau bancaire de la TGR, notamment à ceux dont les comptes présentent une activité régulière.\nSi vous ne les recevez pas :\nVérifiez que votre adresse postale, y compris le code postal, est correctement renseignée auprès de votre agence.\nVous pouvez également demander vos relevés directement à votre agence.\nLe service TGR BanqueNet vous permet aussi de consulter vos relevés et opérations à tout moment, en toute sécurité.",
-    "ar": "في الأصل، يتم إرسال التقارير البنكية بشكل تلقائي إلى جميع العملاء في الشبكة البنكية للTGR، بما في ذلك أولئك الذين لديهم حسابات تشهد نشاطًا منتظمًا.\nإذا لم تصلهم:\nتأكد من أن بيانات العنوان البريدي، بما في ذلك كود البريد، محددة بشكل صحيح لدى وكالةك.\nيمكنك أيضًا طلب التقارير مباشرة من وكالةك.\nيتيح خدمة TGR BanqueNet أيضًا لك مشاهدة التقارير والعمليات في أي وقت، بأمان.",
+    "ar": "من حيث المبدأ، تُرسل كشوف الحساب البنكية تلقائياً إلى جميع زبناء الشبكة البنكية للخزينة العامة للمملكة، ولا سيما أصحاب الحسابات ذات النشاط المنتظم. إذا لم تتوصل بها، فتحقق من أن عنوانك البريدي، بما في ذلك الرمز البريدي، مسجل بصورة صحيحة لدى وكالتك. ويمكنك أيضاً طلب كشوفك مباشرة من الوكالة. كما تتيح لك خدمة TGR BanqueNet الاطلاع على كشوفك وعملياتك في أي وقت وبأمان.",
     "probleme": "Non-réception des relevés"
   },
   "AST.53": {
     "fr": "Vous pouvez soumettre une réclamation électronique sans avoir à vous déplacer à l'agence.\nIl suffit d'indiquer :\nLe numéro du compte,\nLe nom de l'agence concernée,\nEt de joindre toute pièce justificative de l'erreur constatée.",
-    "ar": "يمكنك تقديم طلب إلغاء قبض إلكتروني دون الحاجة إلى الذهاب إلى مكتب.\nيُ suffice من إدخال:\nرقم الحساب,\nاسم المكتب المعني,\nوإرفاق أي وثيقة تبريرية للخطأ المكتشف.",
+    "ar": "يمكنك تقديم شكاية إلكترونية دون الحاجة إلى التنقل إلى الوكالة. يكفي بيان رقم الحساب واسم الوكالة المعنية، وإرفاق كل وثيقة تثبت الخطأ المسجل.",
     "probleme": "Erreur sur un relevé bancaire"
   },
   "AST.54": {
     "fr": "Vous devez procéder comme suit :\nRégler le montant du chèque impayé, soit directement au bénéficiaire, en récupérant le chèque refusé, ou en constituant une provision suffisante auprès de la banque tirée.\nPayer l'amende fiscale prévue par la réglementation.\nRemettre les justificatifs correspondants à votre agence bancaire pour mise à jour de votre situation.",
-    "ar": "تقوم بات实施 如下 :\n paying the amount of the unpaid check, إما مباشرةً لل收款人، أو استرداد check refused، أو إنشاء صك足夠足够的 لدى البنك المُستند إليه.\n paying the tax fine stipulated by the regulation.\n handing over the relevant supporting documents إلى your banking agency لإعادة تحديث وضعك.",
+    "ar": "يجب القيام بما يلي:\nأداء مبلغ الشيك غير المؤدى، إما مباشرة إلى المستفيد مع استرجاع الشيك المرفوض، أو بتكوين مؤونة كافية لدى البنك المسحوب عليه.\nأداء الغرامة الجبائية المنصوص عليها في الأنظمة الجاري بها العمل.\nتسليم الوثائق المثبتة إلى وكالتك البنكية لتحيين وضعيتك.",
     "probleme": "Régularisation d'un chèque sans provision"
   },
   "AST.55": {
     "fr": "Vous devez vous présenter personnellement à votre agence bancaire pour formuler une demande d'opposition, accompagnée :\nd'une déclaration de perte ou de vol, et, le cas échéant, d'un procès-verbal établi par les autorités compétentes.",
-    "ar": "ت need ترجمة النص إلى العربية الفصحى:\n\nتجب مراجعة شخصيًا مكتبك البنكي لل提出 طلب رفض، مرفقًا ب:",
+    "ar": "يجب عليك الحضور شخصياً إلى وكالتك البنكية لتقديم طلب التعرض، مرفقاً بتصريح بالضياع أو السرقة، وعند الاقتضاء بمحضر محرر من طرف السلطات المختصة.",
     "probleme": "Opposition sur un chèque ou une carte"
   },
   "AST.56": {
     "fr": "Pour le règlement d'une succession, les héritiers ou leur représentant doivent se présenter en personne à l'agence bancaire détenant le compte concerné, avec deux copies de chaque document suivant :\nExtrait de l'acte de décès,\nCopie conforme de l'acte d'héritage indiquant la part de chaque héritier,\nCopie conforme des cartes d'identité des héritiers et du défunt,\nRemise des moyens de paiement (chéquier, carte bancaire) du défunt,\nProcuration légalisée si un mandataire agit au nom des héritiers,\nCertificat fiscal de décharge du défunt.\n(selon le cas d'autres documents peuvent être requis)",
-    "ar": "للإقرار بورثة، يجب على المورثين أو وكيلهم الحضور شخصياً إلى فرع البنك المعني بحسابهم مع نسخة مصدقة من كل وثيقة تليها:\nنسخة مصدقة من وثيقة وفاة,\nنسخة مصدقة لوثيقة التركة تحدد نسبة كل مورث,\nنسخة مصدقة من وثائق الهوية للمورثين والراحل,\nتقديم الوسائل المالية (بطاقات مصرفية، بطاقات ائتمان) للراحل,\nوثيقة قانونية للوكيل إذا كان وكيل يمثل المورثين,\nوثيقة ضريبية تفيد بتحصيل الديون للراحل.",
+    "ar": "لتسوية تركة، يجب على الورثة أو ممثلهم الحضور شخصياً إلى الوكالة البنكية الماسكة للحساب المعني، مع نسختين من كل وثيقة مما يلي:\nمستخرج من رسم الوفاة؛\nنسخة مطابقة للأصل من رسم الإراثة تبين نصيب كل وارث؛\nنسخ مطابقة للأصل من بطاقات هوية الورثة والمتوفى؛\nتسليم وسائل الأداء الخاصة بالمتوفى (دفتر الشيكات والبطاقة البنكية)؛\nوكالة مصادق عليها إذا كان وكيل يتصرف نيابة عن الورثة؛\nشهادة الإبراء الضريبي الخاصة بالمتوفى.\nوقد تُطلب وثائق أخرى حسب الحالة.",
     "probleme": "Liquidation d'une succession"
   },
   "AST.57": {
     "fr": "La réclamation doit être adressée en premier lieu au maître d'ouvrage.\nEn effet, la TGR intervient uniquement dans la vérification de la régularité de l'engagement de la dépense et procède au paiement sur la base :\ndes propositions d'engagement, et des ordres de paiement émis par les ordonnateurs habilités.\nPour faciliter le suivi administratif des contrats, la TGR a mis à votre disposition la plateforme de gestion intégrée des dépenses des fournisseurs, accessible via le lien : Cliquez ici\nVous pouvez également y suivre le traitement de vos factures et soumettre vos réclamations directement en ligne.\n\nLien : https://fournisseurs.gid.gov.ma/inscription/accueilplus.htm",
-    "ar": "الréclamation يجب أن تُرسل أولاً إلى المقاول الرئيسي.\nفي الواقع، تدخل TGR فقط في التحقق من صلاحية التزام النفقات وتقوم بالدفع بناءً على:\nالعروض التمويلية، وال أوامر الدفع المُصدَرة من قبل المشرفين المُتَحَقَّقِين.\nلتسهيل متابعة الإدارية للcontrats، أدخلت TGR منصة إدارة النفقات للموردين المتاحة عبر الرابط:\nانقر هنا\nيمكنك أيضًا متابعة معالجة فواتيرك وتقديم طلباتك للréclamation مباشرة عبر الإنترنت.\n\nالرابط: https://fournisseurs.gid.gov.ma/inscription/accueilplus.htm",
+    "ar": "يجب توجيه الشكاية أولاً إلى صاحب المشروع. فالخزينة العامة للمملكة لا تتدخل إلا للتحقق من قانونية الالتزام بالنفقة، وتقوم بالأداء بناءً على مقترحات الالتزام وأوامر الأداء الصادرة عن الآمرين بالصرف المؤهلين. ولتسهيل التتبع الإداري للعقود، وضعت الخزينة رهن إشارتكم منصة التدبير المندمج لنفقات الموردين، المتاحة عبر الرابط المبين. كما يمكنكم من خلالها تتبع معالجة فواتيركم وتقديم شكاياتكم مباشرة عبر الإنترنت.\n\nLien / الرابط : https://fournisseurs.gid.gov.ma/inscription/accueilplus.htm",
     "probleme": "Retard de paiement - établissement ou entreprise publique"
   },
   "AST.60": {
     "fr": "Oui, selon l'article 35 du décret n° 2-22-431, le soumissionnaire peut retirer son pli avant la date et l'heure fixées pour l'ouverture des plis, et déposer une nouvelle offre dans les mêmes conditions que le dépôt initial.\nArticle 35: « Sous réserve des dispositions de l'article 135 du présent décret relatives au dépôt et au retrait des plis par voie électronique, tout pli déposé ou reçu peut être retiré, par le concurrent, antérieurement au jour et à l'heure fixés pour la séance d'ouverture des plis.\nLe retrait du pli fait l'objet d'une demande écrite et signée par le concurrent ou son représentant dûment habilité et adressée au maître d'ouvrage. La date et l'heure du retrait sont enregistrées par le maître d'ouvrage sur le registre spécial visé à l'article 4 du présent décret.\nLes concurrents ayant procédé au retrait de leurs plis peuvent, dans les conditions fixées à l'article 34 ci-dessus, présenter de nouveaux plis. »\nAinsi, le retrait et le dépôt d'une nouvelle offre sont possibles avant l'ouverture des plis, sous réserve du respect des formalités prévues.",
-    "ar": "Article 35: « وفقاً للarticle 35 من المرسوم التشريعي رقم 2-22-431، يمكن الم投标人 استرداد عريضة قبل التاريخ والوقت المحدد لفتح العريضات، وتقديم عرضاً جديداً في شروط متطابقة مع العرضا الأولي المقدم. »\n\nArticle 35: « مع مراعاة القواعد الواردة في الفصل 135 من هذا المرسوم التشريعي المتعلقة بقبول العريضات والرجوع إليها، يمكن تقديم أي عريضة مقدمة أو وصلت أن يتم استردادها، من قبل المنافس، قبل التاريخ والوقت المحدد لجلسة فتح العريضات. »\n\nالرجوع إلى استرداد العريضة يتم عن طريق طلب كتابي ومرفق بختم المنافس أو وكيله الموثق ومرسل إلى المقاول. يتم تسجيل التاريخ والوقت لاسترداد العريضة من قبل المقاول في السجل المخصص المذكور في الفصل 4 من هذا المرسوم التشريعي.\nيمكن للمنافسين الذين قاموا باسترداد عرائضهم تقديم عرائض جدد في الشروط المحددة في الفصل 34 المذكور أعلاه. »\n\nوبهذا، يمكن استرداد وتقديم عرائض جديدة قبل فتح العريضات، مع مراعاة الشروط المحددة.",
+    "ar": "نعم. وفقاً للمادة 35 من المرسوم رقم ⁦2-22-431⁩، يمكن للمتنافس سحب ظرفه قبل التاريخ والساعة المحددين لفتح الأظرفة، وإيداع عرض جديد وفق الشروط نفسها المطبقة على الإيداع الأول.\nالمادة 35: «مع مراعاة مقتضيات المادة 135 من هذا المرسوم المتعلقة بإيداع الأظرفة وسحبها بطريقة إلكترونية، يجوز للمتنافس سحب كل ظرف تم إيداعه أو التوصل به قبل اليوم والساعة المحددين لجلسة فتح الأظرفة.\nيكون سحب الظرف موضوع طلب مكتوب وموقع من طرف المتنافس أو ممثله المؤهل قانوناً، وموجه إلى صاحب المشروع. ويسجل صاحب المشروع تاريخ وساعة السحب في السجل الخاص المشار إليه في المادة 4 من هذا المرسوم.\nيمكن للمتنافسين الذين سحبوا أظرفتهم تقديم أظرفة جديدة وفق الشروط المحددة في المادة 34 أعلاه».\nوبالتالي، يمكن سحب العرض وإيداع عرض جديد قبل فتح الأظرفة، شريطة احترام الإجراءات المنصوص عليها.",
     "probleme": "Dépôt d'une nouvelle offre après un premier dépôt"
   },
   "AST.61": {
     "fr": "Oui, il est tout à fait possible et même encouragé de présenter votre société et vos services aux administrations. Plusieurs dispositifs légaux prévus par le décret n° 2-22-431 facilitent cette démarche.\nVoici les principales voies à votre disposition :\nL'Appel à Manifestation d'Intérêt\nL'article 18 du décret le définit comme ayant pour objet de permettre au maître d'ouvrage d'identifier, préalablement au lancement de l'appel à la concurrence, les concurrents potentiels.\nLes administrations publient un avis d'Appel à Manifestation d'Intérêt dans la presse et sur le portail des marchés publics.\n==>Vous pouvez ainsi répondre à ces Appels à Manifestation d'Intérêt,qui correspondent à votre secteur d'activité.\nNB: L'Appel à Manifestation d'Intérêt n'est pas une promesse de marché,\nL'Offre Spontanée\nL'article 13 du décret reconnaît et encadre spécifiquement l'offre spontanée. C'est une procédure proactive où vous pouvez soumettre une idée innovante.\nConditions : Votre offre doit présenter des fonctionnalités nouvelles, des services nouveaux ou des innovations techniques répondant à un besoin potentiel que l'administration n'avait pas identifié.\n==>Si votre idée est retenue, vous bénéficiez d'une marge de préférence si vous participez à l'appel d'offres qui sera ensuite lancé.\nLe Programme Prévisionnel Triennal\nConformément à l'article 17 du décret précité, les maîtres d'ouvrage publient, au début de chaque année budgétaire, un programme détaillant les marchés qu'ils envisagent de passer sur les trois prochaines années.\n==> Consultez systématiquement ces programmes sur le portail des marchés publics ou les sites des administrations qui vous intéressent : Cela vous permet d'anticiper les besoins, de préparer votre argumentaire et de prendre contact en amont avec les services techniques concernés pour mieux cerner leurs attentes.",
-    "ar": "نعم، من الممكن حقاً وحتى المحفز تقديم شركتك وخدماتك لل行政机关. العديد من الأدوات القانونية المحددة في القانون رقم 2-22-431 تساعد في تسهيل هذه العملية.\nتتوفر لك هذه الطرق الرئيسية:\nالدعوة إلى تقديم الملاحظات\nيحدد الفصل 18 من القانون هذا بأنه يهدف إلى السماح للمستفيد من المشروع بالتعرف، قبل إجراء الدعوة إلى المنافسة، على المحتملين للمتنافسين.\nتقوم الهيئات الحكومية بنشر إعلانات الدعوة إلى تقديم الملاحظات في وسائل الإعلام والهيئة العامة للصفقات العامة.\n==> يمكنك الرد على هذه الدعوات إلى تقديم الملاحظات، والتي تتناسب مع قطاعك.\nملاحظة: الدعوة إلى تقديم الملاحظات ليست عهداً على الصفقة،\nالعرض spontaneously\nيحدد الفصل 13 من القانون بشكل خاص والمعاقب العرض spontaneously. هذه هي إجراء نشط يسمح لك بالتقديم بفكرة جديدة.\nالشروط: يجب أن تقدم عرضك بfeatures جديدة، خدمات جديدة أو تحسينات 技术ية تRespond إلى احتياجات محتملة لم تكن الإدارة قد وضحتها.\n==> إذا تم اختيار فكرتك، ستكون لديك ميزة تنافسية إذا كنت تشارك في الدعوة للعروض التي ستنطلق لاحقاً.\nالبرنامج التوقع Triennal\nوفقاً للفصل 17 من القانون المذكور أعلاه، ينشر المشرفون على المشروع، بداية كل سنة ميزانية، برنامج يحتوي على التفاصيل للصفقات التي يعتزمون تنفيذها خلال الثلاث سنوات القادمة.\n==> استعرض دائمًا هذه البرامج على الهيئة العامة للصفقات أو المواقع للهيئات التي تهمك: هذا يساعدك على التنبؤ بالاحتياجات، على تجهيز مبرراتك واتصال مبكر مع الخدمات التقنية المعنيين لفهم أفضل احتياجاتهم.",
+    "ar": "نعم، يمكن تقديم شركتك وخدماتك إلى الإدارات، بل إن ذلك أمر مشجَّع. وتسهّل عدة آليات قانونية منصوص عليها في المرسوم رقم ⁦2-22-431⁩ هذه الخطوة.\nفيما يلي أهم السبل المتاحة:\nطلب إبداء الاهتمام\nتعرف المادة 18 من المرسوم طلب إبداء الاهتمام بأنه يهدف إلى تمكين صاحب المشروع، قبل إطلاق الدعوة إلى المنافسة، من تحديد المتنافسين المحتملين. وتنشر الإدارات إعلان طلب إبداء الاهتمام في الصحافة وعلى بوابة الصفقات العمومية.\nيمكنك بذلك الاستجابة لطلبات إبداء الاهتمام التي توافق قطاع نشاطك.\nملاحظة: لا يشكل طلب إبداء الاهتمام وعداً بإبرام صفقة.\nالعرض التلقائي\nتعترف المادة 13 من المرسوم بالعرض التلقائي وتؤطره بصورة خاصة. وهو مسطرة استباقية تتيح لك تقديم فكرة مبتكرة.\nالشروط: يجب أن يتضمن عرضك وظائف جديدة أو خدمات جديدة أو ابتكارات تقنية تستجيب لحاجة محتملة لم تكن الإدارة قد حددتها.\nإذا قُبلت فكرتك، تستفيد من هامش للأفضلية إذا شاركت في طلب العروض الذي سيُعلن عنه لاحقاً.\nالبرنامج التوقعي لثلاث سنوات\nوفقاً للمادة 17 من المرسوم المذكور، ينشر أصحاب المشاريع في بداية كل سنة مالية برنامجاً مفصلاً للصفقات التي يعتزمون إبرامها خلال السنوات الثلاث التالية.\nاطلع بصورة منتظمة على هذه البرامج في بوابة الصفقات العمومية أو في مواقع الإدارات التي تهمك. سيسمح لك ذلك باستباق الحاجات وإعداد حججك والتواصل مسبقاً مع المصالح التقنية المعنية لفهم توقعاتها بصورة أفضل.",
     "probleme": "Présentation de sa société aux administrations"
   },
   "FAQ.7": {
@@ -621,77 +628,77 @@
   },
   "AST.4": {
     "fr": "⏳ Dans le cas où vous n'auriez pas encore reçu le code d'activationde votre compte.\nRenseignez votre adresse email, cochez la case \"Je ne suis pas un robot\", puis cliquez sur \"Valider\" afin de recevoir votre code.\n\nLien : https://eservices.tgr.gov.ma/my/auth/sendactivationcode",
-    "ar": "⏳ في حالة عدم تلقيك للرمز التفعيل من حسابك بعد.\nأدخل عنوان بريدك الإلكتروني، قم ب ticking خانة \"أنا لا أستطيع أن أكون آلة\"، ثم انقر على \"تأكيد\" للحصول على رمزك.\n\nالرابط : https://eservices.tgr.gov.ma/my/auth/sendactivationcode",
+    "ar": "إذا لم تكن قد توصلت بعد برمز تفعيل حسابك،\nيُرجى النقر على هذا الرابط، وإدخال عنوان بريدك الإلكتروني، ووضع علامة في خانة «أنا لست روبوتاً»، ثم النقر على «تأكيد» للتوصل بالرمز.\n\nLien / الرابط : https://eservices.tgr.gov.ma/my/auth/sendactivationcode",
     "probleme": "Code d'activation non reçu"
   },
   "AST.6": {
     "fr": "Pour changer votre mot de passe, cliquez sur l'icône 👤 Profil en haut à droite, puis sélectionnez « Changer le mot de passe ». Vous serez redirigé vers une page où vous pourrez saisir votre ancien mot de passe, votre nouveau mot de passe, puis le confirmer. Enfin, cliquez sur le bouton « Enregistrer ».\n\nLien : https://eservices.tgr.gov.ma/my/general/change-password",
-    "ar": "لتغيير كلمة مرورك، انقر علىicone 👤 profils في الأعلى إلى اليمين، ثم انقر على « تغيير كلمة المرور ». سترجع إلى صفحه تتيح لك إدخال كلمة المرور القديمة، كلمة المرور الجديدة، ثم تأكيدها. في النهاية، انقر على زر « تسجيل ”.\n\nالرابط : https://eservices.tgr.gov.ma/my/general/change-password",
+    "ar": "لتغيير كلمة المرور، انقر على أيقونة «الملف الشخصي» في أعلى الصفحة جهة اليمين، ثم اختر «تغيير كلمة المرور». ستتم إحالتك إلى صفحة تُدخل فيها كلمة المرور القديمة، ثم كلمة المرور الجديدة وتأكيدها. وفي النهاية، انقر على زر «حفظ».\nيُرجى النقر على هذا الرابط.\n\nLien / الرابط : https://eservices.tgr.gov.ma/my/general/change-password",
     "probleme": "Changement de mot de passe"
   },
   "AST.8": {
     "fr": "Pour mieux protéger votre compte, nous vous invitons à activer l'authentification à deux facteurs (2FA). Retrouvez toutes les informations nécessaires dans le guide d'activation et d'utilisation accessible ici.\npour accéder au guide en français.\nVous pouvez consulter le guide en arabe en suivant ce lien.\n\nLien : https://eservices.tgr.gov.ma/my/guides/mfa-guide\nLien : https://eservices.tgr.gov.ma/my/guides/mfa-guide-ar",
-    "ar": "لتحصين حسابك بشكل أفضل، ندعوك إلى تفعيل التحقق ب deux معايير (2FA). يمكنك العثور على جميع المعلومات الضرورية في المنشور المرفق والموجه إلى المستخدمين، والذي يمكن الوصول إليه من هنا.\nيمكنك قراءة المنشور بالعربية من خلال النقر على هذا الرابط.\n\nالرابط: https://eservices.tgr.gov.ma/my/guides/mfa-guide-ar",
+    "ar": "لحماية حسابك بشكل أفضل، ندعوك إلى تفعيل المصادقة الثنائية (2FA). ستجد جميع المعلومات اللازمة في دليل التفعيل والاستعمال المتاح هنا.\nيُرجى النقر على هذا الرابط للوصول إلى الدليل باللغة الفرنسية.\nيمكنك الاطلاع على الدليل باللغة العربية عبر هذا الرابط.\n\nLien / الرابط : https://eservices.tgr.gov.ma/my/guides/mfa-guide\nLien / الرابط : https://eservices.tgr.gov.ma/my/guides/mfa-guide-ar",
     "probleme": "Activation de la double authentification (2FA)"
   },
   "AST.18": {
     "fr": "Si le bien n'a pas encore été déclaré, il vous appartient d'en effectuer la déclaration auprès des services de la Direction Générale des Impôts (DGI), conformément aux dispositions de la loi n° 14-25 relative à l'assiette, au recouvrement et au contentieux des taxes locales, notamment en matière de taxe d'habitation et de taxe des services communaux.\nPar ailleurs, si votre paiement concerne l'année 2026 ou les exercices postérieurs, il doit être réalisé auprès de la DGI, via les canaux prévus à cet effet sur son portail officiel www.tax.gov.ma, notamment à travers le service de paiement en ligne accessible au lien suivant :\nCliquez ici\n\nLien : http://www.tax.gov.ma/\nLien : https://tl.tax.gov.ma/tl/public/login.do?method=connectAnonymous&forward=paiementTHTSC",
-    "ar": "إذا لم يتم إقرار هذا الممتلك حتى الآن، يجب عليك تقديم إقرارك إلى مصالح الديوان العام للضرائب (MFA)، وفقًا للتعليمات الصادرة عن قانون n° 14-25 المتعلق بجدول الضريبة المحلية، خاصة في ما يتعلق بضريبة الأبنية وضريبة الخدمات المحلية.\nعلاوة على ذلك، إذا كان دفعك يشمل عام 2026 أو الأعوام التالية، يجب أن يتم تنفيذه إلى جانب الديوان العام للضرائب، من خلال الطرق المحددة لهذا الغرض على موقعه الرسمي www.tax.gov.ma، على سبيل المثال من خلال خدمة الدفع الإلكتروني المتاحة من خلال الرابط التالي:\nانقر هنا\n\nالرابط: http://www.tax.gov.ma/\nالرابط: https://tl.tax.gov.ma/tl/public/login.do?method=connectAnonymous&forward=paiementTHTSC",
+    "ar": "إذا لم يسبق التصريح بالعقار، فيتعين عليكم التصريح به لدى مصالح المديرية العامة للضرائب (DGI)، وفقاً لمقتضيات القانون رقم ⁦14-25⁩ المتعلق بوعاء وتحصيل ومنازعات الجبايات المحلية، ولا سيما رسم السكن ورسم الخدمات الجماعية. وإذا كان الأداء يخص سنة 2026 أو السنوات اللاحقة، فيجب إنجازه لدى المديرية العامة للضرائب عبر القنوات المخصصة لذلك في بوابتها الرسمية www.tax.gov.ma، وخاصة خدمة الأداء عبر الإنترنت المتاحة من خلال الرابط المبين.\n\nLien / الرابط : http://www.tax.gov.ma/\nLien / الرابط : https://tl.tax.gov.ma/tl/public/login.do?method=connectAnonymous&forward=paiementTHTSC",
     "probleme": "Bien non déclaré ou paiement pour 2026 et les années postérieures"
   },
   "AST.36": {
     "fr": "Une fois connecté(e), il est possible que le message suivant s'affiche lors de l'accès aux services Fonctionnaire :\n« Le compte n'est pas vérifié par la CNIE. »\nPour résoudre cette situation, il vous suffit de suivre le guide détaillé disponible via ce lien. Celui-ci vous accompagne pas à pas, avec des captures d'écran explicatives.\nNous vous invitons également à vous assurer que :\nL'application Mon e-ID | الرقمية هويتي est installée sur votre smartphone ;\nL'option NFC est activée sur votre téléphone mobile.\nCes étapes vous permettront de finaliser la vérification de votre compte.\n\nLien : https://eservices.tgr.gov.ma/my/assets/authDGSN/guideAuthCNIE.pdf",
-    "ar": "بعد الاتصال، قد يظهر الرسالة التالية عند accès إلى الخدمات للعامل: «الحساب غير مVerified من قبل CNIE.»\nلحل هذه المشكلة، يكفي أن تتبع الخطوات التفصيلية المتاحة من خلال هذا الرابط. فهو يساعدك خطوة بخطوة، مع صور توضيحية. ننصحك أيضا بأن تتأكد من أن:\n\nالتطبيق الرقمية هويتي | محفظة الرقمية للهوية مثبت على هاتفك المحمول ;\nتمكين خيار NFC على هاتفك المحمول. هذه الخطوات ستساعدك في إكمال التحقق من حسابك. رابط: https://eservices.tgr.gov.ma/my/assets/authDGSN/guideAuthCNIE.pdf",
+    "ar": "بعد تسجيل الدخول، قد تظهر الرسالة التالية عند الولوج إلى خدمات الموظف: «لم يتم التحقق من الحساب بواسطة البطاقة الوطنية للتعريف الإلكترونية (CNIE)».\nلمعالجة هذه الوضعية، يكفي اتباع الدليل المفصل المتاح عبر هذا الرابط. سيرافقك الدليل خطوة بخطوة مع لقطات شاشة توضيحية.\nيُرجى أيضاً التأكد من تثبيت تطبيق Mon e-ID | هويتي الرقمية على هاتفك الذكي، ومن تفعيل خاصية NFC في هاتفك المحمول.\nستمكّنك هذه الخطوات من إتمام التحقق من حسابك.\n\nLien / الرابط : https://eservices.tgr.gov.ma/my/assets/authDGSN/guideAuthCNIE.pdf",
     "probleme": "Validation du compte par CNIE"
   },
   "AST.37": {
     "fr": "Pour accéder à votre situation administrative :\nConnectez-vous à votre compte.\nDans le menu situé à gauche, cliquez sur « Fonctionnaire », puis sélectionnez « Situation administrative ».",
-    "ar": "ل accessing وضعك الإداري :\nانضم إلى حسابك.\nفي القائمة الموضحة إلى اليسار، انقر على « موظف »، ثم اختر « وضعك الإداري ».",
+    "ar": "للولوج إلى وضعيتك الإدارية:\nسجّل الدخول إلى حسابك.\nفي القائمة الموجودة على اليسار، انقر على «الموظف»، ثم اختر «الوضعية الإدارية».",
     "probleme": "Situation administrative"
   },
   "AST.38": {
     "fr": "Pour pouvoir accéder à votre Situation Ordres Recette :\nIl suffit juste d'accéder à votre compte en utilisant votre PPR. Puis tout simplement de cliquer sur Fonctionnaire au niveau de menu à gauche. Après vous choisissez Situation Ordres Recette",
-    "ar": "ل pouvoir accéder إلى حالة الأوامر والوصفة :\nفإنك بحاجة فقط إلى الدخول إلى حسابك باستخدام ب普瑞普 (PPR). ثم فقط النقر على الموظف في الجزء السفلي من القائمة الجانبية. ثم تختار حالة الأوامر والوصفة.",
+    "ar": "للولوج إلى وضعية أوامر تحصيل المداخيل، يكفي الدخول إلى حسابك باستعمال رقم التأجير PPR، ثم النقر على «الموظف» في القائمة الموجودة على اليسار، وبعد ذلك اختيار «وضعية أوامر تحصيل المداخيل».",
     "probleme": "Situation des ordres de recette"
   },
   "AST.40": {
     "fr": "Pour consulter votre situation de rappels.\nUne fois que vous êtes connectés. En haut à gauche, sélectionnez Fonctionnaire au niveau de menu. Puis vous cliquez sur Situation Rappels",
-    "ar": "لعرض وضع إشعاراتك.\nبعد أن تكون متصلًا. اختر في الأعلى في اليسار \"وظيفة\" من القائمة. ثم انقر على \"إشعارات التذكير\"",
+    "ar": "للاطلاع على وضعية المستدركات، سجّل الدخول إلى حسابك. بعد تسجيل الدخول، اختر «الموظف» من القائمة الموجودة أعلى اليسار، ثم انقر على «وضعية المستدركات».",
     "probleme": "Situation des rappels"
   },
   "AST.43": {
     "fr": "Il suffit juste d'accéder à votre compte. Puis tout simplement de cliquer sur Fonctionnaire au niveau de menu à gauche. Après vous choisissez Attestation de Salaire",
-    "ar": "ي Suffit juste أن ت-access Your حساب. ثم فقط أن ت-click على موظف في القائمة إلى اليسار. ثم ت-select وثيقة الراتب",
+    "ar": "يكفي الولوج إلى حسابك، ثم النقر على «الموظف» في القائمة الموجودة على اليسار، وبعد ذلك اختيار «شهادة الأجرة».",
     "probleme": "Attestation de salaire"
   },
   "AST.44": {
     "fr": "Il suffit juste d'accéder à votre compte. Après au niveau du menu à gauche, vous sélectionnez Fonctionnaire puis vous cliquez sur Attestation Cessation de Paiement.",
-    "ar": "ي Suffit فقط من الإنتقال إلى حسابك. بعد ذلك في مستوى القائمة إلى اليسار، تختار الوظيفة ثم تضغط على شهادة إيقاف الدفع.",
+    "ar": "يكفي الولوج إلى حسابك، ثم اختيار «الموظف» من القائمة الموجودة على اليسار والنقر على «شهادة توقف الأجرة».",
     "probleme": "Attestation de cessation de paiement"
   },
   "AST.45": {
     "fr": "Il suffit juste d'accéder à votre compte. Après au niveau du menu à gauche, vous sélectionnez Fonctionnaire puis vous cliquez sur Situation Familiale.",
-    "ar": "ي Suffit juste من accès إلى حسابك. بعد المستوى من القائمة إلى اليسار، تختارك الموظف ثم تضغط على الحالة العائلية.",
+    "ar": "يكفي الولوج إلى حسابك، ثم اختيار «الموظف» من القائمة الموجودة على اليسار والنقر على «الوضعية العائلية».",
     "probleme": "Situation familiale"
   },
   "AST.46": {
     "fr": "Il suffit juste d'accéder à votre compte. Après au niveau du menu à gauche, vous sélectionnez Fonctionnaire puis vous cliquez sur Bulletin Paie.",
-    "ar": "ي Suffit فقط من الدخول إلى حسابك. بعد ذلك في مستوى القائمة إلى اليسار، تختار الوظيفة ثم تضغط على تقرير الرواتب.",
+    "ar": "يكفي الولوج إلى حسابك، ثم اختيار «الموظف» من القائمة الموجودة على اليسار والنقر على «بيان الأجرة».",
     "probleme": "Bulletin de paie"
   },
   "AST.59": {
     "fr": "Nous vous invitons tout d'abord à vérifier que votre poste n'est pas ralenti par l'exécution simultanée de plusieurs applications. Assurez-vous également auprès de votre service informatique qu'aucune lenteur ne provient de vos infrastructures locales.\nSi ces vérifications ont été effectuées et que vous constatez toujours une lenteur lors de l'accès au portail des marchés publics, merci de bien vouloir créer un ticket d'assistance en l'envoyant à l'adresse suivante : Cliquez ici, afin que notre support puisse analyser la situation.\n\nLien : https://www.marchespublics.gov.ma/pmmp/",
-    "ar": "ن请柬您首先确认您的设备是否因同时运行多个应用程序而出现性能瓶颈。请也向您的IT部门确认，您的本地基础设施是否导致了任何延迟。\nإذا تم إجراء هذه التحقق وتلاحظ ما زالت هناك تأخير عند الوصول إلى لوحة المفاتيح للم市场竞争، يرجى إنشاء سجل دعم من خلال إرسال البريد الإلكتروني إلى عنوان التالي: انقر هنا لكي يتمكن فريق الدعم من فحص الوضع.\nالرابط: https://www.marchespublics.gov.ma/pmmp/",
+    "ar": "ندعوكم أولاً إلى التحقق من أن حاسوبكم لا يتباطأ بسبب تشغيل عدة تطبيقات في الوقت نفسه، وإلى التأكد لدى مصلحة المعلوميات من أن البطء لا يعود إلى بنيتكم التحتية المحلية. إذا أُنجزت هذه التحققات وما زال الولوج إلى بوابة الصفقات العمومية بطيئاً، فيُرجى إنشاء تذكرة مساعدة وإرسالها عبر الرابط المبين حتى يتمكن فريق الدعم من تحليل الوضعية.\n\nLien / الرابط : https://www.marchespublics.gov.ma/pmmp/",
     "probleme": "Lenteur d'accès au portail des marchés publics"
   },
   "AST.49": {
     "fr": "Pour consulter votre solde et suivre vos opérations, vous devez vous présenter à votre agence afin de demander l'adhésion au service TGR BanqueNet, qui vous permet un accès sécurisé à vos comptes 24h/24 et 7j/7, ainsi que l'utilisation gratuite de plusieurs services à distance.",
-    "ar": "لعرض رصيدك و监视 معاملاتك، يجب أن تظهر في فرعك لطلب الانضمام إلى خدمة TGR BanqueNet، التي تسمح لك بالوصول الآمن إلى حساباتك 24 ساعة في اليوم و7 أيام في الأسبوع، فضلاً عن استخدام خدمات远程免费。",
+    "ar": "هل يمكنك قول ذلك بطريقة أخرى؟ لا أفهم.",
     "probleme": "Consultation du solde"
   },
   "AST.62": {
     "fr": "En tant que soumissionnaire non retenu, vous avez le droit d'obtenir des précisions sur les motifs de rejet de votre offre. Cette obligation est prévue à l'article 47 du décret n° 2-22-431.\n\n1. Attendre la communication officielle : le maître d'ouvrage est tenu de vous informer des motifs de rejet par lettre recommandée avec accusé de réception, ou par tout autre moyen donnant date certaine. Cette notification doit intervenir dans un délai n'excédant pas le troisième jour suivant la date d'achèvement des travaux de la commission d'appel d'offres.\n2. Contester si nécessaire : si les motifs ne vous paraissent pas fondés, ou si vous estimez qu'il y a eu une erreur, vous pouvez former un recours gracieux dans les conditions de l'article 163 du même décret.\n3. Consulter l'extrait du procès-verbal : conformément à l'article 46, un extrait du procès-verbal de la séance d'examen des offres est publié sur le portail des marchés publics et affiché dans les locaux de l'organisme dont relève le maître d'ouvrage. Cet extrait mentionne les motifs d'élimination des concurrents évincés.",
-    "ar": "1. تنتظر تلقي الاتصال الرسمي: يجب على صاحب المشروع أن يبلغك عن الأسباب التي أدت إلى رفض عرضك بواسطة بريد موصول مع شهادة استلام، أو بأي وسيلة أخرى تحدد تاريخاً محدداً. يجب أن تصل هذه المعلومات في غضون ثلاثة أيام من تاريخ انتهاء أعمال لجنة المزايدة.\n2. يُسمح بالطعن إذا لزم الأمر: إذا لم تقنعك الأسباب أو إذا كنت تعتقد أن هناك خطأ، يمكنك تقديم طلب استئناف في شروط مذكرة 163 من نفس القانون.\n3. يُمكنك مراجعة نسخة مختصرة من الجدول المعد: وفقاً ل art. 46، يتم نشر نسخة مختصرة من جدول الجلسة لفحص العروض على الموقع الإلكتروني للمناقصات العامة وعرضها في مقر الجهة التي ينتمي إليها صاحب المشروع. هذه النسخة تذكر الأسباب التي أدت إلى إقصاء المتنافسين.",
+    "ar": "هل تقصد:\nMenu eservices\nMenu reclamation\nلا شيء مما سبق",
     "probleme": "Motifs de rejet après soumission"
   }
 }

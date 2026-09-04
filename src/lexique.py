@@ -28,6 +28,23 @@ STOPWORDS = {
     "une", "des", "les", "que", "qui", "quoi", "quest", "jai", "jaimerais",
     "bonjour", "merci", "svp", "sil", "plait", "aide", "aidez", "besoin",
     "probleme", "question", "demande", "please", "hello",
+    # Verbes de DEMANDE. Ils n'apportent aucune information de domaine, mais
+    # ils apparaissent forcément dans une documentation française (« cette
+    # option vous DONNE accès à… »). Or le filtre hors-sujet exige ZÉRO mot
+    # commun : un seul de ces verbes le désarme entièrement.
+    # Mesuré : « donne-moi une recette de tajine » gardait le mot « donne »,
+    # présent dans le corpus → recouvrement = 1 au lieu de 0 → le garde-fou
+    # laissait passer, et le vote des voisins servait la fiche AST.5.
+    # Aucun de ces mots n'appartient à TERMES_NOYAU ni à ACTIONS_OPPOSEES :
+    # les neutraliser ne retire aucun signal utile.
+    "donne", "donner", "donnez", "donnes",
+    "dire", "dites", "explique", "expliquer", "expliquez",
+    "montre", "montrer", "montrez", "propose", "proposer", "proposez",
+    "raconte", "raconter", "racontez", "indique", "indiquer", "indiquez",
+    "trouve", "trouver", "trouvez", "cherche", "chercher", "cherchez",
+    "sais", "savoir", "connais", "connaitre", "voudrais", "voudrait",
+    "aimerais", "souhaite", "souhaitez", "souhaiterais",
+    "pouvez", "pourriez", "parle", "parler", "parlez",
     # Mots TGR authentiques mais à double sens courant — déjà écartés du signal
     # POSITIF (TERMES_NOYAU, voir plus bas) pour la même raison ; il fallait
     # aussi les écarter du signal NÉGATIF ci-dessous, sans quoi « une recette

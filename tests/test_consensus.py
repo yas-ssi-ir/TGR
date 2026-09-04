@@ -78,11 +78,14 @@ class TestDepartageBugConnu:
     documentée existe est la pire des deux erreurs pour l'usager."""
 
     def test_une_solution_proche_prime_sur_un_bug_connu(self):
+        # Distances sous DIST_CONSENSUS_MULTI_MAX (0.31, voir config.py) : le
+        # départage doit rester opérant dans la fenêtre où le fast-path français
+        # est désormais recevable, pas seulement dans l'ancienne fenêtre à 0.37.
         from agent_rag import fiche_consensus
         passages = [
-            passage("4.1.2", 0.30, status="no_answer"),
-            passage("4.1.2", 0.31, status="no_answer"),
-            passage("4.2.2", 0.33), passage("4.2.2", 0.34),
+            passage("4.1.2", 0.27, status="no_answer"),
+            passage("4.1.2", 0.28, status="no_answer"),
+            passage("4.2.2", 0.29), passage("4.2.2", 0.30),
         ]
         c = fiche_consensus(passages)
         assert c["fiche_id"] == "4.2.2"

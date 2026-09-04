@@ -250,6 +250,23 @@
   .empty{ text-align:center; color:var(--ink-faint); padding:4rem 1rem; }
   .empty b{ display:block; font-family:var(--display); font-size:1.35rem; color:var(--ink); margin-bottom:.35rem; }
 
+  /* ── Questions en attente (non traitées par le système) ─────────── */
+  .attente{ max-width:76rem; margin:1.5rem auto 0; padding:0 clamp(1rem,3vw,2rem); }
+  .attente summary{
+    cursor:pointer; font-family:var(--display); font-size:1.05rem; font-weight:600;
+    color:var(--ink); padding:.7rem 0; list-style:none; display:flex; align-items:center; gap:.5rem;
+  }
+  .attente summary::-webkit-details-marker{ display:none; }
+  .attente summary::before{ content:"▸"; color:var(--gold); font-size:.8rem; transition:transform .15s; }
+  .attente[open] summary::before{ transform:rotate(90deg); }
+  .a-card{
+    background:var(--surface); border:1px solid var(--rule); border-left:4px solid var(--red);
+    border-radius:9px; padding:.75rem 1rem; margin-bottom:.6rem; font-size:.9rem;
+  }
+  .a-card .ask{ color:var(--ink); margin:0 0 .3rem; line-height:1.5; }
+  .a-meta{ display:flex; gap:.6rem; flex-wrap:wrap; align-items:center; font-size:.76rem; color:var(--ink-faint); }
+  .a-meta .tag{ font-size:.64rem; }
+
   /* ── Identité ──────────────────────────────────────────────────── */
   .veil{
     position:fixed; inset:0; background:rgba(10,14,12,.55); z-index:40;
@@ -328,6 +345,11 @@
     </div>
   </div>
 </header>
+
+<details class="attente" id="attenteBloc">
+  <summary>Questions en attente d&rsquo;une réponse TGR (<span id="nAttente">0</span>)</summary>
+  <div id="attenteList"></div>
+</details>
 
 <main id="list"><div class="empty">Chargement…</div></main>
 
@@ -434,6 +456,37 @@ function charger(){
     ar.textContent = d.ar_douteuses ? d.ar_douteuses + " sans traduction arabe" : "";
     ar.style.color = d.ar_douteuses ? "var(--red)" : "";
     rendre();
+  });
+}
+
+/* ── Questions en attente (visibilité seule, pas d'action ici) ──── */
+var STATUT_ATTENTE = {
+  known_bug: ["warn", "problème connu, sans solution documentée"],
+  verification_echouee: ["check", "réponse générée non ancrée dans la documentation"]
+};
+function chargerAttente(){
+  return fetch("/api/revision/questions-en-attente").then(function(r){ return r.json(); }).then(function(d){
+    document.getElementById("nAttente").textContent = d.total;
+    var hote = document.getElementById("attenteList");
+    if (!d.total) {
+      hote.innerHTML = "<p class=\"why\">Aucune question en attente pour le moment.</p>";
+      return;
+    }
+    hote.innerHTML = "";
+    d.questions.forEach(function(q){
+      var etq = STATUT_ATTENTE[q.statut] || ["check", q.statut];
+      var el = document.createElement("div");
+      el.className = "a-card";
+      el.innerHTML =
+        "<p class=\"ask\">" + ech(q.question) + "</p>" +
+        "<div class=\"a-meta\">" +
+          "<span class=\"tag " + etq[0] + "\">" + ech(etq[1]) + "</span>" +
+          "<span>" + ech(q.date || "") + "</span>" +
+          (q.fiche_id ? "<span>fiche&nbsp;: " + ech(q.fiche_id) + "</span>" : "") +
+          "<span>" + (q.langue === "ar" ? "arabe" : "français") + "</span>" +
+        "</div>";
+      hote.appendChild(el);
+    });
   });
 }
 
@@ -654,6 +707,7 @@ window.addEventListener("beforeunload", function(e){
 });
 
 charger();
+chargerAttente();
 </script>
 </body>
 </html>

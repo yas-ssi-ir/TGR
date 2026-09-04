@@ -12,6 +12,12 @@ from config import LLM_MAX_TOKENS, LLM_MODEL, LLM_TEMPERATURE, OLLAMA_URL
 import requests
 
 
+class LLMIndisponible(Exception):
+    """Levée quand une génération est nécessaire mais qu'Ollama ne répond pas.
+    Ne dérive pas de HTTPException : ce module ignore FastAPI, c'est à
+    l'appelant web de traduire ça en 503."""
+
+
 class OllamaLLM:
     def __init__(self, model: str = LLM_MODEL, base_url: str = OLLAMA_URL):
         self.model = model

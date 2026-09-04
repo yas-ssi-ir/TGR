@@ -24,7 +24,8 @@
       "Espace Utilisateur"
     ],
     "rubrique": "Compte et accès",
-    "origine": "assistant eServices (relevé du 2026-09-01)"
+    "origine": "assistant eServices (relevé du 2026-09-01)",
+    "solution_ar": "أدعوك إلى مشاهدة الفيديو التوضيحي أدناه، الذي سيرشدك خطوة بخطوة لإنشاء حسابك.\nإنشاء حسابك\nبعد مشاهدة الفيديو، يُرجى ملء الاستمارة لإتمام إنشاء حسابك.\n\nLien / الرابط : https://www.youtube.com/watch?v=BLkUPZbP1m4"
   },
   {
     "id": "AST.2",
@@ -49,7 +50,8 @@
       "Espace Assistance"
     ],
     "rubrique": "Compte et accès",
-    "origine": "assistant eServices (relevé du 2026-09-01)"
+    "origine": "assistant eServices (relevé du 2026-09-01)",
+    "solution_ar": "فعّل حسابك باستعمال هذا الرابط.\n\nLien / الرابط : https://eservices.tgr.gov.ma/my/auth/activate"
   },
   {
     "id": "AST.3",
@@ -71,7 +73,8 @@
       "Espace Utilisateur"
     ],
     "rubrique": "Compte et accès",
-    "origine": "assistant eServices (relevé du 2026-09-01)"
+    "origine": "assistant eServices (relevé du 2026-09-01)",
+    "solution_ar": "إذا كنت مسجلاً من قبل، فاتبع الخطوات التالية لتسجيل الدخول إلى المنصة:\nانقر على «تسجيل الدخول» في أعلى الشاشة جهة اليمين.\nستتم إحالتك إلى صفحة تسجيل الدخول.\nأدخل اسم المستخدم وكلمة المرور.\nثم انقر على زر «تسجيل الدخول» للولوج إلى فضائك.\nلا تتردد في التواصل معي إذا كان لديك أي سؤال أو كنت ترغب في الحصول على معلومات إضافية. أنا رهن إشارتك."
   },
   {
     "id": "AST.4",
@@ -96,7 +99,8 @@
       "Espace Utilisateur"
     ],
     "rubrique": "Compte et accès",
-    "origine": "assistant eServices (relevé du 2026-09-01)"
+    "origine": "assistant eServices (relevé du 2026-09-01)",
+    "solution_ar": "إذا لم تكن قد توصلت بعد برمز تفعيل حسابك،\nيُرجى النقر على هذا الرابط، وإدخال عنوان بريدك الإلكتروني، ووضع علامة في خانة «أنا لست روبوتاً»، ثم النقر على «تأكيد» للتوصل بالرمز.\n\nLien / الرابط : https://eservices.tgr.gov.ma/my/auth/sendactivationcode"
   },
   {
     "id": "AST.5",
@@ -119,7 +123,8 @@
       "Espace Utilisateur"
     ],
     "rubrique": "Compte et accès",
-    "origine": "assistant eServices (relevé du 2026-09-01)"
+    "origine": "assistant eServices (relevé du 2026-09-01)",
+    "solution_ar": "إذا نسيت اسم المستخدم أو كلمة المرور، فلا داعي للقلق. لاسترجاع الولوج إلى حسابك، اتبع الخطوات التالية:\nانقر على «تسجيل الدخول» في أعلى الصفحة جهة اليمين.\nفي واجهة تسجيل الدخول، اختر «نسيت اسم المستخدم أو كلمة المرور».\nاختر الخيار الموافق لحالتك:\nنسيت اسم المستخدم\nنسيت كلمة المرور\nنسيت عنوان البريد الإلكتروني\nاملأ الخانات المطلوبة.\nضع علامة في خانة «أنا لست روبوتاً».\nانقر في النهاية على زر «إرسال» لتأكيد طلبك."
   },
   {
     "id": "AST.6",
@@ -143,7 +148,8 @@
       "Espace Utilisateur"
     ],
     "rubrique": "Compte et accès",
-    "origine": "assistant eServices (relevé du 2026-09-01)"
+    "origine": "assistant eServices (relevé du 2026-09-01)",
+    "solution_ar": "لتغيير كلمة المرور، انقر على أيقونة «الملف الشخصي» في أعلى الصفحة جهة اليمين، ثم اختر «تغيير كلمة المرور». ستتم إحالتك إلى صفحة تُدخل فيها كلمة المرور القديمة، ثم كلمة المرور الجديدة وتأكيدها. وفي النهاية، انقر على زر «حفظ».\nيُرجى النقر على هذا الرابط.\n\nLien / الرابط : https://eservices.tgr.gov.ma/my/general/change-password"
   },
   {
     "id": "AST.7",
@@ -167,7 +173,8 @@
       "Espace Utilisateur"
     ],
     "rubrique": "Compte et accès",
-    "origine": "assistant eServices (relevé du 2026-09-01)"
+    "origine": "assistant eServices (relevé du 2026-09-01)",
+    "solution_ar": "أدعوك إلى مشاهدة الفيديو التوضيحي أدناه، الذي سيرشدك خطوة بخطوة لتغيير عنوان بريدك الإلكتروني.\nتغيير البريد الإلكتروني\n\nLien / الرابط : https://youtu.be/Lqizmeev0SU"
   },
   {
     "id": "AST.8",
@@ -191,7 +198,8 @@
       "Espace Utilisateur"
     ],
     "rubrique": "Compte et accès",
-    "origine": "assistant eServices (relevé du 2026-09-01)"
+    "origine": "assistant eServices (relevé du 2026-09-01)",
+    "solution_ar": "لحماية حسابك بشكل أفضل، ندعوك إلى تفعيل المصادقة الثنائية (2FA). ستجد جميع المعلومات اللازمة في دليل التفعيل والاستعمال المتاح هنا.\nيُرجى النقر على هذا الرابط للوصول إلى الدليل باللغة الفرنسية.\nيمكنك الاطلاع على الدليل باللغة العربية عبر هذا الرابط.\n\nLien / الرابط : https://eservices.tgr.gov.ma/my/guides/mfa-guide\nLien / الرابط : https://eservices.tgr.gov.ma/my/guides/mfa-guide-ar"
   },
   {
     "id": "AST.9",
@@ -213,7 +221,8 @@
       "Espace Contribuable"
     ],
     "rubrique": "Guides des taxes territoriales",
-    "origine": "assistant eServices (relevé du 2026-09-01)"
+    "origine": "assistant eServices (relevé du 2026-09-01)",
+    "solution_ar": "فيما يخص الرسم على الأراضي الحضرية غير المبنية، أوصي بشدة بمشاهدة هذا الفيديو التوضيحي، إذ يقدم شرحاً واضحاً ومنظماً.\nدليل الرسم على الأراضي الحضرية غير المبنية\n\nLien / الرابط : https://youtu.be/eHSeXREK5pw"
   },
   {
     "id": "AST.10",
@@ -234,7 +243,8 @@
       "Espace Contribuable"
     ],
     "rubrique": "Guides des taxes territoriales",
-    "origine": "assistant eServices (relevé du 2026-09-01)"
+    "origine": "assistant eServices (relevé du 2026-09-01)",
+    "solution_ar": "فيما يخص الرسم على محال بيع المشروبات، أوصي بشدة بمشاهدة هذا الفيديو التوضيحي، إذ يقدم شرحاً واضحاً ومنظماً.\nدليل الرسم على محال بيع المشروبات\nإذا كان لديك أي سؤال أو كنت بحاجة إلى توضيحات، فأنا رهن إشارتك.\n\nLien / الرابط : https://youtu.be/7jzwXMF40QQ"
   },
   {
     "id": "AST.11",
@@ -255,7 +265,8 @@
       "Espace Contribuable"
     ],
     "rubrique": "Guides des taxes territoriales",
-    "origine": "assistant eServices (relevé du 2026-09-01)"
+    "origine": "assistant eServices (relevé du 2026-09-01)",
+    "solution_ar": "فيما يخص رسم الإقامة، أوصي بمشاهدة هذا الفيديو التوضيحي، إذ يقدم عرضاً واضحاً ومنظماً.\nدليل رسم الإقامة\nأنا رهن إشارتك لأي معلومات إضافية أو سؤال محتمل.\n\nLien / الرابط : https://youtu.be/hY4aYPfA4ec"
   },
   {
     "id": "AST.12",
@@ -274,7 +285,8 @@
       "Espace Contribuable"
     ],
     "rubrique": "Guides des taxes territoriales",
-    "origine": "assistant eServices (relevé du 2026-09-01)"
+    "origine": "assistant eServices (relevé du 2026-09-01)",
+    "solution_ar": "أرجو المعذرة.\nدليل الرسم على المياه المعدنية ومياه المائدة غير جاهز في الوقت الحالي."
   },
   {
     "id": "AST.13",
@@ -295,7 +307,8 @@
       "Espace Contribuable"
     ],
     "rubrique": "Guides des taxes territoriales",
-    "origine": "assistant eServices (relevé du 2026-09-01)"
+    "origine": "assistant eServices (relevé du 2026-09-01)",
+    "solution_ar": "فيما يخص الرسم على المركبات الخاضعة للمراقبة التقنية، أوصي بمشاهدة هذا الفيديو التوضيحي، إذ يقدم عرضاً واضحاً ومنظماً.\nدليل الرسم على المركبات الخاضعة للمراقبة التقنية\n\nLien / الرابط : https://youtu.be/9jmwZa_w4HI"
   },
   {
     "id": "AST.14",
@@ -316,7 +329,8 @@
       "Espace Contribuable"
     ],
     "rubrique": "Guides des taxes territoriales",
-    "origine": "assistant eServices (relevé du 2026-09-01)"
+    "origine": "assistant eServices (relevé du 2026-09-01)",
+    "solution_ar": "فيما يخص الرسم على الخدمات المقدمة بالموانئ، أقترح مشاهدة هذا الفيديو التوضيحي الذي يقدم شرحاً واضحاً ومحكماً.\nدليل الرسم على الخدمات المقدمة بالموانئ\nأظل رهن إشارتك إذا كنت بحاجة إلى توضيحات أو ترغب في مناقشة الموضوع أكثر.\n\nLien / الرابط : https://youtu.be/yg8ZL__EYUk"
   },
   {
     "id": "AST.15",
@@ -343,7 +357,8 @@
       "Espace Contribuable"
     ],
     "rubrique": "Quittances",
-    "origine": "assistant eServices (relevé du 2026-09-01)"
+    "origine": "assistant eServices (relevé du 2026-09-01)",
+    "solution_ar": "لتنزيل وصلك، يُرجى النقر على هذا الرابط.\n\nLien / الرابط : https://eservices.tgr.gov.ma/my/mesquittances"
   },
   {
     "id": "AST.16",
@@ -359,7 +374,8 @@
       "Espace Contribuable"
     ],
     "rubrique": "Paiement multicanal",
-    "origine": "assistant eServices (relevé du 2026-09-01)"
+    "origine": "assistant eServices (relevé du 2026-09-01)",
+    "solution_ar": "يفتح المساعد طلباً للتوضيح، ثم يقترح حالتين: عقار سبق التصريح به بالنسبة لسنة 2025 والسنوات السابقة، أو عقار غير مصرح به / أداء يخص سنة 2026 والسنوات اللاحقة."
   },
   {
     "id": "AST.17",
@@ -382,7 +398,8 @@
       "Espace Contribuable"
     ],
     "rubrique": "Paiement multicanal",
-    "origine": "assistant eServices (relevé du 2026-09-01)"
+    "origine": "assistant eServices (relevé du 2026-09-01)",
+    "solution_ar": "نخبركم بأنه إذا سبق إخضاع عقاركم للضريبة (أي تم التصريح به لدى الإدارة المختصة)، فيمكنكم الاطلاع على وضعيتكم الجبائية مباشرة عبر المنصة الإلكترونية للخزينة العامة للمملكة على الرابط المبين. كما يمكن الحصول على المرجع بإرسال طلبكم عبر خدمة الشكايات وإرفاقه بإشعار ضريبي أو وصل يخص سنة سابقة. وإذا لم تكن هذه الوثائق متوفرة لديكم، ندعوكم إلى التوجه إلى القباضة المختصة ترابياً (قباضة مكان وجود العقار) للتحقق من وضعيتكم والحصول على المراجع اللازمة.\n\nLien / الرابط : https://eservices.tgr.gov.ma/"
   },
   {
     "id": "AST.18",
@@ -410,7 +427,8 @@
       "Espace Contribuable"
     ],
     "rubrique": "Paiement multicanal",
-    "origine": "assistant eServices (relevé du 2026-09-01)"
+    "origine": "assistant eServices (relevé du 2026-09-01)",
+    "solution_ar": "إذا لم يسبق التصريح بالعقار، فيتعين عليكم التصريح به لدى مصالح المديرية العامة للضرائب (DGI)، وفقاً لمقتضيات القانون رقم ⁦14-25⁩ المتعلق بوعاء وتحصيل ومنازعات الجبايات المحلية، ولا سيما رسم السكن ورسم الخدمات الجماعية. وإذا كان الأداء يخص سنة 2026 أو السنوات اللاحقة، فيجب إنجازه لدى المديرية العامة للضرائب عبر القنوات المخصصة لذلك في بوابتها الرسمية www.tax.gov.ma، وخاصة خدمة الأداء عبر الإنترنت المتاحة من خلال الرابط المبين.\n\nLien / الرابط : http://www.tax.gov.ma/\nLien / الرابط : https://tl.tax.gov.ma/tl/public/login.do?method=connectAnonymous&forward=paiementTHTSC"
   },
   {
     "id": "AST.19",
@@ -435,7 +453,8 @@
       "Espace Contribuable"
     ],
     "rubrique": "Paiement multicanal",
-    "origine": "assistant eServices (relevé du 2026-09-01)"
+    "origine": "assistant eServices (relevé du 2026-09-01)",
+    "solution_ar": "يمكن أداء مخالفات ATF عبر الإنترنت من خلال الرابط المبين. وتجدر الإشارة إلى أن المنصة تتيح للمخالف إدخال مبلغ الغرامة مباشرة، كما يمكنه أداء المبلغ المتبقي من الغرامة باستعمال المرجع نفسه. يُرجى التحقق من أن أجل الثلاثين يوماً المحدد لأداء الغرامات لدى مصالح الخزينة العامة للمملكة لم ينقضِ. بعد انقضاء هذا الأجل، لا يمكن الأداء عبر بوابة الخزينة لأن الملف يُحال إلى المحكمة، التي تتوفر بدورها على منصة للأداء عبر الإنترنت على الرابط المبين.\n\nLien / الرابط : https://eservices.tgr.gov.ma/my/pmc/Paiement\nLien / الرابط : https://amendes.justice.gov.ma/Amende/radar"
   },
   {
     "id": "AST.20",
@@ -457,7 +476,8 @@
       "Espace Contribuable"
     ],
     "rubrique": "Paiement multicanal",
-    "origine": "assistant eServices (relevé du 2026-09-01)"
+    "origine": "assistant eServices (relevé du 2026-09-01)",
+    "solution_ar": "إذا تعلقت المخالفة بمركبة مملوكة لشخص اعتباري (شركة)، فيجب التصريح بالسائق لدى مصالح النقل الطرقي التابعة لوزارة التجهيز والنقل. يتيح هذا التصريح الحصول على إشعار غرامة اسمي يتضمن المرجع اللازم للأداء. ولمزيد من المعلومات، يمكنكم الاطلاع على الرابط المبين.\n\nLien / الرابط : https://khadamatnarsa.ma/fr/declaration"
   },
   {
     "id": "AST.21",
@@ -481,7 +501,8 @@
       "Espace Assistance"
     ],
     "rubrique": "Réclamations",
-    "origine": "assistant eServices (relevé du 2026-09-01)"
+    "origine": "assistant eServices (relevé du 2026-09-01)",
+    "solution_ar": "إذا كنت ترى أن لديك سبباً لتقديم شكاية، فيمكنك القيام بذلك عبر الرابط المبين.\n\nLien / الرابط : https://eservices.tgr.gov.ma/my/reclamation"
   },
   {
     "id": "AST.22",
@@ -504,7 +525,8 @@
       "Espace Assistance"
     ],
     "rubrique": "Réclamations",
-    "origine": "assistant eServices (relevé du 2026-09-01)"
+    "origine": "assistant eServices (relevé du 2026-09-01)",
+    "solution_ar": "هل ترغب في تتبع تقدم معالجة شكايتك؟ ما عليك سوى النقر على هذا الرابط.\n\nLien / الرابط : https://eservices.tgr.gov.ma/my/reclamation/suivi"
   },
   {
     "id": "AST.23",
@@ -527,7 +549,8 @@
       "Espace Assistance"
     ],
     "rubrique": "Réclamations fréquentes - Utilisateur eServices",
-    "origine": "assistant eServices (relevé du 2026-09-01)"
+    "origine": "assistant eServices (relevé du 2026-09-01)",
+    "solution_ar": "المرحلة 1: الولوج إلى صفحة التسجيل\nانقر على زر «التسجيل» الموجود أعلى الصفحة الرئيسية.\nاكتب «Suivant» عند الانتهاء.\nالمرحلة 2: ملء الاستمارة\nأدخل ما يلي:\nاسم المستخدم\nعنوان البريد الإلكتروني\nكلمة مرور آمنة\nاختر كلمة مرور قوية تتضمن حروفاً وأرقاماً ورموزاً.\nاكتب «Suivant» للمتابعة.\nالمرحلة 3: قبول الشروط\nضع علامة في الخانتين التاليتين:\n«أنا لست روبوتاً»\n«أوافق على شروط الاستعمال»\nثم انقر على «حفظ» لإتمام تسجيلك.\nاكتب «Suivant» عند الانتهاء.\nالمرحلة 4: تفعيل الحساب\nسيُرسل إليك رمز تفعيل عبر البريد الإلكتروني.\nافتح بريدك وانسخ الرمز المتوصل به.\nأدخل بريدك الإلكتروني والرمز في صفحة التفعيل.\nانقر على «تفعيل».\nاكتب «Suivant» للمتابعة.\nالمرحلة 5: تسجيل الدخول\nتم الآن إنشاء حسابك.\nانقر على «تسجيل الدخول»، ثم أدخل اسم المستخدم وكلمة المرور.\nاكتب «Suivant» للمتابعة.\nالمرحلة 6: استكمال الملف الشخصي\nقبل البدء، انقر على «الملف الشخصي» وأضف معلوماتك الشخصية.\nيمكنك استكمال ملفك بصفتك موظفاً و/أو ملزماً.\nاكتب «Suivant» عند الانتهاء."
   },
   {
     "id": "AST.24",
@@ -548,7 +571,8 @@
       "Espace Assistance"
     ],
     "rubrique": "Réclamations fréquentes - Utilisateur eServices",
-    "origine": "assistant eServices (relevé du 2026-09-01)"
+    "origine": "assistant eServices (relevé du 2026-09-01)",
+    "solution_ar": "لإتمام تسجيلك، يُرجى اتباع الخطوات التالية:\nإنشاء الحساب والولوج إليه:\nبعد إنشاء حسابك في المرحلة السابقة، سجّل الدخول إلى فضائك.\nالولوج إلى ملفك الشخصي:\nانقر على أيقونة المستخدم في أعلى الصفحة جهة اليمين.\nاختر «تعديل الملف الشخصي».\nالولوج إلى خدمات التسجيل:\nمرّر الصفحة إلى أسفلها.\nانقر على «خدمات التسجيل».\nإدخال المعلومات:\nتحت العنوان «موظف؟ للتسجيل في خدمة الموظفين»، أدخل المعلومات التالية:\nرقم التأجير PPR\nتاريخ الالتحاق بالعمل\nآخر أجرة صافية محولة إلى حسابك البنكي\nتأكيد التسجيل:\nبعد المصادقة على تسجيلك، ستستفيد من ولوج آمن إلى معلوماتك الإدارية والمالية، بما في ذلك الاقتطاعات، عبر بوابة مؤمّنة."
   },
   {
     "id": "AST.25",
@@ -564,7 +588,8 @@
       "Espace Assistance"
     ],
     "rubrique": "Réclamations fréquentes - Utilisateur eServices",
-    "origine": "assistant eServices (relevé du 2026-09-01)"
+    "origine": "assistant eServices (relevé du 2026-09-01)",
+    "solution_ar": "يسأل المساعد عما إذا كان عنوان البريد الإلكتروني المستعمل عند التسجيل لا يزال متاحاً، أم أنه مفقود أو يتعذر الولوج إليه."
   },
   {
     "id": "AST.26",
@@ -585,7 +610,8 @@
       "Espace Assistance"
     ],
     "rubrique": "Réclamations fréquentes - Utilisateur eServices",
-    "origine": "assistant eServices (relevé du 2026-09-01)"
+    "origine": "assistant eServices (relevé du 2026-09-01)",
+    "solution_ar": "لإعادة تعيين كلمة المرور، استعمل هذا الرابط وأدخل عنوان البريد الإلكتروني الذي استعملته عند التسجيل.\n\nLien / الرابط : https://eservices.tgr.gov.ma/my/auth/forgotten"
   },
   {
     "id": "AST.27",
@@ -604,7 +630,8 @@
       "Espace Assistance"
     ],
     "rubrique": "Réclamations fréquentes - Utilisateur eServices",
-    "origine": "assistant eServices (relevé du 2026-09-01)"
+    "origine": "assistant eServices (relevé du 2026-09-01)",
+    "solution_ar": "لا يمكن إعادة تعيين كلمة المرور مباشرةً،"
   },
   {
     "id": "AST.28",
@@ -627,7 +654,8 @@
       "Espace Assistance"
     ],
     "rubrique": "Réclamations fréquentes - Utilisateur eServices",
-    "origine": "assistant eServices (relevé du 2026-09-01)"
+    "origine": "assistant eServices (relevé du 2026-09-01)",
+    "solution_ar": "المصادقة بواسطة البطاقة الوطنية للتعريف الإلكترونية (CINE) في بوابة الخدمات الإلكترونية للخزينة العامة للمملكة\nفتح المتصفح وتسجيل الدخول:\nافتح متصفح Google Chrome.\nسجّل الدخول إلى حسابك في الموقع الرسمي للخزينة العامة للمملكة (TGR).\nالولوج إلى التحقق بواسطة CINE:\nانقر على أيقونة المستخدم، ثم اختر «تعديل الملف الشخصي».\nانقر على زر «التحقق بواسطة CINE».\nالاطلاع على المعلومات المرسلة:\nتظهر نافذة تدعوك إلى استعمال بطاقتك الوطنية للتعريف الإلكترونية للمصادقة.\nتُعرض أيضاً لائحة المعلومات (السمات) التي ستُرسل إلى الخزينة العامة للمملكة.\nضع علامة أمام «قرأت شروط الاستعمال وأوافق عليها»، ثم انقر على «أوافق».\nاختيار طريقة المصادقة:\nالخيارات المتاحة:\nبواسطة الهاتف وCINE\nبواسطة الهاتف وCINE والتعرف على الوجه\nبواسطة CINE والرمز السري PIN\nبواسطة CINE والرمز السري PIN والتعرف على الوجه\nإذا اخترت الخيار الأول (الهاتف + CINE):\nأدخل رقم CINE، ثم انقر على «إرسال».\nيظهر رمز QR على الشاشة.\nنزّل تطبيق E-ID وثبّته على هاتفك.\nامسح رمز QR بواسطة التطبيق.\nأدخل رمز CAN الموجود على بطاقتك الوطنية.\nضع بطاقتك CINE خلف الهاتف لقراءتها تلقائياً.\nبعد نجاح القراءة، يؤكد التطبيق نجاح المصادقة.\nإتمام العملية في بوابة الخزينة:\nتظهر معلوماتك الشخصية تلقائياً في نافذة السمات الأولى.\nانقر على «قبول» لإتمام العملية.\nالاطلاع الآمن:\nيمكنك الآن الاطلاع على معلوماتك الإدارية والمالية بأمان."
   },
   {
     "id": "AST.29",
@@ -643,7 +671,8 @@
       "Espace Assistance"
     ],
     "rubrique": "Réclamations fréquentes - Utilisateur eServices",
-    "origine": "assistant eServices (relevé du 2026-09-01)"
+    "origine": "assistant eServices (relevé du 2026-09-01)",
+    "solution_ar": "يطلب المساعد تحديد ما إذا كان المستخدم لا يزال قادراً على الولوج إلى الحساب المراد إلغاء تسجيله."
   },
   {
     "id": "AST.30",
@@ -666,7 +695,8 @@
       "Espace Assistance"
     ],
     "rubrique": "Réclamations fréquentes - Utilisateur eServices",
-    "origine": "assistant eServices (relevé du 2026-09-01)"
+    "origine": "assistant eServices (relevé du 2026-09-01)",
+    "solution_ar": "يمكنك حذف حسابك عبر منصة الخدمات الإلكترونية بتسجيل الدخول أولاً إلى فضائك الشخصي، ثم النقر على أيقونة المستخدم، واختيار «تعديل الملف الشخصي» (Edit profil)، وأخيراً النقر على «إلغاء التسجيل» في أسفل الصفحة."
   },
   {
     "id": "AST.31",
@@ -685,7 +715,8 @@
       "Espace Assistance"
     ],
     "rubrique": "Réclamations fréquentes - Utilisateur eServices",
-    "origine": "assistant eServices (relevé du 2026-09-01)"
+    "origine": "assistant eServices (relevé du 2026-09-01)",
+    "solution_ar": "هذا الخيار غير متاح حالياً."
   },
   {
     "id": "AST.32",
@@ -705,7 +736,8 @@
       "Espace Assistance"
     ],
     "rubrique": "Réclamations fréquentes - Utilisateur eServices",
-    "origine": "assistant eServices (relevé du 2026-09-01)"
+    "origine": "assistant eServices (relevé du 2026-09-01)",
+    "solution_ar": "لأسباب تتعلق بالأمن والسرية، لا تُعرض البيانات الشخصية للموظفين إلا بعد المصادقة المسبقة على الحساب بواسطة البطاقة الوطنية للتعريف الإلكترونية (CINE). يجب التأكد من أن حسابك قد تمت المصادقة عليه فعلاً بواسطة بطاقتك الوطنية حتى تتمكن من الولوج إلى معلوماتك."
   },
   {
     "id": "AST.33",
@@ -721,7 +753,8 @@
       "Espace Assistance"
     ],
     "rubrique": "Réclamations fréquentes - Utilisateur eServices",
-    "origine": "assistant eServices (relevé du 2026-09-01)"
+    "origine": "assistant eServices (relevé du 2026-09-01)",
+    "solution_ar": "اختر الخيار الموافق لحاجتك:\nالاستعلام وأداء إتاوة أو رسم السكن أو رسم الخدمات الجماعية بالنسبة لسنة 2025 والسنوات السابقة\nالاطلاع على الوضعية الجبائية لرسم السكن ورسم الخدمات الجماعية بالنسبة لسنة 2026 والسنوات التالية\nتنزيل الوصولات\nأداء مخالفة مرورية بواسطة رادار ثابت مع توفر المرجع\nأداء مخالفة مرورية مثبتة بواسطة رادار ثابت دون مرجع مبيّن في محضر المخالفة"
   },
   {
     "id": "AST.34",
@@ -742,7 +775,8 @@
       "Espace Assistance"
     ],
     "rubrique": "Réclamations fréquentes - Utilisateur eServices",
-    "origine": "assistant eServices (relevé du 2026-09-01)"
+    "origine": "assistant eServices (relevé du 2026-09-01)",
+    "solution_ar": "على افتراض استيفاء جميع المتطلبات المسبقة (اتصال مستقر واستعمال متصفح Chrome)، يمكنك القيام بما يلي:\nامسح ذاكرة التخزين المؤقت بالضغط على Ctrl+F5، ثم أغلق المتصفح وأعد تشغيل الحاسوب، وافتح المتصفح من جديد وسجّل الدخول مرة أخرى.\nأعد المحاولة بعد قليل، فقد تكون المنصة في فترة صيانة."
   },
   {
     "id": "AST.35",
@@ -764,7 +798,8 @@
       "Espace Assistance"
     ],
     "rubrique": "Réclamations fréquentes - Utilisateur eServices",
-    "origine": "assistant eServices (relevé du 2026-09-01)"
+    "origine": "assistant eServices (relevé du 2026-09-01)",
+    "solution_ar": "بعد تقديم شكاية عبر منصة الشكايات الإلكترونية، ستتوصل برقم تتبع يجب الاحتفاظ به. لتتبع طلب استكمال أو الرد عليه ضمن خدمة الشكايات الإلكترونية، انتقل إلى الرابط المبين، وأدخل الرقم ثم انقر على أيقونة البحث. بعد ظهور الشكاية، انقر على «recours».\n\nLien / الرابط : https://eservices.tgr.gov.ma/my/reclamation/suivi"
   },
   {
     "id": "AST.36",
@@ -788,7 +823,8 @@
       "Espace Fonctionnaire"
     ],
     "rubrique": "Réclamations fréquentes - Fonctionnaire",
-    "origine": "assistant eServices (relevé du 2026-09-01)"
+    "origine": "assistant eServices (relevé du 2026-09-01)",
+    "solution_ar": "بعد تسجيل الدخول، قد تظهر الرسالة التالية عند الولوج إلى خدمات الموظف: «لم يتم التحقق من الحساب بواسطة البطاقة الوطنية للتعريف الإلكترونية (CNIE)».\nلمعالجة هذه الوضعية، يكفي اتباع الدليل المفصل المتاح عبر هذا الرابط. سيرافقك الدليل خطوة بخطوة مع لقطات شاشة توضيحية.\nيُرجى أيضاً التأكد من تثبيت تطبيق Mon e-ID | هويتي الرقمية على هاتفك الذكي، ومن تفعيل خاصية NFC في هاتفك المحمول.\nستمكّنك هذه الخطوات من إتمام التحقق من حسابك.\n\nLien / الرابط : https://eservices.tgr.gov.ma/my/assets/authDGSN/guideAuthCNIE.pdf"
   },
   {
     "id": "AST.37",
@@ -808,7 +844,8 @@
       "Espace Assistance"
     ],
     "rubrique": "Réclamations fréquentes - Fonctionnaire",
-    "origine": "assistant eServices (relevé du 2026-09-01)"
+    "origine": "assistant eServices (relevé du 2026-09-01)",
+    "solution_ar": "للولوج إلى وضعيتك الإدارية:\nسجّل الدخول إلى حسابك.\nفي القائمة الموجودة على اليسار، انقر على «الموظف»، ثم اختر «الوضعية الإدارية»."
   },
   {
     "id": "AST.38",
@@ -827,7 +864,8 @@
       "Espace Assistance"
     ],
     "rubrique": "Réclamations fréquentes - Fonctionnaire",
-    "origine": "assistant eServices (relevé du 2026-09-01)"
+    "origine": "assistant eServices (relevé du 2026-09-01)",
+    "solution_ar": "للولوج إلى وضعية أوامر تحصيل المداخيل، يكفي الدخول إلى حسابك باستعمال رقم التأجير PPR، ثم النقر على «الموظف» في القائمة الموجودة على اليسار، وبعد ذلك اختيار «وضعية أوامر تحصيل المداخيل»."
   },
   {
     "id": "AST.39",
@@ -846,7 +884,8 @@
       "Espace Assistance"
     ],
     "rubrique": "Réclamations fréquentes - Fonctionnaire",
-    "origine": "assistant eServices (relevé du 2026-09-01)"
+    "origine": "assistant eServices (relevé du 2026-09-01)",
+    "solution_ar": "يمكنك في أي وقت الاطلاع على آخر وضعية لقرارات التدبير. يكفي تسجيل الدخول إلى حسابك، ثم اختيار «الموظف» من القائمة الموجودة على اليسار والنقر على «وضعية قرارات التدبير»."
   },
   {
     "id": "AST.40",
@@ -865,7 +904,8 @@
       "Espace Assistance"
     ],
     "rubrique": "Réclamations fréquentes - Fonctionnaire",
-    "origine": "assistant eServices (relevé du 2026-09-01)"
+    "origine": "assistant eServices (relevé du 2026-09-01)",
+    "solution_ar": "للاطلاع على وضعية المستدركات، سجّل الدخول إلى حسابك. بعد تسجيل الدخول، اختر «الموظف» من القائمة الموجودة أعلى اليسار، ثم انقر على «وضعية المستدركات»."
   },
   {
     "id": "AST.41",
@@ -884,7 +924,8 @@
       "Espace Assistance"
     ],
     "rubrique": "Réclamations fréquentes - Fonctionnaire",
-    "origine": "assistant eServices (relevé du 2026-09-01)"
+    "origine": "assistant eServices (relevé du 2026-09-01)",
+    "solution_ar": "للاطلاع على وضعية الاقتطاعات وتتبع تقدمها، ادخل إلى حسابك، ثم اختر «الموظف» من القائمة الموجودة على اليسار وانقر على «وضعية الاقتطاعات»."
   },
   {
     "id": "AST.42",
@@ -903,7 +944,8 @@
       "Espace Assistance"
     ],
     "rubrique": "Réclamations fréquentes - Fonctionnaire",
-    "origine": "assistant eServices (relevé du 2026-09-01)"
+    "origine": "assistant eServices (relevé du 2026-09-01)",
+    "solution_ar": "إذا كنت ترغب في الاطلاع على وضعية أجرتك، فسجّل الدخول إلى حسابك باستعمال رقم التأجير PPR، ثم اختر «الموظف» من القائمة الموجودة على اليسار وانقر على «وضعية الأجرة»."
   },
   {
     "id": "AST.43",
@@ -924,7 +966,8 @@
       "Espace Assistance"
     ],
     "rubrique": "Réclamations fréquentes - Fonctionnaire",
-    "origine": "assistant eServices (relevé du 2026-09-01)"
+    "origine": "assistant eServices (relevé du 2026-09-01)",
+    "solution_ar": "يكفي الولوج إلى حسابك، ثم النقر على «الموظف» في القائمة الموجودة على اليسار، وبعد ذلك اختيار «شهادة الأجرة»."
   },
   {
     "id": "AST.44",
@@ -943,7 +986,8 @@
       "Espace Assistance"
     ],
     "rubrique": "Réclamations fréquentes - Fonctionnaire",
-    "origine": "assistant eServices (relevé du 2026-09-01)"
+    "origine": "assistant eServices (relevé du 2026-09-01)",
+    "solution_ar": "يكفي الولوج إلى حسابك، ثم اختيار «الموظف» من القائمة الموجودة على اليسار والنقر على «شهادة توقف الأجرة»."
   },
   {
     "id": "AST.45",
@@ -962,7 +1006,8 @@
       "Espace Assistance"
     ],
     "rubrique": "Réclamations fréquentes - Fonctionnaire",
-    "origine": "assistant eServices (relevé du 2026-09-01)"
+    "origine": "assistant eServices (relevé du 2026-09-01)",
+    "solution_ar": "يكفي الولوج إلى حسابك، ثم اختيار «الموظف» من القائمة الموجودة على اليسار والنقر على «الوضعية العائلية»."
   },
   {
     "id": "AST.46",
@@ -983,7 +1028,8 @@
       "Espace Assistance"
     ],
     "rubrique": "Réclamations fréquentes - Fonctionnaire",
-    "origine": "assistant eServices (relevé du 2026-09-01)"
+    "origine": "assistant eServices (relevé du 2026-09-01)",
+    "solution_ar": "يكفي الولوج إلى حسابك، ثم اختيار «الموظف» من القائمة الموجودة على اليسار والنقر على «بيان الأجرة»."
   },
   {
     "id": "AST.47",
@@ -1005,7 +1051,8 @@
       "Espace Assistance"
     ],
     "rubrique": "Réclamations fréquentes - Client de l'activité bancaire",
-    "origine": "assistant eServices (relevé du 2026-09-01)"
+    "origine": "assistant eServices (relevé du 2026-09-01)",
+    "solution_ar": "لفتح حساب بنكي لدى الخزينة العامة للمملكة (TGR)، يجب التوجه إلى الوكالة البنكية التابعة للخزينة التي تختارها، مصحوباً بالوثائق المطلوبة لفتح الحساب. وتتوفر اللائحة المفصلة للوثائق الواجب الإدلاء بها في الرابط المبين.\n\nLien / الرابط : https://banquenet.tgr.gov.ma/banque/ouverture.html"
   },
   {
     "id": "AST.48",
@@ -1025,7 +1072,8 @@
       "Espace Assistance"
     ],
     "rubrique": "Réclamations fréquentes - Client de l'activité bancaire",
-    "origine": "assistant eServices (relevé du 2026-09-01)"
+    "origine": "assistant eServices (relevé du 2026-09-01)",
+    "solution_ar": "يجب تقديم طلب دفتر شيكات أو بطاقة بنكية شخصياً لدى وكالتك البنكية التابعة للخزينة العامة للمملكة. ومع ذلك، يمكن أيضاً طلب دفتر شيكات مباشرة عبر الإنترنت من خلال خدمة TGR BanqueNet."
   },
   {
     "id": "AST.49",
@@ -1044,7 +1092,8 @@
       "Espace Assistance"
     ],
     "rubrique": "Réclamations fréquentes - Client de l'activité bancaire",
-    "origine": "assistant eServices (relevé du 2026-09-01)"
+    "origine": "assistant eServices (relevé du 2026-09-01)",
+    "solution_ar": "هل يمكنك قول ذلك بطريقة أخرى؟ لا أفهم."
   },
   {
     "id": "AST.50",
@@ -1064,7 +1113,8 @@
       "Espace Assistance"
     ],
     "rubrique": "Réclamations fréquentes - Client de l'activité bancaire",
-    "origine": "assistant eServices (relevé du 2026-09-01)"
+    "origine": "assistant eServices (relevé du 2026-09-01)",
+    "solution_ar": "لأسباب أمنية، لا يمكن إرسال الرمز السري PIN عن بُعد. يجب عليك الحضور شخصياً إلى وكالتك البنكية التابعة للخزينة العامة للمملكة لتقديم طلب إعادة إصدار الرمز."
   },
   {
     "id": "AST.51",
@@ -1083,7 +1133,8 @@
       "Espace Assistance"
     ],
     "rubrique": "Réclamations fréquentes - Client de l'activité bancaire",
-    "origine": "assistant eServices (relevé du 2026-09-01)"
+    "origine": "assistant eServices (relevé du 2026-09-01)",
+    "solution_ar": "لا يمكن حالياً الاحتفاظ برقم الحساب نفسه عند تغيير الوكالة. غير أنه يمكنك فتح حساب جديد في الوكالة الجديدة التي تختارها، وطلب إغلاق الحساب القديم لدى وكالتك السابقة دون الحاجة إلى التنقل إليها."
   },
   {
     "id": "AST.52",
@@ -1102,7 +1153,8 @@
       "Espace Assistance"
     ],
     "rubrique": "Réclamations fréquentes - Client de l'activité bancaire",
-    "origine": "assistant eServices (relevé du 2026-09-01)"
+    "origine": "assistant eServices (relevé du 2026-09-01)",
+    "solution_ar": "من حيث المبدأ، تُرسل كشوف الحساب البنكية تلقائياً إلى جميع زبناء الشبكة البنكية للخزينة العامة للمملكة، ولا سيما أصحاب الحسابات ذات النشاط المنتظم. إذا لم تتوصل بها، فتحقق من أن عنوانك البريدي، بما في ذلك الرمز البريدي، مسجل بصورة صحيحة لدى وكالتك. ويمكنك أيضاً طلب كشوفك مباشرة من الوكالة. كما تتيح لك خدمة TGR BanqueNet الاطلاع على كشوفك وعملياتك في أي وقت وبأمان."
   },
   {
     "id": "AST.53",
@@ -1121,7 +1173,8 @@
       "Espace Assistance"
     ],
     "rubrique": "Réclamations fréquentes - Client de l'activité bancaire",
-    "origine": "assistant eServices (relevé du 2026-09-01)"
+    "origine": "assistant eServices (relevé du 2026-09-01)",
+    "solution_ar": "يمكنك تقديم شكاية إلكترونية دون الحاجة إلى التنقل إلى الوكالة. يكفي بيان رقم الحساب واسم الوكالة المعنية، وإرفاق كل وثيقة تثبت الخطأ المسجل."
   },
   {
     "id": "AST.54",
@@ -1140,7 +1193,8 @@
       "Espace Assistance"
     ],
     "rubrique": "Réclamations fréquentes - Client de l'activité bancaire",
-    "origine": "assistant eServices (relevé du 2026-09-01)"
+    "origine": "assistant eServices (relevé du 2026-09-01)",
+    "solution_ar": "يجب القيام بما يلي:\nأداء مبلغ الشيك غير المؤدى، إما مباشرة إلى المستفيد مع استرجاع الشيك المرفوض، أو بتكوين مؤونة كافية لدى البنك المسحوب عليه.\nأداء الغرامة الجبائية المنصوص عليها في الأنظمة الجاري بها العمل.\nتسليم الوثائق المثبتة إلى وكالتك البنكية لتحيين وضعيتك."
   },
   {
     "id": "AST.55",
@@ -1159,7 +1213,8 @@
       "Espace Assistance"
     ],
     "rubrique": "Réclamations fréquentes - Client de l'activité bancaire",
-    "origine": "assistant eServices (relevé du 2026-09-01)"
+    "origine": "assistant eServices (relevé du 2026-09-01)",
+    "solution_ar": "يجب عليك الحضور شخصياً إلى وكالتك البنكية لتقديم طلب التعرض، مرفقاً بتصريح بالضياع أو السرقة، وعند الاقتضاء بمحضر محرر من طرف السلطات المختصة."
   },
   {
     "id": "AST.56",
@@ -1179,7 +1234,8 @@
       "Espace Assistance"
     ],
     "rubrique": "Réclamations fréquentes - Client de l'activité bancaire",
-    "origine": "assistant eServices (relevé du 2026-09-01)"
+    "origine": "assistant eServices (relevé du 2026-09-01)",
+    "solution_ar": "لتسوية تركة، يجب على الورثة أو ممثلهم الحضور شخصياً إلى الوكالة البنكية الماسكة للحساب المعني، مع نسختين من كل وثيقة مما يلي:\nمستخرج من رسم الوفاة؛\nنسخة مطابقة للأصل من رسم الإراثة تبين نصيب كل وارث؛\nنسخ مطابقة للأصل من بطاقات هوية الورثة والمتوفى؛\nتسليم وسائل الأداء الخاصة بالمتوفى (دفتر الشيكات والبطاقة البنكية)؛\nوكالة مصادق عليها إذا كان وكيل يتصرف نيابة عن الورثة؛\nشهادة الإبراء الضريبي الخاصة بالمتوفى.\nوقد تُطلب وثائق أخرى حسب الحالة."
   },
   {
     "id": "AST.57",
@@ -1201,7 +1257,8 @@
       "Espace Assistance"
     ],
     "rubrique": "Réclamations fréquentes - Titulaire d'une commande publique",
-    "origine": "assistant eServices (relevé du 2026-09-01)"
+    "origine": "assistant eServices (relevé du 2026-09-01)",
+    "solution_ar": "يجب توجيه الشكاية أولاً إلى صاحب المشروع. فالخزينة العامة للمملكة لا تتدخل إلا للتحقق من قانونية الالتزام بالنفقة، وتقوم بالأداء بناءً على مقترحات الالتزام وأوامر الأداء الصادرة عن الآمرين بالصرف المؤهلين. ولتسهيل التتبع الإداري للعقود، وضعت الخزينة رهن إشارتكم منصة التدبير المندمج لنفقات الموردين، المتاحة عبر الرابط المبين. كما يمكنكم من خلالها تتبع معالجة فواتيركم وتقديم شكاياتكم مباشرة عبر الإنترنت.\n\nLien / الرابط : https://fournisseurs.gid.gov.ma/inscription/accueilplus.htm"
   },
   {
     "id": "AST.58",
@@ -1220,7 +1277,8 @@
       "Espace Assistance"
     ],
     "rubrique": "Réclamations fréquentes - Titulaire d'une commande publique",
-    "origine": "assistant eServices (relevé du 2026-09-01)"
+    "origine": "assistant eServices (relevé du 2026-09-01)",
+    "solution_ar": "لم يُقدَّم أي جواب خاص بهذه الحالة. يوجّه المساعد المستخدم، عن طريق الخطأ، إلى القائمة الفرعية الخاصة بدلائل الرسوم الترابية."
   },
   {
     "id": "AST.59",
@@ -1241,7 +1299,8 @@
       "Espace Assistance"
     ],
     "rubrique": "Réclamations fréquentes - Titulaire d'une commande publique",
-    "origine": "assistant eServices (relevé du 2026-09-01)"
+    "origine": "assistant eServices (relevé du 2026-09-01)",
+    "solution_ar": "ندعوكم أولاً إلى التحقق من أن حاسوبكم لا يتباطأ بسبب تشغيل عدة تطبيقات في الوقت نفسه، وإلى التأكد لدى مصلحة المعلوميات من أن البطء لا يعود إلى بنيتكم التحتية المحلية. إذا أُنجزت هذه التحققات وما زال الولوج إلى بوابة الصفقات العمومية بطيئاً، فيُرجى إنشاء تذكرة مساعدة وإرسالها عبر الرابط المبين حتى يتمكن فريق الدعم من تحليل الوضعية.\n\nLien / الرابط : https://www.marchespublics.gov.ma/pmmp/"
   },
   {
     "id": "AST.60",
@@ -1260,7 +1319,8 @@
       "Espace Assistance"
     ],
     "rubrique": "Réclamations fréquentes - Titulaire d'une commande publique",
-    "origine": "assistant eServices (relevé du 2026-09-01)"
+    "origine": "assistant eServices (relevé du 2026-09-01)",
+    "solution_ar": "نعم. وفقاً للمادة 35 من المرسوم رقم ⁦2-22-431⁩، يمكن للمتنافس سحب ظرفه قبل التاريخ والساعة المحددين لفتح الأظرفة، وإيداع عرض جديد وفق الشروط نفسها المطبقة على الإيداع الأول.\nالمادة 35: «مع مراعاة مقتضيات المادة 135 من هذا المرسوم المتعلقة بإيداع الأظرفة وسحبها بطريقة إلكترونية، يجوز للمتنافس سحب كل ظرف تم إيداعه أو التوصل به قبل اليوم والساعة المحددين لجلسة فتح الأظرفة.\nيكون سحب الظرف موضوع طلب مكتوب وموقع من طرف المتنافس أو ممثله المؤهل قانوناً، وموجه إلى صاحب المشروع. ويسجل صاحب المشروع تاريخ وساعة السحب في السجل الخاص المشار إليه في المادة 4 من هذا المرسوم.\nيمكن للمتنافسين الذين سحبوا أظرفتهم تقديم أظرفة جديدة وفق الشروط المحددة في المادة 34 أعلاه».\nوبالتالي، يمكن سحب العرض وإيداع عرض جديد قبل فتح الأظرفة، شريطة احترام الإجراءات المنصوص عليها."
   },
   {
     "id": "AST.61",
@@ -1280,7 +1340,8 @@
       "Espace Assistance"
     ],
     "rubrique": "Réclamations fréquentes - Titulaire d'une commande publique",
-    "origine": "assistant eServices (relevé du 2026-09-01)"
+    "origine": "assistant eServices (relevé du 2026-09-01)",
+    "solution_ar": "نعم، يمكن تقديم شركتك وخدماتك إلى الإدارات، بل إن ذلك أمر مشجَّع. وتسهّل عدة آليات قانونية منصوص عليها في المرسوم رقم ⁦2-22-431⁩ هذه الخطوة.\nفيما يلي أهم السبل المتاحة:\nطلب إبداء الاهتمام\nتعرف المادة 18 من المرسوم طلب إبداء الاهتمام بأنه يهدف إلى تمكين صاحب المشروع، قبل إطلاق الدعوة إلى المنافسة، من تحديد المتنافسين المحتملين. وتنشر الإدارات إعلان طلب إبداء الاهتمام في الصحافة وعلى بوابة الصفقات العمومية.\nيمكنك بذلك الاستجابة لطلبات إبداء الاهتمام التي توافق قطاع نشاطك.\nملاحظة: لا يشكل طلب إبداء الاهتمام وعداً بإبرام صفقة.\nالعرض التلقائي\nتعترف المادة 13 من المرسوم بالعرض التلقائي وتؤطره بصورة خاصة. وهو مسطرة استباقية تتيح لك تقديم فكرة مبتكرة.\nالشروط: يجب أن يتضمن عرضك وظائف جديدة أو خدمات جديدة أو ابتكارات تقنية تستجيب لحاجة محتملة لم تكن الإدارة قد حددتها.\nإذا قُبلت فكرتك، تستفيد من هامش للأفضلية إذا شاركت في طلب العروض الذي سيُعلن عنه لاحقاً.\nالبرنامج التوقعي لثلاث سنوات\nوفقاً للمادة 17 من المرسوم المذكور، ينشر أصحاب المشاريع في بداية كل سنة مالية برنامجاً مفصلاً للصفقات التي يعتزمون إبرامها خلال السنوات الثلاث التالية.\nاطلع بصورة منتظمة على هذه البرامج في بوابة الصفقات العمومية أو في مواقع الإدارات التي تهمك. سيسمح لك ذلك باستباق الحاجات وإعداد حججك والتواصل مسبقاً مع المصالح التقنية المعنية لفهم توقعاتها بصورة أفضل."
   },
   {
     "id": "AST.62",
@@ -1299,7 +1360,8 @@
       "Espace Assistance"
     ],
     "rubrique": "Réclamations fréquentes - Titulaire d'une commande publique",
-    "origine": "assistant eServices (relevé du 2026-09-01)"
+    "origine": "assistant eServices (relevé du 2026-09-01)",
+    "solution_ar": "هل تقصد:\nMenu eservices\nMenu reclamation\nلا شيء مما سبق"
   },
   {
     "id": "AST.63",
@@ -1315,7 +1377,8 @@
       "Espace Assistance"
     ],
     "rubrique": "Réclamations fréquentes - Redevable / contribuable",
-    "origine": "assistant eServices (relevé du 2026-09-01)"
+    "origine": "assistant eServices (relevé du 2026-09-01)",
+    "solution_ar": "يعيد هذا الملف المستخدم إلى الإجراءات الثلاثة نفسها الموجودة في فضاء الملزم: دلائل الرسوم الترابية، وتنزيل الوصولات، والأداء متعدد القنوات. وترد جميع الأجوبة في القسم 2."
   },
   {
     "id": "AST.64",
@@ -1331,6 +1394,7 @@
       "Espace Fonctionnaire"
     ],
     "rubrique": "Actions proposées",
-    "origine": "assistant eServices (relevé du 2026-09-01)"
+    "origine": "assistant eServices (relevé du 2026-09-01)",
+    "solution_ar": "يفتح المساعد قائمة فرعية تضم عشرة إجراءات: الوضعية الإدارية، وأوامر تحصيل المداخيل، وقرارات التدبير، والمستدركات، والاقتطاعات، ووضعية الأجرة، وشهادة الأجرة، وشهادة توقف الأجرة، والوضعية العائلية، وبيان الأجرة. وترد الأجوبة المفصلة في القسم 3."
   }
 ]

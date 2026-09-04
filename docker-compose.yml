@@ -38,6 +38,13 @@ services:
       # « ollama » est le nom du service ci-dessus : Docker le résout tout seul
       OLLAMA_URL: http://ollama:11434
       LLM_MODEL: qwen2.5:3b-instruct
+      # /revision refuse tout le monde tant que REVISION_PASSWORD est vide —
+      # définissez ces deux variables dans un fichier .env à côté de ce
+      # fichier (non versionné) avant de démarrer :
+      #   REVISION_USER=tgr
+      #   REVISION_PASSWORD=<mot de passe choisi par la TGR>
+      REVISION_USER: ${REVISION_USER:-tgr}
+      REVISION_PASSWORD: ${REVISION_PASSWORD:-}
     ports:
       - "8000:8000"
     volumes:

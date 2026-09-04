@@ -171,13 +171,18 @@ def main():
             fr = nettoyer(fr)
             origine = "rédaction LLM"
 
-        # traduction VÉRIFIÉE : sans contrôle, le modèle recopie le français
-        # (constaté sur 25 fiches sur 44)
-        ar = traduire(llm, fr)
-        if ar is None:
-            ar, origine = fr, origine + " — traduction arabe en échec"
+        # arabe officiel (relevé bilingue TGR) : à préférer à la traduction,
+        # il vient du même relevé que le français, jamais du LLM
+        if officielle and fiche.get("solution_ar"):
+            ar = fiche["solution_ar"]
         else:
-            ar = preserver_liens(fr, ar)
+            # traduction VÉRIFIÉE : sans contrôle, le modèle recopie le français
+            # (constaté sur 25 fiches sur 44)
+            ar = traduire(llm, fr)
+            if ar is None:
+                ar, origine = fr, origine + " — traduction arabe en échec"
+            else:
+                ar = preserver_liens(fr, ar)
 
         done[fiche["id"]] = {"fr": fr.strip(), "ar": ar.strip(),
                              "probleme": fiche["probleme"]}
